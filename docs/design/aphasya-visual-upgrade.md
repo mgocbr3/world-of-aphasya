@@ -100,6 +100,15 @@ do visual "fofo" coeso) e wind sway em camadas. O que falta:
   por normal map leve. Mesma receita para as rochas de props (`props.ts`): material do
   factory com ramp, sem textura fotografica.
 
+Status W3b (2026-08-18): PRIMEIRO corte entregue no blade carpet.
+`src/render/blade_grass_storybook_core.ts` (core puro testado): ramp de cor raiz-fria/
+ponta-quente nos vertex colors (luminancia dos extremos casa com o ramp cinza legado,
+entao o tom geral do campo nao muda), campo de tufos de ~2 jardas (value noise 2 oitavas,
+media neutra: custo do carpet inalterado) modulando gate de densidade e escala dos
+clusters. A/B via `?sbgrass=off`, verificado no dev server de dia no vale. O carpet, a
+banda media e o bake do chao herdam juntos (geometria compartilhada). Proximo: mascara de
+terra compartilhada, flores cross-billboard e pedras com gradiente (abaixo).
+
 Referencia de implementacao aprovada pela direcao: `github.com/cortiz2894/stylized-components`
 (MIT, atribuicao a Christian Ortiz obrigatoria no CREDITS). O GrassField de la traz as
 tecnicas exatas: mascara procedural de terra compartilhada entre chao/grama/flores,
