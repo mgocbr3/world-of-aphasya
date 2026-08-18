@@ -11,6 +11,8 @@ import {
   MAX_CC_BANDS,
 } from '../ability_vfx_core';
 import type { AbilityAudioKind, AbilityAudioOpts } from '../audio_sink';
+import { GFX, VFX_HDR_BOOST } from '../gfx';
+import { renderLayerDisabled } from '../render_dev_flags';
 import { type DecalStyle, GroundDecals } from './decals';
 import { asFlipbookStyle, ImpactFlipbooks } from './flipbooks';
 import { abilityVfxTextures, OVERLAY_CELL } from './fx_textures';
@@ -1674,7 +1676,10 @@ export class AbilityVfxFx implements SequencerHost {
   }
 
   private intensity(): number {
-    return 0.55 + 0.45 * this.qualityLevel;
+    // The Aphasya boost ignites the gallery on composer tiers, where the
+    // bloom pass turns the extra headroom into glow (gfx.ts VFX_HDR_BOOST).
+    const boost = GFX.composer && !renderLayerDisabled('vfxhdr') ? VFX_HDR_BOOST : 1;
+    return (0.55 + 0.45 * this.qualityLevel) * boost;
   }
 
   // Windup ceremonies (gallery windupStyle set), all immediate-mode overlay

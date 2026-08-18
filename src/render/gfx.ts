@@ -1895,6 +1895,13 @@ export const gfxInternalsForTest = {
 // grade grain). The renderer ticks it once per frame in sync(). uRimBoost
 // scales the character rim glow (raised inside dungeons so silhouettes
 // separate from the murk).
+// Aphasya W4 (docs/design/aphasya-visual-upgrade.md): ability magic must
+// IGNITE on the composer tiers. The scene bloom stays conservative (its
+// threshold guards the HDRI sky), so the headroom comes from the effects
+// themselves: the pooled-particle HDR push and the ability-gallery intensity
+// both scale by this on composer tiers only.
+export const VFX_HDR_BOOST = 1.3;
+
 export const sharedUniforms = {
   uTime: { value: 0 },
   uRimBoost: { value: 1 },
