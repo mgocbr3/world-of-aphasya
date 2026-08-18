@@ -9513,7 +9513,8 @@ export class Renderer {
       envScale?: number;
     }
   > = {
-    vale: { hemiSky: 0xdcefff, hemiGround: 0x465f39, sun: 0xffedd0 },
+    // GDD 4.1 colored shadows: periwinkle fill over live grass bounce, boosted
+    vale: { hemiSky: 0xaec6ff, hemiGround: 0x587347, sun: 0xffedd0, hemiScale: 1.12 },
     marsh: { hemiSky: 0xdcefff, hemiGround: 0x465f39, sun: 0xffedd0 },
     peaks: { hemiSky: 0xdcefff, hemiGround: 0x465f39, sun: 0xffedd0 },
     dusk: { hemiSky: 0xffc9dd, hemiGround: 0x4d3f63, sun: 0xffb072 },
@@ -9721,7 +9722,6 @@ export class Renderer {
       this.valeCupSky.mesh.visible = false;
     }
     const biome = zoneBiomeAt(this.sim.player.pos.x, pz);
-    // Eased per-biome ambience: god rays + Aphasya grade (aphasya_grade_driver.ts).
     this.aphasyaGrade.update(biome, dt, this.post?.grade ?? null, Renderer.BIOME_GOD_RAYS[biome]);
     const phaseOverride = dayNightPhaseOverride();
     if (this.lowGfx && DAY_ONLY && phaseOverride === null) {
