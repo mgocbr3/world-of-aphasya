@@ -900,7 +900,10 @@ const skyFrag = (zoneHaze: boolean): string => /* glsl */ `${
     // shows them as flat cutouts against a brighter horizon. Solid to ~6
     // degrees, then fade to clear sky by ~21 degrees for the taller stuff
     // (a neighbor realm's coast trees seen across a strait).
-    c = mix(uFog, c, smoothstep(0.1, 0.36, dir.y));
+    // The horizon fog band dissolves over a WIDE arc (a 0.36 top read as a
+    // hard milky step against the night sky), and night stretches it higher
+    // still so the band grades into the star field instead of ending on it.
+    c = mix(uFog, c, smoothstep(0.06, mix(0.44, 0.62, uStarAmt), dir.y));
 ${
   zoneHaze
     ? `    // Distant-zone air on the dome (biome_haze_field.ts): the sky just
