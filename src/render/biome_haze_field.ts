@@ -31,6 +31,10 @@ import {
   HAZE_FAR_CEIL,
   HAZE_FAR_ONSET,
   HAZE_FAR_REF,
+  HAZE_MIST_BASE_Y,
+  HAZE_MIST_BOOST,
+  HAZE_MIST_FALLOFF,
+  HAZE_MIST_FLOOR,
   type HazeFieldLayout,
 } from './biome_haze_field_core';
 import { renderLayerDisabled } from './render_dev_flags';
@@ -217,7 +221,15 @@ uniform vec2 uHazeCam;`;
  * by that realm's own murk, and the camera's air column, which fades distance
  * out into the LOCAL area's fog colour at the same depth everywhere.
  */
-export function biomeHazeFragmentGlsl(worldXZ: string): string {
+export function biomeHazeFragmentGlsl(worldXZ: string, worldY?: string): string {
+  // With a world-Y expression, the height-mist factor (core constants) fills
+  // the valley floors and clears the high ground; vec2-only consumers keep
+  // the flat profile so the two arms never visibly disagree.
+  const mist = worldY
+    ? `
+    float wocHazeH = exp(-max(0.0, ${worldY} - ${glsl(HAZE_MIST_BASE_Y)}) * ${glsl(HAZE_MIST_FALLOFF)});
+    wocHazeA = min(${glsl(HAZE_FAR_CEIL)}, wocHazeA * (${glsl(HAZE_MIST_FLOOR)} + ${glsl(HAZE_MIST_BOOST)} * wocHazeH));`
+    : '';
   return `
   {
     vec2 wocHazeXZ = ${worldXZ};
@@ -226,7 +238,7 @@ export function biomeHazeFragmentGlsl(worldXZ: string): string {
     float wocHazeT = max(0.0, wocHazeD - ${glsl(HAZE_AERIAL_ONSET)}) / ${glsl(HAZE_AERIAL_REF)};
     float wocHazeT2 = max(0.0, wocHazeD - ${glsl(HAZE_FAR_ONSET)}) / ${glsl(HAZE_FAR_REF)};
     float wocHazeA = wocHaze.a * ${glsl(HAZE_AERIAL_MAX)} * (1.0 - exp(-wocHazeT * wocHazeT))
-      + ${glsl(HAZE_FAR_CEIL - HAZE_AERIAL_MAX)} * (1.0 - exp(-wocHazeT2 * wocHazeT2));
+      + ${glsl(HAZE_FAR_CEIL - HAZE_AERIAL_MAX)} * (1.0 - exp(-wocHazeT2 * wocHazeT2));${mist}
     gl_FragColor.rgb = mix(gl_FragColor.rgb, wocHaze.rgb * uHazeGrade, wocHazeA);
   }`;
 }

@@ -102,6 +102,23 @@ export const HAZE_FAR_ONSET = 720;
 export const HAZE_FAR_REF = 900;
 export const HAZE_FAR_CEIL = 0.95;
 
+// Height mist (Aphasya W7, the valleys-in-mist reference): fragments near the
+// valley floor breathe extra haze and high ground clears, so a lake basin
+// fills with morning air while the peaks above it stay crisp. Applied only by
+// the consumers that carry a world-Y varying (terrain, water); the factor is
+// deliberately gentle so the vec2-only consumers (props, far tiles) never
+// visibly disagree with the ground they stand on.
+export const HAZE_MIST_BASE_Y = 6;
+export const HAZE_MIST_FALLOFF = 0.045;
+export const HAZE_MIST_FLOOR = 0.72;
+export const HAZE_MIST_BOOST = 0.65;
+
+/** The height-mist multiplier on the aerial haze amount at world height y. */
+export function hazeHeightMistFactor(y: number): number {
+  const h = Math.exp(-Math.max(0, y - HAZE_MIST_BASE_Y) * HAZE_MIST_FALLOFF);
+  return HAZE_MIST_FLOOR + HAZE_MIST_BOOST * h;
+}
+
 /** Strength of the SKY dome's horizon-band tint (sky.ts), kept separate from
  *  the ground's border ceiling above. The dome's job is to match the hazed
  *  geometry sitting in front of it near the horizon, which is the far term's

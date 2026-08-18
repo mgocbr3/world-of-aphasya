@@ -862,7 +862,7 @@ ${BIOME_HAZE_DECLARATIONS}
     // lake takes the air of the zone it lies in and stops being the one
     // surface in the vista with no realm character. Compiled out entirely
     // when no field exists, so the fogged tiers are byte-identical.
-${biomeHazeFragmentGlsl('vWPos.xz')}
+${biomeHazeFragmentGlsl('vWPos.xz', 'vWPos.y')}
 #endif
     #include <fog_fragment>
   }

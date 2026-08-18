@@ -1623,7 +1623,7 @@ function buildSplatMaterial(
         .replace('#include <common>', `#include <common>${BIOME_HAZE_DECLARATIONS}`)
         .replace(
           '#include <fog_fragment>',
-          `${biomeHazeFragmentGlsl('vWPos.xz')}\n\t#include <fog_fragment>`,
+          `${biomeHazeFragmentGlsl('vWPos.xz', 'vWPos.y')}\n\t#include <fog_fragment>`,
         );
     }
   };
