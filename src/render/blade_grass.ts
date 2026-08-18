@@ -11,6 +11,8 @@ import {
   bladeClumpAt,
   clumpDensityGate,
   clumpScale,
+  meadowClusterScale,
+  meadowCoverGate,
   storybookBladeColor,
 } from './blade_grass_storybook_core';
 import { GRASS_BIOME_DENSITY } from './foliage';
@@ -278,15 +280,15 @@ export function buildBladeGrass(
       const lush = groundLushnessAt(x, z, seed);
       const biomeDensity = GRASS_BIOME_DENSITY[zoneBiomeAt(x, z)] ?? 1;
       // storybook clumping: a two-yard tuft field under the broad lush
-      // patches, hearts packed and gaps thinned, mean cost unchanged
+      // patches. On green soil the meadow cover gate fades the thinning out
+      // so the field carpets solid; the tuft gaps survive on dry ground
       // (blade_grass_storybook_core.ts; 0.5 is the neutral mean when the
       // ?sbgrass=off A/B disables the layer)
       const clump = storybookGrass ? bladeClumpAt(x, z, seed) : 0.5;
+      const cover = storybookGrass ? meadowCoverGate(clump, lush) : clumpDensityGate(clump);
       // higher floor + gain than the tufts: coverage is the carpet's job,
       // the patch structure just modulates it
-      ok =
-        r1 <
-        (0.44 + 1.7 * lush * lush) * 1.05 * clumpDensityGate(clump) * Math.min(biomeDensity, 1.2);
+      ok = r1 < (0.44 + 1.7 * lush * lush) * 1.05 * cover * Math.min(biomeDensity, 1.2);
       if (ok) ok = roadDistance(x, z) > 2.4;
       if (ok) ok = !isInSowfieldShell(x, z);
       if (ok) ok = !insideGrassHubExclusion(getActiveWorldContent().zones, x, z);
@@ -301,7 +303,7 @@ export function buildBladeGrass(
           // clumps, so the meadow reads as one grown surface. A hash-gated
           // size class turns ~10% of cells into taller tufts (x1.5 to x1.8)
           // that punctuate the fine carpet the rest of the cells lay down.
-          const lushHere = 0.5 + lush * 0.6;
+          const lushHere = storybookGrass ? meadowClusterScale(lush) : 0.5 + lush * 0.6;
           let s = (0.22 + hash(ci, cj, 3) * 0.34) * lushHere * clumpScale(clump);
           const rTuft = hash(ci, cj, 4);
           if (rTuft < 0.1) s *= 1.5 + rTuft * 3.0;

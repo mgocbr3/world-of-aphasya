@@ -3,6 +3,8 @@ import {
   bladeClumpAt,
   clumpDensityGate,
   clumpScale,
+  meadowClusterScale,
+  meadowCoverGate,
   STORYBOOK_ROOT,
   STORYBOOK_TIP,
   storybookBladeColor,
@@ -74,5 +76,28 @@ describe('storybook clump field', () => {
     expect(clumpDensityGate(0)).toBeCloseTo(0.55, 5);
     expect(clumpDensityGate(1)).toBeCloseTo(1.45, 5);
     expect(clumpScale(0.5)).toBeCloseTo(1.075, 3);
+  });
+
+  it('carpets solid on lush soil: the cover gate fades the thinning out', () => {
+    // dry ground keeps the pure clump gate (gaps read as intent)
+    expect(meadowCoverGate(0, 0)).toBeCloseTo(clumpDensityGate(0), 5);
+    expect(meadowCoverGate(1, 0)).toBeCloseTo(clumpDensityGate(1), 5);
+    // fully lush ground over-saturates acceptance regardless of clump
+    expect(meadowCoverGate(0, 1)).toBeCloseTo(1.15, 5);
+    expect(meadowCoverGate(1, 1)).toBeCloseTo(1.15, 5);
+    // mid-lush sits between and never dips below the dry gate
+    expect(meadowCoverGate(0, 0.5)).toBeGreaterThan(clumpDensityGate(0));
+    expect(meadowCoverGate(0.5, 0.5)).toBeGreaterThan(1);
+  });
+
+  it('grows clusters with lushness so blades overlap and hide the soil', () => {
+    expect(meadowClusterScale(0)).toBeCloseTo(0.55, 5);
+    expect(meadowClusterScale(1)).toBeCloseTo(1.33, 5);
+    // clamped outside [0,1]
+    expect(meadowClusterScale(2)).toBeCloseTo(1.33, 5);
+    // always at least as large as the legacy 0.5 + lush * 0.6 curve
+    for (const l of [0, 0.25, 0.5, 0.75, 1]) {
+      expect(meadowClusterScale(l)).toBeGreaterThanOrEqual(0.5 + l * 0.6 - 1e-9);
+    }
   });
 });

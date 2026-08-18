@@ -79,3 +79,25 @@ export function clumpDensityGate(clump: number): number {
 export function clumpScale(clump: number): number {
   return 0.85 + 0.45 * clump;
 }
+
+/**
+ * The meadow-fill cover gate (direction call: green ground should read as
+ * GRASS, not painted ground between tufts). On lush soil the clump thinning
+ * fades out and acceptance over-saturates, so a green field carpets solid;
+ * the tuft structure survives only on the dry mid-lush ground where gaps
+ * read as intent. The instanced pool is fixed, so the extra acceptance costs
+ * draw of already-pooled instances, never memory.
+ */
+export function meadowCoverGate(clump: number, lush: number): number {
+  const g = clumpDensityGate(clump);
+  const l = Math.min(1, Math.max(0, lush));
+  return g + (1.15 - g) * l;
+}
+
+/**
+ * Cluster footprint by soil lushness: green ground grows visibly larger
+ * clusters whose blades overlap and hide the soil (was 0.5 + lush * 0.6).
+ */
+export function meadowClusterScale(lush: number): number {
+  return 0.55 + Math.min(1, Math.max(0, lush)) * 0.78;
+}
