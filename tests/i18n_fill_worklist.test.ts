@@ -13,15 +13,12 @@
 // scripts/i18n_hash.mjs (pure helpers; the script's main() only runs as a CLI).
 
 import { describe, expect, it } from 'vitest';
+// The @ts-ignore must sit on the line the module specifier occupies, so the
+// import stays single-line on purpose (a formatter split parks the pragma on
+// the brace line and TS7016 comes back at the specifier).
+// biome-ignore format: the pragma below covers exactly the next line
 // @ts-ignore - shared zero-dep JS tool (no .d.ts); same pattern as the registry test importing scripts/i18n_hash.mjs. We exercise its exported pure helpers.
-import {
-  assertAutoFillableHasNoProse,
-  buildWorklistOutputs,
-  classify,
-  expandGlossaryTerms,
-  patternToRegExp,
-  siblingKeys,
-} from '../scripts/i18n_fill_worklist.mjs';
+import { assertAutoFillableHasNoProse, buildWorklistOutputs, classify, expandGlossaryTerms, patternToRegExp, siblingKeys } from '../scripts/i18n_fill_worklist.mjs';
 
 type GlossaryTerm = { category: string; key: string };
 

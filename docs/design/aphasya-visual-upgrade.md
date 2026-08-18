@@ -186,6 +186,16 @@ inspiracao de tecnica ok, copia de shader nao. So o `stylized-components` e MIT.
 | Etapa | Conteudo | Gate |
 |---|---|---|
 | V1 | W1 (profile mecanico) + W2 (AgX A/B + grade por bioma no vale) | screenshots antes/depois do vale, zero regressao de fps |
+
+Status V1 (2026-08-18): ENTREGUE o primeiro corte. `src/render/aphasya_grade_core.ts`
+(targets por bioma + easing, vale/marsh/peaks autorados, demais neutros),
+`aphasya_grade_driver.ts` (estado + push por frame, extraido do renderer pelo ratchet),
+OutputGradePass com grade em uniforms (defaults = grade legado), kill switch
+`?agrade=off`, A/B de tone mapping `?tonemap=agx` (default segue ACES ate decisao da
+direcao por screenshot). Verificado no dev server com `/daynight dusk`: grade off =
+visual legado; grade on = vale mais saturado/dourado com sombras frias; AgX = ombro
+mais suave, menos "queimado". Proximo corte do V1: mover BIOME_FOG/BIOME_LIGHT/
+HDRI_TUNE/BIOME_PALETTE para o profile e retunar por bioma.
 | V2 | W4 (bloom de VFX) + W8 (2 habilidades hero com VFX finalista) | metas GDD 16.1 nos presets |
 | V3 | W3 (ramp/rim retune + terreno pintado do vale) | "captura sem logo e reconhecivel como Aphasya" (GDD 17.3) |
 | V4 | W6.1 (agua base) + W7 (nuvens/fog de altura) | profiling registrado low/medium/high |

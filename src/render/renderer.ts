@@ -61,6 +61,7 @@ import { AfflictionFamiliar } from './affliction_familiar';
 import { type AmberFeaturesView, buildAmberFeatures } from './amber_features';
 import { isVisuallyDead } from './anim_state';
 import { AOE_RING_LIFETIME, aoeRingAnim } from './aoe_ring';
+import { AphasyaGradeDriver, aphasyaToneMapping } from './aphasya_grade_driver';
 import { ktx2RetainedSourceBytes } from './assets/ktx2_mip_release';
 import { formatResidencyBudget, residencyBudget } from './assets/residency_budget';
 import type { AmbientPointSource, SpatialAudioSink, Surface } from './audio_sink';
@@ -1988,11 +1989,10 @@ export class Renderer {
 
   private lowGfx: boolean;
   private post: PostPipeline | null = null;
+  // Eased per-biome ambience responses: the Aphasya output grade push and the
+  // god-ray zone strength (see aphasya_grade_driver.ts; `?agrade=off`).
+  private readonly aphasyaGrade = new AphasyaGradeDriver();
   private godRays: THREE.Sprite[] = [];
-  // Eased per-biome god-ray strength (BIOME_GOD_RAYS via updateAmbience): the
-  // shafts are "sun through bright air" and read as detached glowing streaks
-  // over the twilight and gloom realms, so those fade them out entirely.
-  private godRayZoneScale = 1;
   private viewport = { width: 1, height: 1 };
   private viewportPollTimer = 0;
   private nameplateTimer = 0;
@@ -2197,7 +2197,7 @@ export class Renderer {
     // rendered near-hard regardless of tuning. The live radius is deliberately
     // crisp without dropping all the way to a razor edge.
     this.webgl.shadowMap.type = THREE.PCFShadowMap;
-    this.webgl.toneMapping = THREE.ACESFilmicToneMapping; // OutputPass reads this on the composer path
+    this.webgl.toneMapping = aphasyaToneMapping(); // composer OutputPass reads this; ?tonemap=agx A/B
     this.webgl.toneMappingExposure = this.baseExposure;
     // Only worth gating view draws on compileAsync when programs can link OFF the
     // main thread; without the extension compileAsync compiles synchronously, so
@@ -9721,11 +9721,8 @@ export class Renderer {
       this.valeCupSky.mesh.visible = false;
     }
     const biome = zoneBiomeAt(this.sim.player.pos.x, pz);
-    // Per-biome god-ray strength, eased over about half a second so a border
-    // crossing fades the shafts with the rest of the ambience.
-    const shaftTarget = Renderer.BIOME_GOD_RAYS[biome] ?? 1;
-    this.godRayZoneScale +=
-      (shaftTarget - this.godRayZoneScale) * (1 - Math.exp(-2 * Math.max(0, dt)));
+    // Eased per-biome ambience: god rays + Aphasya grade (aphasya_grade_driver.ts).
+    this.aphasyaGrade.update(biome, dt, this.post?.grade ?? null, Renderer.BIOME_GOD_RAYS[biome]);
     const phaseOverride = dayNightPhaseOverride();
     if (this.lowGfx && DAY_ONLY && phaseOverride === null) {
       if (this.fixedLowDayBiome !== biome) {
@@ -12973,7 +12970,7 @@ export class Renderer {
     // reserved for the overworld. Twilight and gloom realms also fade them
     // completely through BIOME_GOD_RAYS, so skip their draw and math once the
     // eased scale reaches zero.
-    const shafts = this.fogState === 'outdoor' && this.godRayZoneScale > 0.02;
+    const shafts = this.fogState === 'outdoor' && this.aphasyaGrade.godRayScale > 0.02;
     // azimuth-only alignment, the chase cam always pitches down while the
     // sun sits high, so a full 3D dot product would never light the shafts
     this.camera.getWorldDirection(this.tmpV);
@@ -12995,7 +12992,7 @@ export class Renderer {
         .addScaledVector(side, (i - 1) * 30 + sway);
       sp.position.y = this.camera.position.y + 16 + i * 7;
       sp.material.opacity =
-        facing * facing * facing * (0.3 - i * 0.05) * this.sunUp * this.godRayZoneScale;
+        facing * facing * facing * (0.3 - i * 0.05) * this.sunUp * this.aphasyaGrade.godRayScale;
     }
   }
 

@@ -72,7 +72,9 @@ const MONOLITHS: MonolithRow[] = [
     // (zone_prewarm_templates_core.ts, the buildFormVisual fold), and the merged
     // file lands between the two pins, so the ceiling is the exact merged count
     // per the ratchet's rule: any further growth reds again.
-    ceiling: 13754,
+    // Lowered by the Aphasya V1 ambience extraction: the per-biome grade push
+    // and the god-ray ease moved to src/render/aphasya_grade_driver.ts.
+    ceiling: 13751,
     seam: 'a new src/render/<thing>.ts module the renderer calls (src/render/CLAUDE.md)',
   },
   {
