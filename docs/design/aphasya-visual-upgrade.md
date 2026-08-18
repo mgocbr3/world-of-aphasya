@@ -191,8 +191,8 @@ Status V1 (2026-08-18): ENTREGUE o primeiro corte. `src/render/aphasya_grade_cor
 (targets por bioma + easing, vale/marsh/peaks autorados, demais neutros),
 `aphasya_grade_driver.ts` (estado + push por frame, extraido do renderer pelo ratchet),
 OutputGradePass com grade em uniforms (defaults = grade legado), kill switch
-`?agrade=off`, A/B de tone mapping `?tonemap=agx` (default segue ACES ate decisao da
-direcao por screenshot). Verificado no dev server com `/daynight dusk`: grade off =
+`?agrade=off`, A/B de tone mapping via `?tonemap=`. Direcao aprovou o AgX no A/B de
+2026-08-18: AgX e o default do jogo e `?tonemap=aces` vira o braco legado de comparacao. Verificado no dev server com `/daynight dusk`: grade off =
 visual legado; grade on = vale mais saturado/dourado com sombras frias; AgX = ombro
 mais suave, menos "queimado". Proximo corte do V1: mover BIOME_FOG/BIOME_LIGHT/
 HDRI_TUNE/BIOME_PALETTE para o profile e retunar por bioma.

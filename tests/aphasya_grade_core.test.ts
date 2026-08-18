@@ -66,14 +66,14 @@ describe('Aphasya biome grade core', () => {
     expect(state.sat).toBe(APHASYA_BIOME_GRADES.vale.sat);
   });
 
-  it('parses the tonemap A/B flag with ACES as the shipped default', () => {
-    expect(toneMappingChoice(undefined)).toBe('aces');
-    expect(toneMappingChoice('')).toBe('aces');
-    expect(toneMappingChoice('?gfx=high')).toBe('aces');
+  it('parses the tonemap A/B flag with AgX as the shipped default', () => {
+    expect(toneMappingChoice(undefined)).toBe('agx');
+    expect(toneMappingChoice('')).toBe('agx');
+    expect(toneMappingChoice('?gfx=high')).toBe('agx');
     expect(toneMappingChoice('?tonemap=agx')).toBe('agx');
-    expect(toneMappingChoice('?gfx=high&tonemap=agx')).toBe('agx');
+    expect(toneMappingChoice('?gfx=high&tonemap=aces')).toBe('aces');
     expect(toneMappingChoice('?tonemap=aces')).toBe('aces');
-    expect(toneMappingChoice('?tonemap=filmic')).toBe('aces');
+    expect(toneMappingChoice('?tonemap=filmic')).toBe('agx');
   });
 
   it('keeps the output grade shader on uniforms, not baked constants', () => {

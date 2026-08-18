@@ -20,8 +20,8 @@ import { renderLayerDisabled } from './render_dev_flags';
 
 /**
  * Resolve the renderer's tone mapping from the `?tonemap=` A/B flag
- * (aphasya_grade_core.ts toneMappingChoice); ACES stays the shipped default
- * until the Aphasya direction study lands.
+ * (aphasya_grade_core.ts toneMappingChoice); AgX is the shipped default
+ * since the direction approval, with `?tonemap=aces` as the legacy arm.
  */
 export function aphasyaToneMapping(): ToneMapping {
   const search = typeof location === 'undefined' ? undefined : location.search;

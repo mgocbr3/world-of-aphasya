@@ -94,15 +94,16 @@ export function gradeStateFrom(grade: BiomeGrade): GradeState {
 export const GRADE_RESPONSE = 1.6;
 
 /**
- * The `?tonemap=` A/B switch for the Aphasya direction study: `agx` preserves
- * midtone saturation with a softer shoulder (candidate for the hand-painted
- * look), `aces` is the shipped legacy default. Pure string parse so the
- * decision is testable; the renderer feeds it `location.search`.
+ * The `?tonemap=` A/B switch for the Aphasya direction: `agx` preserves
+ * midtone saturation with a softer shoulder and is the SHIPPED DEFAULT
+ * (direction approval 2026-08-18, dusk-vale A/B); `aces` is the legacy
+ * comparison arm. Pure string parse so the decision is testable; the
+ * renderer feeds it `location.search`.
  */
 export function toneMappingChoice(search: string | undefined): 'aces' | 'agx' {
-  if (!search) return 'aces';
+  if (!search) return 'agx';
   const m = /[?&]tonemap=(aces|agx)\b/.exec(search);
-  return m ? (m[1] as 'aces' | 'agx') : 'aces';
+  return m ? (m[1] as 'aces' | 'agx') : 'agx';
 }
 
 /** Ease `state` toward `target` in place; alloc-free for the per-frame path. */
