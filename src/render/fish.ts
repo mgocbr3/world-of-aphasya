@@ -152,7 +152,14 @@ export function buildFish(
       inst.traverse((child) => {
         if (child instanceof THREE.Mesh) child.castShadow = GFX.standardMaterials;
       });
-      return inst;
+      // The Tripo fish is authored facing -z and leapt tail-first: the leap
+      // math steers a +z-facing body (the procedural fallback's convention).
+      // The flip lives on an inner wrapper because update() resets the outer
+      // body rotation every frame before applying heading and pitch.
+      inst.rotation.y = Math.PI;
+      const wrap = new THREE.Group();
+      wrap.add(inst);
+      return wrap;
     }
     return new THREE.Mesh(bodyGeo, bodyMat);
   };
