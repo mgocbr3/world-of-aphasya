@@ -19,7 +19,9 @@ export const BIOME_PALETTE: Record<
     grass: 0x548545,
     grassDark: 0x3e6635,
     grassYellow: 0x768c44,
-    dirt: 0x8a6f47,
+    // storybook meadow fill: bare ground reads as living earth under grass,
+    // olive-warm instead of dusty brown, so the field never looks balding
+    dirt: 0x7d7145,
     sand: 0xc2b283,
   },
   marsh: {

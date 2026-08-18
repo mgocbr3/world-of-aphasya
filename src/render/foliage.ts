@@ -3035,8 +3035,14 @@ function buildGrassRing(
                   : 0.05
                 : tuftBiome === 'jungle'
                   ? 0.2
-                  : 0.11;
-        const reps = inMeadow ? 4 : stableBloom ? 3 : inField ? (fenTuft ? 4 : 3) : 1;
+                  : tuftBiome === 'vale'
+                    ? // the Aphasya storybook meadow fill: the reference fields
+                      // read grass PLUS bloom everywhere, so the starter vale
+                      // flowers most tuft anchors instead of one in nine
+                      0.28
+                    : 0.11;
+        const reps =
+          inMeadow ? 4 : stableBloom ? 3 : inField ? (fenTuft ? 4 : 3) : tuftBiome === 'vale' ? 2 : 1;
         if (hashAt(i, j, 6) < flowerChance) {
           for (let rep = 0; rep < reps && fn < flowerCap; rep++) {
             const fx = x + (hashAt(i + rep, j, 7) - 0.5) * (1.4 + rep * 1.3);
