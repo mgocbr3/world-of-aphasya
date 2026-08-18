@@ -12,6 +12,7 @@ import { SOWFIELD_CENTER } from '../sim/vale_cup_layout';
 import { loadHdr, loadTexture, releaseHdr, releaseTexture } from './assets/loader';
 import { BIOME_HAZE_DECLARATIONS, biomeHazeUniforms, hasBiomeHazeField } from './biome_haze_field';
 import { HAZE_SKY_SAMPLE_DIST, HAZE_SKY_TINT_MAX } from './biome_haze_field_core';
+import { buildCloudLayer } from './cloud_layer';
 import {
   createEnvironmentBlend,
   SKY_ENVIRONMENT_RESPONSE,
@@ -1111,6 +1112,16 @@ export function buildSky(
   const dome = new THREE.Mesh(new THREE.SphereGeometry(DOME_RADIUS, 32, 20), material);
   dome.renderOrder = SKY_BACKGROUND_RENDER_ORDER;
 
+  // Aphasya cloud band (cloud_layer.ts): drifts world-anchored under the HDRI
+  // dome, taking the same live grading pushes the dome takes below.
+  const clouds = buildCloudLayer();
+  if (clouds) {
+    clouds.mesh.renderOrder = SKY_BACKGROUND_RENDER_ORDER + 1;
+    dome.add(clouds.mesh);
+  }
+  const cloudDayMul: [number, number, number] = [1, 1, 1];
+  let cloudDuskWarm = 0;
+
   const current = createEnvironmentBlend(start);
   let boundFrom = start.from;
   let boundTo = start.to;
@@ -1146,14 +1157,19 @@ export function buildSky(
         boundTo = current.to;
       }
       uniforms.uMix.value = current.t;
+      clouds?.setCamera(x, z);
     },
     setDayNight(mul: readonly [number, number, number]): void {
       uniforms.uDayNight.value.set(mul[0], mul[1], mul[2]);
+      cloudDayMul[0] = mul[0];
+      cloudDayMul[1] = mul[1];
+      cloudDayMul[2] = mul[2];
     },
     setCycle(liveSunDir: THREE.Vector3, duskWarm: number, nightDesat: number): void {
       uniforms.uSunDirLive.value.copy(liveSunDir);
       uniforms.uDuskWarm.value = duskWarm;
       uniforms.uNightDesat.value = nightDesat;
+      cloudDuskWarm = duskWarm;
     },
     setFog(color: THREE.Color): void {
       uniforms.uFog.value.copy(color);
@@ -1161,6 +1177,8 @@ export function buildSky(
     setStars(starAmt: number, time: number): void {
       uniforms.uStarAmt.value = starAmt;
       uniforms.uTime.value = time;
+      clouds?.setTime(time);
+      clouds?.setGrading(cloudDayMul, cloudDuskWarm, starAmt);
     },
     envTexture(biome: SkyKey): THREE.DataTexture | null {
       return envHdriStore[biome] ?? hdriStore[biome] ?? null;
@@ -1183,6 +1201,7 @@ export function buildSky(
     currentBiomeBlend: () => current,
     dispose(): void {
       domeBindings.delete(readBinding);
+      clouds?.dispose();
     },
   };
 }

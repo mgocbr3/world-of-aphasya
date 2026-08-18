@@ -162,6 +162,13 @@ Recomendacao em duas frentes:
 
 ### W7. Ceu vivo: nuvens e god rays
 
+Status (2026-08-18): camada de nuvens ENTREGUE. `src/render/cloud_layer.ts` (banda fbm
+procedural mundo-ancorada sob o dome HDRI, dois scrolls, sem textura baixada) +
+`cloud_layer_core.ts` (tint puro: escurece a noite, cora no crepusculo, afina para o
+campo de estrelas). Integrada no ramo HDRI de `buildSky` com o mesmo grading vivo do
+dome; `?clouds=off` e o A/B; tier low mantem o ceu canvas intocado. God rays ja
+existiam (BIOME_GOD_RAYS). Falta do W7: termo de altura no haze (nevoa de vale).
+
 - Manter as HDRIs por bioma (ja sao um diferencial) e adicionar por cima uma **camada de
   nuvens 2D com scroll** (2 texturas, paralaxe leve, tint pelo sol/hora) em medium+;
   barata e da vida imediata ao ceu estatico.
