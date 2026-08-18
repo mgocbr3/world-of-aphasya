@@ -14,6 +14,8 @@ import {
   meadowClusterScale,
   meadowCoverGate,
   storybookBladeColor,
+  tallGrassHeightScale,
+  tallMeadowAt,
 } from './blade_grass_storybook_core';
 import { GRASS_BIOME_DENSITY } from './foliage';
 import { insideGrassHubExclusion } from './foliage_core';
@@ -289,7 +291,8 @@ export function buildBladeGrass(
       // higher floor + gain than the tufts: coverage is the carpet's job,
       // the patch structure just modulates it
       ok = r1 < (0.44 + 1.7 * lush * lush) * 1.05 * cover * Math.min(biomeDensity, 1.2);
-      if (ok) ok = roadDistance(x, z) > 2.4;
+      const rd = ok ? roadDistance(x, z) : 0;
+      if (ok) ok = rd > 2.4;
       if (ok) ok = !isInSowfieldShell(x, z);
       if (ok) ok = !insideGrassHubExclusion(getActiveWorldContent().zones, x, z);
       if (ok) {
@@ -316,7 +319,12 @@ export function buildBladeGrass(
           q.premultiply(qLean.setFromAxisAngle(leanAxis, rLean * 0.21));
           // per-cluster height jitter on top of the blade-level length spread
           const hJit = 0.82 + hash(ci, cj, 6) * 0.36;
-          m.compose(v.set(x, h - 0.02, z), q, sv.set(s, s * (0.85 + lush * 0.5) * hJit, s));
+          // tall-meadow bands (the chest-height reference look): coherent
+          // patches stretch vertically, kept well off roads so travel routes
+          // stay readable (blade_grass_storybook_core.ts)
+          const tall = storybookGrass && rd > 6 ? tallMeadowAt(x, z, seed) : 0;
+          const sy = s * (0.85 + lush * 0.5) * hJit * tallGrassHeightScale(tall);
+          m.compose(v.set(x, h - 0.02, z), q, sv.set(s, sy, s));
           groundGrassColorAt(x, z, seed, c);
           // slight lift over the raw ground tint: blades catch more sky
           // than the soil they stand on

@@ -101,3 +101,26 @@ export function meadowCoverGate(clump: number, lush: number): number {
 export function meadowClusterScale(lush: number): number {
   return 0.55 + Math.min(1, Math.max(0, lush)) * 0.78;
 }
+
+/** Tall-meadow band wavelength control: about a seven-yard patch cell. */
+const TALL_FREQ = 0.14;
+
+/**
+ * Tall-meadow factor at a world position, in [0,1]: coherent chest-height
+ * grass bands over the open fields (the WoW Classic reference look), covering
+ * roughly a fifth of lush ground. Zero across most of the field so the tall
+ * patches read as PLACES, not noise; the caller keeps them clear of roads
+ * and hubs so gameplay routes stay readable.
+ */
+export function tallMeadowAt(x: number, z: number, seed: number): number {
+  const n =
+    valueNoise(x * TALL_FREQ, z * TALL_FREQ, seed ^ 0x7c31) * 0.75 +
+    valueNoise(x * TALL_FREQ * 2.3, z * TALL_FREQ * 2.3, seed ^ 0x19af) * 0.25;
+  const t = Math.min(1, Math.max(0, (n - 0.56) / 0.18));
+  return smooth(t);
+}
+
+/** Vertical stretch for a cluster inside a tall band: up to ~3x at the heart. */
+export function tallGrassHeightScale(tall: number): number {
+  return 1 + Math.min(1, Math.max(0, tall)) * 2.0;
+}

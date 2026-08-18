@@ -8,6 +8,8 @@ import {
   STORYBOOK_ROOT,
   STORYBOOK_TIP,
   storybookBladeColor,
+  tallGrassHeightScale,
+  tallMeadowAt,
 } from '../src/render/blade_grass_storybook_core';
 
 const luminance = (c: readonly [number, number, number]): number =>
@@ -88,6 +90,35 @@ describe('storybook clump field', () => {
     // mid-lush sits between and never dips below the dry gate
     expect(meadowCoverGate(0, 0.5)).toBeGreaterThan(clumpDensityGate(0));
     expect(meadowCoverGate(0.5, 0.5)).toBeGreaterThan(1);
+  });
+
+  it('carves coherent tall-meadow bands covering a minority of the field', () => {
+    const seed = 42;
+    let covered = 0;
+    let max = 0;
+    const N = 70;
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < N; j++) {
+        const t = tallMeadowAt(i * 1.1, j * 1.1, seed);
+        expect(t).toBeGreaterThanOrEqual(0);
+        expect(t).toBeLessThanOrEqual(1);
+        if (t > 0.1) covered++;
+        max = Math.max(max, t);
+      }
+    }
+    const frac = covered / (N * N);
+    // bands exist (hearts reach full) but stay a minority of the field
+    expect(max).toBeGreaterThan(0.9);
+    expect(frac).toBeGreaterThan(0.05);
+    expect(frac).toBeLessThan(0.45);
+    expect(tallMeadowAt(3.7, 9.1, seed)).toBe(tallMeadowAt(3.7, 9.1, seed));
+  });
+
+  it('stretches tall clusters up to about three times and clamps the input', () => {
+    expect(tallGrassHeightScale(0)).toBeCloseTo(1, 5);
+    expect(tallGrassHeightScale(1)).toBeCloseTo(3, 5);
+    expect(tallGrassHeightScale(2)).toBeCloseTo(3, 5);
+    expect(tallGrassHeightScale(-1)).toBeCloseTo(1, 5);
   });
 
   it('grows clusters with lushness so blades overlap and hide the soil', () => {
