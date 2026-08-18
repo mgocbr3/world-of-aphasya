@@ -112,6 +112,7 @@ import {
   reorderInstanceDataByStableRank,
 } from './perceptual_lod_core';
 import { collectBuildingImpostors } from './props';
+import { paintRockVertexColors } from './rock_paint_core';
 import { makeShadowOnlyMaterial } from './shadow_only_material';
 import { freezeStaticMatrices } from './static_matrix';
 import { groundGrassColorAt, groundLushnessAt } from './terrain_chunk_build';
@@ -384,7 +385,8 @@ const OAK_TINT: Record<BiomeId, number> = {
   gale: 0x669660, // stunted wind-bent crowns
 };
 const ROCK_TINT: Record<BiomeId, number> = {
-  vale: 0x8d8d85,
+  // sage-grey field stone: sits in the vale meadow instead of jumping out of it
+  vale: 0x84887a,
   marsh: 0x565c4e,
   peaks: 0x878e99,
   beach: 0xb0a894,
@@ -530,7 +532,9 @@ const LEAF_TINT_SOFTEN_NIGHT = 0.15;
 const leafSoften = (biome: BiomeId): number =>
   biome === 'night' ? LEAF_TINT_SOFTEN_NIGHT : LEAF_TINT_SOFTEN;
 const BARK_TINT_SOFTEN = 0.85;
-const ROCK_TINT_SOFTEN = 0.45;
+// storybook rocks keep more of their biome hue (they washed toward white at
+// 0.45 and read as pale eggs against the meadow)
+const ROCK_TINT_SOFTEN = 0.3;
 
 // rocks only pick up the snow-dust colorway above the terrain snowline —
 // low-altitude peaks-biome foothills stay mossy/bare (white rocks on green
@@ -1030,19 +1034,21 @@ function extractParts(url: string): ModelPart[] {
   return parts;
 }
 
-// Upward-facing rock vertices blend toward `tint` (moss or snow dust) and the
-// underside picks up baked AO; both multiply the texture + per-instance gray.
+// Upward-facing rock vertices blend toward `tint` (moss or snow dust), the
+// underside picks up baked AO, and the storybook height ramp paints a cool
+// dark base into a warm lit top (rock_paint_core.ts); all of it multiplies
+// the texture + per-instance biome tint.
 function bakeTopTint(geo: THREE.BufferGeometry, tint: THREE.Color): THREE.BufferGeometry {
+  const pos = geo.attributes.position as THREE.BufferAttribute;
   const nrm = geo.attributes.normal as THREE.BufferAttribute;
   const arr = new Float32Array(nrm.count * 3);
-  for (let i = 0; i < nrm.count; i++) {
-    const upness = nrm.getY(i);
-    const t = THREE.MathUtils.smoothstep(upness, 0.25, 0.85);
-    const ao = 1 + Math.min(0, upness) * 0.25;
-    arr[i * 3] = (1 + (tint.r - 1) * t) * ao;
-    arr[i * 3 + 1] = (1 + (tint.g - 1) * t) * ao;
-    arr[i * 3 + 2] = (1 + (tint.b - 1) * t) * ao;
-  }
+  paintRockVertexColors(
+    pos.array as ArrayLike<number>,
+    nrm.array as ArrayLike<number>,
+    nrm.count,
+    tint,
+    arr,
+  );
   geo.setAttribute('color', new THREE.BufferAttribute(arr, 3));
   return geo;
 }
