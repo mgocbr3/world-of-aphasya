@@ -4,9 +4,9 @@
 
 </div>
 
-# Đóng góp cho World of ClaudeCraft
+# Đóng góp cho World of Aphasya
 
-Trước hết, cảm ơn bạn đã có mặt ở đây. World of ClaudeCraft được xây dựng bởi một
+Trước hết, cảm ơn bạn đã có mặt ở đây. World of Aphasya được xây dựng bởi một
 cộng đồng những người yêu thích các tựa MMO cổ điển, và mọi đóng góp, dù lớn hay
 nhỏ, đều giúp trò chơi tốt hơn. Sửa một lỗi chính tả, dịch trò chơi, báo cáo một
 lỗi, dựng nên cả một hầm ngục mới: tất cả đều có giá trị, và bạn được chào đón ở
@@ -14,7 +14,7 @@ lỗi, dựng nên cả một hầm ngục mới: tất cả đều có giá tr�
 
 Hướng dẫn này sẽ giúp bạn cài đặt và thực hiện đóng góp đầu tiên một cách suôn sẻ.
 Bạn không cần phải là chuyên gia. Nếu có điều gì chưa rõ, hãy hỏi trên
-[Discord](https://discord.com/invite/worldofclaudecraft) và sẽ có người sẵn lòng giúp đỡ.
+[Discord](https://discord.com/invite/worldofaphasya) và sẽ có người sẵn lòng giúp đỡ.
 
 Khi tham gia, bạn đồng ý tuân theo [Quy tắc Ứng xử](../../CODE_OF_CONDUCT.md) của
 chúng tôi.
@@ -25,13 +25,13 @@ chúng tôi.
 
 - **Mã nguồn.** Sửa một lỗi, thêm một tính năng, hoặc cải thiện hiệu năng. Các vấn
   đề được gắn nhãn
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  và [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/mgocbr3/world-of-aphasya/labels/good%20first%20issue)
+  và [`help wanted`](https://github.com/mgocbr3/world-of-aphasya/labels/help%20wanted)
   là những điểm khởi đầu tốt.
 - **Bản dịch.** Hãy giúp người chơi trên khắp thế giới bằng cách cải thiện hoặc
   hoàn thiện một ngôn ngữ. Xem [Dịch trò chơi](#translating-the-game) bên dưới. Đây
   là một trong những cách khởi đầu dễ nhất và có tác động lớn nhất.
-- **Báo cáo lỗi và ý tưởng tính năng.** Hãy mở một [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose).
+- **Báo cáo lỗi và ý tưởng tính năng.** Hãy mở một [issue](https://github.com/mgocbr3/world-of-aphasya/issues/new/choose).
   Một báo cáo lỗi rõ ràng là một đóng góp thực sự.
 - **Tài liệu.** Các hướng dẫn như hướng dẫn này, README, và các tài liệu thiết kế
   trong `docs/` luôn có thể được cải thiện.
@@ -46,8 +46,8 @@ Bạn sẽ cần [Node.js 26](https://nodejs.org/) và **pnpm 10.34.x** (pin ch�
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/world-of-aphasya.git
+cd world-of-aphasya
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -247,7 +247,7 @@ cũng làm như vậy.
 
 ## Bản địa hóa
 
-World of ClaudeCraft được phát hành bằng nhiều ngôn ngữ. Mọi chuỗi hiển thị với
+World of Aphasya được phát hành bằng nhiều ngôn ngữ. Mọi chuỗi hiển thị với
 người chơi đều phải là một khóa dịch, còn người đóng góp tính năng thì thường chỉ
 cần thêm bản gốc tiếng Anh.
 
@@ -298,15 +298,15 @@ Bạn không cần viết bất kỳ mã trò chơi nào để làm điều đó
    không, vì các lớp phủ được cố ý để thưa.
 
 Để đề xuất một locale hoàn toàn mới, hoặc để thảo luận về giọng điệu và thuật ngữ,
-hãy bắt đầu một chủ đề trên [Discord](https://discord.com/invite/worldofclaudecraft) và chúng tôi sẽ
+hãy bắt đầu một chủ đề trên [Discord](https://discord.com/invite/worldofaphasya) và chúng tôi sẽ
 giúp bạn kết nối nó. Người bản xứ và người nói lưu loát đặc biệt được chào đón. Những
 bản dịch tốt khiến trò chơi cảm thấy như nhà đối với người chơi ở khắp mọi nơi.
 
 ## Báo cáo lỗi và yêu cầu tính năng
 
-Xin hãy sử dụng [các mẫu issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose):
+Xin hãy sử dụng [các mẫu issue](https://github.com/mgocbr3/world-of-aphasya/issues/new/choose):
 
-- **Báo cáo lỗi.** Hãy tìm trong [các vấn đề hiện có](https://github.com/levy-street/world-of-claudecraft/issues)
+- **Báo cáo lỗi.** Hãy tìm trong [các vấn đề hiện có](https://github.com/mgocbr3/world-of-aphasya/issues)
   trước để tránh trùng lặp, rồi kèm theo các bước tái hiện, điều bạn mong đợi, điều
   đã xảy ra, và môi trường của bạn (ngoại tuyến hay trực tuyến, trình duyệt, máy
   tính để bàn hay di động).
@@ -319,7 +319,7 @@ Xin hãy sử dụng [các mẫu issue](https://github.com/levy-street/world-of-
 ## Nhận trợ giúp
 
 Bị mắc kẹt, hay chỉ muốn chào hỏi? Hãy tham gia
-[Discord cộng đồng](https://discord.com/invite/worldofclaudecraft). Không có câu hỏi nào là quá nhỏ,
+[Discord cộng đồng](https://discord.com/invite/worldofaphasya). Không có câu hỏi nào là quá nhỏ,
 và những người đóng góp mới luôn được chào đón.
 
 ## Giấy phép
@@ -330,11 +330,11 @@ dự án.
 
 Giấy phép MIT có ý nghĩa đúng như những gì nó nói: bất kỳ ai cũng có thể sử dụng,
 sửa đổi, và phân phối lại mã nguồn, dù vì mục đích thương mại hay không.
-[Điều khoản Dịch vụ](https://worldofclaudecraft.com/terms) của chúng tôi điều chỉnh
-trò chơi được lưu trữ mà chúng tôi vận hành tại worldofclaudecraft.com (tài khoản,
+[Điều khoản Dịch vụ](https://worldofaphasya.com/terms) của chúng tôi điều chỉnh
+trò chơi được lưu trữ mà chúng tôi vận hành tại worldofaphasya.com (tài khoản,
 ứng xử, vật phẩm ảo) và không hạn chế các quyền mà Giấy phép MIT trao cho bạn hay
 bất kỳ ai khác đối với mã nguồn này. Tên và nhận diện thương hiệu "World of
-ClaudeCraft" và "Levy Street" không nằm trong phạm vi Giấy phép MIT.
+Aphasya" và "Levy Street" không nằm trong phạm vi Giấy phép MIT.
 
 Các tài nguyên sáng tạo gốc (bản thu âm, âm nhạc, tranh vẽ, và các tác phẩm có tác
 giả tương tự) là ngoại lệ. Nếu bạn đóng góp một tài nguyên gốc do chính bạn tạo ra,
@@ -346,7 +346,7 @@ CC BY-NC 4.0), với điều kiện là:
   của cùng pull request, và
 - nó bao gồm tối thiểu một sự cho phép vĩnh viễn, miễn phí bản quyền dành cho Levy
   Street để sử dụng các tài nguyên đó vào mục đích thương mại trong World of
-  ClaudeCraft, bao gồm các bản phát hành chính thức và cửa hàng trong trò chơi.
+  Aphasya, bao gồm các bản phát hành chính thức và cửa hàng trong trò chơi.
 
 Đối với các tài nguyên được liệt kê trong bảng CREDITS.md, giấy phép đã ghi lại đó
 được ưu tiên hơn giấy phép MIT mặc định của dự án.
@@ -368,5 +368,5 @@ không được phép.
 
 ---
 
-Cảm ơn bạn đã đóng góp cho World of ClaudeCraft. Chúng tôi rất nóng lòng muốn thấy
+Cảm ơn bạn đã đóng góp cho World of Aphasya. Chúng tôi rất nóng lòng muốn thấy
 những gì bạn sẽ xây dựng cùng chúng tôi.

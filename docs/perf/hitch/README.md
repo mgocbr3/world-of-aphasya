@@ -1,6 +1,6 @@
 # Hitch referee
 
-This directory owns the frozen frame-consistency referee for World of ClaudeCraft.
+This directory owns the frozen frame-consistency referee for World of Aphasya.
 It measures discrete rendering stalls, GC stutter, allocation pressure, and retained
 heap growth. Average FPS is intentionally absent. The graphics-preset throughput
 benchmark in `scripts/perf_baseline.mjs` owns average FPS.

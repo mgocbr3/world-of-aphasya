@@ -1,4 +1,13 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+// The APPLE_TOKEN fixture below is a pre-signed JWT whose payload carries the
+// upstream bundle id as its audience; the signature makes the payload
+// immutable, so the module-load audience must match the fixture, not the
+// fork's default bundle id.
+vi.hoisted(() => {
+  process.env.APPLE_CLIENT_ID = 'com.worldofclaudecraft';
+});
+
 import {
   handleAppleLoginNew,
   resetAppleKeyCacheForTests,

@@ -1,4 +1,4 @@
-package com.worldofclaudecraft
+package com.worldofaphasya
 
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry

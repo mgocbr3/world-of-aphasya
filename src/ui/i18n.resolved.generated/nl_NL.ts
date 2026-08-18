@@ -362,7 +362,7 @@ export const nl_NL: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "Wiki openen?",
-      "confirmBody": "Dit opent de World of ClaudeCraft-wiki in je browser. Het spel blijft ondertussen draaien.",
+      "confirmBody": "Dit opent de World of Aphasya-wiki in je browser. Het spel blijft ondertussen draaien.",
       "confirmOpen": "Wiki Openen",
       "confirmCancel": "Annuleren"
     },
@@ -490,14 +490,14 @@ export const nl_NL: EnTranslations = {
       "rewardsTab": "Dagelijkse beloningen",
       "loading": "WOC-winkel laden...",
       "error": "De WOC Store is momenteel niet beschikbaar. Probeer het binnenkort opnieuw.",
-      "balance": "Claudium-saldo",
-      "buyClaudium": "Claudium kopen",
+      "balance": "Aphasium-saldo",
+      "buyClaudium": "Aphasium kopen",
       "owned": "In bezit",
-      "needMoreTitle": "Meer Claudium vereist",
-      "needMoreBody": "Je hebt {shortfall} meer Claudium nodig om {item} te kopen.",
+      "needMoreTitle": "Meer Aphasium vereist",
+      "needMoreBody": "Je hebt {shortfall} meer Aphasium nodig om {item} te kopen.",
       "cancel": "Annuleren",
       "confirmTitle": "Cosmetische aankoop bevestigen",
-      "confirmBody": "{item} voor {cost} Claudium kopen?",
+      "confirmBody": "{item} voor {cost} Aphasium kopen?",
       "confirmPurchase": "Kopen",
       "priceChanged": "De prijs veranderde voordat de aankoop voltooid was. Bekijk de vernieuwde prijs en bevestig opnieuw.",
       "armoryEyebrow": "Seizoen 1",
@@ -710,18 +710,18 @@ export const nl_NL: EnTranslations = {
       "equipHint": "Rust een {type} uit om deze skin aan te brengen."
     },
     "claudium": {
-      "title": "Claudium",
-      "open": "Claudium openen",
-      "close": "Claudium sluiten",
-      "loading": "Claudium laden...",
+      "title": "Aphasium",
+      "open": "Aphasium openen",
+      "close": "Aphasium sluiten",
+      "loading": "Aphasium laden...",
       "balanceLabel": "Saldo",
-      "balanceUnit": "{amount} Claudium",
+      "balanceUnit": "{amount} Aphasium",
       "solBalance": "SOL: {amount}",
       "usdcBalance": "USDC: {amount}",
       "wocBalance": "WOC: {amount}",
-      "unavailable": "De Claudium-winkel is momenteel niet beschikbaar. Je saldo en aankopen zijn niet aangetast. Probeer het binnenkort opnieuw.",
-      "disclosure": "Claudium is een virtuele valuta die maar één kant op gaat: koop het met geld en besteed het aan cosmetica. Het kan niet worden ingewisseld, overgedragen of uitbetaald.",
-      "buyTitle": "Claudium kopen",
+      "unavailable": "De Aphasium-winkel is momenteel niet beschikbaar. Je saldo en aankopen zijn niet aangetast. Probeer het binnenkort opnieuw.",
+      "disclosure": "Aphasium is een virtuele valuta die maar één kant op gaat: koop het met geld en besteed het aan cosmetica. Het kan niet worden ingewisseld, overgedragen of uitbetaald.",
+      "buyTitle": "Aphasium kopen",
       "railLabel": "Betaalmethode",
       "railStripe": "Kaart",
       "railSol": "SOL",
@@ -731,14 +731,14 @@ export const nl_NL: EnTranslations = {
       "railWocUnavailable": "WOC-prijzen zijn momenteel niet beschikbaar.",
       "railNativeUnavailable": "SOL/WOC staat uit.",
       "amountLabel": "Hoeveelheid",
-      "showAmounts": "Toon alle Claudium-bedragen",
-      "hideAmounts": "Verberg extra Claudium-bedragen",
-      "skuRow": "{usd} voor {claudium} Claudium",
+      "showAmounts": "Toon alle Aphasium-bedragen",
+      "hideAmounts": "Verberg extra Aphasium-bedragen",
+      "skuRow": "{usd} voor {claudium} Aphasium",
       "buyButton": "Kopen",
       "buyUnavailable": "Aankoop is momenteel niet mogelijk.",
       "storeTitle": "Cosmetische winkel",
       "storeEmpty": "Er zijn momenteel geen cosmetica beschikbaar.",
-      "storeCost": "{amount} Claudium",
+      "storeCost": "{amount} Aphasium",
       "spendButton": "Besteden",
       "kindCosmetic": "Cosmetica",
       "kindSkin": "Skin",
@@ -749,10 +749,10 @@ export const nl_NL: EnTranslations = {
       "checkoutPending": "Transactie in behandeling. Bevestig deze in je wallet en houd dit paneel open.",
       "checkoutPendingButton": "Bezig",
       "checkoutFailed": "Afrekenen kon niet worden geladen. Probeer het opnieuw.",
-      "checkoutUnavailable": "Die aankoop van Claudium is momenteel niet beschikbaar.",
-      "checkoutWalletRequired": "Koppel een Solana-wallet voordat je Claudium met cryptovaluta koopt.",
+      "checkoutUnavailable": "Die aankoop van Aphasium is momenteel niet beschikbaar.",
+      "checkoutWalletRequired": "Koppel een Solana-wallet voordat je Aphasium met cryptovaluta koopt.",
       "checkoutWalletUnsupported": "Deze wallet kan geen Solana-transacties ondertekenen en verzenden.",
-      "checkoutNotSettled": "De transactie is verzonden, maar Claudium is nog niet gecrediteerd. Probeer het binnenkort opnieuw."
+      "checkoutNotSettled": "De transactie is verzonden, maar Aphasium is nog niet gecrediteerd. Probeer het binnenkort opnieuw."
     },
     "theme": {
       "preset": "UI-thema",
@@ -893,8 +893,8 @@ export const nl_NL: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Update beschikbaar",
-      "body": "Er is een nieuwe versie van World of ClaudeCraft beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.",
-      "bodyWithVersion": "Versie {version} van World of ClaudeCraft is beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.",
+      "body": "Er is een nieuwe versie van World of Aphasya beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.",
+      "bodyWithVersion": "Versie {version} van World of Aphasya is beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.",
       "notNow": "Niet nu",
       "update": "Bijwerken"
     },
@@ -1507,8 +1507,8 @@ export const nl_NL: EnTranslations = {
         "offline": "Offline"
       },
       "diagnostics": {
-        "panelAria": "World of ClaudeCraft prestatiediagnostiek",
-        "title": "ClaudeCraft Prestatiedokter",
+        "panelAria": "World of Aphasya prestatiediagnostiek",
+        "title": "Aphasya Prestatiedokter",
         "subtitle": "Een spelspecifieke scan met bewijs en oplossingen op codeniveau.",
         "aria": {
           "liveMeasurements": "Live prestatiemetingen",
@@ -1652,7 +1652,7 @@ export const nl_NL: EnTranslations = {
           }
         },
         "report": {
-          "title": "World of ClaudeCraft prestatiediagnose",
+          "title": "World of Aphasya prestatiediagnose",
           "statusLine": "Status: {status} ({score}/100)",
           "capturedLine": "Vastgelegd: {captured}",
           "topFindingLine": "Belangrijkste bevinding: {finding}",
@@ -2542,7 +2542,7 @@ export const nl_NL: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "World of Aphasya",
       "open": "Discord",
       "close": "Sluiten",
       "keybind": "Discord-paneel",
@@ -3950,8 +3950,8 @@ export const nl_NL: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "World of Aphasya",
+    "brandShort": "Aphasya",
     "tagline": "Een MMO in klassieke stijl die je gratis in je browser speelt.",
     "skipToContent": "Ga naar hoofdinhoud",
     "loading": "Laden...",
@@ -4027,7 +4027,7 @@ export const nl_NL: EnTranslations = {
       "github": "Broncode op GitHub",
       "discord": "Word lid van de Discord",
       "communityWiki": "Community-wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "World of Aphasya",
       "linksLabel": "Speel- en communitylinks"
     },
     "language": {
@@ -4052,7 +4052,7 @@ export const nl_NL: EnTranslations = {
     },
     "home": {
       "eyebrow": "Klassieke MMO in je browser",
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "subtitle": "Quest, sluit je aaneen en verken een handgebouwde wereld, gratis in je browser.",
       "ctaPlay": "Speel nu",
       "ctaLearn": "Hoe te spelen",
@@ -4672,7 +4672,7 @@ export const nl_NL: EnTranslations = {
       "ridingDef": "De vaardigheid die je überhaupt laat rijden. Je koopt hem eenmalig bij een stalmeester op niveau 20, en daarna blijft hij voorgoed bij je personage.",
       "reinsTerm": "Teugels",
       "reinsDef": "Het voorwerp dat een rijdier is. Bewaar een paar in je tassen of je bank en dat rijdier is van jou; gebruik ze om te rijden. Teugels kunnen worden verhandeld, per post verzonden en verkocht aan andere spelers.",
-      "claudiumTerm": "Claudium",
+      "claudiumTerm": "Aphasium",
       "claudiumDef": "De valuta van de WOC Store, uitgegeven aan cosmetica en niets anders. Het koopt nooit kracht of voortgang.",
       "worldTerm": "Wereld",
       "worldDef": "Een gedeelde kopie van het onlinespel, met eigen spelers, markt en ranglijst. Deze gids noemt het ook wel een rijk, en je personage leeft op de wereld waarop je het hebt aangemaakt."
@@ -4703,7 +4703,7 @@ export const nl_NL: EnTranslations = {
       "q11": "Hoe vind ik een groep?",
       "a11": "Nodig iedereen die je tegenkomt uit voor een groep, vraag het in de chat, of werk samen bij een kerker. Het grootste deel van de wereld is solo speelbaar, dus groepen is een keuze, geen vereiste.",
       "q12": "Is er een winkel voor echt geld?",
-      "a12": "Er is een optionele cosmetische winkel. Hij verkoopt looks: de wapenskins van de Wapenkamer van seizoen 1, gekocht met Claudium, de valuta van de winkel. Niets erin voegt statistieken, kracht of voortgang toe, en een skin verandert nooit hoe je wapen raakt, dus elk stuk uitrusting dat ertoe doet komt nog steeds uit spelen.",
+      "a12": "Er is een optionele cosmetische winkel. Hij verkoopt looks: de wapenskins van de Wapenkamer van seizoen 1, gekocht met Aphasium, de valuta van de winkel. Niets erin voegt statistieken, kracht of voortgang toe, en een skin verandert nooit hoe je wapen raakt, dus elk stuk uitrusting dat ertoe doet komt nog steeds uit spelen.",
       "q13": "Waar kan ik de app vinden?",
       "a13": "De browserversie heeft helemaal niets nodig: open de site en speel. Wil je liever een app, dan staat de desktopdownload voor Windows, macOS en Linux op de Downloadpagina van de spelsite. Native iOS- en Android-apps zijn in de maak, en tot ze er zijn, speelt een telefoon of tablet de browserversie met volledige aanraakbediening. Elke versie logt in op hetzelfde account en dezelfde werelden, dus je personages volgen je.",
       "q14": "Wat heb ik nodig om het te draaien?",
@@ -4988,7 +4988,7 @@ export const nl_NL: EnTranslations = {
     },
     "worldPage": {
       "heading": "De wereld",
-      "intro": "World of ClaudeCraft is één aaneengesloten land dat je te voet doorkruist. De oude weg loopt van zuid naar noord door de begindal, het moeras en de pieken, en hij blijft daarna doorklimmen naar de holte erachter en het sneeuwland boven aan de kaart. Een kolom hogere rijken opent zich vanaf die weg naar het westen en een andere naar het oosten, en voor de oostkust van de Vallei ligt een eiland. Er is geen snelreizen, er zijn geen vluchtroutes en geen koetsen: elke reis wordt gelopen of gereden, dus er komen hoort bij het avontuur.\n\nHet land houdt ook de tijd bij. Een dag-en-nachtcyclus loopt op een echte klok die iedereen op jouw wereld deelt, zodat de hemel voor jullie allemaal tegelijk van dageraad via middag naar schemer en donker verloopt, de maan komt en gaat door haar fasen, en het licht op de grond met haar meeverandert. De wijzerplaat rond je minikaart is waar je het uur afleest.",
+      "intro": "World of Aphasya is één aaneengesloten land dat je te voet doorkruist. De oude weg loopt van zuid naar noord door de begindal, het moeras en de pieken, en hij blijft daarna doorklimmen naar de holte erachter en het sneeuwland boven aan de kaart. Een kolom hogere rijken opent zich vanaf die weg naar het westen en een andere naar het oosten, en voor de oostkust van de Vallei ligt een eiland. Er is geen snelreizen, er zijn geen vluchtroutes en geen koetsen: elke reis wordt gelopen of gereden, dus er komen hoort bij het avontuur.\n\nHet land houdt ook de tijd bij. Een dag-en-nachtcyclus loopt op een echte klok die iedereen op jouw wereld deelt, zodat de hemel voor jullie allemaal tegelijk van dageraad via middag naar schemer en donker verloopt, de maan komt en gaat door haar fasen, en het licht op de grond met haar meeverandert. De wijzerplaat rond je minikaart is waar je het uur afleest.",
       "hub": "Thuisbasis",
       "mapHeading": "De weg en de rijken daarachter",
       "mapSub": "Het opdrachtenspoor loopt van zuid naar noord door het midden van de kaart: dal, moeras, pieken, en daaraan voorbij de holte en de sneeuw in. De andere rijken openen zich langs die weg in plaats van erna, door poorten ten oosten en ten westen van de moerasweg, terwijl het eiland Farshore vanaf de oostkust van de Vallei bereikt wordt. Wat je uit de verre rijken houdt zijn hun niveaubanden, niet de wandeling: vijf ervan delen de hoogste band, dus zodra je klaar bent kun je ze in elke volgorde aanpakken. Farshore is de uitzondering, laagniveauland dat je vroeg kunt bezoeken.",
@@ -6009,7 +6009,7 @@ export const nl_NL: EnTranslations = {
   },
   "editor": {
     "appTitle": "Kaarteditor",
-    "docTitle": "Kaarteditor - World of ClaudeCraft",
+    "docTitle": "Kaarteditor - World of Aphasya",
     "untitledMap": "Naamloze kaart",
     "playtestPlayerName": "Kaartenmaker",
     "topbar": {
@@ -6486,10 +6486,9 @@ export const nl_NL: EnTranslations = {
     "realmName": "Wereldnaam"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 World of Aphasya",
+    "githubLink": "https://github.com/mgocbr3/world-of-aphasya",
     "githubLabel": "Opensourceproject",
-    "whitepaper": "Whitepaper",
     "terms": "Servicevoorwaarden",
     "privacy": "Privacybeleid",
     "discordLabel": "Word lid van de Discord"
@@ -6544,7 +6543,7 @@ export const nl_NL: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Spelen",
-    "playAria": "Speel World of ClaudeCraft",
+    "playAria": "Speel World of Aphasya",
     "serverLabel": "Kies je wereld",
     "serverAria": "Kies wereld: Online of Offline",
     "serverOfflineSub": "Directe lokale wereld",
@@ -6863,12 +6862,12 @@ export const nl_NL: EnTranslations = {
     "extensionHelp": "Om hier een portemonnee te zien, houd je een browserextensie voor portemonnees zoals Solflare Wallet actief.",
     "mobileAppHelp": "Kies Phantom of Solflare. Je portemonnee-app vraagt om goedkeuring. Houd dit spel open en keer ernaar terug wanneer je klaar bent.",
     "seekerAppHelp": "Ga verder met Seed Vault Wallet. Bekijk de verbindings- en verificatieverzoeken in Seed Vault en keer daarna terug naar het spel.",
-    "standaloneAppHelp": "Portemonneeverbindingen zijn nog niet beschikbaar in de beginscherm-app. Open World of ClaudeCraft in Safari of Chrome om Phantom of Solflare te gebruiken.",
+    "standaloneAppHelp": "Portemonneeverbindingen zijn nog niet beschikbaar in de beginscherm-app. Open World of Aphasya in Safari of Chrome om Phantom of Solflare te gebruiken.",
     "openAppTitle": "Doorgaan in {wallet}",
     "openAppHelp": "Open {wallet} om dit verzoek te bekijken. Houd dit speltabblad open terwijl de portemonnee-app actief is.",
     "openAppButton": "Open {wallet}",
     "manualReturnBrowserHelp": "Keer na goedkeuring terug naar dit speltabblad. Als iOS een andere browser opent, sluit die dan en keer handmatig terug naar de oorspronkelijke browser.",
-    "manualReturnStandaloneHelp": "Keer na goedkeuring terug naar World of ClaudeCraft via je beginscherm. Als iOS een browser opent, sluit die dan en open de beginscherm-app handmatig opnieuw.",
+    "manualReturnStandaloneHelp": "Keer na goedkeuring terug naar World of Aphasya via je beginscherm. Als iOS een browser opent, sluit die dan en open de beginscherm-app handmatig opnieuw.",
     "preparingAppButton": "{wallet} voorbereiden...",
     "walletAppUnavailable": "{wallet} kon niet worden voorbereid. Sluit dit venster en probeer het opnieuw.",
     "flowConnect": "Kies een portemonnee. De verificatie gaat automatisch verder.",
@@ -6883,12 +6882,12 @@ export const nl_NL: EnTranslations = {
       "linkBody": "Kies een portemonnee-extensie in deze browser. Je tekent een verificatiebericht en keert dan terug naar de desktop-app.",
       "paymentBody": "Kies de aan je account gekoppelde portemonnee en keur de transactie goed in deze browser.",
       "extensionHelp": "Geen compatibele portemonnee-extensie gevonden. Installeer of ontgrendel Phantom, Solflare of een andere Solana-browserportemonnee en probeer het opnieuw.",
-      "safety": "World of ClaudeCraft vraagt nooit naar je herstelzin of privésleutel.",
+      "safety": "World of Aphasya vraagt nooit naar je herstelzin of privésleutel.",
       "continueWith": "Doorgaan met {wallet}",
       "reviewTitle": "Bekijken in je portemonnee",
       "reviewBody": "Volg de aanwijzing van {wallet}. Houd deze browserpagina open.",
       "completeTitle": "Portemonnee-autorisatie voltooid",
-      "completeBody": "Je kunt terugkeren naar de World of ClaudeCraft desktop-app.",
+      "completeBody": "Je kunt terugkeren naar de World of Aphasya desktop-app.",
       "returnButton": "Terug naar desktop-app",
       "failed": "Portemonnee-autorisatie mislukt of verlopen. Keer terug naar de desktop-app en probeer het opnieuw.",
       "retry": "Opnieuw proberen"
@@ -6986,7 +6985,7 @@ export const nl_NL: EnTranslations = {
     "levelClass": "Niveau {level} - {className}",
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "Wereld {realm}",
-    "defaultRealm": "World of ClaudeCraft",
+    "defaultRealm": "World of Aphasya",
     "brandWordmark": "WORLD OF CLAUDECRAFT",
     "recruited": "{count} geworven",
     "footerHandle": "@{handle}",
@@ -6994,8 +6993,8 @@ export const nl_NL: EnTranslations = {
     "footerCta": "Smeed je legende: {siteUrl}",
     "arenaStat": "Arena",
     "shareTierBit": ", {tier}-rang $WOC-houder",
-    "shareText": "Ik smeed mijn legende in World of ClaudeCraft: Niveau {level} {className}{tierBit}. Sluit je aan bij mijn wereld:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Ik smeed mijn legende in World of Aphasya: Niveau {level} {className}{tierBit}. Sluit je aan bij mijn wereld:",
+    "nativeShareTitle": "World of Aphasya",
     "fileNameFallback": "speler",
     "actionShareX": "Delen op X",
     "actionCopyReferral": "Verwijzingslink Kopiëren",
@@ -7691,14 +7690,14 @@ export const nl_NL: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: Web-MMO in Klassieke Stijl",
-    "description": "Begin aan een episch avontuur in World of ClaudeCraft, een micro-MMO in klassieke stijl die je rechtstreeks in je browser kunt spelen. Sluit je aan bij een blijvende gedeelde wereld, level je klassen op en versla vijanden!",
+    "title": "World of Aphasya: Web-MMO in Klassieke Stijl",
+    "description": "Begin aan een episch avontuur in World of Aphasya, een micro-MMO in klassieke stijl die je rechtstreeks in je browser kunt spelen. Sluit je aan bij een blijvende gedeelde wereld, level je klassen op en versla vijanden!",
     "genre": "MMORPG",
     "playMode": "Multiplayer",
     "applicationCategory": "Spel",
     "operatingSystem": "Webbrowser",
-    "officialLabel": "Officiële website van World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com is de officiële gratis browser-MMO voor de Claudemoon-wereld. Speel online met een blijvend personage, verken solo offline, lees de wiki en volg geverifieerde communitylinks vanaf deze site."
+    "officialLabel": "Officiële website van World of Aphasya",
+    "officialBody": "worldofaphasya.com is de officiële gratis browser-MMO voor de Claudemoon-wereld. Speel online met een blijvend personage, verken solo offline, lees de wiki en volg geverifieerde communitylinks vanaf deze site."
   },
   "a11y": {
     "goHome": "Ga naar de startpagina",
@@ -7706,9 +7705,9 @@ export const nl_NL: EnTranslations = {
     "mainNavigation": "Hoofdnavigatie",
     "languageSelection": "Taalkeuze",
     "characterActions": "Personageacties",
-    "githubProject": "Open het World of ClaudeCraft GitHub-project",
-    "discordCommunity": "Word lid van de World of ClaudeCraft Discord-community",
-    "donateProject": "Doneer om World of ClaudeCraft te steunen"
+    "githubProject": "Open het World of Aphasya GitHub-project",
+    "discordCommunity": "Word lid van de World of Aphasya Discord-community",
+    "donateProject": "Doneer om World of Aphasya te steunen"
   },
   "entryGuard": {
     "title": "Grafische kwaliteit verlaagd",
@@ -7799,16 +7798,16 @@ export const nl_NL: EnTranslations = {
     "notify": {
       "updateReadyTitle": "Update {version} is klaar",
       "updateReadyTitleNoVersion": "Update is klaar",
-      "updateReadyBody": "Herstart World of ClaudeCraft om de update toe te passen.",
+      "updateReadyBody": "Herstart World of Aphasya om de update toe te passen.",
       "partyInviteTitle": "Groepsuitnodiging",
       "partyInviteBody": "{name} heeft je uitgenodigd voor een groep."
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "body": "De spelweergave werkt niet meer. Opnieuw laden?",
       "reload": "Opnieuw laden",
       "quit": "Afsluiten",
-      "fatalBody": "World of ClaudeCraft is op een onverwachte fout gestuit en moet worden afgesloten."
+      "fatalBody": "World of Aphasya is op een onverwachte fout gestuit en moet worden afgesloten."
     }
   },
   "gpuNotice": {
@@ -7957,17 +7956,17 @@ export const nl_NL: EnTranslations = {
     "iosStandaloneDetail": "Je bent in de volledig-scherm-modus vanaf het beginscherm. Houd het apparaat in liggende stand.",
     "iosInstallDetail": "Voor echt volledig scherm op iPhone of iPad moet je deze pagina eerst aan je beginscherm toevoegen.",
     "iosShareStep": "Tik in Safari op Deel en daarna op Zet op beginscherm.",
-    "iosOpenStep": "Open World of ClaudeCraft vanaf het nieuwe pictogram op het beginscherm.",
+    "iosOpenStep": "Open World of Aphasya vanaf het nieuwe pictogram op het beginscherm.",
     "androidStandaloneDetail": "Je bent in de volledig-scherm-appmodus. Houd het apparaat in liggende stand.",
     "androidInstallDetail": "Voor volledig scherm op Android moet je deze pagina eerst installeren of aan je beginscherm toevoegen.",
     "androidInstallStep": "Tik in Chrome op het menu en daarna op App installeren of Toevoegen aan beginscherm.",
-    "androidOpenStep": "Open World of ClaudeCraft vanaf het nieuwe pictogram.",
+    "androidOpenStep": "Open World of Aphasya vanaf het nieuwe pictogram.",
     "otherStandaloneDetail": "Houd je apparaat in liggend volledig scherm.",
     "otherInstallDetail": "Installeer of voeg deze pagina toe aan je beginscherm voor de beste mobiele ervaring met volledig scherm."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Wereld niet beschikbaar",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "World of Aphasya - Wereld niet beschikbaar",
+    "logoAlt": "World of Aphasya",
     "eyebrow": "Wereldonderhoud",
     "heading": "De wereld is tijdelijk niet beschikbaar.",
     "body": "We herstarten de gameservice en verwachten dat Claudemoon binnenkort weer terug is. Deze pagina blijft automatisch controleren.",

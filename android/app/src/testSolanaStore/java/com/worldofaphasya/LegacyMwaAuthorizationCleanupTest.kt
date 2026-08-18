@@ -1,4 +1,4 @@
-package com.worldofclaudecraft
+package com.worldofaphasya
 
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

@@ -362,7 +362,7 @@ export const sv_SE: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "Öppna wikin?",
-      "confirmBody": "Detta öppnar World of ClaudeCraft-wikin i din webbläsare. Spelet fortsätter att köras.",
+      "confirmBody": "Detta öppnar World of Aphasya-wikin i din webbläsare. Spelet fortsätter att köras.",
       "confirmOpen": "Öppna wiki",
       "confirmCancel": "Avbryt"
     },
@@ -490,14 +490,14 @@ export const sv_SE: EnTranslations = {
       "rewardsTab": "Dagliga belöningar",
       "loading": "Laddar WOC-butiken...",
       "error": "WOC-butiken är inte tillgänglig just nu. Försök igen om en stund.",
-      "balance": "Claudium-saldo",
-      "buyClaudium": "Köp Claudium",
+      "balance": "Aphasium-saldo",
+      "buyClaudium": "Köp Aphasium",
       "owned": "I din ägo",
-      "needMoreTitle": "Mer Claudium krävs",
-      "needMoreBody": "Du behöver {shortfall} mer Claudium för att köpa {item}.",
+      "needMoreTitle": "Mer Aphasium krävs",
+      "needMoreBody": "Du behöver {shortfall} mer Aphasium för att köpa {item}.",
       "cancel": "Avbryt",
       "confirmTitle": "Bekräfta köp av kosmetika",
-      "confirmBody": "Köpa {item} för {cost} Claudium?",
+      "confirmBody": "Köpa {item} för {cost} Aphasium?",
       "confirmPurchase": "Köp",
       "priceChanged": "Priset ändrades innan köpet slutfördes. Granska det uppdaterade priset och bekräfta igen.",
       "armoryEyebrow": "Säsong 1",
@@ -710,18 +710,18 @@ export const sv_SE: EnTranslations = {
       "equipHint": "Utrusta ett vapen av typen {type} för att använda detta skin."
     },
     "claudium": {
-      "title": "Claudium",
-      "open": "Öppna Claudium",
-      "close": "Stäng Claudium",
-      "loading": "Laddar Claudium...",
+      "title": "Aphasium",
+      "open": "Öppna Aphasium",
+      "close": "Stäng Aphasium",
+      "loading": "Laddar Aphasium...",
       "balanceLabel": "Saldo",
-      "balanceUnit": "{amount} Claudium",
+      "balanceUnit": "{amount} Aphasium",
       "solBalance": "SOL: {amount}",
       "usdcBalance": "USDC: {amount}",
       "wocBalance": "WOC: {amount}",
-      "unavailable": "Claudium-butiken är inte tillgänglig just nu. Ditt saldo och dina köp påverkas inte. Försök igen om en stund.",
-      "disclosure": "Claudium är en virtuell valuta som bara går åt ett håll: köp den för pengar och använd den till kosmetika. Den kan inte växlas in, överföras eller betalas ut.",
-      "buyTitle": "Köp Claudium",
+      "unavailable": "Aphasium-butiken är inte tillgänglig just nu. Ditt saldo och dina köp påverkas inte. Försök igen om en stund.",
+      "disclosure": "Aphasium är en virtuell valuta som bara går åt ett håll: köp den för pengar och använd den till kosmetika. Den kan inte växlas in, överföras eller betalas ut.",
+      "buyTitle": "Köp Aphasium",
       "railLabel": "Betalningsmetod",
       "railStripe": "Kort",
       "railSol": "SOL",
@@ -731,14 +731,14 @@ export const sv_SE: EnTranslations = {
       "railWocUnavailable": "WOC-priser är inte tillgängliga just nu.",
       "railNativeUnavailable": "SOL/WOC är avstängt.",
       "amountLabel": "Belopp",
-      "showAmounts": "Visa alla Claudium-belopp",
-      "hideAmounts": "Dölj extra Claudium-belopp",
-      "skuRow": "{usd} för {claudium} Claudium",
+      "showAmounts": "Visa alla Aphasium-belopp",
+      "hideAmounts": "Dölj extra Aphasium-belopp",
+      "skuRow": "{usd} för {claudium} Aphasium",
       "buyButton": "Köp",
       "buyUnavailable": "Det går inte att genomföra köp just nu.",
       "storeTitle": "Kosmetisk butik",
       "storeEmpty": "Inga kosmetika är tillgängliga just nu.",
-      "storeCost": "{amount} Claudium",
+      "storeCost": "{amount} Aphasium",
       "spendButton": "Lös in",
       "kindCosmetic": "Kosmetisk",
       "kindSkin": "Skin",
@@ -749,10 +749,10 @@ export const sv_SE: EnTranslations = {
       "checkoutPending": "Transaktion pågår. Bekräfta i din plånbok och håll denna panel öppen.",
       "checkoutPendingButton": "Bearbetar",
       "checkoutFailed": "Det gick inte att ladda kassan. Försök igen.",
-      "checkoutUnavailable": "Det Claudium-köpet är inte tillgängligt just nu.",
-      "checkoutWalletRequired": "Anslut en Solana-plånbok innan du köper Claudium med krypto.",
+      "checkoutUnavailable": "Det Aphasium-köpet är inte tillgängligt just nu.",
+      "checkoutWalletRequired": "Anslut en Solana-plånbok innan du köper Aphasium med krypto.",
       "checkoutWalletUnsupported": "Denna plånbok kan inte signera och skicka Solana-transaktioner.",
-      "checkoutNotSettled": "Transaktionen skickades men Claudium har inte krediterats ännu. Försök snart igen."
+      "checkoutNotSettled": "Transaktionen skickades men Aphasium har inte krediterats ännu. Försök snart igen."
     },
     "theme": {
       "preset": "Gränssnittstema",
@@ -893,8 +893,8 @@ export const sv_SE: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Uppdatering tillgänglig",
-      "body": "En ny version av World of ClaudeCraft är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.",
-      "bodyWithVersion": "Version {version} av World of ClaudeCraft är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.",
+      "body": "En ny version av World of Aphasya är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.",
+      "bodyWithVersion": "Version {version} av World of Aphasya är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.",
       "notNow": "Inte nu",
       "update": "Uppdatera"
     },
@@ -1507,8 +1507,8 @@ export const sv_SE: EnTranslations = {
         "offline": "Offline"
       },
       "diagnostics": {
-        "panelAria": "World of ClaudeCraft-prestandadiagnostik",
-        "title": "ClaudeCraft-prestandadoktor",
+        "panelAria": "World of Aphasya-prestandadiagnostik",
+        "title": "Aphasya-prestandadoktor",
         "subtitle": "En spelspecifik skanning med bevis och fixar på kodnivå.",
         "aria": {
           "liveMeasurements": "Direkta prestandamätningar",
@@ -1652,7 +1652,7 @@ export const sv_SE: EnTranslations = {
           }
         },
         "report": {
-          "title": "World of ClaudeCraft-prestandadiagnos",
+          "title": "World of Aphasya-prestandadiagnos",
           "statusLine": "Status: {status} ({score}/100)",
           "capturedLine": "Insamlat: {captured}",
           "topFindingLine": "Främsta fyndet: {finding}",
@@ -2542,7 +2542,7 @@ export const sv_SE: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "World of Aphasya",
       "open": "Discord",
       "close": "Stäng",
       "keybind": "Discord-panel",
@@ -3950,8 +3950,8 @@ export const sv_SE: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "World of Aphasya",
+    "brandShort": "Aphasya",
     "tagline": "En klassisk MMO du spelar gratis i din webbläsare.",
     "skipToContent": "Hoppa till huvudinnehållet",
     "loading": "Laddar...",
@@ -4027,7 +4027,7 @@ export const sv_SE: EnTranslations = {
       "github": "Källkod på GitHub",
       "discord": "Gå med i Discord",
       "communityWiki": "Community-wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "World of Aphasya",
       "linksLabel": "Spel- och communitylänkar"
     },
     "language": {
@@ -4052,7 +4052,7 @@ export const sv_SE: EnTranslations = {
     },
     "home": {
       "eyebrow": "Klassiskt MMO i webbläsaren",
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "subtitle": "Lös uppdrag, slå er samman och utforska en handbyggd värld, gratis i din webbläsare.",
       "ctaPlay": "Spela nu",
       "ctaLearn": "Så spelar du",
@@ -4672,7 +4672,7 @@ export const sv_SE: EnTranslations = {
       "ridingDef": "Färdigheten som över huvud taget låter dig rida. Du köper den en gång av en stallmästare vid nivå 20, och därefter stannar den hos din karaktär för gott.",
       "reinsTerm": "Tyglar",
       "reinsDef": "Föremålet som är ett riddjur. Behåll ett par i dina väskor eller din bank så är det riddjuret ditt; använd dem för att rida. Tyglar kan bytas, skickas med post och säljas till andra spelare.",
-      "claudiumTerm": "Claudium",
+      "claudiumTerm": "Aphasium",
       "claudiumDef": "Valutan i WOC-butiken, spenderad på kosmetika och inget annat. Den köper aldrig styrka eller progression.",
       "worldTerm": "Värld",
       "worldDef": "En delad kopia av onlinespelet, med egna spelare, en egen marknad och en egen ställning. Den här guiden kallar den också för ett rike, och din karaktär bor på den värld du skapade den på."
@@ -4703,7 +4703,7 @@ export const sv_SE: EnTranslations = {
       "q11": "Hur hittar jag en grupp?",
       "a11": "Bjud in vem du än möter till en grupp, fråga i chatten, eller slå er ihop vid en fängelsehåla. Det mesta av världen går att klara ensam, så att gruppera sig är ett val, inte ett krav.",
       "q12": "Finns det en butik för riktiga pengar?",
-      "a12": "Det finns en valfri kosmetisk butik. Den säljer utseenden: vapenskinnen i säsong 1-vapenhuset, köpta med Claudium, butikens egen valuta. Inget i den lägger till statistik, styrka eller progression, och ett skinn ändrar aldrig hur ditt vapen träffar, så all utrustning som spelar roll fortfarande kommer från att spela.",
+      "a12": "Det finns en valfri kosmetisk butik. Den säljer utseenden: vapenskinnen i säsong 1-vapenhuset, köpta med Aphasium, butikens egen valuta. Inget i den lägger till statistik, styrka eller progression, och ett skinn ändrar aldrig hur ditt vapen träffar, så all utrustning som spelar roll fortfarande kommer från att spela.",
       "q13": "Var kan jag hämta appen?",
       "a13": "Webbläsarversionen behöver ingenting alls: öppna sajten och spela. Om du hellre vill ha en app finns datorklienten för Windows, macOS och Linux på spelsajtens nedladdningssida. Inbyggda iOS- och Android-appar är på gång, och tills de landar spelar en telefon eller platta webbläsarversionen med fullständiga pekkontroller. Varje version loggar in på samma konto och samma världar, så dina karaktärer följer med dig.",
       "q14": "Vad behöver jag för att köra det?",
@@ -4988,7 +4988,7 @@ export const sv_SE: EnTranslations = {
     },
     "worldPage": {
       "heading": "Världen",
-      "intro": "World of ClaudeCraft är ett sammanhängande land som du korsar till fots. Den gamla vägen löper från söder till norr genom startdalen, träsket och topparna, och den fortsätter klättra bortom dem in i sänkan därefter och snölandet högst upp på kartan. En rad högre riken öppnar sig från den vägen västerut och en annan österut, och en ö ligger utanför Dalens östkust. Det finns ingen snabbresa, inga flygrutter och inga skjutsar: varje färd går till fots eller till häst, så att komma fram hör till äventyret.\n\nLandet håller också tiden. En dygnscykel löper på en verklig klocka som alla på din värld delar, så himlen övergår från gryning via middag till skymning och mörker för er allihop samtidigt, månen kommer och går genom sina faser, och ljuset på marken skiftar med den. Ringen runt din minikarta är där du läser av timmen.",
+      "intro": "World of Aphasya är ett sammanhängande land som du korsar till fots. Den gamla vägen löper från söder till norr genom startdalen, träsket och topparna, och den fortsätter klättra bortom dem in i sänkan därefter och snölandet högst upp på kartan. En rad högre riken öppnar sig från den vägen västerut och en annan österut, och en ö ligger utanför Dalens östkust. Det finns ingen snabbresa, inga flygrutter och inga skjutsar: varje färd går till fots eller till häst, så att komma fram hör till äventyret.\n\nLandet håller också tiden. En dygnscykel löper på en verklig klocka som alla på din värld delar, så himlen övergår från gryning via middag till skymning och mörker för er allihop samtidigt, månen kommer och går genom sina faser, och ljuset på marken skiftar med den. Ringen runt din minikarta är där du läser av timmen.",
       "hub": "Hembas",
       "mapHeading": "Vägen och rikena bortom",
       "mapSub": "Uppdragsspåret löper från söder till norr längs kartans mitt: dal, träsk, toppar, och vidare bortom dem in i sänkan och snön. De andra rikena öppnar sig utmed den vägen snarare än efter den, genom portar öster och väster om träskvägen, medan ön Farshore nås från Dalens östkust. Det som håller dig utanför de fjärran rikena är deras nivåband, inte vandringen: fem av dem delar det översta bandet, så när du väl är redo kan du ta dem i vilken ordning du vill. Farshore är undantaget, lågnivåland som du kan besöka tidigt.",
@@ -6009,7 +6009,7 @@ export const sv_SE: EnTranslations = {
   },
   "editor": {
     "appTitle": "Kartredigerare",
-    "docTitle": "Kartredigerare - World of ClaudeCraft",
+    "docTitle": "Kartredigerare - World of Aphasya",
     "untitledMap": "Namnlös karta",
     "playtestPlayerName": "Kartmakare",
     "topbar": {
@@ -6486,10 +6486,9 @@ export const sv_SE: EnTranslations = {
     "realmName": "Världens namn"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 World of Aphasya",
+    "githubLink": "https://github.com/mgocbr3/world-of-aphasya",
     "githubLabel": "Projekt med öppen källkod",
-    "whitepaper": "Whitepaper",
     "terms": "Användarvillkor",
     "privacy": "Integritetspolicy",
     "discordLabel": "Gå med i Discord"
@@ -6544,7 +6543,7 @@ export const sv_SE: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Spela",
-    "playAria": "Spela World of ClaudeCraft",
+    "playAria": "Spela World of Aphasya",
     "serverLabel": "Välj din värld",
     "serverAria": "Välj värld: Online eller Offline",
     "serverOfflineSub": "Direkt lokal värld",
@@ -6863,12 +6862,12 @@ export const sv_SE: EnTranslations = {
     "extensionHelp": "För att se en plånbok här, håll ett webbläsartillägg för plånböcker som Solflare Wallet aktivt.",
     "mobileAppHelp": "Välj Phantom eller Solflare. Din plånboksapp ber om godkännande. Håll det här spelet öppet och återgå till det när du är klar.",
     "seekerAppHelp": "Fortsätt med Seed Vault Wallet. Granska anslutnings- och verifieringsförfrågningarna i Seed Vault, och återgå sedan till spelet.",
-    "standaloneAppHelp": "Plånboksanslutningar är ännu inte tillgängliga i hemskärmsappen. Öppna World of ClaudeCraft i Safari eller Chrome för att använda Phantom eller Solflare.",
+    "standaloneAppHelp": "Plånboksanslutningar är ännu inte tillgängliga i hemskärmsappen. Öppna World of Aphasya i Safari eller Chrome för att använda Phantom eller Solflare.",
     "openAppTitle": "Fortsätt i {wallet}",
     "openAppHelp": "Öppna {wallet} för att granska denna begäran. Håll denna spelflik öppen medan plånboksappen är aktiv.",
     "openAppButton": "Öppna {wallet}",
     "manualReturnBrowserHelp": "Efter godkännande, återgå till denna spelflik. Om iOS öppnar en annan webbläsare, stäng den och återgå till den ursprungliga webbläsaren manuellt.",
-    "manualReturnStandaloneHelp": "Efter godkännande, återgå till World of ClaudeCraft från din hemskärm. Om iOS öppnar en webbläsare, stäng den och öppna hemskärmsappen manuellt igen.",
+    "manualReturnStandaloneHelp": "Efter godkännande, återgå till World of Aphasya från din hemskärm. Om iOS öppnar en webbläsare, stäng den och öppna hemskärmsappen manuellt igen.",
     "preparingAppButton": "Förbereder {wallet}...",
     "walletAppUnavailable": "{wallet} kunde inte förberedas. Stäng det här fönstret och försök igen.",
     "flowConnect": "Välj en plånbok. Verifieringen fortsätter automatiskt.",
@@ -6883,12 +6882,12 @@ export const sv_SE: EnTranslations = {
       "linkBody": "Välj ett plånbokstillägg i denna webbläsare. Du signerar ett verifieringsmeddelande och återvänder sedan till skrivbordsappen.",
       "paymentBody": "Välj plånboken länkad till ditt konto och godkänn transaktionen i denna webbläsare.",
       "extensionHelp": "Inget kompatibelt plånbokstillägg hittades. Installera eller lås upp Phantom, Solflare eller en annan Solana-webbläsarplånbok och försök sedan igen.",
-      "safety": "World of ClaudeCraft ber aldrig om din återställningsfras eller privata nyckel.",
+      "safety": "World of Aphasya ber aldrig om din återställningsfras eller privata nyckel.",
       "continueWith": "Fortsätt med {wallet}",
       "reviewTitle": "Granska i din plånbok",
       "reviewBody": "Följ uppmaningen från {wallet}. Håll denna webbläsarsida öppen.",
       "completeTitle": "Plånboksbehörighet slutförd",
-      "completeBody": "Du kan återvända till skrivbordsappen för World of ClaudeCraft.",
+      "completeBody": "Du kan återvända till skrivbordsappen för World of Aphasya.",
       "returnButton": "Återgå till skrivbordsappen",
       "failed": "Plånboksbehörighet misslyckades eller gick ut. Återgå till skrivbordsappen och försök igen.",
       "retry": "Försök igen"
@@ -6986,7 +6985,7 @@ export const sv_SE: EnTranslations = {
     "levelClass": "Nivå {level} - {className}",
     "topPercent": "TOPP {percent}%",
     "realmSubtitle": "Världen {realm}",
-    "defaultRealm": "World of ClaudeCraft",
+    "defaultRealm": "World of Aphasya",
     "brandWordmark": "WORLD OF CLAUDECRAFT",
     "recruited": "{count} värvade",
     "footerHandle": "@{handle}",
@@ -6994,8 +6993,8 @@ export const sv_SE: EnTranslations = {
     "footerCta": "Skapa din legend: {siteUrl}",
     "arenaStat": "Arena",
     "shareTierBit": ", {tier}-rankad $WOC-innehavare",
-    "shareText": "Jag skapar min legend i World of ClaudeCraft: Nivå {level} {className}{tierBit}. Gå med i min värld:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Jag skapar min legend i World of Aphasya: Nivå {level} {className}{tierBit}. Gå med i min värld:",
+    "nativeShareTitle": "World of Aphasya",
     "fileNameFallback": "spelare",
     "actionShareX": "Dela på X",
     "actionCopyReferral": "Kopiera värvningslänk",
@@ -7691,14 +7690,14 @@ export const sv_SE: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: Klassiskt inspirerad webb-MMO",
-    "description": "Ge dig ut på ett episkt äventyr i World of ClaudeCraft, en klassiskt inspirerad mikro-MMO som du spelar direkt i din webbläsare. Anslut till en beständig delad värld, höj nivå på klasser och besegra fiender!",
+    "title": "World of Aphasya: Klassiskt inspirerad webb-MMO",
+    "description": "Ge dig ut på ett episkt äventyr i World of Aphasya, en klassiskt inspirerad mikro-MMO som du spelar direkt i din webbläsare. Anslut till en beständig delad värld, höj nivå på klasser och besegra fiender!",
     "genre": "MMORPG",
     "playMode": "Flerspelarläge",
     "applicationCategory": "Spel",
     "operatingSystem": "Webbläsare",
-    "officialLabel": "Officiell webbplats för World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com är den officiella gratis webbläsar-MMO:n för Claudemoon-världen. Spela online med en beständig karaktär, utforska solo offline, läs wikin och följ verifierade gemenskapslänkar från den här webbplatsen."
+    "officialLabel": "Officiell webbplats för World of Aphasya",
+    "officialBody": "worldofaphasya.com är den officiella gratis webbläsar-MMO:n för Claudemoon-världen. Spela online med en beständig karaktär, utforska solo offline, läs wikin och följ verifierade gemenskapslänkar från den här webbplatsen."
   },
   "a11y": {
     "goHome": "Gå till startsidan",
@@ -7706,9 +7705,9 @@ export const sv_SE: EnTranslations = {
     "mainNavigation": "Huvudnavigering",
     "languageSelection": "Språkval",
     "characterActions": "Karaktärshandlingar",
-    "githubProject": "Öppna GitHub-projektet World of ClaudeCraft",
-    "discordCommunity": "Gå med i World of ClaudeCraft-gemenskapen på Discord",
-    "donateProject": "Donera för att stödja World of ClaudeCraft"
+    "githubProject": "Öppna GitHub-projektet World of Aphasya",
+    "discordCommunity": "Gå med i World of Aphasya-gemenskapen på Discord",
+    "donateProject": "Donera för att stödja World of Aphasya"
   },
   "entryGuard": {
     "title": "Grafik sänkt",
@@ -7799,16 +7798,16 @@ export const sv_SE: EnTranslations = {
     "notify": {
       "updateReadyTitle": "Uppdatering {version} är klar",
       "updateReadyTitleNoVersion": "Uppdatering är klar",
-      "updateReadyBody": "Starta om World of ClaudeCraft för att tillämpa uppdateringen.",
+      "updateReadyBody": "Starta om World of Aphasya för att tillämpa uppdateringen.",
       "partyInviteTitle": "Gruppinbjudan",
       "partyInviteBody": "{name} bjöd in dig till en grupp."
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "body": "Spelvyn slutade fungera. Ladda om den?",
       "reload": "Ladda om",
       "quit": "Avsluta",
-      "fatalBody": "World of ClaudeCraft stötte på ett oväntat fel och måste stängas."
+      "fatalBody": "World of Aphasya stötte på ett oväntat fel och måste stängas."
     }
   },
   "gpuNotice": {
@@ -7957,17 +7956,17 @@ export const sv_SE: EnTranslations = {
     "iosStandaloneDetail": "Du är i helskärmsläge från hemskärmen. Håll enheten i liggande läge.",
     "iosInstallDetail": "För äkta helskärm på iPhone eller iPad, installera först den här sidan på din Hemskärm.",
     "iosShareStep": "I Safari, tryck på Dela och sedan Lägg till på Hemskärmen.",
-    "iosOpenStep": "Öppna World of ClaudeCraft från den nya Hemskärmsikonen.",
+    "iosOpenStep": "Öppna World of Aphasya från den nya Hemskärmsikonen.",
     "androidStandaloneDetail": "Du är i helskärmsläge för appen. Håll enheten i liggande läge.",
     "androidInstallDetail": "För helskärm på Android, installera den här sidan eller lägg först till den på din Hemskärm.",
     "androidInstallStep": "I Chrome, tryck på menyn och sedan Installera app eller Lägg till på Hemskärmen.",
-    "androidOpenStep": "Öppna World of ClaudeCraft från den nya ikonen.",
+    "androidOpenStep": "Öppna World of Aphasya från den nya ikonen.",
     "otherStandaloneDetail": "Håll din enhet i liggande helskärm.",
     "otherInstallDetail": "Installera eller lägg till den här sidan på din Hemskärm för bästa mobila helskärmsupplevelse."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Världen otillgänglig",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "World of Aphasya - Världen otillgänglig",
+    "logoAlt": "World of Aphasya",
     "eyebrow": "Världsunderhåll",
     "heading": "Världen är tillfälligt otillgänglig.",
     "body": "Vi startar om speltjänsten och förväntar oss att Claudemoon är tillbaka inom kort. Den här sidan fortsätter att kontrollera automatiskt.",
@@ -13967,7 +13966,7 @@ export const sv_SE: EnTranslations = {
       "auctioneer_voss": {
         "name": "Auktionsförrättare Voss",
         "title": "Väktare av världsmarknaden",
-        "greeting": "World of ClaudeCraft-marknaden är öppen även här, {className}. Köp från varje äventyrare i riket, eller lägg ut dina egna varor."
+        "greeting": "World of Aphasya-marknaden är öppen även här, {className}. Köp från varje äventyrare i riket, eller lägg ut dina egna varor."
       },
       "bursar_fernando": {
         "name": "Kamrer Fernando",

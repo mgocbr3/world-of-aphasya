@@ -228,7 +228,7 @@ const ICONS: Record<UiIconName, string> = {
   // micro-button size and stays tellable apart from the emote speech bubble
   // (a filled balloon) and the deeds book (a solid tome)
   wiki: '<path d="M168 180c0-72 176-80 176 6 0 62-88 64-88 132" stroke="currentColor" stroke-width="46" fill="none" stroke-linecap="round"/><circle cx="256" cy="412" r="36"/>',
-  // World of ClaudeCraft maker's mark: the exact project-owned calligraphic
+  // World of Aphasya maker's mark: the exact project-owned calligraphic
   // stroke used beside a crafted copy's provenance line. Unlike the filled
   // chrome glyphs above, this mark is intentionally an open currentColor line.
   'makers-mark':

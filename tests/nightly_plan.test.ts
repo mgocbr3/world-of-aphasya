@@ -20,7 +20,7 @@ import {
 } from '../scripts/lib/nightly_plan.mjs';
 
 const RUN = {
-  runUrl: 'https://github.com/levy-street/world-of-claudecraft/actions/runs/123',
+  runUrl: 'https://github.com/mgocbr3/world-of-aphasya/actions/runs/123',
   targets: ['main', 'release/v0.35.0'],
   timestamp: '2026-08-05T04:47:00.000Z',
 } as const;
@@ -29,7 +29,7 @@ const FAILED = [
   {
     name: 'Nightly tests (release/v0.35.0)',
     conclusion: 'failure',
-    html_url: 'https://github.com/levy-street/world-of-claudecraft/runs/1',
+    html_url: 'https://github.com/mgocbr3/world-of-aphasya/runs/1',
   },
 ] as const;
 

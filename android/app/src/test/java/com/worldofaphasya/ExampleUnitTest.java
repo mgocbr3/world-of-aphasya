@@ -1,4 +1,4 @@
-package com.worldofclaudecraft;
+package com.worldofaphasya;
 
 import static org.junit.Assert.*;
 

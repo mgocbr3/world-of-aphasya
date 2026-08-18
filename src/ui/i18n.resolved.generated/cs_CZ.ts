@@ -362,7 +362,7 @@ export const cs_CZ: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "Otevřít wiki?",
-      "confirmBody": "Tímto otevřeš wiki World of ClaudeCraft ve svém prohlížeči. Hra běží dál.",
+      "confirmBody": "Tímto otevřeš wiki World of Aphasya ve svém prohlížeči. Hra běží dál.",
       "confirmOpen": "Otevřít wiki",
       "confirmCancel": "Zrušit"
     },
@@ -490,14 +490,14 @@ export const cs_CZ: EnTranslations = {
       "rewardsTab": "Denní odměny",
       "loading": "Načítání obchodu WOC…",
       "error": "Obchod WOC nyní není dostupný. Zkus to za chvíli znovu.",
-      "balance": "Zůstatek Claudium",
-      "buyClaudium": "Koupit Claudium",
+      "balance": "Zůstatek Aphasium",
+      "buyClaudium": "Koupit Aphasium",
       "owned": "Vlastníš",
-      "needMoreTitle": "Je potřeba více Claudium",
-      "needMoreBody": "K nákupu předmětu {item} potřebuješ ještě {shortfall} Claudium.",
+      "needMoreTitle": "Je potřeba více Aphasium",
+      "needMoreBody": "K nákupu předmětu {item} potřebuješ ještě {shortfall} Aphasium.",
       "cancel": "Zrušit",
       "confirmTitle": "Potvrdit nákup kosmetiky",
-      "confirmBody": "Koupit {item} za {cost} Claudium?",
+      "confirmBody": "Koupit {item} za {cost} Aphasium?",
       "confirmPurchase": "Koupit",
       "priceChanged": "Cena se před dokončením nákupu změnila. Zkontroluj novou cenu a nákup znovu potvrď.",
       "armoryEyebrow": "1. sezóna",
@@ -710,18 +710,18 @@ export const cs_CZ: EnTranslations = {
       "equipHint": "Tento vzhled lze použít po nasazení předmětu typu {type}."
     },
     "claudium": {
-      "title": "Claudium",
-      "open": "Otevřít Claudium",
-      "close": "Zavřít Claudium",
-      "loading": "Načítání Claudium…",
+      "title": "Aphasium",
+      "open": "Otevřít Aphasium",
+      "close": "Zavřít Aphasium",
+      "loading": "Načítání Aphasium…",
       "balanceLabel": "Zůstatek",
-      "balanceUnit": "{amount} Claudium",
+      "balanceUnit": "{amount} Aphasium",
       "solBalance": "SOL: {amount}",
       "usdcBalance": "USDC: {amount}",
       "wocBalance": "WOC: {amount}",
-      "unavailable": "Obchod Claudium nyní není dostupný. Tvůj zůstatek ani nákupy to neovlivní, zkus to za chvíli znovu.",
-      "disclosure": "Claudium je jednosměrná herní měna: kupuje se za peníze a utrácí za kosmetické předměty. Nelze ji směnit zpět, převést ani vyplatit v hotovosti.",
-      "buyTitle": "Koupit Claudium",
+      "unavailable": "Obchod Aphasium nyní není dostupný. Tvůj zůstatek ani nákupy to neovlivní, zkus to za chvíli znovu.",
+      "disclosure": "Aphasium je jednosměrná herní měna: kupuje se za peníze a utrácí za kosmetické předměty. Nelze ji směnit zpět, převést ani vyplatit v hotovosti.",
+      "buyTitle": "Koupit Aphasium",
       "railLabel": "Způsob platby",
       "railStripe": "Karta",
       "railSol": "SOL",
@@ -731,14 +731,14 @@ export const cs_CZ: EnTranslations = {
       "railWocUnavailable": "Cena ve WOC nyní není dostupná.",
       "railNativeUnavailable": "SOL/WOC nedostupné",
       "amountLabel": "Množství",
-      "showAmounts": "Zobrazit všechny nabídky Claudium",
-      "hideAmounts": "Skrýt další nabídky Claudium",
-      "skuRow": "{claudium} Claudium za {usd}",
+      "showAmounts": "Zobrazit všechny nabídky Aphasium",
+      "hideAmounts": "Skrýt další nabídky Aphasium",
+      "skuRow": "{claudium} Aphasium za {usd}",
       "buyButton": "Koupit",
       "buyUnavailable": "Nákup nyní není dostupný.",
       "storeTitle": "Obchod s kosmetikou",
       "storeEmpty": "Žádná kosmetika nyní není dostupná.",
-      "storeCost": "{amount} Claudium",
+      "storeCost": "{amount} Aphasium",
       "spendButton": "Uplatnit",
       "kindCosmetic": "Kosmetika",
       "kindSkin": "Vzhled",
@@ -749,10 +749,10 @@ export const cs_CZ: EnTranslations = {
       "checkoutPending": "Transakce probíhá. Potvrď ji v peněžence a nech tento panel otevřený.",
       "checkoutPendingButton": "Zpracovává se",
       "checkoutFailed": "Platbu se nepodařilo načíst. Zkus to znovu.",
-      "checkoutUnavailable": "Tento nákup Claudium nyní není dostupný.",
-      "checkoutWalletRequired": "Před nákupem Claudium za kryptoměnu připoj peněženku Solana.",
+      "checkoutUnavailable": "Tento nákup Aphasium nyní není dostupný.",
+      "checkoutWalletRequired": "Před nákupem Aphasium za kryptoměnu připoj peněženku Solana.",
       "checkoutWalletUnsupported": "Tato peněženka neumí podepisovat a odesílat transakce Solana.",
-      "checkoutNotSettled": "Transakce byla odeslána, ale Claudium zatím nebylo připsáno. Zkus to za chvíli znovu."
+      "checkoutNotSettled": "Transakce byla odeslána, ale Aphasium zatím nebylo připsáno. Zkus to za chvíli znovu."
     },
     "theme": {
       "preset": "Motiv UI",
@@ -893,8 +893,8 @@ export const cs_CZ: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Aktualizace dostupná",
-      "body": "Je dostupná nová verze World of ClaudeCraft. Aktualizuj teď pro nejnovější opravy a vylepšení.",
-      "bodyWithVersion": "Je dostupná verze {version} World of ClaudeCraft. Aktualizuj teď pro nejnovější opravy a vylepšení.",
+      "body": "Je dostupná nová verze World of Aphasya. Aktualizuj teď pro nejnovější opravy a vylepšení.",
+      "bodyWithVersion": "Je dostupná verze {version} World of Aphasya. Aktualizuj teď pro nejnovější opravy a vylepšení.",
       "notNow": "Teď ne",
       "update": "Aktualizovat"
     },
@@ -1507,8 +1507,8 @@ export const cs_CZ: EnTranslations = {
         "offline": "Offline"
       },
       "diagnostics": {
-        "panelAria": "Diagnostika výkonu World of ClaudeCraft",
-        "title": "Lékař výkonu ClaudeCraft",
+        "panelAria": "Diagnostika výkonu World of Aphasya",
+        "title": "Lékař výkonu Aphasya",
         "subtitle": "Sken specifický pro hru s důkazy a opravami na úrovni kódu.",
         "aria": {
           "liveMeasurements": "Živá měření výkonu",
@@ -1652,7 +1652,7 @@ export const cs_CZ: EnTranslations = {
           }
         },
         "report": {
-          "title": "Diagnóza výkonu World of ClaudeCraft",
+          "title": "Diagnóza výkonu World of Aphasya",
           "statusLine": "Stav: {status} ({score}/100)",
           "capturedLine": "Zaznamenáno: {captured}",
           "topFindingLine": "Hlavní zjištění: {finding}",
@@ -2542,7 +2542,7 @@ export const cs_CZ: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "World of Aphasya",
       "open": "Discord",
       "close": "Zavřít",
       "keybind": "Panel Discordu",
@@ -3950,8 +3950,8 @@ export const cs_CZ: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "World of Aphasya",
+    "brandShort": "Aphasya",
     "tagline": "MMO v klasickém stylu, které hraješ zdarma v prohlížeči.",
     "skipToContent": "Přejít na hlavní obsah",
     "loading": "Načítá se...",
@@ -4027,7 +4027,7 @@ export const cs_CZ: EnTranslations = {
       "github": "Zdrojový kód na GitHubu",
       "discord": "Připojit se na Discord",
       "communityWiki": "Komunitní wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "World of Aphasya",
       "linksLabel": "Odkazy na hru a komunitu"
     },
     "language": {
@@ -4052,7 +4052,7 @@ export const cs_CZ: EnTranslations = {
     },
     "home": {
       "eyebrow": "Prohlížečové MMO v klasickém stylu",
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "subtitle": "Plň úkoly, hraj ve skupině a objevuj ručně vystavěný svět zdarma v prohlížeči.",
       "ctaPlay": "Hrát teď",
       "ctaLearn": "Jak hrát",
@@ -4672,7 +4672,7 @@ export const cs_CZ: EnTranslations = {
       "ridingDef": "Dovednost, díky které vůbec můžeš jezdit. Koupíš si ji jednou u správce stájí na úrovni 20 a poté už tvé postavě zůstane navždy.",
       "reinsTerm": "Otěže",
       "reinsDef": "Předmět, který je jízdním zvířetem. Stačí mít pár v batohu nebo v bance, a to jízdní zvíře je tvoje; použitím na něm jezdíš. Otěže lze směňovat, posílat poštou i prodávat jiným hráčům.",
-      "claudiumTerm": "Claudium",
+      "claudiumTerm": "Aphasium",
       "claudiumDef": "Měna Obchodu WOC, utrácená za kosmetiku a za nic jiného. Nikdy nekupuje sílu ani postup.",
       "worldTerm": "Svět",
       "worldDef": "Jedna sdílená kopie online hry, s vlastními hráči, trhem a žebříčky. Tento průvodce jí občas říká i říše, a tvá postava žije na světě, na kterém jsi ji vytvořil."
@@ -4703,7 +4703,7 @@ export const cs_CZ: EnTranslations = {
       "q11": "Jak najdu skupinu?",
       "a11": "Pozvi kohokoli, koho potkáš, do party, zeptej se v chatu nebo se spojte u dungeonu. Většina světa jde sólo, takže skupina je volba, ne požadavek.",
       "q12": "Je ve hře obchod za skutečné peníze?",
-      "a12": "Existuje volitelný kosmetický obchod. Prodává vzhledy: skiny zbraní ze Zbrojnice 1. sezóny, kupované za Claudium, měnu obchodu. Nic v něm nepřidává statistiky, sílu ani postup, a skin nikdy nezmění, jak tvá zbraň zasahuje, takže každý kus výbavy, na kterém záleží, pořád pochází z hraní.",
+      "a12": "Existuje volitelný kosmetický obchod. Prodává vzhledy: skiny zbraní ze Zbrojnice 1. sezóny, kupované za Aphasium, měnu obchodu. Nic v něm nepřidává statistiky, sílu ani postup, a skin nikdy nezmění, jak tvá zbraň zasahuje, takže každý kus výbavy, na kterém záleží, pořád pochází z hraní.",
       "q13": "Kde získám aplikaci?",
       "a13": "Verze pro prohlížeč nepotřebuje vůbec nic: otevři stránku a hraj. Pokud bys radši měl aplikaci, desktopové stažení pro Windows, macOS a Linux najdeš na stránce Stáhnout herního webu. Nativní aplikace pro iOS a Android se připravují, a než budou hotové, telefon nebo tablet hraje verzi pro prohlížeč s plným dotykovým ovládáním. Každá verze se přihlašuje ke stejnému účtu a stejným světům, takže tě tvé postavy budou následovat všude.",
       "q14": "Co potřebuji, abych to mohl spustit?",
@@ -4988,7 +4988,7 @@ export const cs_CZ: EnTranslations = {
     },
     "worldPage": {
       "heading": "Svět",
-      "intro": "World of ClaudeCraft je jedna souvislá země, kterou přecházíš pěšky. Stará cesta vede z jihu na sever startovním údolím, bažinou a štíty a stoupá dál za ně do prohlubně a do sněžné krajiny na horním okraji mapy. Od té cesty se na západ otevírá sloupec vyšších říší a další na východ, a při východním pobřeží Údolí leží ostrov. Není tu rychlé cestování, žádné letecké trasy ani povozy: každá cesta se ujde nebo projede, takže dorazit je součástí dobrodružství.\n\nZemě také měří čas. Cyklus dne a noci běží na skutečných hodinách sdílených všemi na tvém světě, takže obloha přechází od úsvitu přes poledne k soumraku a tmě pro vás všechny naráz, měsíc přichází a odchází svými fázemi a světlo na zemi se s ním mění. Ciferník kolem tvé minimapy je místo, kde odečteš hodinu.",
+      "intro": "World of Aphasya je jedna souvislá země, kterou přecházíš pěšky. Stará cesta vede z jihu na sever startovním údolím, bažinou a štíty a stoupá dál za ně do prohlubně a do sněžné krajiny na horním okraji mapy. Od té cesty se na západ otevírá sloupec vyšších říší a další na východ, a při východním pobřeží Údolí leží ostrov. Není tu rychlé cestování, žádné letecké trasy ani povozy: každá cesta se ujde nebo projede, takže dorazit je součástí dobrodružství.\n\nZemě také měří čas. Cyklus dne a noci běží na skutečných hodinách sdílených všemi na tvém světě, takže obloha přechází od úsvitu přes poledne k soumraku a tmě pro vás všechny naráz, měsíc přichází a odchází svými fázemi a světlo na zemi se s ním mění. Ciferník kolem tvé minimapy je místo, kde odečteš hodinu.",
       "hub": "Domovská základna",
       "mapHeading": "Cesta a říše za ní",
       "mapSub": "Stopa úkolů vede z jihu na sever středem mapy: údolí, bažina, štíty a dál za ně do prohlubně a sněhu. Ostatní říše se otevírají podél té cesty, ne až za ní, branami na východ a na západ od bažinné cesty, přičemž ostrov Farshore se dosahuje z východního pobřeží Údolí. Ze vzdálených říší tě drží jejich úrovňová pásma, ne ta chůze: pět z nich sdílí nejvyšší pásmo, takže jakmile jsi připraven, můžeš je brát v libovolném pořadí. Farshore je výjimka, nízkoúrovňová krajina, kterou můžeš navštívit brzy.",
@@ -6009,7 +6009,7 @@ export const cs_CZ: EnTranslations = {
   },
   "editor": {
     "appTitle": "Editor map",
-    "docTitle": "Editor map - World of ClaudeCraft",
+    "docTitle": "Editor map - World of Aphasya",
     "untitledMap": "Nepojmenovaná mapa",
     "playtestPlayerName": "Tvůrce map",
     "topbar": {
@@ -6486,10 +6486,9 @@ export const cs_CZ: EnTranslations = {
     "realmName": "Název světa"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 World of Aphasya",
+    "githubLink": "https://github.com/mgocbr3/world-of-aphasya",
     "githubLabel": "Open-source projekt",
-    "whitepaper": "Whitepaper",
     "terms": "Podmínky služby",
     "privacy": "Zásady ochrany soukromí",
     "discordLabel": "Připojit se na Discord"
@@ -6544,7 +6543,7 @@ export const cs_CZ: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Hrát",
-    "playAria": "Hrát World of ClaudeCraft",
+    "playAria": "Hrát World of Aphasya",
     "serverLabel": "Vyber si svět",
     "serverAria": "Vybrat svět: online nebo offline",
     "serverOfflineSub": "Okamžitý lokální svět",
@@ -6863,12 +6862,12 @@ export const cs_CZ: EnTranslations = {
     "extensionHelp": "Aby se tu peněženka zobrazila, nech aktivní rozšíření prohlížeče, například Solflare Wallet.",
     "mobileAppHelp": "Zvol Phantom nebo Solflare. Tvoje aplikace peněženky požádá o schválení. Nechej tuto hru otevřenou a po dokončení se do ní vrať.",
     "seekerAppHelp": "Pokračuj s peněženkou Seed Vault. Zkontroluj požadavky na připojení a ověření v Seed Vault, poté se vrať do hry.",
-    "standaloneAppHelp": "Připojení peněženky není zatím v aplikaci z domovské obrazovky dostupné. Otevři World of ClaudeCraft v Safari nebo Chrome pro použití Phantom nebo Solflare.",
+    "standaloneAppHelp": "Připojení peněženky není zatím v aplikaci z domovské obrazovky dostupné. Otevři World of Aphasya v Safari nebo Chrome pro použití Phantom nebo Solflare.",
     "openAppTitle": "Pokračovat v {wallet}",
     "openAppHelp": "Otevři {wallet} pro kontrolu tohoto požadavku. Nechej tuto záložku hry otevřenou, zatímco je aplikace peněženky aktivní.",
     "openAppButton": "Otevřít {wallet}",
     "manualReturnBrowserHelp": "Po schválení se vrať na tuto záložku hry. Pokud iOS otevře jiný prohlížeč, zavři ho a ručně se vrať do původního prohlížeče.",
-    "manualReturnStandaloneHelp": "Po schválení se vrať do World of ClaudeCraft z domovské obrazovky. Pokud iOS otevře prohlížeč, zavři ho a ručně znovu otevři aplikaci z domovské obrazovky.",
+    "manualReturnStandaloneHelp": "Po schválení se vrať do World of Aphasya z domovské obrazovky. Pokud iOS otevře prohlížeč, zavři ho a ručně znovu otevři aplikaci z domovské obrazovky.",
     "preparingAppButton": "Připravuji {wallet}...",
     "walletAppUnavailable": "{wallet} nelze připravit. Zavři toto okno a zkus to znovu.",
     "flowConnect": "Vyber peněženku. Ověření bude automaticky pokračovat.",
@@ -6883,12 +6882,12 @@ export const cs_CZ: EnTranslations = {
       "linkBody": "Zvol rozšíření peněženky v tomto prohlížeči. Podepíšeš ověřovací zprávu a vrátíš se do desktopové aplikace.",
       "paymentBody": "Zvol peněženku propojenou s tvým účtem a schval transakci v tomto prohlížeči.",
       "extensionHelp": "Nebyla nalezena žádná kompatibilní rozšíření peněženky. Nainstaluj nebo odemkni Phantom, Solflare nebo jiný Solana prohlížečový wallet a zkus to znovu.",
-      "safety": "World of ClaudeCraft nikdy nepožaduje tvoji obnovovací frázi ani soukromý klíč.",
+      "safety": "World of Aphasya nikdy nepožaduje tvoji obnovovací frázi ani soukromý klíč.",
       "continueWith": "Pokračovat s {wallet}",
       "reviewTitle": "Zkontroluj ve své peněžence",
       "reviewBody": "Postupuj podle výzvy od {wallet}. Nechej tuto stránku prohlížeče otevřenou.",
       "completeTitle": "Autorizace peněženky dokončena",
-      "completeBody": "Můžeš se vrátit do desktopové aplikace World of ClaudeCraft.",
+      "completeBody": "Můžeš se vrátit do desktopové aplikace World of Aphasya.",
       "returnButton": "Vrátit se do desktopové aplikace",
       "failed": "Autorizace peněženky selhala nebo vypršela. Vrať se do desktopové aplikace a zkus to znovu.",
       "retry": "Zkusit znovu"
@@ -6986,7 +6985,7 @@ export const cs_CZ: EnTranslations = {
     "levelClass": "Úroveň {level} - {className}",
     "topPercent": "TOP {percent} %",
     "realmSubtitle": "Svět {realm}",
-    "defaultRealm": "World of ClaudeCraft",
+    "defaultRealm": "World of Aphasya",
     "brandWordmark": "WORLD OF CLAUDECRAFT",
     "recruited": "přivedeno {count}",
     "footerHandle": "@{handle}",
@@ -6994,8 +6993,8 @@ export const cs_CZ: EnTranslations = {
     "footerCta": "Kuj svou legendu: {siteUrl}",
     "arenaStat": "Aréna",
     "shareTierBit": ", držitel $WOC stupně {tier}",
-    "shareText": "Kuji svou legendu ve World of ClaudeCraft: úroveň {level} {className}{tierBit}. Přidej se do mého světa:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Kuji svou legendu ve World of Aphasya: úroveň {level} {className}{tierBit}. Přidej se do mého světa:",
+    "nativeShareTitle": "World of Aphasya",
     "fileNameFallback": "hrac",
     "actionShareX": "Sdílet na X",
     "actionCopyReferral": "Kopírovat doporučovací odkaz",
@@ -7691,14 +7690,14 @@ export const cs_CZ: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: webové MMO v klasickém stylu",
-    "description": "Vydej se na epické dobrodružství ve World of ClaudeCraft, klasicky laděném micro-MMO hratelném přímo v prohlížeči. Připoj se k trvalému sdílenému světu, zvyšuj úrovně tříd a porážej nepřátele!",
+    "title": "World of Aphasya: webové MMO v klasickém stylu",
+    "description": "Vydej se na epické dobrodružství ve World of Aphasya, klasicky laděném micro-MMO hratelném přímo v prohlížeči. Připoj se k trvalému sdílenému světu, zvyšuj úrovně tříd a porážej nepřátele!",
     "genre": "MMORPG",
     "playMode": "Multiplayer",
     "applicationCategory": "Hra",
     "operatingSystem": "Webový prohlížeč",
-    "officialLabel": "Oficiální web World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com je oficiální bezplatné prohlížečové MMO pro svět Claudemoon. Hraj online s trvalou postavou, prozkoumávej sólo offline, čti wiki a používej ověřené komunitní odkazy z tohoto webu."
+    "officialLabel": "Oficiální web World of Aphasya",
+    "officialBody": "worldofaphasya.com je oficiální bezplatné prohlížečové MMO pro svět Claudemoon. Hraj online s trvalou postavou, prozkoumávej sólo offline, čti wiki a používej ověřené komunitní odkazy z tohoto webu."
   },
   "a11y": {
     "goHome": "Přejít na domovskou stránku",
@@ -7706,9 +7705,9 @@ export const cs_CZ: EnTranslations = {
     "mainNavigation": "Hlavní navigace",
     "languageSelection": "Výběr jazyka",
     "characterActions": "Akce postavy",
-    "githubProject": "Otevřít projekt World of ClaudeCraft na GitHubu",
-    "discordCommunity": "Připojit se ke komunitě World of ClaudeCraft na Discordu",
-    "donateProject": "Přispět na podporu World of ClaudeCraft"
+    "githubProject": "Otevřít projekt World of Aphasya na GitHubu",
+    "discordCommunity": "Připojit se ke komunitě World of Aphasya na Discordu",
+    "donateProject": "Přispět na podporu World of Aphasya"
   },
   "entryGuard": {
     "title": "Grafika snížena",
@@ -7799,16 +7798,16 @@ export const cs_CZ: EnTranslations = {
     "notify": {
       "updateReadyTitle": "Aktualizace {version} je připravena",
       "updateReadyTitleNoVersion": "Aktualizace je připravena",
-      "updateReadyBody": "Restartuj World of ClaudeCraft, aby se aktualizace použila.",
+      "updateReadyBody": "Restartuj World of Aphasya, aby se aktualizace použila.",
       "partyInviteTitle": "Pozvánka do skupiny",
       "partyInviteBody": "{name} tě pozval(a) do skupiny."
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "body": "Herní zobrazení přestalo fungovat. Načíst ho znovu?",
       "reload": "Načíst znovu",
       "quit": "Ukončit",
-      "fatalBody": "World of ClaudeCraft narazil na neočekávanou chybu a musí se zavřít."
+      "fatalBody": "World of Aphasya narazil na neočekávanou chybu a musí se zavřít."
     }
   },
   "gpuNotice": {
@@ -7957,17 +7956,17 @@ export const cs_CZ: EnTranslations = {
     "iosStandaloneDetail": "Jsi v režimu celé obrazovky z plochy. Drž zařízení na šířku.",
     "iosInstallDetail": "Pro skutečnou celou obrazovku na iPhonu nebo iPadu si tuto stránku nejdřív přidej na plochu.",
     "iosShareStep": "V Safari klepni na Sdílet a potom na Přidat na plochu.",
-    "iosOpenStep": "Otevři World of ClaudeCraft z nové ikony na ploše.",
+    "iosOpenStep": "Otevři World of Aphasya z nové ikony na ploše.",
     "androidStandaloneDetail": "Jsi v režimu aplikace na celou obrazovku. Drž zařízení na šířku.",
     "androidInstallDetail": "Pro celou obrazovku na Androidu si tuto stránku nejdřív nainstaluj nebo přidej na plochu.",
     "androidInstallStep": "V Chromu klepni na menu a potom na Instalovat aplikaci nebo Přidat na plochu.",
-    "androidOpenStep": "Otevři World of ClaudeCraft z nové ikony.",
+    "androidOpenStep": "Otevři World of Aphasya z nové ikony.",
     "otherStandaloneDetail": "Drž zařízení na šířku a na celou obrazovku.",
     "otherInstallDetail": "Pro nejlepší mobilní zážitek na celou obrazovku si tuto stránku nainstaluj nebo přidej na plochu."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Svět nedostupný",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "World of Aphasya - Svět nedostupný",
+    "logoAlt": "World of Aphasya",
     "eyebrow": "Údržba světa",
     "heading": "Svět je dočasně nedostupný.",
     "body": "Restartujeme herní službu a očekáváme, že se Claudemoon brzy vrátí. Tato stránka bude stav automaticky kontrolovat.",

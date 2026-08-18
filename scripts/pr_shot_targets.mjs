@@ -160,7 +160,7 @@ async function stubGlobalLeaderboardFetch(page) {
 // String-form for the same tsx keepNames reason as the leaderboard stub above.
 async function stubDesktopUpdateBridge(page) {
   await page.setUserAgent(
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) WorldOfClaudeCraft/0.0.0 Chrome/128.0.0.0 Electron/34.0.0 Safari/537.36',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) WorldOfAphasya/0.0.0 Chrome/128.0.0.0 Electron/34.0.0 Safari/537.36',
   );
   await page.evaluateOnNewDocument(`(() => {
     window.wocDesktop = {

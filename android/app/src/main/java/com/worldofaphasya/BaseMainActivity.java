@@ -1,4 +1,4 @@
-package com.worldofclaudecraft;
+package com.worldofaphasya;
 
 import android.os.Bundle;
 import androidx.core.view.WindowCompat;

@@ -58,7 +58,7 @@ const POLL_INTERVAL_MS = 1000;
  * The published activity for one zone. Pure, and the ONLY place an activity is
  * constructed, so the key-set pin over this function covers everything the
  * shell can ever be handed. `details` is the zone line: the "Playing World of
- * ClaudeCraft" above it comes from the app registration, not from here.
+ * Aphasya" above it comes from the app registration, not from here.
  */
 export function buildZoneActivity(
   zoneName: string,

@@ -268,7 +268,7 @@ export const ru_RU: Record<string, string> = {
   'usage.metric.githubLinkFailure': 'Ошибки привязки GitHub',
   'usage.metric.githubLinkRateLimited': 'Ограниченные запросы привязки GitHub',
   'usage.metric.githubLinkRequest': 'Запросы привязки GitHub',
-  'app.title': 'World of ClaudeCraft — Админ',
+  'app.title': 'World of Aphasya — Админ',
   'app.shortTitle': 'Администратор WoC',
   'auth.username': 'Имя пользователя',
   'auth.password': 'Пароль',

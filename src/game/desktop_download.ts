@@ -9,7 +9,7 @@ export type DesktopPlatform = 'mac' | 'win' | 'linux' | 'other';
 // The published desktop build on the update host, derived from package.json at
 // build time through the __APP_VERSION__ define (vite.config.ts), so it can
 // never drift from the release version. The artifacts uploaded to
-// updates.worldofclaudecraft.com/desktop/ carry that same version (see
+// updates.worldofaphasya.com/desktop/ carry that same version (see
 // docs/desktop-release.md). The static hrefs in index.html and play.html remain
 // the no-JS fallback: scripts/release_version.mjs rewrites them at release
 // prepare, and tests/desktop_download_dom.test.ts cross-checks them against
@@ -18,7 +18,7 @@ declare const __APP_VERSION__: string;
 // The standalone browser-test config injects no defines, so a bare identifier
 // would throw there; the guard keeps this module importable everywhere.
 export const DESKTOP_VERSION = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.0.0';
-const DESKTOP_HOST = 'https://updates.worldofclaudecraft.com/desktop';
+const DESKTOP_HOST = 'https://updates.worldofaphasya.com/desktop';
 
 // electron-builder website-channel artifact names (docs/desktop-release.md):
 // mac ships one universal dmg; the x64 Linux AppImage is named x86_64 (that is
@@ -28,9 +28,9 @@ const DESKTOP_HOST = 'https://updates.worldofclaudecraft.com/desktop';
 // channel's precedent of running Windows-on-ARM visitors under x64 emulation
 // rather than shipping a second download button.
 const ARTIFACT: Partial<Record<DesktopPlatform, string>> = {
-  mac: `world-of-claudecraft-${DESKTOP_VERSION}-mac-universal.dmg`,
-  win: `world-of-claudecraft-${DESKTOP_VERSION}-win-x64.exe`,
-  linux: `world-of-claudecraft-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
+  mac: `world-of-aphasya-${DESKTOP_VERSION}-mac-universal.dmg`,
+  win: `world-of-aphasya-${DESKTOP_VERSION}-win-x64.exe`,
+  linux: `world-of-aphasya-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
 };
 
 // Full download URL for a platform, or null when no artifact is published for it.

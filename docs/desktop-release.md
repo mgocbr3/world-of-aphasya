@@ -1,6 +1,6 @@
 # Desktop release runbook (Electron: website download + Steam + Epic)
 
-How to build, sign, publish, and verify the World of ClaudeCraft desktop app.
+How to build, sign, publish, and verify the World of Aphasya desktop app.
 The longer companion explainer (what shipped, per-platform update/signing
 mechanics, step-by-step release walkthroughs) is `docs/desktop-ship-notes.md`.
 One codebase produces three distribution channels:
@@ -14,7 +14,7 @@ One codebase produces three distribution channels:
 Sign-in is email and Discord only, identical to the web flow: email/password logs in
 inside the app, and "Continue with Discord" opens the player's default browser on the
 `/desktop-login` page, which hands a one-time code back to the app over the
-`worldofclaudecraft://desktop-login` deep link. There is no Steam or Epic sign-in on
+`worldofaphasya://desktop-login` deep link. There is no Steam or Epic sign-in on
 any channel; on the Steam channel the shell's one Steam surface is the account-link
 ticket behind the Book of Deeds achievement mirror (`electron/steam.cjs`). Epic
 account-link and achievement mirror surfaces live under
@@ -23,7 +23,7 @@ BuildPatchTool upload, portal checklist, and server env keys are in this runbook
 (Epic section below), `docs/epic-games-integration/bpt-upload.md`,
 `docs/epic-games-integration/portal-checklist.md`, and `DEPLOY.md`. Live portal
 and store work is tracked in
-https://github.com/levy-street/world-of-claudecraft/issues/2708.
+https://github.com/mgocbr3/world-of-aphasya/issues/2708.
 
 The build stamps `wocDesktop` into the packaged `package.json` (electron-builder
 `extraMetadata`, wired in `scripts/electron-build.mjs` +
@@ -88,21 +88,21 @@ Linux artifacts on Linux). Cross-building is not part of this runbook.
 | Azure subscription + Artifact Signing account (Basic, USD 9.99/mo, 5000 sigs) | Windows signing | account + certificate profile in the Azure portal (needs identity validation; individuals: US/Canada only, orgs also EU/UK) |
 | Azure service principal with "Trusted Signing Certificate Profile Signer" role | CI auth for signing | CI secrets `AZURE_TENANT_ID`, `AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET` |
 | Alternative: a code-signing certificate in Azure Key Vault (Route B, what CI uses) | Windows signing via AzureSignTool | CI secrets `AZURE_KEY_VAULT_URL`, `AZURE_KEY_VAULT_CERTIFICATE` (plus the service principal secrets above, granted vault sign/get access) |
-| Update host: a static HTTPS host / bucket serving `https://updates.worldofclaudecraft.com/desktop/` | website auto-update feed + installer downloads | e.g. Cloudflare R2 bucket behind that hostname (any static host works; the app only GETs) |
+| Update host: a static HTTPS host / bucket serving `https://updates.worldofaphasya.com/desktop/` | website auto-update feed + installer downloads | e.g. Cloudflare R2 bucket behind that hostname (any static host works; the app only GETs) |
 | Steam partner account + app ID + three depot IDs | Steam distribution | partner.steamgames.com |
 | Steamworks publisher Web API key (+ `STEAM_ENABLED=1`, `STEAM_APP_ID`) | the Book of Deeds achievement mirror + account link (`server/steam/`) | game-server runtime env `STEAM_WEB_API_KEY` (see `DEPLOY.md`) |
 | Epic org + product (+ sandboxes, clients, artifacts) | Epic Games Store distribution | [dev.epicgames.com/portal](https://dev.epicgames.com/portal) (see `docs/epic-games-integration/portal-checklist.md`) |
 | Epic EOS client id/secret (+ `EPIC_ENABLED=1`, product/deployment ids) | Book of Deeds achievement mirror + account link (`server/epic/`) | game-server runtime env (see `DEPLOY.md`); never the BPT client secret |
 | Epic BPT client id/secret + organization/artifact ids | BuildPatchTool binary upload to Dev sandbox | local shell only; never commit; see `docs/epic-games-integration/bpt-upload.md` |
 | Optional: a crash-minidump endpoint (e.g. a Sentry project's minidump URL) | crash uploads | build env `WOC_CRASH_SUBMIT_URL` (https only) |
-| Discord application registration, NAMED "World of ClaudeCraft" (the registration name is what Discord renders as "Playing X") | Discord Rich Presence (`electron/discord_presence.cjs`) | PROVISIONED 2026-08-15: the official application id ships baked in (`DEFAULT_DISCORD_APP_ID`, pinned to its literal in `tests/electron_discord_presence.test.ts`), so presence works out of the box in every build. `WOC_DISCORD_APP_ID` remains the operator override at shell launch (`resolveDiscordClientId`); a set-but-invalid value (for example `WOC_DISCORD_APP_ID=off`) resolves to inert, which is both the typo failure mode and the opt-out for forks. App Verification status on the portal does not gate rich presence |
+| Discord application registration, NAMED "World of Aphasya" (the registration name is what Discord renders as "Playing X") | Discord Rich Presence (`electron/discord_presence.cjs`) | PROVISIONED 2026-08-15: the official application id ships baked in (`DEFAULT_DISCORD_APP_ID`, pinned to its literal in `tests/electron_discord_presence.test.ts`), so presence works out of the box in every build. `WOC_DISCORD_APP_ID` remains the operator override at shell launch (`resolveDiscordClientId`); a set-but-invalid value (for example `WOC_DISCORD_APP_ID=off`) resolves to inert, which is both the typo failure mode and the opt-out for forks. App Verification status on the portal does not gate rich presence |
 
 Never commit any of these values; they are env vars in CI or the local shell.
 
 ## Deploying the game server (required before any public desktop release)
 
-The desktop app is served from the private origin `app://worldofclaudecraft` and
-calls `https://worldofclaudecraft.com`, so production must run this branch's server
+The desktop app is served from the private origin `app://worldofaphasya` and
+calls `https://worldofaphasya.com`, so production must run this branch's server
 before a public desktop build ships. The server side is already on the branch and
 needs no desktop-specific configuration: deploy it like any server update
 (`DEPLOY.md`, "Updating the game": ssh to the box, `cd /opt/eastbrook`,
@@ -130,8 +130,8 @@ carries for desktop:
 Verify after deploying (should print the origin back):
 
 ```bash
-curl -s -D - -o /dev/null -H "Origin: app://worldofclaudecraft" \
-  https://worldofclaudecraft.com/api/project-stats | grep -i access-control-allow-origin
+curl -s -D - -o /dev/null -H "Origin: app://worldofaphasya" \
+  https://worldofaphasya.com/api/project-stats | grep -i access-control-allow-origin
 ```
 
 ## macOS: signing + notarization
@@ -158,7 +158,7 @@ the nested Electron frameworks).
 - HARD DEPENDENCY: macOS auto-update does not apply unless the app is signed with a
   real Developer ID AND notarized. The updater consumes the ZIP target (which is why
   zip stays in the mac target list). Ship no public mac build without both.
-- Verify after a signed build: `codesign --verify --deep --strict "release/mac-universal/World of ClaudeCraft.app"`
+- Verify after a signed build: `codesign --verify --deep --strict "release/mac-universal/World of Aphasya.app"`
   and `spctl -a -t exec -vv <app>` says "accepted, source=Notarized Developer ID".
 
 ## Windows: Azure signing (two routes)
@@ -269,7 +269,7 @@ files are near-uncached, matching the existing host convention.
 One-time provisioning (maintainer):
 
 1. Cloudflare R2: create a bucket (any name, e.g. `woc-desktop-updates`) and
-   connect the custom domain `updates.worldofclaudecraft.com` to it (R2 bucket
+   connect the custom domain `updates.worldofaphasya.com` to it (R2 bucket
    settings, Custom Domains; the zone must be on the same Cloudflare account).
    Objects are uploaded under the `desktop/` prefix, matching the
    `/desktop/` path the feed URL and download page already use.
@@ -300,9 +300,9 @@ One-time provisioning (maintainer):
 Verify after the first publish:
 
 ```bash
-curl -sI https://updates.worldofclaudecraft.com/desktop/latest-linux.yml | head -1
-curl -sI https://updates.worldofclaudecraft.com/desktop/latest-mac.yml | head -1
-curl -s https://updates.worldofclaudecraft.com/desktop/SHA256SUMS-linux
+curl -sI https://updates.worldofaphasya.com/desktop/latest-linux.yml | head -1
+curl -sI https://updates.worldofaphasya.com/desktop/latest-mac.yml | head -1
+curl -s https://updates.worldofaphasya.com/desktop/SHA256SUMS-linux
 ```
 
 Users verify a download against the published checksums with
@@ -344,13 +344,13 @@ SHA256SUMS-mac --ignore-missing` on macOS) from their download directory.
    is stamped and the acceptance window can later be tightened to stamped-only.
 3. Upload from `release/` to the update host directory (keep filenames exactly):
    - macOS: handled by CI; the manual list, should CI ever be bypassed:
-     `world-of-claudecraft-<v>-mac-universal.dmg` (download page),
+     `world-of-aphasya-<v>-mac-universal.dmg` (download page),
      `...-mac-universal.zip` + `.zip.blockmap` (updater), `latest-mac.yml`.
    - Windows: handled by CI (which takes the artifact list from `latest.yml`,
      see "Publishing from CI"). For a manual upload, should CI ever be
      bypassed: `build.nsis.buildUniversalInstaller: false` makes electron-builder
      build a SEPARATE installer per arch instead of one dual-arch exe:
-     `world-of-claudecraft-<v>-win-x64.exe` and `...-win-arm64.exe`, each with
+     `world-of-aphasya-<v>-win-x64.exe` and `...-win-arm64.exe`, each with
      its own `.exe.blockmap`. Both artifacts write into the SAME `latest.yml`
      (Windows update-info filenames carry no arch suffix): its `files:` list
      carries one entry per arch (x64 sorts first, so the legacy top-level
@@ -395,7 +395,7 @@ would init Steam with the Spacewar fallback id (480) and link tickets would veri
 against the wrong app. Output layouts
 in `release-steam/`:
 
-- `mac-universal/World of ClaudeCraft.app` (one universal .app)
+- `mac-universal/World of Aphasya.app` (one universal .app)
 - `win-unpacked/` (x64; Windows-on-ARM runs it via emulation)
 - `linux-unpacked/` (x64)
 
@@ -404,12 +404,12 @@ Depot layout (one app, three depots, one package):
 | Depot | Content root | OS filter |
 |---|---|---|
 | `<appid>1` | `win-unpacked/*` | Windows, 64-bit |
-| `<appid>2` | `World of ClaudeCraft.app` (the loose bundle) | macOS |
+| `<appid>2` | `World of Aphasya.app` (the loose bundle) | macOS |
 | `<appid>3` | `linux-unpacked/*` | Linux, 64-bit |
 
-Launch options (one per OS): Windows `World of ClaudeCraft.exe`; macOS
-`World of ClaudeCraft.app` (app-bundle launch picks the best arch on Apple Silicon);
-Linux `world-of-claudecraft` (the executable inside linux-unpacked).
+Launch options (one per OS): Windows `World of Aphasya.exe`; macOS
+`World of Aphasya.app` (app-bundle launch picks the best arch on Apple Silicon);
+Linux `world-of-aphasya` (the executable inside linux-unpacked).
 
 Rules that keep this working:
 - Upload the mac depot from a macOS or Linux machine (a Windows upload destroys the
@@ -451,7 +451,7 @@ Publish is always null on this channel (`publish: null`); there is no
 `app-update.yml` and electron-updater never runs (Epic BuildPatchTool owns
 patches). Output layouts in `release-epic/`:
 
-- `mac-universal/World of ClaudeCraft.app` (one universal `.app`)
+- `mac-universal/World of Aphasya.app` (one universal `.app`)
 - `win-unpacked/` (x64; Windows-on-ARM runs it via emulation)
 
 There is **no Linux** epic target or depot (v1 ships Windows + macOS only).
@@ -461,8 +461,8 @@ Launch relative paths for BPT `-AppLaunch` (inside each BuildRoot):
 
 | OS | BuildRoot (upload the loose tree) | AppLaunch (relative to BuildRoot) |
 |---|---|---|
-| Windows | `release-epic/win-unpacked/` | `World of ClaudeCraft.exe` |
-| macOS | `release-epic/mac-universal/` | `World of ClaudeCraft.app/Contents/MacOS/World of ClaudeCraft` (exact nested MacOS binary name as emitted; confirm on first pack) |
+| Windows | `release-epic/win-unpacked/` | `World of Aphasya.exe` |
+| macOS | `release-epic/mac-universal/` | `World of Aphasya.app/Contents/MacOS/World of Aphasya` (exact nested MacOS binary name as emitted; confirm on first pack) |
 
 Rules that keep this working:
 
@@ -503,9 +503,9 @@ product exist. Coding and merge stay dark-safe without those credentials.
 
 - Shell log file (rotating, 5 MB + one archive; paths follow the package NAME,
   verified on a packaged build): macOS
-  `~/Library/Logs/world-of-claudecraft/main.log`; Windows
-  `%USERPROFILE%\AppData\Roaming\world-of-claudecraft\logs\main.log`; Linux
-  `~/.config/world-of-claudecraft/logs/main.log`. Contains the startup banner
+  `~/Library/Logs/world-of-aphasya/main.log`; Windows
+  `%USERPROFILE%\AppData\Roaming\world-of-aphasya\logs\main.log`; Linux
+  `~/.config/world-of-aphasya/logs/main.log`. Contains the startup banner
   (version/channel/updater state), GPU status (including a warning if WebGL fell
   back to software), updater activity, renderer console warnings/errors, uncaught
   renderer errors (clamped + secret-redacted, capped per session), and crash/
@@ -525,8 +525,8 @@ product exist. Coding and merge stay dark-safe without those credentials.
 - Desktop prefs and the GPU-force no-boot rescue: the shell persists its own
   small store as `desktop-prefs.json` under the per-user profile directory
   (`app.getPath('userData')`: macOS
-  `~/Library/Application Support/world-of-claudecraft/`; Windows
-  `%APPDATA%\world-of-claudecraft\`; Linux `~/.config/world-of-claudecraft/`),
+  `~/Library/Application Support/world-of-aphasya/`; Windows
+  `%APPDATA%\world-of-aphasya\`; Linux `~/.config/world-of-aphasya/`),
   holding window memory plus `gpuForceOptOut` (see `electron/desktop_prefs.cjs`).
   The in-game toggle (Options, Interface, "Use the Dedicated Gaming GPU")
   writes it, but a machine the GPU force prevents from booting can never reach
@@ -624,17 +624,17 @@ product exist. Coding and merge stay dark-safe without those credentials.
    restore the flag. The dev loop (`npm run electron:dev`) pre-applies the same
    configuration to the electron it spawns, so no relaunch happens there and the
    Vite teardown-on-exit logic keeps working.
-   Verify with `ps -o pid,ppid,cmd -C world-of-claudecraft` (or the AppImage/binary
+   Verify with `ps -o pid,ppid,cmd -C world-of-aphasya` (or the AppImage/binary
    name) showing the relaunched PID's parent already exited, and `[gpu] running as
    PRIME-relaunched child` in `main.log` (the child writes it; the parent exits
    before file logging exists).
    Known follow-ups, not yet addressed: the relaunch's interaction with the
-   second-instance deep-link path (`worldofclaudecraft://` login handoff) has not
+   second-instance deep-link path (`worldofaphasya://` login handoff) has not
    been verified against a login link that arrives during the brief relaunch
    window, and the Steam channel's process tracking (overlay, playtime) has not
    been verified against the parent exiting within milliseconds of launch.
 3. Login both paths: email/password in-app, and Discord via the external browser +
-   `worldofclaudecraft://desktop-login` deep link handoff (app focuses and enters
+   `worldofaphasya://desktop-login` deep link handoff (app focuses and enters
    the world; second-instance and cold-start deep links both work).
 4. Play 5 minutes: steady frame rate, alt-tab out/in does not hitch or freeze the
    world (backgroundThrottling stays off).

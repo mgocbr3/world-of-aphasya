@@ -2,7 +2,7 @@
 
 Status: design research, based on the live level-20 implementation on 2026-07-30.
 
-This document compares World of ClaudeCraft's Affliction, Necromancy, and Destruction
+This document compares World of Aphasya's Affliction, Necromancy, and Destruction
 specializations with related archetypes in other games. It extracts useful combat
 decisions rather than copying names, rotations, or complete kits.
 
@@ -130,7 +130,7 @@ window, and can refresh damage-over-time effects while moving. Its identity ther
 remains visible on the victim even while the player is not spending.
 [Current Affliction rotation reference](https://www.wowhead.com/fr/guide/classes/warlock/affliction/rotation-cooldowns-pve-dps)
 
-This comparison does not imply that World of ClaudeCraft should restore a multi-DoT
+This comparison does not imply that World of Aphasya should restore a multi-DoT
 checklist. It does show that an Affliction victim should appear afflicted between the
 setup and payoff.
 
@@ -145,7 +145,7 @@ different verbs.
 
 Hexblast supplies a second pattern: build a curse state, then consume it for a more
 powerful direct event and an area shockwave. This validates the setup-and-sentence
-direction of World of ClaudeCraft Affliction, while also showing why the curse state
+direction of World of Aphasya Affliction, while also showing why the curse state
 itself needs strong feedback.
 [Path of Exile Hexblast explanation](https://www.pathofexile.com/forum/view-thread/2934168)
 
@@ -200,7 +200,7 @@ World of Warcraft Destruction has a durable core:
 
 [Current Destruction rotation reference](https://www.icy-veins.com/wow/destruction-warlock-pve-dps-rotation-cooldowns-abilities)
 
-World of ClaudeCraft already implements equivalents for nearly all of these decisions.
+World of Aphasya already implements equivalents for nearly all of these decisions.
 Ruinous Brand is more bounded than Havoc, which is appropriate for the smaller level-20
 game and easier to balance.
 
@@ -214,7 +214,7 @@ instant-cast tools to solve movement without removing cast commitment.
 
 The lesson is that a stationary caster needs planned relief and a visible cadence.
 It does not need unrestricted casting while moving. Desolation, Conflagrate charges,
-Duskfire, and Umbral Anchor can serve that role in World of ClaudeCraft.
+Duskfire, and Umbral Anchor can serve that role in World of Aphasya.
 
 #### Lost Ark Sorceress
 
@@ -239,7 +239,7 @@ vacuum-like Abyss. It reinforces the visual expectation that high-level destruct
 magic should alter the battlefield.
 [Diablo II Reign of the Warlock](https://news.blizzard.com/en-us/article/24243863/rain-annihilation-in-reign-of-the-warlock)
 
-## Audit of the current World of ClaudeCraft kits
+## Audit of the current World of Aphasya kits
 
 ### Necromancy
 

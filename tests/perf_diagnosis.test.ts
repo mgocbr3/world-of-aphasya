@@ -451,7 +451,7 @@ describe('diagnosePerfSnapshot', () => {
     const report = formatPerfDiagnosisMarkdown(diagnosis, snapshot, {
       capturedAt: '2026-08-08T12:34:56.000Z',
     });
-    expect(report).toContain('# World of ClaudeCraft performance diagnosis');
+    expect(report).toContain('# World of Aphasya performance diagnosis');
     expect(report).toContain('Captured:');
     expect(report).not.toContain('2026-08-08T12:34:56.000Z');
     expect(report).toContain('Top finding:');

@@ -5,7 +5,7 @@ Applies to: the zone map, minimap, delve and rift schematics, and future map leg
 
 ## Goal
 
-World of ClaudeCraft markers should feel like small pieces of dark-fantasy heraldry. They
+World of Aphasya markers should feel like small pieces of dark-fantasy heraldry. They
 must be beautiful at their 64px source size, but they are accepted only when their meaning
 survives the actual map and minimap sizes on desktop and touch layouts.
 
@@ -130,7 +130,7 @@ An icon family is not accepted from a source-size preview alone. Review must inc
 ## External design evidence
 
 The contract is informed by current first-party MMORPG practice, then adapted to World of
-ClaudeCraft rather than copied literally:
+Aphasya rather than copied literally:
 
 - Blizzard distinguishes repeatable, in-progress, and turn-in quest states and uses zoom
   disclosure for quest hubs in [World of Warcraft UI and Quest Updates](https://news.blizzard.com/en-us/article/24117139/user-interface-and-quest-updates-in-the-war-withintm).
@@ -142,5 +142,5 @@ ClaudeCraft rather than copied literally:
   noise in [A New Era for RuneScape](https://secure.runescape.com/m=news/a-new-era-for-runescape-begins-january-19-2026).
 
 No reviewed first-party source prescribes a canonical depleted gathering-node marker. The
-grayscale resource with a broken cooldown arc is a World of ClaudeCraft design inference,
+grayscale resource with a broken cooldown arc is a World of Aphasya design inference,
 selected through actual-size comparison rather than copied from another game.

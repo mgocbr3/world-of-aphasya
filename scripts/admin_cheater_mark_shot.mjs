@@ -98,8 +98,8 @@ const browser = await puppeteer.launch({
 const page = await browser.newPage();
 await page.setViewport({ width: 1440, height: 900 });
 await page.evaluateOnNewDocument(
-  `localStorage.setItem('claudecraft_admin_token', ${JSON.stringify(adminToken)});
-   localStorage.setItem('claudecraft_admin_name', ${JSON.stringify(adminUser)});`,
+  `localStorage.setItem('aphasya_admin_token', ${JSON.stringify(adminToken)});
+   localStorage.setItem('aphasya_admin_name', ${JSON.stringify(adminUser)});`,
 );
 const panel = '.cheater-mark-controls';
 

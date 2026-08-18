@@ -1,6 +1,6 @@
 ---
 name: woc-write-game-tooltips
-description: "Write or audit World of ClaudeCraft spell, talent, aura, item, and mechanic tooltips in plain English, with live damage, healing, timing, target, resource, and power-scaling accuracy. Use for every player tooltip change or tooltip clarity review."
+description: "Write or audit World of Aphasya spell, talent, aura, item, and mechanic tooltips in plain English, with live damage, healing, timing, target, resource, and power-scaling accuracy. Use for every player tooltip change or tooltip clarity review."
 ---
 
 # Write game tooltips

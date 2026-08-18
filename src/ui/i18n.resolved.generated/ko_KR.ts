@@ -362,7 +362,7 @@ export const ko_KR: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "위키를 열까요?",
-      "confirmBody": "World of ClaudeCraft 위키를 브라우저에서 엽니다. 게임은 계속 실행됩니다.",
+      "confirmBody": "World of Aphasya 위키를 브라우저에서 엽니다. 게임은 계속 실행됩니다.",
       "confirmOpen": "위키 열기",
       "confirmCancel": "취소"
     },
@@ -490,14 +490,14 @@ export const ko_KR: EnTranslations = {
       "rewardsTab": "일일 보상",
       "loading": "WOC 상점 불러오는 중…",
       "error": "현재 WOC 상점을 이용할 수 없습니다. 잠시 후 다시 시도해 주세요.",
-      "balance": "Claudium 잔액",
-      "buyClaudium": "Claudium 구매",
+      "balance": "Aphasium 잔액",
+      "buyClaudium": "Aphasium 구매",
       "owned": "보유 중",
-      "needMoreTitle": "Claudium이 더 필요합니다",
-      "needMoreBody": "{item} 구매에 Claudium {shortfall}개가 더 필요합니다.",
+      "needMoreTitle": "Aphasium이 더 필요합니다",
+      "needMoreBody": "{item} 구매에 Aphasium {shortfall}개가 더 필요합니다.",
       "cancel": "취소",
       "confirmTitle": "꾸미기 상품 구매 확인",
-      "confirmBody": "{item}을(를) {cost} Claudium으로 구매할까요?",
+      "confirmBody": "{item}을(를) {cost} Aphasium으로 구매할까요?",
       "confirmPurchase": "구매",
       "priceChanged": "구매가 완료되기 전에 가격이 변경되었습니다. 갱신된 가격을 확인한 후 다시 승인해 주세요.",
       "armoryEyebrow": "시즌 1",
@@ -710,18 +710,18 @@ export const ko_KR: EnTranslations = {
       "equipHint": "이 스킨을 적용하려면 {type}을(를) 장착하세요."
     },
     "claudium": {
-      "title": "Claudium",
-      "open": "Claudium 열기",
-      "close": "Claudium 닫기",
-      "loading": "Claudium 불러오는 중…",
+      "title": "Aphasium",
+      "open": "Aphasium 열기",
+      "close": "Aphasium 닫기",
+      "loading": "Aphasium 불러오는 중…",
       "balanceLabel": "잔액",
-      "balanceUnit": "{amount} Claudium",
+      "balanceUnit": "{amount} Aphasium",
       "solBalance": "SOL: {amount}",
       "usdcBalance": "USDC: {amount}",
       "wocBalance": "WOC: {amount}",
-      "unavailable": "현재 Claudium 상점을 이용할 수 없습니다. 잔액과 구매 내역에는 영향이 없으니 잠시 후 다시 확인해 주세요.",
-      "disclosure": "Claudium은 단방향 게임 화폐입니다. 현금으로 구매해 꾸미기 상품에 사용할 수 있으며 환전, 양도 또는 현금화할 수 없습니다.",
-      "buyTitle": "Claudium 구매",
+      "unavailable": "현재 Aphasium 상점을 이용할 수 없습니다. 잔액과 구매 내역에는 영향이 없으니 잠시 후 다시 확인해 주세요.",
+      "disclosure": "Aphasium은 단방향 게임 화폐입니다. 현금으로 구매해 꾸미기 상품에 사용할 수 있으며 환전, 양도 또는 현금화할 수 없습니다.",
+      "buyTitle": "Aphasium 구매",
       "railLabel": "결제 수단",
       "railStripe": "카드",
       "railSol": "SOL",
@@ -731,14 +731,14 @@ export const ko_KR: EnTranslations = {
       "railWocUnavailable": "현재 WOC 가격을 이용할 수 없습니다.",
       "railNativeUnavailable": "SOL/WOC 사용 불가",
       "amountLabel": "수량",
-      "showAmounts": "모든 Claudium 수량 표시",
-      "hideAmounts": "추가 Claudium 수량 숨기기",
-      "skuRow": "{usd}에 {claudium} Claudium",
+      "showAmounts": "모든 Aphasium 수량 표시",
+      "hideAmounts": "추가 Aphasium 수량 숨기기",
+      "skuRow": "{usd}에 {claudium} Aphasium",
       "buyButton": "구매",
       "buyUnavailable": "현재 구매할 수 없습니다.",
       "storeTitle": "꾸미기 상점",
       "storeEmpty": "현재 이용 가능한 꾸미기 상품이 없습니다.",
-      "storeCost": "{amount} Claudium",
+      "storeCost": "{amount} Aphasium",
       "spendButton": "교환",
       "kindCosmetic": "꾸미기 상품",
       "kindSkin": "스킨",
@@ -749,10 +749,10 @@ export const ko_KR: EnTranslations = {
       "checkoutPending": "거래가 진행 중입니다. 지갑에서 확인하고 이 패널을 열어 두세요.",
       "checkoutPendingButton": "처리 중",
       "checkoutFailed": "결제를 불러오지 못했습니다. 다시 시도해 주세요.",
-      "checkoutUnavailable": "해당 Claudium 구매는 현재 이용할 수 없습니다.",
-      "checkoutWalletRequired": "암호화폐로 Claudium을 구매하기 전에 Solana 지갑을 연결하세요.",
+      "checkoutUnavailable": "해당 Aphasium 구매는 현재 이용할 수 없습니다.",
+      "checkoutWalletRequired": "암호화폐로 Aphasium을 구매하기 전에 Solana 지갑을 연결하세요.",
       "checkoutWalletUnsupported": "이 지갑은 Solana 거래에 서명하거나 전송할 수 없습니다.",
-      "checkoutNotSettled": "거래는 전송됐지만 Claudium이 아직 지급되지 않았습니다. 잠시 후 다시 시도해 주세요."
+      "checkoutNotSettled": "거래는 전송됐지만 Aphasium이 아직 지급되지 않았습니다. 잠시 후 다시 시도해 주세요."
     },
     "theme": {
       "preset": "UI 테마",
@@ -893,8 +893,8 @@ export const ko_KR: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "업데이트 사용 가능",
-      "body": "World of ClaudeCraft의 새 버전을 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
-      "bodyWithVersion": "World of ClaudeCraft 버전 {version}을(를) 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
+      "body": "World of Aphasya의 새 버전을 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
+      "bodyWithVersion": "World of Aphasya 버전 {version}을(를) 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
       "notNow": "나중에",
       "update": "업데이트"
     },
@@ -1507,8 +1507,8 @@ export const ko_KR: EnTranslations = {
         "offline": "오프라인"
       },
       "diagnostics": {
-        "panelAria": "World of ClaudeCraft 성능 진단",
-        "title": "ClaudeCraft 성능 진단",
+        "panelAria": "World of Aphasya 성능 진단",
+        "title": "Aphasya 성능 진단",
         "subtitle": "게임에 맞춘 스캔으로 근거와 코드 수준의 수정안을 제공합니다.",
         "aria": {
           "liveMeasurements": "실시간 성능 측정",
@@ -1652,7 +1652,7 @@ export const ko_KR: EnTranslations = {
           }
         },
         "report": {
-          "title": "World of ClaudeCraft 성능 진단",
+          "title": "World of Aphasya 성능 진단",
           "statusLine": "상태: {status} ({score}/100)",
           "capturedLine": "측정 시간: {captured}",
           "topFindingLine": "최우선 결과: {finding}",
@@ -2542,7 +2542,7 @@ export const ko_KR: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "World of Aphasya",
       "open": "Discord",
       "close": "닫기",
       "keybind": "Discord 패널",
@@ -3950,8 +3950,8 @@ export const ko_KR: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "World of Aphasya",
+    "brandShort": "Aphasya",
     "tagline": "브라우저에서 무료로 즐기는 클래식 스타일 MMO입니다.",
     "skipToContent": "본문으로 건너뛰기",
     "loading": "불러오는 중...",
@@ -4027,7 +4027,7 @@ export const ko_KR: EnTranslations = {
       "github": "GitHub 소스 코드",
       "discord": "Discord 참여하기",
       "communityWiki": "커뮤니티 위키",
-      "rights": "World of ClaudeCraft",
+      "rights": "World of Aphasya",
       "linksLabel": "플레이 및 커뮤니티 링크"
     },
     "language": {
@@ -4052,7 +4052,7 @@ export const ko_KR: EnTranslations = {
     },
     "home": {
       "eyebrow": "클래식 스타일 브라우저 MMO",
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "subtitle": "퀘스트를 수행하고, 파티를 맺고, 손수 빚은 세계를 브라우저에서 무료로 탐험하세요.",
       "ctaPlay": "지금 플레이",
       "ctaLearn": "플레이 방법",
@@ -4672,7 +4672,7 @@ export const ko_KR: EnTranslations = {
       "ridingDef": "애초에 탈것에 오를 수 있게 해 주는 기술입니다. 20레벨에 마구간지기에게서 한 번 사 두면, 그 뒤로는 캐릭터에게 영원히 남습니다.",
       "reinsTerm": "고삐",
       "reinsDef": "탈것 그 자체인 아이템입니다. 가방이나 은행에 한 벌 두면 그 탈것은 여러분의 것이며, 사용하면 올라탑니다. 고삐는 다른 플레이어와 거래하거나 우편으로 보내거나 팔 수 있습니다.",
-      "claudiumTerm": "Claudium",
+      "claudiumTerm": "Aphasium",
       "claudiumDef": "WOC 상점의 화폐로, 꾸미기 상품에만 쓰이며 그 밖의 무엇에도 쓰이지 않습니다. 힘이나 성장은 결코 살 수 없습니다.",
       "worldTerm": "월드",
       "worldDef": "온라인 게임의 공유되는 사본 하나로, 저마다의 플레이어와 시장, 순위를 지닙니다. 이 가이드에서는 왕국이라고 부르기도 하며, 여러분의 캐릭터는 자신이 만들어진 월드에서 살아갑니다."
@@ -4703,7 +4703,7 @@ export const ko_KR: EnTranslations = {
       "q11": "파티는 어떻게 구하나요?",
       "a11": "마주치는 누구든 파티에 초대하거나, 채팅으로 물어보거나, 던전 앞에서 팀을 꾸리세요. 세계 대부분은 혼자서도 진행할 수 있으므로, 파티 구성은 필수가 아니라 선택입니다.",
       "q12": "현금 상점이 있나요?",
-      "a12": "선택 사항인 꾸미기 상점이 있습니다. 파는 것은 오직 겉모습뿐입니다. 상점 화폐인 Claudium으로 사는 시즌 1 무기고의 무기 스킨이지요. 그 안에는 능력치나 힘, 성장을 더해 주는 것이 하나도 없고 스킨이 무기의 타격을 바꾸는 일도 없으므로, 실제로 중요한 장비는 여전히 전부 플레이에서 나옵니다.",
+      "a12": "선택 사항인 꾸미기 상점이 있습니다. 파는 것은 오직 겉모습뿐입니다. 상점 화폐인 Aphasium으로 사는 시즌 1 무기고의 무기 스킨이지요. 그 안에는 능력치나 힘, 성장을 더해 주는 것이 하나도 없고 스킨이 무기의 타격을 바꾸는 일도 없으므로, 실제로 중요한 장비는 여전히 전부 플레이에서 나옵니다.",
       "q13": "앱은 어디서 받을 수 있나요?",
       "a13": "브라우저 판은 아무것도 필요 없습니다. 사이트를 열고 플레이하면 됩니다. 앱으로 즐기고 싶다면 Windows와 macOS, Linux용 데스크톱 다운로드가 게임 사이트의 다운로드 페이지에 있습니다. iOS와 Android 네이티브 앱은 준비 중이며, 나오기 전까지는 휴대전화나 태블릿에서 완전한 터치 조작으로 브라우저 판을 즐길 수 있습니다. 모든 판이 같은 계정과 같은 월드에 로그인하므로 캐릭터는 여러분을 따라다닙니다.",
       "q14": "실행하려면 무엇이 필요한가요?",
@@ -4988,7 +4988,7 @@ export const ko_KR: EnTranslations = {
     },
     "worldPage": {
       "heading": "세계",
-      "intro": "World of ClaudeCraft는 당신이 두 발로 가로지르는 하나로 이어진 땅입니다. 옛 길은 남쪽에서 북쪽으로 시작의 골짜기와 늪지와 봉우리를 꿰뚫고, 그것들을 지나 그 너머의 분지와 지도 꼭대기의 눈의 땅까지 계속 올라갑니다. 그 길에서 서쪽으로 더 높은 왕국들이 한 줄, 동쪽으로 또 한 줄 열리고, 밸리의 동쪽 해안 앞바다에는 섬이 하나 놓여 있습니다. 빠른 이동도, 비행 경로도, 마차도 없습니다. 모든 여정은 걷거나 타고 가는 것이므로, 다다르는 일 자체가 모험의 일부입니다.\n\n이 땅은 시간도 셉니다. 낮과 밤의 순환은 당신의 세계에 있는 모두가 함께 쓰는 실제 시계로 돌아가므로, 하늘은 여러분 모두에게 동시에 새벽에서 한낮을 지나 황혼과 어둠으로 옮겨가고, 달은 차고 기울며 오가고, 땅 위의 빛도 그에 따라 바뀝니다. 미니맵을 두른 눈금판이 시각을 읽는 곳입니다.",
+      "intro": "World of Aphasya는 당신이 두 발로 가로지르는 하나로 이어진 땅입니다. 옛 길은 남쪽에서 북쪽으로 시작의 골짜기와 늪지와 봉우리를 꿰뚫고, 그것들을 지나 그 너머의 분지와 지도 꼭대기의 눈의 땅까지 계속 올라갑니다. 그 길에서 서쪽으로 더 높은 왕국들이 한 줄, 동쪽으로 또 한 줄 열리고, 밸리의 동쪽 해안 앞바다에는 섬이 하나 놓여 있습니다. 빠른 이동도, 비행 경로도, 마차도 없습니다. 모든 여정은 걷거나 타고 가는 것이므로, 다다르는 일 자체가 모험의 일부입니다.\n\n이 땅은 시간도 셉니다. 낮과 밤의 순환은 당신의 세계에 있는 모두가 함께 쓰는 실제 시계로 돌아가므로, 하늘은 여러분 모두에게 동시에 새벽에서 한낮을 지나 황혼과 어둠으로 옮겨가고, 달은 차고 기울며 오가고, 땅 위의 빛도 그에 따라 바뀝니다. 미니맵을 두른 눈금판이 시각을 읽는 곳입니다.",
       "hub": "본거지",
       "mapHeading": "길과 그 너머의 왕국들",
       "mapSub": "퀘스트의 자취는 지도 한가운데를 남에서 북으로 지납니다. 골짜기, 늪지, 봉우리, 그리고 그것들을 지나 분지와 눈의 땅으로. 다른 왕국들은 그 길 뒤가 아니라 그 길을 따라 열리며, 늪지 길의 동쪽과 서쪽 관문을 통해 갑니다. 파쇼어 섬은 밸리의 동쪽 해안에서 건너갑니다. 먼 왕국들로부터 당신을 막아 두는 것은 걸음이 아니라 그곳들의 레벨 구간입니다. 그중 다섯 곳이 가장 높은 구간을 나눠 쓰고 있으니, 준비가 되면 어떤 순서로든 골라 갈 수 있습니다. 파쇼어는 예외로, 일찍 찾아갈 수 있는 낮은 레벨의 땅입니다.",
@@ -6009,7 +6009,7 @@ export const ko_KR: EnTranslations = {
   },
   "editor": {
     "appTitle": "맵 편집기",
-    "docTitle": "맵 편집기 - World of ClaudeCraft",
+    "docTitle": "맵 편집기 - World of Aphasya",
     "untitledMap": "제목 없는 맵",
     "playtestPlayerName": "지도제작자",
     "topbar": {
@@ -6486,10 +6486,9 @@ export const ko_KR: EnTranslations = {
     "realmName": "월드 이름"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 World of Aphasya",
+    "githubLink": "https://github.com/mgocbr3/world-of-aphasya",
     "githubLabel": "오픈 소스 프로젝트",
-    "whitepaper": "백서",
     "terms": "서비스 이용약관",
     "privacy": "개인정보 처리방침",
     "discordLabel": "Discord 참여하기"
@@ -6544,7 +6543,7 @@ export const ko_KR: EnTranslations = {
     "serverOnline": "온라인",
     "serverOffline": "오프라인",
     "play": "플레이",
-    "playAria": "World of ClaudeCraft 플레이",
+    "playAria": "World of Aphasya 플레이",
     "serverLabel": "월드를 선택하세요",
     "serverAria": "월드 선택: 온라인 또는 오프라인",
     "serverOfflineSub": "즉시 시작하는 로컬 세상",
@@ -6863,12 +6862,12 @@ export const ko_KR: EnTranslations = {
     "extensionHelp": "여기에 지갑이 표시되려면 Solflare Wallet 같은 브라우저 지갑 확장 프로그램이 활성화되어 있어야 합니다.",
     "mobileAppHelp": "Phantom 또는 Solflare를 선택하세요. 지갑 앱에서 승인을 요청합니다. 게임을 열어 둔 채 완료 후 돌아오세요.",
     "seekerAppHelp": "Seed Vault Wallet로 계속하세요. Seed Vault에서 연결 및 인증 요청을 확인한 후 게임으로 돌아오세요.",
-    "standaloneAppHelp": "홈 화면 앱에서는 아직 지갑 연결을 사용할 수 없습니다. Phantom 또는 Solflare를 사용하려면 Safari나 Chrome에서 World of ClaudeCraft를 여세요.",
+    "standaloneAppHelp": "홈 화면 앱에서는 아직 지갑 연결을 사용할 수 없습니다. Phantom 또는 Solflare를 사용하려면 Safari나 Chrome에서 World of Aphasya를 여세요.",
     "openAppTitle": "{wallet}에서 계속",
     "openAppHelp": "{wallet}을 열어 이 요청을 확인하세요. 지갑 앱을 사용하는 동안 이 게임 탭을 열어 두세요.",
     "openAppButton": "{wallet} 열기",
     "manualReturnBrowserHelp": "승인 후 이 게임 탭으로 돌아오세요. iOS에서 다른 브라우저가 열리면 닫고 원래 브라우저로 직접 돌아오세요.",
-    "manualReturnStandaloneHelp": "승인 후 홈 화면에서 World of ClaudeCraft로 돌아오세요. iOS에서 브라우저가 열리면 닫고 홈 화면 앱을 다시 여세요.",
+    "manualReturnStandaloneHelp": "승인 후 홈 화면에서 World of Aphasya로 돌아오세요. iOS에서 브라우저가 열리면 닫고 홈 화면 앱을 다시 여세요.",
     "preparingAppButton": "{wallet} 준비 중...",
     "walletAppUnavailable": "{wallet}을 준비하지 못했습니다. 이 창을 닫고 다시 시도하세요.",
     "flowConnect": "지갑을 선택하세요. 인증은 자동으로 계속됩니다.",
@@ -6883,12 +6882,12 @@ export const ko_KR: EnTranslations = {
       "linkBody": "이 브라우저에서 지갑 확장 프로그램을 선택하세요. 인증 메시지에 서명한 뒤 데스크톱 앱으로 돌아갑니다.",
       "paymentBody": "계정에 연결된 지갑을 선택하고 이 브라우저에서 거래를 승인하세요.",
       "extensionHelp": "호환되는 지갑 확장 프로그램을 찾지 못했습니다. Phantom, Solflare 또는 다른 Solana 브라우저 지갑을 설치하거나 잠금 해제한 뒤 다시 시도하세요.",
-      "safety": "World of ClaudeCraft는 복구 문구나 개인 키를 요청하지 않습니다.",
+      "safety": "World of Aphasya는 복구 문구나 개인 키를 요청하지 않습니다.",
       "continueWith": "{wallet}(으)로 계속",
       "reviewTitle": "지갑에서 검토",
       "reviewBody": "{wallet}의 안내를 따르세요. 이 브라우저 페이지를 열어 두세요.",
       "completeTitle": "지갑 인증 완료",
-      "completeBody": "World of ClaudeCraft 데스크톱 앱으로 돌아갈 수 있습니다.",
+      "completeBody": "World of Aphasya 데스크톱 앱으로 돌아갈 수 있습니다.",
       "returnButton": "데스크톱 앱으로 돌아가기",
       "failed": "지갑 인증에 실패했거나 만료되었습니다. 데스크톱 앱으로 돌아가 다시 시도하세요.",
       "retry": "다시 시도"
@@ -6986,7 +6985,7 @@ export const ko_KR: EnTranslations = {
     "levelClass": "{level}레벨 - {className}",
     "topPercent": "상위 {percent}%",
     "realmSubtitle": "{realm} 월드",
-    "defaultRealm": "ClaudeCraft의 세계",
+    "defaultRealm": "Aphasya의 세계",
     "brandWordmark": "WORLD OF CLAUDECRAFT",
     "recruited": "{count}명 모집",
     "footerHandle": "@{handle}",
@@ -6994,8 +6993,8 @@ export const ko_KR: EnTranslations = {
     "footerCta": "당신의 전설을 벼리세요: {siteUrl}",
     "arenaStat": "투기장",
     "shareTierBit": ", {tier} 등급 $WOC 보유자",
-    "shareText": "World of ClaudeCraft에서 제 전설을 벼리고 있습니다: {level}레벨 {className}{tierBit}. 제 월드에 합류하세요:",
-    "nativeShareTitle": "ClaudeCraft의 세계",
+    "shareText": "World of Aphasya에서 제 전설을 벼리고 있습니다: {level}레벨 {className}{tierBit}. 제 월드에 합류하세요:",
+    "nativeShareTitle": "Aphasya의 세계",
     "fileNameFallback": "플레이어",
     "actionShareX": "X에 공유",
     "actionCopyReferral": "추천 링크 복사",
@@ -7691,14 +7690,14 @@ export const ko_KR: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: 클래식 스타일 웹 MMO",
-    "description": "브라우저에서 바로 즐기는 클래식 스타일 마이크로 MMO, World of ClaudeCraft에서 장대한 모험을 시작하세요. 지속되는 공유 월드에 접속해 직업을 성장시키고 적을 물리치세요.",
+    "title": "World of Aphasya: 클래식 스타일 웹 MMO",
+    "description": "브라우저에서 바로 즐기는 클래식 스타일 마이크로 MMO, World of Aphasya에서 장대한 모험을 시작하세요. 지속되는 공유 월드에 접속해 직업을 성장시키고 적을 물리치세요.",
     "genre": "MMORPG",
     "playMode": "멀티플레이어",
     "applicationCategory": "게임",
     "operatingSystem": "웹 브라우저",
-    "officialLabel": "World of ClaudeCraft 공식 웹사이트",
-    "officialBody": "worldofclaudecraft.com은 Claudemoon 월드의 공식 무료 브라우저 MMO입니다. 지속 캐릭터로 온라인 플레이를 하거나, 오프라인에서 혼자 탐험하고, 위키를 읽고, 이 사이트에서 검증된 커뮤니티 링크를 확인하세요."
+    "officialLabel": "World of Aphasya 공식 웹사이트",
+    "officialBody": "worldofaphasya.com은 Claudemoon 월드의 공식 무료 브라우저 MMO입니다. 지속 캐릭터로 온라인 플레이를 하거나, 오프라인에서 혼자 탐험하고, 위키를 읽고, 이 사이트에서 검증된 커뮤니티 링크를 확인하세요."
   },
   "a11y": {
     "goHome": "홈으로 이동",
@@ -7706,9 +7705,9 @@ export const ko_KR: EnTranslations = {
     "mainNavigation": "기본 탐색",
     "languageSelection": "언어 선택",
     "characterActions": "캐릭터 작업",
-    "githubProject": "GitHub에서 World of ClaudeCraft 프로젝트 열기",
-    "discordCommunity": "World of ClaudeCraft Discord 커뮤니티 참여",
-    "donateProject": "World of ClaudeCraft 후원하기"
+    "githubProject": "GitHub에서 World of Aphasya 프로젝트 열기",
+    "discordCommunity": "World of Aphasya Discord 커뮤니티 참여",
+    "donateProject": "World of Aphasya 후원하기"
   },
   "entryGuard": {
     "title": "그래픽 낮춤",
@@ -7799,16 +7798,16 @@ export const ko_KR: EnTranslations = {
     "notify": {
       "updateReadyTitle": "업데이트 {version} 준비 완료",
       "updateReadyTitleNoVersion": "업데이트 준비 완료",
-      "updateReadyBody": "업데이트를 적용하려면 World of ClaudeCraft를 다시 시작하세요.",
+      "updateReadyBody": "업데이트를 적용하려면 World of Aphasya를 다시 시작하세요.",
       "partyInviteTitle": "파티 초대",
       "partyInviteBody": "{name}님이 파티에 초대했습니다."
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "body": "게임 화면이 응답하지 않습니다. 다시 불러올까요?",
       "reload": "다시 불러오기",
       "quit": "종료",
-      "fatalBody": "World of ClaudeCraft에 예기치 않은 오류가 발생하여 종료해야 합니다."
+      "fatalBody": "World of Aphasya에 예기치 않은 오류가 발생하여 종료해야 합니다."
     }
   },
   "gpuNotice": {
@@ -7957,17 +7956,17 @@ export const ko_KR: EnTranslations = {
     "iosStandaloneDetail": "홈 화면 전체 화면 모드입니다. 기기를 가로로 유지하세요.",
     "iosInstallDetail": "iPhone 또는 iPad에서 진짜 전체 화면을 사용하려면 먼저 이 페이지를 홈 화면에 추가하세요.",
     "iosShareStep": "Safari에서 공유를 누른 뒤 홈 화면에 추가를 선택하세요.",
-    "iosOpenStep": "새 홈 화면 아이콘에서 World of ClaudeCraft를 여세요.",
+    "iosOpenStep": "새 홈 화면 아이콘에서 World of Aphasya를 여세요.",
     "androidStandaloneDetail": "전체 화면 앱 모드입니다. 기기를 가로로 유지하세요.",
     "androidInstallDetail": "Android에서 전체 화면을 사용하려면 이 페이지를 설치하거나 홈 화면에 추가하세요.",
     "androidInstallStep": "Chrome에서 메뉴를 누른 뒤 앱 설치 또는 홈 화면에 추가를 선택하세요.",
-    "androidOpenStep": "새 아이콘에서 World of ClaudeCraft를 여세요.",
+    "androidOpenStep": "새 아이콘에서 World of Aphasya를 여세요.",
     "otherStandaloneDetail": "기기를 가로 전체 화면으로 유지하세요.",
     "otherInstallDetail": "최상의 모바일 전체 화면 경험을 위해 이 페이지를 설치하거나 홈 화면에 추가하세요."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - 월드 이용 불가",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "World of Aphasya - 월드 이용 불가",
+    "logoAlt": "World of Aphasya",
     "eyebrow": "월드 점검",
     "heading": "월드를 일시적으로 이용할 수 없습니다.",
     "body": "게임 서비스를 재시작하고 있으며 Claudemoon은 곧 돌아올 예정입니다. 이 페이지는 자동으로 계속 확인합니다.",

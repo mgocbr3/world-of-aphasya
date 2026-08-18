@@ -22,7 +22,7 @@ const session = {
   userAgent: 'UA',
   fbp: 'fb.1.1.1',
   fbc: 'fb.1.1.click',
-  sourceUrl: 'https://worldofclaudecraft.com/',
+  sourceUrl: 'https://worldofaphasya.com/',
 };
 
 function fakeDeps(over: Partial<UaCapiDeps> = {}) {

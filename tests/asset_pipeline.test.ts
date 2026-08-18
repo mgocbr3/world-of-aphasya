@@ -426,7 +426,7 @@ describe('anchored registry edits', () => {
         source: 'Project-generated via scripts/asset_pipeline',
       }),
     ).toBe(
-      '| Generated creature model + animations (emberkin) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline | Project asset | With the project only |\n',
+      '| Generated creature model + animations (emberkin) | World of Aphasya | Project-generated via scripts/asset_pipeline | Project asset | With the project only |\n',
     );
   });
 

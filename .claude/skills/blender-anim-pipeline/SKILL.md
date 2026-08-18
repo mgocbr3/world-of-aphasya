@@ -1,6 +1,6 @@
 ---
 name: blender-anim-pipeline
-description: Author new GLB animation clips for World of ClaudeCraft rigs (locomotion, attacks, casts, ability-specific motions, hit reactions, deaths, emotes) without inventing a new dispatch mechanism. Use when a class, mob family, or NPC needs a distinct clip instead of sharing a generic one, when growing coverage per issue #2889's large-scale animation authoring initiative, or when picking a batch (per class, per creature family, per ability set) for a follow-up PR. Covers the primary pose-sample-and-blend technique and the headless-Blender escalation path for poses no donor clip can supply.
+description: Author new GLB animation clips for World of Aphasya rigs (locomotion, attacks, casts, ability-specific motions, hit reactions, deaths, emotes) without inventing a new dispatch mechanism. Use when a class, mob family, or NPC needs a distinct clip instead of sharing a generic one, when growing coverage per issue #2889's large-scale animation authoring initiative, or when picking a batch (per class, per creature family, per ability set) for a follow-up PR. Covers the primary pose-sample-and-blend technique and the headless-Blender escalation path for poses no donor clip can supply.
 user-invocable: true
 ---
 

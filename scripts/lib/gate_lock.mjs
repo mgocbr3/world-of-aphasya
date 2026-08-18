@@ -222,7 +222,7 @@ export async function acquireFullSuiteLock(opts = {}) {
       foreignResponses++;
       if (foreignResponses >= MAX_FOREIGN_RESPONSES) {
         log(
-          `[gate] WARN: ${host}:${port} is not a World of Claudecraft gate lock, ` +
+          `[gate] WARN: ${host}:${port} is not a World of Aphasya gate lock, ` +
             'running unserialized',
         );
         return { release: async () => {} };

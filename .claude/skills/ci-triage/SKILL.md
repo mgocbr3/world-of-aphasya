@@ -1,6 +1,6 @@
 ---
 name: ci-triage
-description: Triage a red, stalled, or cancelled CI run on a World of ClaudeCraft PR. Classify the failure first, then apply the matching remedy instead of blind reruns.
+description: Triage a red, stalled, or cancelled CI run on a World of Aphasya PR. Classify the failure first, then apply the matching remedy instead of blind reruns.
 user-invocable: true
 ---
 

@@ -15,39 +15,39 @@ import {
 
 describe('PRODUCTION_API_ORIGIN', () => {
   it('is the production site', () => {
-    expect(PRODUCTION_API_ORIGIN).toBe('https://worldofclaudecraft.com');
+    expect(PRODUCTION_API_ORIGIN).toBe('https://worldofaphasya.com');
   });
 });
 
 describe('apiOriginKey', () => {
   it('normalizes equivalent spellings to one origin', () => {
-    expect(apiOriginKey('https://worldofclaudecraft.com')).toBe('https://worldofclaudecraft.com');
-    expect(apiOriginKey('https://worldofclaudecraft.com/')).toBe('https://worldofclaudecraft.com');
-    expect(apiOriginKey('HTTPS://WorldOfClaudeCraft.COM')).toBe('https://worldofclaudecraft.com');
+    expect(apiOriginKey('https://worldofaphasya.com')).toBe('https://worldofaphasya.com');
+    expect(apiOriginKey('https://worldofaphasya.com/')).toBe('https://worldofaphasya.com');
+    expect(apiOriginKey('HTTPS://WorldOfAphasya.COM')).toBe('https://worldofaphasya.com');
     expect(apiOriginKey('http://localhost:8787')).toBe('http://localhost:8787');
   });
 
   it('returns null for garbage, empty, non-string, and non-http values', () => {
     expect(apiOriginKey('')).toBeNull();
-    expect(apiOriginKey('worldofclaudecraft.com')).toBeNull();
+    expect(apiOriginKey('worldofaphasya.com')).toBeNull();
     expect(apiOriginKey('not a url')).toBeNull();
     expect(apiOriginKey(42)).toBeNull();
     expect(apiOriginKey(undefined)).toBeNull();
-    expect(apiOriginKey('ftp://worldofclaudecraft.com')).toBeNull();
+    expect(apiOriginKey('ftp://worldofaphasya.com')).toBeNull();
   });
 });
 
 describe('isProductionApiOrigin', () => {
   it('accepts only the production origin (slash and case tolerant)', () => {
-    expect(isProductionApiOrigin('https://worldofclaudecraft.com')).toBe(true);
-    expect(isProductionApiOrigin('https://worldofclaudecraft.com/')).toBe(true);
+    expect(isProductionApiOrigin('https://worldofaphasya.com')).toBe(true);
+    expect(isProductionApiOrigin('https://worldofaphasya.com/')).toBe(true);
   });
 
   it('rejects dev, staging, localhost, http, subdomains, and garbage', () => {
-    expect(isProductionApiOrigin('https://dev.worldofclaudecraft.com')).toBe(false);
-    expect(isProductionApiOrigin('http://worldofclaudecraft.com')).toBe(false);
+    expect(isProductionApiOrigin('https://dev.worldofaphasya.com')).toBe(false);
+    expect(isProductionApiOrigin('http://worldofaphasya.com')).toBe(false);
     expect(isProductionApiOrigin('http://localhost:8787')).toBe(false);
-    expect(isProductionApiOrigin('https://worldofclaudecraft.com.evil.example')).toBe(false);
+    expect(isProductionApiOrigin('https://worldofaphasya.com.evil.example')).toBe(false);
     expect(isProductionApiOrigin('')).toBe(false);
     expect(isProductionApiOrigin(undefined)).toBe(false);
   });
@@ -55,12 +55,12 @@ describe('isProductionApiOrigin', () => {
 
 describe('updateChannelForOrigin (the track split)', () => {
   it('production origin publishes and reads the latest channel', () => {
-    expect(updateChannelForOrigin('https://worldofclaudecraft.com')).toBe('latest');
-    expect(updateChannelForOrigin('https://worldofclaudecraft.com/')).toBe('latest');
+    expect(updateChannelForOrigin('https://worldofaphasya.com')).toBe('latest');
+    expect(updateChannelForOrigin('https://worldofaphasya.com/')).toBe('latest');
   });
 
   it('every non-production origin fails safe onto the dev channel', () => {
-    expect(updateChannelForOrigin('https://dev.worldofclaudecraft.com')).toBe('dev');
+    expect(updateChannelForOrigin('https://dev.worldofaphasya.com')).toBe('dev');
     expect(updateChannelForOrigin('http://localhost:8787')).toBe('dev');
     expect(updateChannelForOrigin('')).toBe('dev');
     expect(updateChannelForOrigin('garbage')).toBe('dev');
@@ -69,7 +69,7 @@ describe('updateChannelForOrigin (the track split)', () => {
 });
 
 describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
-  const own = 'https://worldofclaudecraft.com';
+  const own = 'https://worldofaphasya.com';
 
   it('accepts an offer stamped with the same origin, slash tolerant', () => {
     expect(
@@ -78,7 +78,7 @@ describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
     expect(
       evaluateUpdateOffer({
         apiOrigin: own,
-        info: { wocApiOrigin: 'https://worldofclaudecraft.com/' },
+        info: { wocApiOrigin: 'https://worldofaphasya.com/' },
       }),
     ).toEqual({ ok: true, stamped: true });
   });
@@ -103,10 +103,10 @@ describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
   it('refuses an offer baked for another backend (the issue 1537 flip)', () => {
     const verdict = evaluateUpdateOffer({
       apiOrigin: own,
-      info: { version: '0.23.0', wocApiOrigin: 'https://dev.worldofclaudecraft.com' },
+      info: { version: '0.23.0', wocApiOrigin: 'https://dev.worldofaphasya.com' },
     });
     expect(verdict.ok).toBe(false);
-    expect(verdict.offeredOrigin).toBe('https://dev.worldofclaudecraft.com');
+    expect(verdict.offeredOrigin).toBe('https://dev.worldofaphasya.com');
     expect(verdict.expectedOrigin).toBe(own);
   });
 
@@ -133,8 +133,8 @@ describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
   it('a dev install accepts its own dev-track artifact', () => {
     expect(
       evaluateUpdateOffer({
-        apiOrigin: 'https://dev.worldofclaudecraft.com',
-        info: { wocApiOrigin: 'https://dev.worldofclaudecraft.com' },
+        apiOrigin: 'https://dev.worldofaphasya.com',
+        info: { wocApiOrigin: 'https://dev.worldofaphasya.com' },
       }),
     ).toEqual({ ok: true, stamped: true });
   });

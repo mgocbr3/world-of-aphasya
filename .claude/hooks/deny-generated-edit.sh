@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# PreToolUse guard for World of ClaudeCraft: block direct Edit/Write calls to generated
+# PreToolUse guard for World of Aphasya: block direct Edit/Write calls to generated
 # artifacts (a hard invariant from the root CLAUDE.md: never hand-edit generated files,
 # regenerate via the owning build step).
 #

@@ -87,7 +87,7 @@ Re-check these sources. Do not trust remembered line counts.
 |---|---|
 | PR job graph, bounds, i18n pretest note | `.github/workflows/ci.yml` |
 | Selective PR tier, long-sim lanes, i18n artifact rule | `docs/qa-gate.md` (sections "Selective PR-tier CI", "Generated i18n artifacts", "The long-sims lanes") |
-| Merge queue contract | `docs/merge-queue.md`; live ruleset conditions via `gh api repos/levy-street/world-of-claudecraft/rulesets/<id>` |
+| Merge queue contract | `docs/merge-queue.md`; live ruleset conditions via `gh api repos/mgocbr3/world-of-aphasya/rulesets/<id>` |
 | Floor / related / generated-i18n planner | `scripts/lib/ci_shard_plan.mjs` (`CI_LONG_SUITES`, `buildShardPlan`, `buildLanePlan`), `scripts/lib/gate_select_plan.mjs` (`isGeneratedI18nArtifactPath`), `scripts/lib/ci_test_select.mjs`, `scripts/lib/test_visibility.mjs` |
 | Shard entry, workers, the 4-worker trial note | `scripts/ci_shard_test.mjs` |
 | Pretest regen and the skip flag | `scripts/pretest.mjs`, `scripts/lib/gate_artifact_skip.mjs` |
@@ -97,18 +97,18 @@ Re-check these sources. Do not trust remembered line counts.
 | Pins | `tests/ci_workflow.test.ts`, `tests/ci_shard_plan.test.ts`, `tests/ci_test_select.test.ts`, `tests/ci_selection_pipeline.test.ts` |
 | Vitest related/shard semantics | vitest 4.1.10 source: `packages/vitest/src/node/specifications.ts` (`filterTestsBySource`, `getAffectedModules`), `packages/vitest/src/node/sequencers/BaseSequencer.ts` |
 
-Live runs used below (levy-street/world-of-claudecraft, workflow `ci.yml`).
+Live runs used below (mgocbr3/world-of-aphasya, workflow `ci.yml`).
 All walls re-measured from the run/job API in the second pass:
 
 | Run | Event | Title | Mode | Wall |
 |---|---|---|---|---|
-| [31699849730](https://github.com/levy-street/world-of-claudecraft/actions/runs/31699849730) | `pull_request` | feat(map): overhaul MMORPG map markers | selective (51 sources, 39 tests, 24 generated i18n artifacts) | 19m56s |
-| [31690262106](https://github.com/levy-street/world-of-claudecraft/actions/runs/31690262106) | `pull_request` | fix(chronomancy): restore level 20 healing ranks | selective (8 combat sources, 13 tests) | 20m11s |
-| [31688512610](https://github.com/levy-street/world-of-claudecraft/actions/runs/31688512610) | `pull_request` | feat(content): add Veil-Wraith Courser rideable mount | **full** (three non-i18n generated files) | 14m29s |
-| [31685501359](https://github.com/levy-street/world-of-claudecraft/actions/runs/31685501359) | `pull_request` | chore: update OSSBrain changes for v0.38.0 | selective (31 sources + 24 i18n artifacts) | 16m46s |
-| [31682295054](https://github.com/levy-street/world-of-claudecraft/actions/runs/31682295054) | `pull_request` | chore(release): merge release/v0.37.1 into main | release-gate full | 22m47s |
-| [31155546199](https://github.com/levy-street/world-of-claudecraft/actions/runs/31155546199) | `merge_group` | CI | full (queue, Aug 7) | 38m56s, max job queue delay 28.4 min |
-| [31161062552](https://github.com/levy-street/world-of-claudecraft/actions/runs/31161062552) | `merge_group` | CI | full (queue, Aug 7) | 28m55s, max job queue delay 14.3 min |
+| [31699849730](https://github.com/mgocbr3/world-of-aphasya/actions/runs/31699849730) | `pull_request` | feat(map): overhaul MMORPG map markers | selective (51 sources, 39 tests, 24 generated i18n artifacts) | 19m56s |
+| [31690262106](https://github.com/mgocbr3/world-of-aphasya/actions/runs/31690262106) | `pull_request` | fix(chronomancy): restore level 20 healing ranks | selective (8 combat sources, 13 tests) | 20m11s |
+| [31688512610](https://github.com/mgocbr3/world-of-aphasya/actions/runs/31688512610) | `pull_request` | feat(content): add Veil-Wraith Courser rideable mount | **full** (three non-i18n generated files) | 14m29s |
+| [31685501359](https://github.com/mgocbr3/world-of-aphasya/actions/runs/31685501359) | `pull_request` | chore: update OSSBrain changes for v0.38.0 | selective (31 sources + 24 i18n artifacts) | 16m46s |
+| [31682295054](https://github.com/mgocbr3/world-of-aphasya/actions/runs/31682295054) | `pull_request` | chore(release): merge release/v0.37.1 into main | release-gate full | 22m47s |
+| [31155546199](https://github.com/mgocbr3/world-of-aphasya/actions/runs/31155546199) | `merge_group` | CI | full (queue, Aug 7) | 38m56s, max job queue delay 28.4 min |
+| [31161062552](https://github.com/mgocbr3/world-of-aphasya/actions/runs/31161062552) | `merge_group` | CI | full (queue, Aug 7) | 28m55s, max job queue delay 14.3 min |
 
 Reproduce a shard decision locally. CHANGED_FILES must be a valid JSON array
 of strings; anything unparsable makes the planner fail closed and print a

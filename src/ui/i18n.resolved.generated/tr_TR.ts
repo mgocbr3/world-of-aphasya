@@ -362,7 +362,7 @@ export const tr_TR: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "Wiki Açılsın mı?",
-      "confirmBody": "Bu, World of ClaudeCraft Wiki'sini tarayıcında açar. Oyun çalışmaya devam eder.",
+      "confirmBody": "Bu, World of Aphasya Wiki'sini tarayıcında açar. Oyun çalışmaya devam eder.",
       "confirmOpen": "Wiki'yi Aç",
       "confirmCancel": "İptal"
     },
@@ -490,14 +490,14 @@ export const tr_TR: EnTranslations = {
       "rewardsTab": "Günlük Ödüller",
       "loading": "WOC Mağazası yükleniyor...",
       "error": "WOC Mağazası şu anda kullanılamıyor. Lütfen kısa süre sonra tekrar deneyin.",
-      "balance": "Claudium Bakiyesi",
-      "buyClaudium": "Claudium'u satın al",
+      "balance": "Aphasium Bakiyesi",
+      "buyClaudium": "Aphasium'u satın al",
       "owned": "Sahip",
-      "needMoreTitle": "Daha Fazla Claudium Gerekli",
-      "needMoreBody": "{item} satın almak için {shortfall} daha fazla Claudium'a ihtiyacınız var.",
+      "needMoreTitle": "Daha Fazla Aphasium Gerekli",
+      "needMoreBody": "{item} satın almak için {shortfall} daha fazla Aphasium'a ihtiyacınız var.",
       "cancel": "İptal",
       "confirmTitle": "Kozmetik Satın Alma İşlemini Onaylayın",
-      "confirmBody": "{cost} Claudium için {item} satın alınsın mı?",
+      "confirmBody": "{cost} Aphasium için {item} satın alınsın mı?",
       "confirmPurchase": "Satın Al",
       "priceChanged": "Satın alma işlemi tamamlanmadan önce fiyat değişti. Yenilenen fiyatı inceleyin ve tekrar onaylayın.",
       "armoryEyebrow": "1. Sezon",
@@ -710,18 +710,18 @@ export const tr_TR: EnTranslations = {
       "equipHint": "Bu görünümü uygulamak için bir {type} donatın."
     },
     "claudium": {
-      "title": "Claudium",
-      "open": "Claudium'u aç",
-      "close": "Claudium'u kapat",
-      "loading": "Claudium yükleniyor...",
+      "title": "Aphasium",
+      "open": "Aphasium'u aç",
+      "close": "Aphasium'u kapat",
+      "loading": "Aphasium yükleniyor...",
       "balanceLabel": "Bakiye",
-      "balanceUnit": "{amount} Claudium",
+      "balanceUnit": "{amount} Aphasium",
       "solBalance": "SOL: {amount}",
       "usdcBalance": "USDC: {amount}",
       "wocBalance": "WOC: {amount}",
-      "unavailable": "Claudium mağazası şu anda kullanılamıyor. Bakiyeniz ve satın alımlarınız etkilenmez; lütfen kısa süre sonra tekrar kontrol edin.",
-      "disclosure": "Claudium tek yönlü yumuşak bir para birimidir: Parayla satın alın ve kozmetik ürünlerine harcayın. Kullanılamaz, devredilemez veya nakde çevrilemez.",
-      "buyTitle": "Claudium'u satın al",
+      "unavailable": "Aphasium mağazası şu anda kullanılamıyor. Bakiyeniz ve satın alımlarınız etkilenmez; lütfen kısa süre sonra tekrar kontrol edin.",
+      "disclosure": "Aphasium tek yönlü yumuşak bir para birimidir: Parayla satın alın ve kozmetik ürünlerine harcayın. Kullanılamaz, devredilemez veya nakde çevrilemez.",
+      "buyTitle": "Aphasium'u satın al",
       "railLabel": "Ödeme yöntemi",
       "railStripe": "Kart",
       "railSol": "SOL",
@@ -731,14 +731,14 @@ export const tr_TR: EnTranslations = {
       "railWocUnavailable": "WOC fiyatlandırması şu anda mevcut değil.",
       "railNativeUnavailable": "SOL/WOC şu anda kullanılamıyor.",
       "amountLabel": "Miktar",
-      "showAmounts": "Tüm Claudium miktarlarını göster",
-      "hideAmounts": "Ekstra Claudium miktarlarını gizle",
-      "skuRow": "{claudium} Claudium için {usd}",
+      "showAmounts": "Tüm Aphasium miktarlarını göster",
+      "hideAmounts": "Ekstra Aphasium miktarlarını gizle",
+      "skuRow": "{claudium} Aphasium için {usd}",
       "buyButton": "Satın Al",
       "buyUnavailable": "Şu anda satın alma işlemi yapılamıyor.",
       "storeTitle": "Kozmetik Mağazası",
       "storeEmpty": "Şu anda kozmetik mevcut değil.",
-      "storeCost": "{amount} Claudium",
+      "storeCost": "{amount} Aphasium",
       "spendButton": "Kullan",
       "kindCosmetic": "Kozmetik",
       "kindSkin": "Görünüm",
@@ -749,10 +749,10 @@ export const tr_TR: EnTranslations = {
       "checkoutPending": "İşlem devam ediyor. Cüzdanınızda onaylayın ve bu paneli açık tutun.",
       "checkoutPendingButton": "İşleme",
       "checkoutFailed": "Ödeme yüklenemedi. Lütfen tekrar deneyin.",
-      "checkoutUnavailable": "Bu Claudium satın alımı şu anda mevcut değil.",
-      "checkoutWalletRequired": "Claudium'u kriptoyla satın almadan önce bir Solana cüzdanı bağlayın.",
+      "checkoutUnavailable": "Bu Aphasium satın alımı şu anda mevcut değil.",
+      "checkoutWalletRequired": "Aphasium'u kriptoyla satın almadan önce bir Solana cüzdanı bağlayın.",
       "checkoutWalletUnsupported": "Bu cüzdan Solana işlemlerini imzalayamaz ve gönderemez.",
-      "checkoutNotSettled": "İşlem gönderildi ancak Claudium'a henüz para yatırılmadı. Lütfen kısa süre sonra tekrar deneyin."
+      "checkoutNotSettled": "İşlem gönderildi ancak Aphasium'a henüz para yatırılmadı. Lütfen kısa süre sonra tekrar deneyin."
     },
     "theme": {
       "preset": "Arayüz Teması",
@@ -893,8 +893,8 @@ export const tr_TR: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Güncelleme Mevcut",
-      "body": "World of ClaudeCraft'ın yeni bir sürümü mevcut. En son düzeltmeler ve iyileştirmeler için şimdi güncelle.",
-      "bodyWithVersion": "World of ClaudeCraft'ın {version} sürümü mevcut. En son düzeltmeler ve iyileştirmeler için şimdi güncelle.",
+      "body": "World of Aphasya'ın yeni bir sürümü mevcut. En son düzeltmeler ve iyileştirmeler için şimdi güncelle.",
+      "bodyWithVersion": "World of Aphasya'ın {version} sürümü mevcut. En son düzeltmeler ve iyileştirmeler için şimdi güncelle.",
       "notNow": "Şimdi Değil",
       "update": "Güncelle"
     },
@@ -1507,8 +1507,8 @@ export const tr_TR: EnTranslations = {
         "offline": "Çevrimdışı"
       },
       "diagnostics": {
-        "panelAria": "World of ClaudeCraft performans tanılama paneli",
-        "title": "ClaudeCraft Performans Doktoru",
+        "panelAria": "World of Aphasya performans tanılama paneli",
+        "title": "Aphasya Performans Doktoru",
         "subtitle": "Kanıt ve kod düzeyinde düzeltmeler sunan, oyuna özgü bir tarama.",
         "aria": {
           "liveMeasurements": "Canlı performans ölçümleri",
@@ -1652,7 +1652,7 @@ export const tr_TR: EnTranslations = {
           }
         },
         "report": {
-          "title": "World of ClaudeCraft performans tanısı",
+          "title": "World of Aphasya performans tanısı",
           "statusLine": "Durum: {status} ({score}/100)",
           "capturedLine": "Yakalandı: {captured}",
           "topFindingLine": "En önemli bulgu: {finding}",
@@ -2542,7 +2542,7 @@ export const tr_TR: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "World of Aphasya",
       "open": "Discord",
       "close": "Kapat",
       "keybind": "Discord Paneli",
@@ -3950,8 +3950,8 @@ export const tr_TR: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "World of Aphasya",
+    "brandShort": "Aphasya",
     "tagline": "Tarayıcınızda ücretsiz oynayabileceğiniz klasik tarzda bir MMO.",
     "skipToContent": "Ana içeriğe geç",
     "loading": "Yükleniyor...",
@@ -4027,7 +4027,7 @@ export const tr_TR: EnTranslations = {
       "github": "GitHub'daki Kaynak",
       "discord": "Discord'a Katıl",
       "communityWiki": "Topluluk Wiki'si",
-      "rights": "World of ClaudeCraft",
+      "rights": "World of Aphasya",
       "linksLabel": "Oyun ve topluluk bağlantıları"
     },
     "language": {
@@ -4052,7 +4052,7 @@ export const tr_TR: EnTranslations = {
     },
     "home": {
       "eyebrow": "Klasik tarz tarayıcı MMO'su",
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "subtitle": "Görev yap, grup kur ve elle kurulmuş bir dünyayı keşfet; tarayıcında ücretsiz.",
       "ctaPlay": "Şimdi Oyna",
       "ctaLearn": "Nasıl Oynanır",
@@ -4672,7 +4672,7 @@ export const tr_TR: EnTranslations = {
       "ridingDef": "Binmeni mümkün kılan beceri. Onu 20. seviyede bir Ahır Ustasından bir kez satın alırsın, ondan sonra karakterinde temelli kalır.",
       "reinsTerm": "Dizgin",
       "reinsDef": "Bir bineğin karşılığı olan eşya. Çantanda ya da bankanda bir çift dizgin tut, o binek artık senindir; binmek için onları kullan. Dizginler diğer oyuncularla takas edilebilir, postalanabilir ve satılabilir.",
-      "claudiumTerm": "Claudium",
+      "claudiumTerm": "Aphasium",
       "claudiumDef": "WOC Mağazası'nın para birimi, yalnızca kozmetiklere harcanır, başka hiçbir şeye değil. Asla güç ya da ilerleme satın almaz.",
       "worldTerm": "Dünya",
       "worldDef": "Çevrim içi oyunun, kendi oyuncuları, pazarı ve sıralamalarıyla paylaşılan tek bir kopyası. Bu rehber ona diyar da der ve karakterin, onu yarattığın dünyada yaşar."
@@ -4703,7 +4703,7 @@ export const tr_TR: EnTranslations = {
       "q11": "Nasıl grup bulurum?",
       "a11": "Karşılaştığınız herkesi bir gruba davet edin, sohbette sorun ya da bir zindanda takım kurun. Dünyanın çoğu tek başına oynanabilir, bu yüzden gruplaşmak bir tercihtir, zorunluluk değil.",
       "q12": "Mağazadan gerçek parayla satın alma yapılabilir mi?",
-      "a12": "İsteğe bağlı bir kozmetik mağaza var. Yalnızca görünüm satar: mağazanın para birimi Claudium ile satın alınan 1. Sezon Cephaneliği silah görünümleri. İçindeki hiçbir şey nitelik, güç ya da ilerleme eklemez ve bir görünüm silahınızın nasıl vurduğunu asla değiştirmez, bu yüzden önemli olan her teçhizat parçası yine de oynamaktan gelir.",
+      "a12": "İsteğe bağlı bir kozmetik mağaza var. Yalnızca görünüm satar: mağazanın para birimi Aphasium ile satın alınan 1. Sezon Cephaneliği silah görünümleri. İçindeki hiçbir şey nitelik, güç ya da ilerleme eklemez ve bir görünüm silahınızın nasıl vurduğunu asla değiştirmez, bu yüzden önemli olan her teçhizat parçası yine de oynamaktan gelir.",
       "q13": "Uygulamayı nereden edinebilirim?",
       "a13": "Tarayıcı sürümü hiçbir şeye ihtiyaç duymaz: siteyi açın ve oynayın. Bir uygulamayı tercih ederseniz, Windows, macOS ve Linux için masaüstü indirmesi oyun sitesinin İndir sayfasındadır. Yerel iOS ve Android uygulamaları hazırlanıyor ve onlar gelene dek bir telefon ya da tablet tarayıcı sürümünü tam dokunmatik kontrollerle oynar. Her sürüm aynı hesaba ve aynı dünyalara giriş yapar, bu yüzden karakterleriniz sizi takip eder.",
       "q14": "Çalıştırmak için neye ihtiyacım var?",
@@ -4988,7 +4988,7 @@ export const tr_TR: EnTranslations = {
     },
     "worldPage": {
       "heading": "Dünya",
-      "intro": "World of ClaudeCraft, yaya olarak geçtiğin tek parça bir ülkedir. Eski yol güneyden kuzeye, başlangıç vadisi, bataklık ve zirveler boyunca uzanır ve onların ötesine, arkadaki çukura ve haritanın tepesindeki kar ülkesine tırmanmayı sürdürür. Bu yoldan batıya bir üst diyarlar dizisi, doğuya da bir başkası açılır ve Vadi'nin doğu kıyısı açıklarında bir ada bulunur. Hızlı yolculuk yok, uçuş hatları yok, arabalar yok: her yolculuk yürünür ya da at sırtında yapılır, dolayısıyla varmak macerasının bir parçasıdır.\n\nÜlke zamanı da tutar. Bir gündüz gece döngüsü, dünyandaki herkesin paylaştığı gerçek bir saat üzerinde işler; böylece gökyüzü hepiniz için aynı anda şafaktan öğleye, oradan alacakaranlığa ve karanlığa geçer, ay evrelerinden geçerek gelir gider ve yerdeki ışık onunla değişir. Küçük haritanın çevresindeki kadran, saati okuduğun yerdir.",
+      "intro": "World of Aphasya, yaya olarak geçtiğin tek parça bir ülkedir. Eski yol güneyden kuzeye, başlangıç vadisi, bataklık ve zirveler boyunca uzanır ve onların ötesine, arkadaki çukura ve haritanın tepesindeki kar ülkesine tırmanmayı sürdürür. Bu yoldan batıya bir üst diyarlar dizisi, doğuya da bir başkası açılır ve Vadi'nin doğu kıyısı açıklarında bir ada bulunur. Hızlı yolculuk yok, uçuş hatları yok, arabalar yok: her yolculuk yürünür ya da at sırtında yapılır, dolayısıyla varmak macerasının bir parçasıdır.\n\nÜlke zamanı da tutar. Bir gündüz gece döngüsü, dünyandaki herkesin paylaştığı gerçek bir saat üzerinde işler; böylece gökyüzü hepiniz için aynı anda şafaktan öğleye, oradan alacakaranlığa ve karanlığa geçer, ay evrelerinden geçerek gelir gider ve yerdeki ışık onunla değişir. Küçük haritanın çevresindeki kadran, saati okuduğun yerdir.",
       "hub": "Ana üs",
       "mapHeading": "Yol ve ötesindeki diyarlar",
       "mapSub": "Görev izi haritanın ortasından güneyden kuzeye uzanır: vadi, bataklık, zirveler ve onların ötesinde çukur ile kar. Diğer diyarlar bu yolun ardından değil, boyunca açılır; bataklık yolunun doğusundaki ve batısındaki kapılardan, Farshore adasına ise Vadi'nin doğu kıyısından ulaşılır. Seni uzak diyarlardan uzak tutan şey yürüyüş değil, onların seviye kuşaklarıdır: beşi en üst kuşağı paylaşır, dolayısıyla hazır olduğunda onları istediğin sırayla ele alabilirsin. Farshore istisnadır, erken ziyaret edebileceğin düşük seviyeli bir ülke.",
@@ -6009,7 +6009,7 @@ export const tr_TR: EnTranslations = {
   },
   "editor": {
     "appTitle": "Harita Editörü",
-    "docTitle": "Harita Editörü - World of ClaudeCraft",
+    "docTitle": "Harita Editörü - World of Aphasya",
     "untitledMap": "Adsız Harita",
     "playtestPlayerName": "Haritacı",
     "topbar": {
@@ -6486,10 +6486,9 @@ export const tr_TR: EnTranslations = {
     "realmName": "Dünya Adı"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 World of Aphasya",
+    "githubLink": "https://github.com/mgocbr3/world-of-aphasya",
     "githubLabel": "Açık Kaynak Proje",
-    "whitepaper": "Teknik Doküman",
     "terms": "Hizmet Koşulları",
     "privacy": "Gizlilik Politikası",
     "discordLabel": "Discord'a Katıl"
@@ -6544,7 +6543,7 @@ export const tr_TR: EnTranslations = {
     "serverOnline": "Çevrimiçi",
     "serverOffline": "Çevrimdışı",
     "play": "Oyna",
-    "playAria": "World of ClaudeCraft oyna",
+    "playAria": "World of Aphasya oyna",
     "serverLabel": "Dünyanı seç",
     "serverAria": "Dünya seç: Çevrimiçi veya Çevrimdışı",
     "serverOfflineSub": "Anında yerel dünya",
@@ -6863,12 +6862,12 @@ export const tr_TR: EnTranslations = {
     "extensionHelp": "Burada bir cüzdan görmek için Solflare Wallet gibi bir tarayıcı cüzdan uzantısını etkin tutun.",
     "mobileAppHelp": "Phantom veya Solflare'i seç. Cüzdan uygulan onay isteyecek. Bu oyunu açık bırak ve bittiğinde geri dön.",
     "seekerAppHelp": "Seed Vault Wallet ile devam et. Bağlantı ve doğrulama isteklerini Seed Vault'ta incele, sonra oyuna dön.",
-    "standaloneAppHelp": "Ana Ekran uygulamasında cüzdan bağlantıları henüz mevcut değil. Phantom veya Solflare kullanmak için World of ClaudeCraft'ı Safari veya Chrome'da aç.",
+    "standaloneAppHelp": "Ana Ekran uygulamasında cüzdan bağlantıları henüz mevcut değil. Phantom veya Solflare kullanmak için World of Aphasya'ı Safari veya Chrome'da aç.",
     "openAppTitle": "{wallet}'da devam et",
     "openAppHelp": "Bu isteği incelemek için {wallet}'u aç. Cüzdan uygulaması etkinken bu oyun sekmesini açık bırak.",
     "openAppButton": "{wallet}'u aç",
     "manualReturnBrowserHelp": "Onayladıktan sonra bu oyun sekmesine dön. iOS başka bir tarayıcı açarsa, kapat ve orijinal tarayıcıya manuel olarak dön.",
-    "manualReturnStandaloneHelp": "Onayladıktan sonra Ana Ekranından World of ClaudeCraft'a dön. iOS bir tarayıcı açarsa, kapat ve Ana Ekran uygulamasını manuel olarak yeniden aç.",
+    "manualReturnStandaloneHelp": "Onayladıktan sonra Ana Ekranından World of Aphasya'a dön. iOS bir tarayıcı açarsa, kapat ve Ana Ekran uygulamasını manuel olarak yeniden aç.",
     "preparingAppButton": "{wallet} hazırlanıyor...",
     "walletAppUnavailable": "{wallet} hazırlanamadı. Bu pencereyi kapat ve tekrar dene.",
     "flowConnect": "Bir cüzdan seçin. Doğrulama otomatik olarak devam eder.",
@@ -6883,12 +6882,12 @@ export const tr_TR: EnTranslations = {
       "linkBody": "Bu tarayıcıda bir cüzdan uzantısı seç. Bir doğrulama mesajı imzalayacak, ardından masaüstü uygulamasına döneceksin.",
       "paymentBody": "Hesabına bağlı cüzdanı seç ve bu tarayıcıda işlemi onayla.",
       "extensionHelp": "Uyumlu cüzdan uzantısı bulunamadı. Phantom, Solflare veya başka bir Solana tarayıcı cüzdanını yükle ya da kilidini aç, ardından tekrar dene.",
-      "safety": "World of ClaudeCraft hiçbir zaman kurtarma ifadeni veya özel anahtarını istemez.",
+      "safety": "World of Aphasya hiçbir zaman kurtarma ifadeni veya özel anahtarını istemez.",
       "continueWith": "{wallet} ile devam et",
       "reviewTitle": "Cüzdanında incele",
       "reviewBody": "{wallet}'dan gelen istemi takip et. Bu tarayıcı sayfasını açık bırak.",
       "completeTitle": "Cüzdan yetkilendirmesi tamamlandı",
-      "completeBody": "World of ClaudeCraft masaüstü uygulamasına dönebilirsin.",
+      "completeBody": "World of Aphasya masaüstü uygulamasına dönebilirsin.",
       "returnButton": "Masaüstü uygulamasına dön",
       "failed": "Cüzdan yetkilendirmesi başarısız oldu veya süresi doldu. Masaüstü uygulamasına dön ve tekrar dene.",
       "retry": "Tekrar dene"
@@ -6986,7 +6985,7 @@ export const tr_TR: EnTranslations = {
     "levelClass": "Seviye {level} - {className}",
     "topPercent": "İLK %{percent}",
     "realmSubtitle": "{realm} Dünyası",
-    "defaultRealm": "World of ClaudeCraft",
+    "defaultRealm": "World of Aphasya",
     "brandWordmark": "WORLD OF CLAUDECRAFT",
     "recruited": "{count} davet edildi",
     "footerHandle": "@{handle}",
@@ -6994,8 +6993,8 @@ export const tr_TR: EnTranslations = {
     "footerCta": "Efsaneni yarat: {siteUrl}",
     "arenaStat": "Arena",
     "shareTierBit": ", {tier}-derece $WOC sahibi",
-    "shareText": "World of ClaudeCraft'ta efsanemi yaratıyorum: Seviye {level} {className}{tierBit}. Dünyama katıl:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "World of Aphasya'ta efsanemi yaratıyorum: Seviye {level} {className}{tierBit}. Dünyama katıl:",
+    "nativeShareTitle": "World of Aphasya",
     "fileNameFallback": "oyuncu",
     "actionShareX": "X'te Paylaş",
     "actionCopyReferral": "Davet Bağlantısını Kopyala",
@@ -7691,14 +7690,14 @@ export const tr_TR: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: Klasik Tarzı Web MMO'su",
-    "description": "Doğrudan tarayıcında oynanabilen klasik tarzı bir mikro MMO olan World of ClaudeCraft'ta destansı bir maceraya atıl. Kalıcı bir ortak dünyaya katıl, sınıfları geliştir ve düşmanları alt et!",
+    "title": "World of Aphasya: Klasik Tarzı Web MMO'su",
+    "description": "Doğrudan tarayıcında oynanabilen klasik tarzı bir mikro MMO olan World of Aphasya'ta destansı bir maceraya atıl. Kalıcı bir ortak dünyaya katıl, sınıfları geliştir ve düşmanları alt et!",
     "genre": "MMORPG",
     "playMode": "Çok Oyunculu",
     "applicationCategory": "Oyun",
     "operatingSystem": "Web tarayıcısı",
-    "officialLabel": "Resmi World of ClaudeCraft web sitesi",
-    "officialBody": "worldofclaudecraft.com, Claudemoon dünyasının resmi ücretsiz tarayıcı MMO'sudur. Kalıcı bir karakterle çevrimiçi oyna, çevrimdışı tek başına keşfet, wiki'yi oku ve bu siteden doğrulanmış topluluk bağlantılarını takip et."
+    "officialLabel": "Resmi World of Aphasya web sitesi",
+    "officialBody": "worldofaphasya.com, Claudemoon dünyasının resmi ücretsiz tarayıcı MMO'sudur. Kalıcı bir karakterle çevrimiçi oyna, çevrimdışı tek başına keşfet, wiki'yi oku ve bu siteden doğrulanmış topluluk bağlantılarını takip et."
   },
   "a11y": {
     "goHome": "Ana sayfaya git",
@@ -7706,9 +7705,9 @@ export const tr_TR: EnTranslations = {
     "mainNavigation": "Ana gezinme",
     "languageSelection": "Dil seçimi",
     "characterActions": "Karakter eylemleri",
-    "githubProject": "World of ClaudeCraft GitHub projesini aç",
-    "discordCommunity": "World of ClaudeCraft Discord topluluğuna katıl",
-    "donateProject": "World of ClaudeCraft'a destek olmak için bağış yap"
+    "githubProject": "World of Aphasya GitHub projesini aç",
+    "discordCommunity": "World of Aphasya Discord topluluğuna katıl",
+    "donateProject": "World of Aphasya'a destek olmak için bağış yap"
   },
   "entryGuard": {
     "title": "Grafikler düşürüldü",
@@ -7799,16 +7798,16 @@ export const tr_TR: EnTranslations = {
     "notify": {
       "updateReadyTitle": "{version} güncellemesi hazır",
       "updateReadyTitleNoVersion": "Güncelleme hazır",
-      "updateReadyBody": "Güncellemeyi uygulamak için World of ClaudeCraft'ı yeniden başlat.",
+      "updateReadyBody": "Güncellemeyi uygulamak için World of Aphasya'ı yeniden başlat.",
       "partyInviteTitle": "Grup daveti",
       "partyInviteBody": "{name} seni grubuna davet etti."
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "body": "Oyun görünümü çalışmayı durdurdu. Yeniden yüklensin mi?",
       "reload": "Yeniden Yükle",
       "quit": "Çık",
-      "fatalBody": "World of ClaudeCraft beklenmeyen bir hatayla karşılaştı ve kapatılması gerekiyor."
+      "fatalBody": "World of Aphasya beklenmeyen bir hatayla karşılaştı ve kapatılması gerekiyor."
     }
   },
   "gpuNotice": {
@@ -7957,17 +7956,17 @@ export const tr_TR: EnTranslations = {
     "iosStandaloneDetail": "Ana ekran tam ekran modundasınız. Cihazı yatay konumda tutun.",
     "iosInstallDetail": "iPhone veya iPad'de gerçek tam ekran için önce bu sayfayı Ana Ekranınıza yükleyin.",
     "iosShareStep": "Safari'de Paylaş'a, ardından Ana Ekrana Ekle'ye dokunun.",
-    "iosOpenStep": "World of ClaudeCraft'ı yeni Ana Ekran simgesinden açın.",
+    "iosOpenStep": "World of Aphasya'ı yeni Ana Ekran simgesinden açın.",
     "androidStandaloneDetail": "Tam ekran uygulama modundasınız. Cihazı yatay konumda tutun.",
     "androidInstallDetail": "Android'de tam ekran için önce bu sayfayı yükleyin veya Ana ekranınıza ekleyin.",
     "androidInstallStep": "Chrome'da menüye dokunun, ardından Uygulamayı yükle veya Ana ekrana ekle seçeneğini seçin.",
-    "androidOpenStep": "World of ClaudeCraft'ı yeni simgeden açın.",
+    "androidOpenStep": "World of Aphasya'ı yeni simgeden açın.",
     "otherStandaloneDetail": "Cihazınızı yatay tam ekran konumunda tutun.",
     "otherInstallDetail": "En iyi tam ekran mobil deneyim için bu sayfayı yükleyin veya Ana ekranınıza ekleyin."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Dünya Kullanılamıyor",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "World of Aphasya - Dünya Kullanılamıyor",
+    "logoAlt": "World of Aphasya",
     "eyebrow": "Dünya bakımı",
     "heading": "Dünya geçici olarak kullanılamıyor.",
     "body": "Oyun hizmetini yeniden başlatıyoruz ve Claudemoon'un kısa süre içinde geri döneceğini umuyoruz. Bu sayfa otomatik olarak denetlemeye devam edecek.",

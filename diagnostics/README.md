@@ -1,8 +1,8 @@
-# World of ClaudeCraft Performance Doctor
+# World of Aphasya Performance Doctor
 
 This build adds a game-specific browser diagnostics workbench on top of the renderer,
 frame, hitch, asset, memory, input, and network telemetry already present in World of
-ClaudeCraft.
+Aphasya.
 
 ## Run it on Windows
 

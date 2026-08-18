@@ -3,7 +3,7 @@
 //  - threat = (damage * abilityMult + flat bonus) * stance/form modifiers
 //  - Defensive Stance and Bear Form multiply threat by 1.3, Cat Form by 0.71.
 //    Burning Oath (Righteous Fury) multiplies HOLY damage threat; classic ran
-//    1.6, but ClaudeCraft's Faithwarden kit stacks per-ability multipliers and
+//    1.6, but Aphasya's Faithwarden kit stacks per-ability multipliers and
 //    the Oathward mastery on top, so it runs 1.3 here (v0.38 tank threat
 //    parity pass) to keep the composed total in band.
 //  - each point of effective healing = 0.5 threat, split among all enemies

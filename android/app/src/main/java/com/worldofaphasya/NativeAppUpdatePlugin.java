@@ -1,4 +1,4 @@
-package com.worldofclaudecraft;
+package com.worldofaphasya;
 
 import android.content.Intent;
 import android.net.Uri;

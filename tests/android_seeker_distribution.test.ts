@@ -4,23 +4,23 @@ import { describe, expect, it } from 'vitest';
 
 const appGradle = readFileSync('android/app/build.gradle', 'utf8');
 const plugin = readFileSync(
-  'android/app/src/solanaStore/java/com/worldofclaudecraft/NativeSolanaMobilePlugin.kt',
+  'android/app/src/solanaStore/java/com/worldofaphasya/NativeSolanaMobilePlugin.kt',
   'utf8',
 );
 const baseActivity = readFileSync(
-  'android/app/src/main/java/com/worldofclaudecraft/BaseMainActivity.java',
+  'android/app/src/main/java/com/worldofaphasya/BaseMainActivity.java',
   'utf8',
 );
 const playActivity = readFileSync(
-  'android/app/src/play/java/com/worldofclaudecraft/MainActivity.java',
+  'android/app/src/play/java/com/worldofaphasya/MainActivity.java',
   'utf8',
 );
 const solanaStoreActivity = readFileSync(
-  'android/app/src/solanaStore/java/com/worldofclaudecraft/MainActivity.java',
+  'android/app/src/solanaStore/java/com/worldofaphasya/MainActivity.java',
   'utf8',
 );
 const tokenStore = readFileSync(
-  'android/app/src/solanaStore/java/com/worldofclaudecraft/MwaAuthorizationTokenStore.kt',
+  'android/app/src/solanaStore/java/com/worldofaphasya/MwaAuthorizationTokenStore.kt',
   'utf8',
 );
 const solanaStoreManifest = readFileSync('android/app/src/solanaStore/AndroidManifest.xml', 'utf8');
@@ -84,10 +84,10 @@ describe('Android Seeker distribution boundary', () => {
 
   it('keeps the real MWA plugin and registration out of shared and Play sources', () => {
     expect(
-      existsSync('android/app/src/main/java/com/worldofclaudecraft/NativeSolanaMobilePlugin.kt'),
+      existsSync('android/app/src/main/java/com/worldofaphasya/NativeSolanaMobilePlugin.kt'),
     ).toBe(false);
     expect(
-      existsSync('android/app/src/play/java/com/worldofclaudecraft/NativeSolanaMobilePlugin.kt'),
+      existsSync('android/app/src/play/java/com/worldofaphasya/NativeSolanaMobilePlugin.kt'),
     ).toBe(false);
     expect(baseActivity).not.toContain('NativeSolanaMobilePlugin');
     expect(playActivity).not.toContain('NativeSolanaMobilePlugin');

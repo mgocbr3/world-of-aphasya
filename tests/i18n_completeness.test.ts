@@ -156,19 +156,19 @@ describe('i18n whole-catalog completeness', () => {
   // it is a genuine brand/URL that should never be translated.
   it('non-Latin player surfaces ship no untranslated English', () => {
     const BRAND_ALLOW = new Set([
-      'footer.copyright', // "{year} World of ClaudeCraft" - brand
+      'footer.copyright', // "{year} World of Aphasya" - brand
       'footer.githubLink', // repository URL
       'fiesta.bracket', // "Fiesta" event brand
-      'serverUnavailable.logoAlt', // "World of ClaudeCraft" logo alt text - brand
-      'guide.brand', // "World of ClaudeCraft" - brand (Guide)
-      'guide.brandShort', // "ClaudeCraft" - brand (Guide)
-      'guide.home.title', // "World of ClaudeCraft" - brand (Guide hero)
-      'guide.footer.rights', // "World of ClaudeCraft" - brand (Guide footer)
+      'serverUnavailable.logoAlt', // "World of Aphasya" logo alt text - brand
+      'guide.brand', // "World of Aphasya" - brand (Guide)
+      'guide.brandShort', // "Aphasya" - brand (Guide)
+      'guide.home.title', // "World of Aphasya" - brand (Guide hero)
+      'guide.footer.rights', // "World of Aphasya" - brand (Guide footer)
       'hudChrome.discord.title', // "Discord" - brand
       'hudChrome.discord.open', // "Discord" - brand
       'hudChrome.steam.title', // "Steam" - brand
       'hudChrome.epic.title', // "Epic" - brand
-      'hudChrome.discord.panelTitle', // "World of ClaudeCraft" - brand
+      'hudChrome.discord.panelTitle', // "World of Aphasya" - brand
       'hudChrome.discord.linkedTitle', // "Discord: {name}" - brand + player name
       'hudChrome.keybinds.discord', // "Discord" - brand (Key Bindings action label)
       'hudChrome.claudium.title', // "Claudium" - in-game currency brand
@@ -176,7 +176,7 @@ describe('i18n whole-catalog completeness', () => {
       'hudChrome.claudium.storeCost', // "{amount} Claudium" - currency brand
       'guide.controls.discord', // "Discord" - brand (Guide controls-page action label)
       'guide.glossary.claudiumTerm', // "Claudium" - the same currency brand as hudChrome.claudium.*
-      'desktop.crash.title', // "World of ClaudeCraft" - brand (desktop crash dialog title)
+      'desktop.crash.title', // "World of Aphasya" - brand (desktop crash dialog title)
       'auth.emailPlaceholder', // "you@example.com" - RFC 2606 example address, kept verbatim
       // Rift boss mechanic names: authored fantasy proper nouns that do not translate.
       'abilityUi.cast.rift_frost_execution',

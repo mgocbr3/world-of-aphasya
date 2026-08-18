@@ -91,7 +91,7 @@ async function preflight(names) {
   if (names.some((name) => SCENARIO_SPECS[name].mode === 'offline')) {
     await waitForServer(OFFLINE_URL, 'Vite client', async (response) => {
       const text = await response.text();
-      return response.ok && /claudecraft/i.test(text);
+      return response.ok && /aphasya/i.test(text);
     });
   }
   if (names.some((name) => SCENARIO_SPECS[name].mode === 'online')) {

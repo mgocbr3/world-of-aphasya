@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.worldofclaudecraft',
-  appName: 'World of ClaudeCraft',
+  appId: 'com.worldofaphasya',
+  appName: 'World of Aphasya',
   webDir: 'dist',
   server: {
     androidScheme: 'http',
@@ -18,7 +18,7 @@ const config: CapacitorConfig = {
     // via notifyAppReady, or the plugin reverts it on the next launch.
     CapacitorUpdater: {
       autoUpdate: true,
-      updateUrl: 'https://worldofclaudecraft.com/api/ota/updates',
+      updateUrl: 'https://worldofaphasya.com/api/ota/updates',
       statsUrl: '',
     },
   },

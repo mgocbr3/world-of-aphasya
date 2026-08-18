@@ -4621,7 +4621,6 @@ export type TranslationKeyFlat =
   | 'footer.githubLink'
   | 'footer.privacy'
   | 'footer.terms'
-  | 'footer.whitepaper'
   | 'game.hud.lowEnergy'
   | 'game.hud.lowFocus'
   | 'game.hud.lowMana'

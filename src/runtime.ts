@@ -1,4 +1,4 @@
-const DEFAULT_DESKTOP_API_ORIGIN = 'https://worldofclaudecraft.com';
+const DEFAULT_DESKTOP_API_ORIGIN = 'https://worldofaphasya.com';
 
 export function normalizeOrigin(raw: string): string {
   const trimmed = raw.trim().replace(/\/+$/, '');
@@ -115,7 +115,7 @@ export type DesktopDisplayMode = 'borderless' | 'windowed';
 
 // One Discord Rich Presence activity, as the shell's RPC client wants it.
 // Deliberately tiny: `details` is the zone line under the "Playing World of
-// ClaudeCraft" the app registration supplies, and `start` (unix epoch SECONDS,
+// Aphasya" the app registration supplies, and `start` (unix epoch SECONDS,
 // not milliseconds) drives Discord's own elapsed-time clock. Nothing that
 // identifies the player may be added here: the presence is public to everyone
 // who can see their Discord profile (src/game/discord_presence.ts).
