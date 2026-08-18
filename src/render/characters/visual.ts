@@ -53,6 +53,7 @@ import {
   takeFarBakeBudget,
   tintedFarMaterials,
 } from './assets';
+import { scaledVisualHeight } from './character_world_scale';
 import { HairSwayDriver } from './hair_sway';
 import { buildHalo } from './halo';
 import type { EmoteClipSpec, VisualDef, WeaponLayoutOverride } from './manifest';
@@ -624,7 +625,7 @@ export class CharacterVisual {
     this.skinIndex = skinIndex;
     this.weaponItemId = weaponItemId;
     this.offhandItemId = offhandItemId;
-    this.height = prep.def.height;
+    this.height = scaledVisualHeight(prep.def.height);
 
     // model: yaw/scale/feet normalization wrapper around the skinned clone. The
     // equipped mainhand item (if the class swaps; see VisualDef.weaponSlot) picks
