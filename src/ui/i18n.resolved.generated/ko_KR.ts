@@ -760,6 +760,7 @@ export const ko_KR: EnTranslations = {
       "reset": "초기화",
       "presets": {
         "classic": "클래식 골드",
+        "aphasya": "Aphasya",
         "midnight": "미드나이트",
         "parchment": "양피지",
         "highContrast": "고대비"

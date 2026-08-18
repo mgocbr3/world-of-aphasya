@@ -948,6 +948,7 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.customColors': 'カスタムカラー',
   'hudChrome.theme.reset': 'リセット',
   'hudChrome.theme.presets.classic': 'クラシックゴールド',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.midnight': 'ミッドナイト',
   'hudChrome.theme.presets.parchment': '羊皮紙',
   'hudChrome.theme.presets.highContrast': 'ハイコントラスト',

@@ -760,6 +760,7 @@ export const zh_TW: EnTranslations = {
       "reset": "重設",
       "presets": {
         "classic": "經典金色",
+        "aphasya": "Aphasya",
         "midnight": "午夜",
         "parchment": "羊皮紙",
         "highContrast": "高對比"

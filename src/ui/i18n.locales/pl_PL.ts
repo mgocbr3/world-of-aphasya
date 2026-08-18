@@ -8263,6 +8263,7 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.knob.textMuted': 'Przygaszony tekst',
   'hudChrome.theme.preset': 'Motyw interfejsu',
   'hudChrome.theme.presets.classic': 'Klasyczne złoto',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.highContrast': 'Wysoki kontrast',
   'hudChrome.theme.presets.midnight': 'Północ',
   'hudChrome.theme.presets.parchment': 'Pergamin',

@@ -8083,6 +8083,7 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.knob.textMuted': 'Dæmpet tekst',
   'hudChrome.theme.preset': 'UI-tema',
   'hudChrome.theme.presets.classic': 'Klassisk guld',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.highContrast': 'Høj kontrast',
   'hudChrome.theme.presets.midnight': 'Midnat',
   'hudChrome.theme.presets.parchment': 'Pergament',

@@ -5832,6 +5832,7 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.knob.textMuted': 'Tlumený text',
   'hudChrome.theme.preset': 'Motiv UI',
   'hudChrome.theme.presets.classic': 'Klasická zlatá',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.highContrast': 'Vysoký kontrast',
   'hudChrome.theme.presets.midnight': 'Půlnoc',
   'hudChrome.theme.presets.parchment': 'Pergamen',

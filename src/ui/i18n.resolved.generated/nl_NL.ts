@@ -760,6 +760,7 @@ export const nl_NL: EnTranslations = {
       "reset": "Herstellen",
       "presets": {
         "classic": "Klassiek Goud",
+        "aphasya": "Aphasya",
         "midnight": "Middernacht",
         "parchment": "Perkament",
         "highContrast": "Hoog Contrast"

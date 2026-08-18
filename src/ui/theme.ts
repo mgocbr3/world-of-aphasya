@@ -25,7 +25,7 @@ export type ThemeKnob =
 
 export type ThemeKnobs = Record<ThemeKnob, string>;
 
-export type PresetId = 'classic' | 'midnight' | 'parchment' | 'highContrast';
+export type PresetId = 'classic' | 'aphasya' | 'midnight' | 'parchment' | 'highContrast';
 
 export interface ThemeState {
   preset: PresetId;
@@ -59,7 +59,13 @@ export const THEME_KNOB_LABEL_KEY: Record<ThemeKnob, string> = {
   energy: 'energy',
 };
 
-export const PRESET_ORDER: PresetId[] = ['classic', 'midnight', 'parchment', 'highContrast'];
+export const PRESET_ORDER: PresetId[] = [
+  'classic',
+  'aphasya',
+  'midnight',
+  'parchment',
+  'highContrast',
+];
 
 // `classic` reproduces the shipped gold/dark palette; the others are alternates.
 export const THEME_PRESETS: Record<PresetId, ThemeKnobs> = {
@@ -72,6 +78,19 @@ export const THEME_PRESETS: Record<PresetId, ThemeKnobs> = {
     hp: '#1eb838',
     mana: '#2b7bd4',
     rage: '#c0392b',
+    energy: '#e4c531',
+  },
+  // The official Aphasya identity (GDD 11.4): sculpted gold over runic
+  // midnight-blue metal, parchment text, crystal-blue mana.
+  aphasya: {
+    accent: '#e8b64c',
+    border: '#7a6434',
+    panel: '#121a2b',
+    text: '#f2ecd9',
+    textMuted: '#9d9273',
+    hp: '#2fb457',
+    mana: '#3f8ee8',
+    rage: '#c43b2e',
     energy: '#e4c531',
   },
   midnight: {

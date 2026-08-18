@@ -8761,6 +8761,7 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.knob.textMuted': 'Chữ Mờ',
   'hudChrome.theme.preset': 'Giao Diện UI',
   'hudChrome.theme.presets.classic': 'Vàng Cổ Điển',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.highContrast': 'Tương Phản Cao',
   'hudChrome.theme.presets.midnight': 'Nửa Đêm',
   'hudChrome.theme.presets.parchment': 'Giấy Da',

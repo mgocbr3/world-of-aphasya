@@ -8243,6 +8243,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.knob.textMuted': 'Gedempte tekst',
   'hudChrome.theme.preset': 'UI-thema',
   'hudChrome.theme.presets.classic': 'Klassiek Goud',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.highContrast': 'Hoog Contrast',
   'hudChrome.theme.presets.midnight': 'Middernacht',
   'hudChrome.theme.presets.parchment': 'Perkament',

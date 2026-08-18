@@ -958,6 +958,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.customColors': 'Настраиваемые цвета',
   'hudChrome.theme.reset': 'Сброс',
   'hudChrome.theme.presets.classic': 'Классическое золото',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.midnight': 'Полночь',
   'hudChrome.theme.presets.parchment': 'Пергамент',
   'hudChrome.theme.presets.highContrast': 'Высокий контраст',

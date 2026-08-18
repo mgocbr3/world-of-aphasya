@@ -8858,6 +8858,7 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.knob.textMuted': 'Teks Redup',
   'hudChrome.theme.preset': 'Tema UI',
   'hudChrome.theme.presets.classic': 'Emas Klasik',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.highContrast': 'Kontras Tinggi',
   'hudChrome.theme.presets.midnight': 'Tengah Malam',
   'hudChrome.theme.presets.parchment': 'Perkamen',

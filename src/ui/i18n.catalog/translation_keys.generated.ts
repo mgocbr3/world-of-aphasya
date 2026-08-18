@@ -9785,6 +9785,7 @@ export type TranslationKeyFlat =
   | 'hudChrome.theme.knob.text'
   | 'hudChrome.theme.knob.textMuted'
   | 'hudChrome.theme.preset'
+  | 'hudChrome.theme.presets.aphasya'
   | 'hudChrome.theme.presets.classic'
   | 'hudChrome.theme.presets.highContrast'
   | 'hudChrome.theme.presets.midnight'

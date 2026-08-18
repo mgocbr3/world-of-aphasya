@@ -760,6 +760,7 @@ export const fr_CA: EnTranslations = {
       "reset": "Réinitialiser",
       "presets": {
         "classic": "Or classique",
+        "aphasya": "Aphasya",
         "midnight": "Minuit",
         "parchment": "Parchemin",
         "highContrast": "Contraste élevé"

@@ -760,6 +760,7 @@ export const en_XA: EnTranslations = {
       "reset": "[Ŕéšéţ]",
       "presets": {
         "classic": "[Çļáššíç Ĝóļð]",
+        "aphasya": "[Áþĥášýá]",
         "midnight": "[Ɱíðñíĝĥţ]",
         "parchment": "[Þáŕçĥɱéñţ]",
         "highContrast": "[Ĥíĝĥ Çóñţŕášţ]"

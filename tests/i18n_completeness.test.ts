@@ -162,6 +162,7 @@ describe('i18n whole-catalog completeness', () => {
       'serverUnavailable.logoAlt', // "World of Aphasya" logo alt text - brand
       'guide.brand', // "World of Aphasya" - brand (Guide)
       'guide.brandShort', // "Aphasya" - brand (Guide)
+      'hudChrome.theme.presets.aphasya', // "Aphasya" - brand (UI theme preset)
       'guide.home.title', // "World of Aphasya" - brand (Guide hero)
       'guide.footer.rights', // "World of Aphasya" - brand (Guide footer)
       'hudChrome.discord.title', // "Discord" - brand

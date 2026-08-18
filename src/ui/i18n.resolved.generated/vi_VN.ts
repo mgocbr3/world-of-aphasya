@@ -760,6 +760,7 @@ export const vi_VN: EnTranslations = {
       "reset": "Đặt Lại",
       "presets": {
         "classic": "Vàng Cổ Điển",
+        "aphasya": "Aphasya",
         "midnight": "Nửa Đêm",
         "parchment": "Giấy Da",
         "highContrast": "Tương Phản Cao"

@@ -760,6 +760,7 @@ export const sv_SE: EnTranslations = {
       "reset": "Återställ",
       "presets": {
         "classic": "Klassiskt guld",
+        "aphasya": "Aphasya",
         "midnight": "Midnatt",
         "parchment": "Pergament",
         "highContrast": "Hög kontrast"

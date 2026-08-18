@@ -760,6 +760,7 @@ export const ru_RU: EnTranslations = {
       "reset": "Сброс",
       "presets": {
         "classic": "Классическое золото",
+        "aphasya": "Aphasya",
         "midnight": "Полночь",
         "parchment": "Пергамент",
         "highContrast": "Высокий контраст"

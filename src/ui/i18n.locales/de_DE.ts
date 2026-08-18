@@ -4052,6 +4052,7 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.customColors': 'Eigene Farben',
   'hudChrome.theme.reset': 'Zurücksetzen',
   'hudChrome.theme.presets.classic': 'Klassisches Gold',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.midnight': 'Mitternacht',
   'hudChrome.theme.presets.parchment': 'Pergament',
   'hudChrome.theme.presets.highContrast': 'Hoher Kontrast',

@@ -8035,6 +8035,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.knob.textMuted': 'Dämpad text',
   'hudChrome.theme.preset': 'Gränssnittstema',
   'hudChrome.theme.presets.classic': 'Klassiskt guld',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.highContrast': 'Hög kontrast',
   'hudChrome.theme.presets.midnight': 'Midnatt',
   'hudChrome.theme.presets.parchment': 'Pergament',

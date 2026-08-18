@@ -920,6 +920,7 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.customColors': '自定义颜色',
   'hudChrome.theme.reset': '重置',
   'hudChrome.theme.presets.classic': '经典金色',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.midnight': '午夜',
   'hudChrome.theme.presets.parchment': '羊皮纸',
   'hudChrome.theme.presets.highContrast': '高对比度',

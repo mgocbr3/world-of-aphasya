@@ -760,6 +760,7 @@ export const tr_TR: EnTranslations = {
       "reset": "Sıfırla",
       "presets": {
         "classic": "Klasik Altın",
+        "aphasya": "Aphasya",
         "midnight": "Gece Yarısı",
         "parchment": "Parşömen",
         "highContrast": "Yüksek Kontrast"

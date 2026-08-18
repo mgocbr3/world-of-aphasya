@@ -921,6 +921,7 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.customColors': '自訂顏色',
   'hudChrome.theme.reset': '重設',
   'hudChrome.theme.presets.classic': '經典金色',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.midnight': '午夜',
   'hudChrome.theme.presets.parchment': '羊皮紙',
   'hudChrome.theme.presets.highContrast': '高對比',

@@ -760,6 +760,7 @@ export const en: EnTranslations = {
       "reset": "Reset",
       "presets": {
         "classic": "Classic Gold",
+        "aphasya": "Aphasya",
         "midnight": "Midnight",
         "parchment": "Parchment",
         "highContrast": "High Contrast"

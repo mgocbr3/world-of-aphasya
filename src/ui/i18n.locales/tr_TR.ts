@@ -8770,6 +8770,7 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.knob.textMuted': 'Soluk Yazı',
   'hudChrome.theme.preset': 'Arayüz Teması',
   'hudChrome.theme.presets.classic': 'Klasik Altın',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.highContrast': 'Yüksek Kontrast',
   'hudChrome.theme.presets.midnight': 'Gece Yarısı',
   'hudChrome.theme.presets.parchment': 'Parşömen',

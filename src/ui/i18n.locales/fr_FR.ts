@@ -4462,6 +4462,7 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.customColors': 'Couleurs personnalisées',
   'hudChrome.theme.reset': 'Réinitialiser',
   'hudChrome.theme.presets.classic': 'Or classique',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.midnight': 'Minuit',
   'hudChrome.theme.presets.parchment': 'Parchemin',
   'hudChrome.theme.presets.highContrast': 'Contraste élevé',

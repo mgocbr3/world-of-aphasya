@@ -760,6 +760,7 @@ export const ja_JP: EnTranslations = {
       "reset": "リセット",
       "presets": {
         "classic": "クラシックゴールド",
+        "aphasya": "Aphasya",
         "midnight": "ミッドナイト",
         "parchment": "羊皮紙",
         "highContrast": "ハイコントラスト"

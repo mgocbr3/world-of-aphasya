@@ -946,6 +946,7 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.theme.customColors': '사용자 지정 색상',
   'hudChrome.theme.reset': '초기화',
   'hudChrome.theme.presets.classic': '클래식 골드',
+  'hudChrome.theme.presets.aphasya': 'Aphasya',
   'hudChrome.theme.presets.midnight': '미드나이트',
   'hudChrome.theme.presets.parchment': '양피지',
   'hudChrome.theme.presets.highContrast': '고대비',
