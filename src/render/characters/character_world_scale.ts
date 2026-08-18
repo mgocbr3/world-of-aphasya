@@ -8,7 +8,7 @@
 // from the scaled height and follow. Uniform across the whole cast so
 // relative combat scale (wolf vs player vs boss) is untouched.
 
-export const CHARACTER_VISUAL_WORLD_SCALE = 0.82;
+export const CHARACTER_VISUAL_WORLD_SCALE = 0.74;
 
 /** A manifest def height brought into world proportion. */
 export function scaledVisualHeight(defHeight: number): number {
