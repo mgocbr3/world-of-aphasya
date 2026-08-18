@@ -1989,8 +1989,6 @@ export class Renderer {
 
   private lowGfx: boolean;
   private post: PostPipeline | null = null;
-  // Eased per-biome ambience responses: the Aphasya output grade push and the
-  // god-ray zone strength (see aphasya_grade_driver.ts; `?agrade=off`).
   private readonly aphasyaGrade = new AphasyaGradeDriver();
   private godRays: THREE.Sprite[] = [];
   private viewport = { width: 1, height: 1 };
@@ -9722,7 +9720,9 @@ export class Renderer {
       this.valeCupSky.mesh.visible = false;
     }
     const biome = zoneBiomeAt(this.sim.player.pos.x, pz);
-    this.aphasyaGrade.update(biome, dt, this.post?.grade ?? null, Renderer.BIOME_GOD_RAYS[biome]);
+    const agGrade = this.post?.grade ?? null;
+    const agShaft = Renderer.BIOME_GOD_RAYS[biome];
+    this.aphasyaGrade.update(biome, dt, agGrade, agShaft, this.dnGrade.nightAmt);
     const phaseOverride = dayNightPhaseOverride();
     if (this.lowGfx && DAY_ONLY && phaseOverride === null) {
       if (this.fixedLowDayBiome !== biome) {

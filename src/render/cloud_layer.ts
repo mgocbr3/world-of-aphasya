@@ -68,8 +68,10 @@ const CLOUD_FRAGMENT = /* glsl */ `
     // slightly denser heart
     float cloud = smoothstep(0.52, 0.68, n);
     float heart = smoothstep(0.62, 0.82, n);
-    // the rim fade keeps the dome's own horizon band the hero at distance
-    float rim = 1.0 - smoothstep(0.62, 0.96, vRim);
+    // the rim fade dissolves the disk well before its geometric edge: from
+    // the camera the rim sits ABOVE the visible horizon, so a late fade shows
+    // as a hard arc across the sky (worst at night against the star field)
+    float rim = 1.0 - smoothstep(0.42, 0.8, vRim);
     float alpha = cloud * (0.75 + 0.25 * heart) * rim * uOpacity;
     if (alpha < 0.004) discard;
     // hearts shade a touch deeper, undersides of the painted kind

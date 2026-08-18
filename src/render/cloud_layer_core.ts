@@ -19,7 +19,12 @@ export const CLOUD_BASE: readonly [number, number, number] = [0.94, 0.95, 0.97];
 export const CLOUD_DUSK: readonly [number, number, number] = [1.08, 0.82, 0.62];
 /** Full-day cloud opacity; night fades toward the floor below. */
 export const CLOUD_DAY_OPACITY = 0.62;
-export const CLOUD_NIGHT_OPACITY_FLOOR = 0.2;
+/**
+ * Deep-night opacity: a bare veil. Anything stronger reads as a dark blotch
+ * blocking the star field (the darkened cloud colour sits OVER the stars),
+ * with the disk's own rim showing as an arc across the night sky.
+ */
+export const CLOUD_NIGHT_OPACITY_FLOOR = 0.05;
 
 /**
  * Resolve the cloud band's tint and opacity from the sky's live grading:

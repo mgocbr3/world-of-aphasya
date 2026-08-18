@@ -12,6 +12,7 @@ import {
   APHASYA_BIOME_GRADES,
   gradeStateFrom,
   NEUTRAL_GRADE,
+  nightNeutralizedGrade,
   stepGradeState,
   toneMappingChoice,
 } from './aphasya_grade_core';
@@ -30,6 +31,7 @@ export function aphasyaToneMapping(): ToneMapping {
 
 export class AphasyaGradeDriver {
   private readonly state = gradeStateFrom(NEUTRAL_GRADE);
+  private readonly target = gradeStateFrom(NEUTRAL_GRADE);
   // `?agrade=off` freezes the pass on its neutral legacy defaults.
   private readonly gradeOn = !renderLayerDisabled('agrade');
   // Eased per-biome god-ray strength: the shafts are "sun through bright air"
@@ -43,11 +45,13 @@ export class AphasyaGradeDriver {
     dt: number,
     grade: OutputGradePass | null,
     godRayTarget: number | undefined,
+    nightAmt = 0,
   ): void {
     const shaft = godRayTarget ?? 1;
     this.godRayScale += (shaft - this.godRayScale) * (1 - Math.exp(-2 * Math.max(0, dt)));
     if (!this.gradeOn || grade === null) return;
-    stepGradeState(this.state, APHASYA_BIOME_GRADES[biome], dt);
+    nightNeutralizedGrade(APHASYA_BIOME_GRADES[biome], nightAmt, this.target);
+    stepGradeState(this.state, this.target, dt);
     grade.setGrade(this.state.lift, this.state.gain, this.state.gamma, this.state.sat);
   }
 }

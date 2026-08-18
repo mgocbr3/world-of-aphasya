@@ -106,6 +106,23 @@ export function toneMappingChoice(search: string | undefined): 'aces' | 'agx' {
   return m ? (m[1] as 'aces' | 'agx') : 'agx';
 }
 
+/**
+ * Night-neutralize an authored grade into `out`: the biome grades are
+ * DAYLIGHT looks (the vale's warm gain and saturation lift), and applied
+ * whole at night they brighten and warm the ground under a properly dark
+ * sky, which reads as daytime under a black sky. As the star field comes up
+ * the target eases most of the way back to the neutral legacy grade.
+ */
+export function nightNeutralizedGrade(grade: BiomeGrade, nightAmt: number, out: GradeState): void {
+  const k = Math.min(1, Math.max(0, nightAmt)) * 0.75;
+  for (let i = 0; i < 3; i++) {
+    out.lift[i] = grade.lift[i] + (NEUTRAL_GRADE.lift[i] - grade.lift[i]) * k;
+    out.gain[i] = grade.gain[i] + (NEUTRAL_GRADE.gain[i] - grade.gain[i]) * k;
+  }
+  out.gamma = grade.gamma + (NEUTRAL_GRADE.gamma - grade.gamma) * k;
+  out.sat = grade.sat + (NEUTRAL_GRADE.sat - grade.sat) * k;
+}
+
 /** Ease `state` toward `target` in place; alloc-free for the per-frame path. */
 export function stepGradeState(
   state: GradeState,
