@@ -8,7 +8,8 @@ import {
   yieldToMainThread,
 } from '../texture_prewarm';
 import { ensureSkinTexture } from './assets';
-import { VISUALS } from './manifest';
+import { quaterniusSpikeOn } from './character_spike_flag';
+import { spikeVisualKeyFor, VISUALS } from './manifest';
 import { type ModularLook, modularSignature } from './modular';
 import { type PortraitFraming, portraitFrameParams } from './portrait_framing';
 import { runPortraitPrewarm } from './portrait_prewarm_core';
@@ -147,7 +148,14 @@ export function playerPortraitDataUrl(
   skin = 0,
   framing: PortraitFraming = 'headshot',
 ): string | null {
-  return visualPortraitDataUrl(`player_${cls}`, skin, framing);
+  return visualPortraitDataUrl(playerPortraitVisualKey(cls), skin, framing);
+}
+
+/** The body a player's portrait is taken from. Normally the class rig; under
+ *  the proportion spike, the body the world actually draws, so the unit frame
+ *  does not show a chibi head over a differently-proportioned character. */
+function playerPortraitVisualKey(cls: PlayerClass): string {
+  return quaterniusSpikeOn() ? spikeVisualKeyFor(cls, 'male') : `player_${cls}`;
 }
 
 /**
@@ -232,7 +240,7 @@ export async function prewarmPlayerPortrait(
   skin = 0,
   framing: PortraitFraming = 'headshot',
 ): Promise<void> {
-  const visualKey = `player_${cls}`;
+  const visualKey = playerPortraitVisualKey(cls);
   const key = `${visualKey}:${skin}:${framing}`;
   let prewarmRig: PortraitRig | null = null;
   await runPortraitPrewarm<CharacterVisual>({
