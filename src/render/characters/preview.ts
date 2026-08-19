@@ -186,7 +186,7 @@ export class CharacterPreview {
     const offhand =
       offhandItemId !== undefined ? offhandItemId : (CLASSES[cls].startOffhand ?? null);
     if (quaterniusSpikeOn()) {
-      this.setVisualKey(spikeVisualKeyFor(cls, 'male'));
+      this.setVisualKey(spikeVisualKeyFor(cls, 'male'), weapon, null, offhand);
       return;
     }
     this.setVisualKey(`player_${cls}`, weapon, null, offhand);
@@ -251,7 +251,10 @@ export class CharacterPreview {
       // on this rig. Showing it here is the point, so the creator screen answers
       // the same question the town does instead of previewing a body the world
       // would not draw.
-      this.setVisualKey(spikeVisualKeyFor(cls, app.gender === 'female' ? 'female' : 'male'));
+      // Weapons still travel: the spike defs carry hand slots, so a class's
+      // starting mainhand and offhand swap in exactly as they do on a class rig.
+      const key = spikeVisualKeyFor(cls, app.gender === 'female' ? 'female' : 'male');
+      this.setVisualKey(key, weapon, null, offhand);
       return;
     }
     this.setVisualKey(modularVisualKey(cls), weapon, null, offhand);

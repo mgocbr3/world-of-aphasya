@@ -459,10 +459,26 @@ function swapAttachDef(
   if (skinUrl) {
     const skin = weaponSkinId ? WEAPON_SKINS[weaponSkinId] : null;
     const bone = skin ? weaponSkinAttachBone(weaponSkinHandling(skin), base.bone) : base.bone;
-    return { url: skinUrl, bone };
+    return { ...authoredGrip(base), url: skinUrl, bone };
   }
   const url = itemWeaponModelUrl(weaponItemId);
-  return url ? { url, bone: base.bone } : base;
+  return url ? { ...authoredGrip(base), url, bone: base.bone } : base;
+}
+
+/**
+ * The grip a def authored by hand, carried onto whatever model swaps into the
+ * slot. Rigs on the per-variant grip path do not need this (the table keys off
+ * the weapon, so each swapped model brings its own transform), but a rig that
+ * authors ONE grip for the slot must keep it: dropping these fields left the
+ * equipped weapon at raw pack scale, a blade taller than its owner.
+ */
+function authoredGrip(base: AttachDef): Partial<AttachDef> {
+  const grip: Partial<AttachDef> = {};
+  if (base.position) grip.position = base.position;
+  if (base.rotation) grip.rotation = base.rotation;
+  if (base.rotationY !== undefined) grip.rotationY = base.rotationY;
+  if (base.scale !== undefined) grip.scale = base.scale;
+  return grip;
 }
 
 // The AttachDef for the actual equipped offhand. Its model is the offhand item's
@@ -479,7 +495,7 @@ function offhandAttachDef(
   // The mirrored-skin arm of offhandModelUrl can name a streamed skin GLB; the
   // item's own offhand model is always resident, so degrade to it.
   const resident = residentOrEnsure(url) ?? itemOffhandModelUrl(offhandItemId);
-  return resident ? { url: resident, bone: base.bone } : null;
+  return resident ? { ...authoredGrip(base), url: resident, bone: base.bone } : null;
 }
 
 // Classes without weaponSlots keep a FIXED weapon visual (the hunter's ranged
