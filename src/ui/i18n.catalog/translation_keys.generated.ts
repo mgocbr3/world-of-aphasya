@@ -202,6 +202,8 @@ export type TranslationKeyFlat =
   | 'auth.bodyElbows'
   | 'auth.bodyFeet'
   | 'auth.bodyHands'
+  | 'auth.bodyHeadSize'
+  | 'auth.bodyHeight'
   | 'auth.bodyHips'
   | 'auth.bodyKnees'
   | 'auth.bodyShoulders'

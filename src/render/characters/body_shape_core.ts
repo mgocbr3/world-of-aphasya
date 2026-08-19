@@ -35,6 +35,9 @@ export type BodyAxis =
   | 'armLength'
   | 'armWidth'
   | 'legLength'
+  | 'hips'
+  | 'hands'
+  | 'feet'
   | 'headSize';
 
 export const BODY_AXES: readonly BodyAxis[] = [
@@ -44,6 +47,9 @@ export const BODY_AXES: readonly BodyAxis[] = [
   'armLength',
   'armWidth',
   'legLength',
+  'hips',
+  'hands',
+  'feet',
   'headSize',
 ];
 
@@ -63,6 +69,9 @@ export const AXIS_RANGE: Record<BodyAxis, number> = {
   armLength: 0.08,
   armWidth: 0.12,
   legLength: 0.08,
+  hips: 0.1,
+  hands: 0.14,
+  feet: 0.12,
   headSize: 0.16,
 };
 
@@ -99,6 +108,9 @@ export function bodyScalePlan(axes: BodyAxes): BoneScale[] {
   const armLength = factor(axes, 'armLength');
   const armWidth = factor(axes, 'armWidth');
   const legLength = factor(axes, 'legLength');
+  const hips = factor(axes, 'hips');
+  const hands = factor(axes, 'hands');
+  const feet = factor(axes, 'feet');
   const headSize = factor(axes, 'headSize');
 
   const plan: BoneScale[] = [
@@ -128,9 +140,24 @@ export function bodyScalePlan(axes: BodyAxes): BoneScale[] {
       scale: [1, shoulders, 1],
       compensate: ['upperarm_r'],
     },
+    // Hips widen the pelvis across and through, never up: taller hips would
+    // just raise the whole upper body. Both thighs undo it, or wide hips give
+    // tree-trunk legs.
+    {
+      bone: 'pelvis',
+      scale: [hips, 1, hips],
+      compensate: ['thigh_l', 'thigh_r', 'spine_01'],
+    },
     // The head is the loudest small change on a humanoid, so it gets the widest
     // range and the simplest treatment: uniform, with nothing below it to undo.
     { bone: 'Head', scale: [headSize, headSize, headSize], compensate: [] },
+    // Hands and feet are leaves, like the head: uniform, nothing beneath them.
+    // A hand carries whatever it holds, so this is the one leaf whose scale a
+    // player sees on their weapon too, which is why its range stays modest.
+    { bone: 'hand_l', scale: [hands, hands, hands], compensate: [] },
+    { bone: 'hand_r', scale: [hands, hands, hands], compensate: [] },
+    { bone: 'foot_l', scale: [feet, feet, feet], compensate: [] },
+    { bone: 'foot_r', scale: [feet, feet, feet], compensate: [] },
   ];
 
   for (const [i, bone] of ARMS.entries()) {

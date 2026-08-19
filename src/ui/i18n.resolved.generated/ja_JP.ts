@@ -6603,6 +6603,8 @@ export const ja_JP: EnTranslations = {
     "bodyElbows": "ひじ",
     "bodyKnees": "ひざ",
     "bodyFeet": "足",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "口",
     "mouthNeutral": "ふつう",
     "mouthLips": "厚い唇",

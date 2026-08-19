@@ -6603,6 +6603,8 @@ export const de_DE: EnTranslations = {
     "bodyElbows": "Ellbogen",
     "bodyKnees": "Knie",
     "bodyFeet": "Füße",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "Mund",
     "mouthNeutral": "Neutral",
     "mouthLips": "Volle Lippen",

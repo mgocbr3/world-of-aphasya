@@ -6603,6 +6603,8 @@ export const en_XA: EnTranslations = {
     "bodyElbows": "[Éļƀóŵš]",
     "bodyKnees": "[Ķñééš]",
     "bodyFeet": "[Ƒééţ]",
+    "bodyHeight": "[Ĥéíĝĥţ]",
+    "bodyHeadSize": "[Ĥéáð Šížé]",
     "mouth": "[Ɱóúţĥ]",
     "mouthNeutral": "[Ñéúţŕáļ]",
     "mouthLips": "[Ƒúļļ ļíþš]",

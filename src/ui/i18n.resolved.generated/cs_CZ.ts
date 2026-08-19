@@ -6603,6 +6603,8 @@ export const cs_CZ: EnTranslations = {
     "bodyElbows": "Lokty",
     "bodyKnees": "Kolena",
     "bodyFeet": "Chodidla",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "Ústa",
     "mouthNeutral": "Neutrální",
     "mouthLips": "Plné rty",

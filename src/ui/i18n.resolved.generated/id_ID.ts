@@ -6603,6 +6603,8 @@ export const id_ID: EnTranslations = {
     "bodyElbows": "Siku",
     "bodyKnees": "Lutut",
     "bodyFeet": "Kaki",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "Mulut",
     "mouthNeutral": "Netral",
     "mouthLips": "Bibir penuh",

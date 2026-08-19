@@ -11,11 +11,9 @@
 // labelled "chest" should make a character look stronger, whichever mechanism
 // the rig underneath happens to use.
 //
-// Two sliders have no bone to move (`hips`, `feet`) and are deliberately left
-// out rather than bound to something they do not mean; two axes the new rig
-// offers have no slider yet (`height`, `headSize`), and stay at neutral until
-// the creator grows rows for them. Both gaps are honest and visible here, which
-// is the point of putting the mapping in one small file.
+// Every slider on screen now reaches a bone, and the two axes the rig offers
+// that no region slider covers (overall height and head size) have their own
+// rows, so nothing here is a stub.
 
 import type { BodyAxes } from './body_shape_core';
 import type { FaceAxes } from './face_shape_core';
@@ -29,11 +27,20 @@ export function spikeBodyAxes(app: ModularAppearance): BodyAxes {
     // thing it has to a strength slider.
     build: body?.chest ?? 0,
     shoulders: body?.shoulders ?? 0,
+    hips: body?.hips ?? 0,
     // Elbows sit on the forearm, so the slider that thickened them becomes arm
-    // thickness; hands scale the same way a bigger frame carries bigger hands.
-    armWidth: ((body?.elbows ?? 0) + (body?.hands ?? 0)) / 2,
-    // Knees are the only limb-length signal the creator carries today.
+    // thickness; hands keep their own row because a hand is a silhouette a
+    // player reads at a glance.
+    armWidth: body?.elbows ?? 0,
+    armLength: body?.elbows ?? 0,
+    hands: body?.hands ?? 0,
+    // Knees are the limb-length signal the creator carries; feet are their own
+    // leaf, like the head.
     legLength: body?.knees ?? 0,
+    feet: body?.feet ?? 0,
+    // The two whole-body axes, which have no region slider and their own rows.
+    height: app.height ?? 0,
+    headSize: app.headSize ?? 0,
   };
 }
 

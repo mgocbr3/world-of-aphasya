@@ -10,6 +10,7 @@
 // Persistence is the caller's job, this component is stateless across mounts
 // apart from the value it is constructed with.
 
+import { quaterniusSpikeOn } from '../render/characters/character_spike_flag';
 import {
   type DesignCodeError,
   decodeDesignCode,
@@ -21,6 +22,8 @@ import {
   type BeardStyle,
   BLUSH_SHADES,
   type BlushShade,
+  BODY_SLIDERS,
+  type BodySlider,
   BROW_STYLES,
   type BrowStyle,
   blushColor,
@@ -181,13 +184,28 @@ const FACE_LABEL: Record<FaceSlider, TranslationKey> = {
   smirk: 'auth.faceSmirk',
 };
 
-// No BODY_LABEL / body rows here on purpose. Body proportions are an AUTHORING
-// concern, not a player one: they are sculpted once in the Fit Studio
-// (scripts/asset_pipeline fit) and baked into the shipped body, and the game's
-// creator must not offer a second, contradictory set of them. `BodyShape` stays
-// in the appearance model, the data and its morphs are untouched, and the
-// auth.body* strings stay in the catalog, so the row set can come back without
-// re-authoring anything if that decision ever changes.
+// Body rows are OFF for the shipped body, and that is a decision, not an
+// oversight: its proportions are an AUTHORING concern, sculpted once in the Fit
+// Studio (scripts/asset_pipeline fit) and baked into the model, so a creator
+// offering a second, contradictory set of them would be lying about what it
+// controls.
+//
+// The proportion spike inverts that premise rather than overturning it. Its rig
+// bakes nothing: proportion exists only as bone scale, applied live, so these
+// rows are the ONLY thing that can shape that body and are a genuine player
+// choice there. Hence one row set, shown against the rig that can honour it.
+// `BodyShape` stayed in the appearance model and the auth.body* strings stayed
+// in the catalog precisely so this could come back without re-authoring.
+
+const BODY_LABEL: Record<BodySlider, TranslationKey> = {
+  shoulders: 'auth.bodyShoulders',
+  chest: 'auth.bodyChest',
+  hips: 'auth.bodyHips',
+  hands: 'auth.bodyHands',
+  elbows: 'auth.bodyElbows',
+  knees: 'auth.bodyKnees',
+  feet: 'auth.bodyFeet',
+};
 
 const EYE_LABEL: Record<EyeStyle, TranslationKey> = {
   round: 'auth.eyeRound',
@@ -1078,6 +1096,40 @@ export function mountAppearanceCustomizer(
     },
     0.12,
   );
+
+  // Proportions, only against a rig that shapes them live (see the note above
+  // BODY_LABEL). Height and head size sit apart from the seven region sliders
+  // because they are whole-body reads rather than one region, and because they
+  // are the two a player reaches for first.
+  if (quaterniusSpikeOn()) {
+    divider(pBody);
+    slider(
+      pBody,
+      'auth.bodyHeight',
+      () => value.height ?? 0,
+      (v) => {
+        value = { ...value, height: v };
+      },
+    );
+    slider(
+      pBody,
+      'auth.bodyHeadSize',
+      () => value.headSize ?? 0,
+      (v) => {
+        value = { ...value, headSize: v };
+      },
+    );
+    for (const key of BODY_SLIDERS) {
+      slider(
+        pBody,
+        BODY_LABEL[key],
+        () => value.body?.[key] ?? 0,
+        (v) => {
+          value = { ...value, body: { ...value.body, [key]: v } };
+        },
+      );
+    }
+  }
 
   // Face: the feature pickers first (they change the read of the face most),
   // then the sculpt sliders as the fine-tune pass.

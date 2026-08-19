@@ -6603,6 +6603,8 @@ export const da_DK: EnTranslations = {
     "bodyElbows": "Albuer",
     "bodyKnees": "Knæ",
     "bodyFeet": "Fødder",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "Mund",
     "mouthNeutral": "Neutral",
     "mouthLips": "Fyldige læber",

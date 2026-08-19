@@ -6603,6 +6603,8 @@ export const vi_VN: EnTranslations = {
     "bodyElbows": "Khuỷu Tay",
     "bodyKnees": "Đầu Gối",
     "bodyFeet": "Bàn Chân",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "Miệng",
     "mouthNeutral": "Bình thường",
     "mouthLips": "Môi dày",

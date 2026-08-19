@@ -6603,6 +6603,8 @@ export const tr_TR: EnTranslations = {
     "bodyElbows": "Dirsekler",
     "bodyKnees": "Dizler",
     "bodyFeet": "Ayaklar",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "Ağız",
     "mouthNeutral": "Nötr",
     "mouthLips": "Dolgun dudak",

@@ -6603,6 +6603,8 @@ export const pt_BR: EnTranslations = {
     "bodyElbows": "Cotovelos",
     "bodyKnees": "Joelhos",
     "bodyFeet": "Pés",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "Boca",
     "mouthNeutral": "Neutra",
     "mouthLips": "Lábios cheios",

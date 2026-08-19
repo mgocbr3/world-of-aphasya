@@ -6603,6 +6603,8 @@ export const zh_TW: EnTranslations = {
     "bodyElbows": "手肘",
     "bodyKnees": "膝蓋",
     "bodyFeet": "腳部",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "嘴巴",
     "mouthNeutral": "普通",
     "mouthLips": "豐唇",

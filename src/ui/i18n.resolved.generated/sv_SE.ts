@@ -6603,6 +6603,8 @@ export const sv_SE: EnTranslations = {
     "bodyElbows": "Armbågar",
     "bodyKnees": "Knän",
     "bodyFeet": "Fötter",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "Mun",
     "mouthNeutral": "Neutral",
     "mouthLips": "Fylliga läppar",

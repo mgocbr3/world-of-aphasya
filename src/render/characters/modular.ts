@@ -448,6 +448,11 @@ export interface ModularAppearance {
   face: FaceShape;
   /** -1..1 per body region; 0 is the sculpted default. */
   body: BodyShape;
+  /** Overall size and head size, -1..1. Separate from `body` because they have
+   *  no morph on the sculpted KayKit body and exist only where a rig can
+   *  express them by scaling bones; a body that cannot simply ignores them. */
+  height: number;
+  headSize: number;
   mouth: MouthStyle;
   eyeShape: EyeStyle;
   ears: EarStyle;
@@ -496,6 +501,8 @@ export const DEFAULT_APPEARANCE: ModularAppearance = {
   ears: 'round',
   // the default body is male, and lashes are the female standard
   lashes: false,
+  height: 0,
+  headSize: 0,
   // starts on the hair's default so the out-of-the-box look still reads as
   // "lashes match the hair"; the wheel is there to break that on purpose
   lashHue: 26,
@@ -2049,6 +2056,11 @@ export function normalizeAppearance(
       typeof a?.lashes === 'boolean'
         ? a.lashes
         : defaultLashes(a?.gender === 'female' ? 'female' : 'male'),
+    // Clamped like every other slider: these arrive from an untrusted wire
+    // field, and a body scale is one of the few appearance values that could
+    // look like an advantage if a client sent a wild one.
+    height: num(a?.height, d.height, -1, 1),
+    headSize: num(a?.headSize, d.headSize, -1, 1),
     lashHue: num(a?.lashHue, d.lashHue, 0, 360),
     lashSat: num(a?.lashSat, d.lashSat, 0, 1),
     lashLight: num(a?.lashLight, d.lashLight, 0.02, 0.95),

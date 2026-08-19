@@ -6603,6 +6603,8 @@ export const ru_RU: EnTranslations = {
     "bodyElbows": "Локти",
     "bodyKnees": "Колени",
     "bodyFeet": "Ступни",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "Рот",
     "mouthNeutral": "Обычный",
     "mouthLips": "Пухлые губы",

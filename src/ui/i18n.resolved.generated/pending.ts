@@ -9,25 +9,85 @@
 // Reproducibility is checked by tests/i18n_resolved_equivalence.test.ts.
 
 export const pending: Record<string, readonly string[]> = {
-  "es": [],
-  "es_ES": [],
-  "fr_FR": [],
-  "fr_CA": [],
+  "es": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "es_ES": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "fr_FR": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "fr_CA": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
   "en_CA": [],
-  "it_IT": [],
-  "de_DE": [],
-  "zh_CN": [],
-  "zh_TW": [],
-  "ko_KR": [],
-  "ja_JP": [],
-  "pt_BR": [],
-  "ru_RU": [],
-  "cs_CZ": [],
-  "nl_NL": [],
-  "pl_PL": [],
-  "id_ID": [],
-  "tr_TR": [],
-  "sv_SE": [],
-  "vi_VN": [],
-  "da_DK": []
+  "it_IT": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "de_DE": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "zh_CN": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "zh_TW": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "ko_KR": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "ja_JP": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "pt_BR": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "ru_RU": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "cs_CZ": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "nl_NL": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "pl_PL": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "id_ID": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "tr_TR": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "sv_SE": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "vi_VN": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ],
+  "da_DK": [
+    "auth.bodyHeadSize",
+    "auth.bodyHeight"
+  ]
 };

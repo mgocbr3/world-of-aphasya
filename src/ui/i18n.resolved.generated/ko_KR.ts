@@ -6603,6 +6603,8 @@ export const ko_KR: EnTranslations = {
     "bodyElbows": "팔꿈치",
     "bodyKnees": "무릎",
     "bodyFeet": "발",
+    "bodyHeight": "Height",
+    "bodyHeadSize": "Head Size",
     "mouth": "입",
     "mouthNeutral": "기본",
     "mouthLips": "도톰한 입술",
