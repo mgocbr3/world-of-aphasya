@@ -255,12 +255,28 @@ const quaternius = (): ClipMap => ({
 });
 
 // The four kits the free tier ships, in the order the town draws from them.
-export const SPIKE_VISUAL_KEYS = [
-  'spike_male_ranger',
-  'spike_female_ranger',
-  'spike_male_peasant',
-  'spike_female_peasant',
-] as const;
+export type SpikeRace = 'human' | 'orc' | 'elf' | 'dwarf' | 'necromancer';
+
+/** Kit per race, mirroring what spikeVisualKeyFor derives from the class. */
+const SPIKE_RACE_KITS: Record<SpikeRace, ReadonlyArray<'ranger' | 'peasant'>> = {
+  human: ['ranger', 'peasant'],
+  orc: ['ranger'],
+  elf: ['ranger'],
+  dwarf: ['ranger'],
+  necromancer: ['peasant'],
+};
+
+/**
+ * Every body the spike can draw. The race lives in the KEY, not in the file: a
+ * body GLB is headless and race-agnostic, and the head rides the head bone as
+ * an attachment. Baking race into the body instead would turn four files into
+ * twenty, while a head is a couple of thousand triangles any body can wear.
+ */
+export const SPIKE_VISUAL_KEYS = (Object.keys(SPIKE_RACE_KITS) as SpikeRace[]).flatMap((race) =>
+  SPIKE_RACE_KITS[race].flatMap((kit) =>
+    (['male', 'female'] as const).map((gender) => `spike_${race}_${gender}_${kit}`),
+  ),
+);
 
 /**
  * Hands for the spike bodies. Two things make this different from a class def.
@@ -273,6 +289,21 @@ export const SPIKE_VISUAL_KEYS = [
  * every weapon a player equips, so one grip serves a sword and a staff alike:
  * coarser than the class rigs, and the honest cost of a second rig.
  */
+
+/**
+ * The head each race wears, mounted on the head bone. A head is the one body
+ * part that can be a rigid attachment without reading as one: it is a single
+ * bone all the way through, so nothing about it needs to deform. The human head
+ * is cut from the same CC0 pack the bodies come from, which also makes it the
+ * scale reference every generated head is fitted against.
+ */
+const SPIKE_RACE_HEADS: Record<SpikeRace, string> = {
+  human: 'head_human',
+  orc: 'head_human',
+  elf: 'head_human',
+  dwarf: 'head_human',
+  necromancer: 'head_human',
+};
 
 /** The spike bodies, one VisualDef each, all lazy and all off the boot path. */
 function spikeVisuals(): Record<string, VisualDef> {
@@ -307,9 +338,19 @@ function spikeVisuals(): Record<string, VisualDef> {
   ];
   const out: Record<string, VisualDef> = {};
   for (const key of SPIKE_VISUAL_KEYS) {
+    const [race, gender, kit] = key.slice('spike_'.length).split('_') as [
+      SpikeRace,
+      'male' | 'female',
+      string,
+    ];
     out[key] = {
-      url: `${PLAYERS}/spike/quaternius_${key.slice('spike_'.length)}.glb`,
-      attach: SPIKE_HANDS,
+      url: `${PLAYERS}/spike/quaternius_${gender}_${kit}.glb`,
+      attach: [
+        ...SPIKE_HANDS,
+        // Seated on the bone, not offset: the head asset is exported with its
+        // neck stump at the origin precisely so this needs no per-race nudge.
+        { url: `${PLAYERS}/spike/${SPIKE_RACE_HEADS[race]}.glb`, bone: 'Head' },
+      ],
       weaponSlots: [0],
       offhandSlot: 1,
       // Authored about 1.87 world units crown to floor; the class rigs are 2.6
@@ -3306,7 +3347,33 @@ const SPIKE_SWAPPABLE_MOBS = new Set([
 export function spikeVisualKeyFor(cls: string, gender: 'male' | 'female'): string {
   const robed = cls === 'mage' || cls === 'priest' || cls === 'warlock';
   const kit = robed ? 'peasant' : 'ranger';
-  return `spike_${gender}_${kit}`;
+  return `spike_${spikeRaceFor(cls)}_${gender}_${kit}`;
+}
+
+/**
+ * The race a class wears. Purely cosmetic, chosen by archetype: the tank reads
+ * as mass, the archer and the knife as speed, the shadow casters as something
+ * no longer alive. Nine classes in, nine classes out, and no stat, ability or
+ * number moves, which is the whole point of running this through the visual
+ * layer rather than the sim.
+ */
+export function spikeRaceFor(cls: string): SpikeRace {
+  switch (cls) {
+    case 'warrior':
+      return 'orc';
+    case 'hunter':
+    case 'rogue':
+      return 'elf';
+    case 'shaman':
+    case 'druid':
+      return 'dwarf';
+    case 'mage':
+    case 'warlock':
+      return 'necromancer';
+    default:
+      // paladin and priest: the orders that stayed human.
+      return 'human';
+  }
 }
 
 /** Deterministic per-template pick, so a given villager keeps the same body. */

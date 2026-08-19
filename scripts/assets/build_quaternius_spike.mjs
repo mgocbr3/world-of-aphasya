@@ -65,6 +65,19 @@ const BODY = FEMALE ? 'Superhero_Female_FullBody' : 'Superhero_Male_FullBody';
 // bound by the same nearest-vertex weight transfer the armour used, restricted
 // to the neck and skull donors, so it follows the head bone like the original.
 const HEAD_OVERRIDE = argFlag('--head');
+// Build the body with NO head at all (--headless), so a racial head rides the
+// head bone as an attachment instead. That is what keeps racial variety cheap:
+// baking race into the body would multiply four bodies into twenty (race by
+// gender by kit), while a head is a couple of thousand triangles that any body
+// can wear. A head is also the one part that can be rigid without looking it,
+// since it is a single bone all the way through, which is why this needs no
+// weight transfer at all.
+const HEADLESS = process.argv.includes('--headless');
+// Emit the pack's own head as a standalone head asset (--emit-head <glb>) and
+// stop. That gives the human race a head from the same CC0 pack the bodies come
+// from, and it is the reference every generated head is measured against: same
+// scale, same neck stump, same seat on the bone.
+const EMIT_HEAD = argFlag('--emit-head');
 function argFlag(name) {
   const at = process.argv.indexOf(name);
   return at >= 0 ? process.argv[at + 1] : null;
@@ -102,6 +115,14 @@ function healPackTextureNames(gltfPath) {
 // pescoco, fica feio"). The kit's tunic spans 0.91 to 1.60 and its hood 1.53 to
 // 1.87, so everything kept below the chin sits inside collar and hood.
 const NECK_CUT_Y = 1.48;
+
+// A head ASSET cuts higher than a baked head does, and for the opposite reason.
+// Baked into the body, the low cut is right: the shoulders it carries are still
+// skinned to the shoulder bones and deform correctly. Bolted to the head bone
+// they cannot be, so they swing out as wings the moment the head turns. Cut at
+// the neck instead, just under the tunic's collar line (the kit's tunic tops out
+// at 1.60 and its hood starts at 1.53), so the seam stays covered.
+const HEAD_ASSET_CUT_Y = 1.58;
 
 /**
  * Keep only the triangles fully above `cutY`, rewriting every vertex attribute
@@ -232,13 +253,19 @@ for (const sourceNode of bodyMeshNodes) {
   // Identify the figure by its EXTENT, not its name: the pack exports the body
   // under a sculpting leftover ("Sphere.005_Retopology.004") while the eyes and
   // brows are already head-height, so anything reaching below the waist is the
-  // mesh to cut.
+  // mesh to cut. Headless drops the whole head instead of cutting it down.
   const mesh = node.getMesh();
   const lowest = Math.min(
     ...mesh
       .listPrimitives()
       .map((prim) => prim.getAttribute('POSITION')?.getMin([])[1] ?? Number.POSITIVE_INFINITY),
   );
+  if (HEADLESS) {
+    // Eyes and brows belong to the head that is going away; the body mesh is
+    // cut to nothing rather than left as a floating skull.
+    node.dispose();
+    continue;
+  }
   if (lowest < NECK_CUT_Y - 0.5) keepAbove(mesh, NECK_CUT_Y);
 }
 // Everything else the merge produced goes, explicitly: prune() will not collect
@@ -387,7 +414,80 @@ if (HEAD_OVERRIDE) {
 // the mesh, point it at the outfit's skin, drop the duplicate skeleton behind
 // it. Note they are SKINNED, not parented to a bone, which is what lets long
 // hair swing off the neck bones instead of rotating rigidly with the skull.
-for (const style of HAIR) {
+// Head-only export: everything that is not the head goes, the survivors are
+// re-seated so the neck stump sits at the origin (an attachment's pivot is its
+// bone), and the file is written straight out. Deliberately BEFORE the hair
+// merge, so a head asset carries no hairstyle: hair is its own equippable item.
+if (EMIT_HEAD) {
+  // Traverse, do not walk the direct children: the kit's meshes hang off
+  // intermediate nodes, so a one-level sweep left the whole outfit inside what
+  // was supposed to be a head.
+  const strays = [];
+  scene?.traverse((node) => {
+    if (node.getMesh() && !adopted.has(node)) strays.push(node);
+  });
+  for (const node of strays) node.dispose();
+  for (const node of adopted) {
+    const mesh = node.getMesh();
+    if (!mesh) continue;
+    keepAbove(mesh, HEAD_ASSET_CUT_Y);
+  }
+  // Into the HEAD BONE's own space, which is what an attachment lives in.
+  // The skin's inverse bind matrix IS that change of basis, so applying it
+  // reproduces the head exactly where the rig had it, with no guessed offset,
+  // no rotation to undo and no scale to chase: parenting the result to the bone
+  // puts it back byte for byte. Normalizing to "base at the origin" instead is
+  // what put a giant head floating beside the body on the first attempt.
+  const headJoints = outfitSkin.listJoints().map((j) => j.getName());
+  const headIndex = headJoints.indexOf('Head');
+  if (headIndex < 0) throw new Error('no Head joint to express the head against');
+  const toBone = outfitSkin.getInverseBindMatrices().getElement(headIndex, new Array(16));
+  let seen = 0;
+  for (const node of adopted) {
+    const mesh = node.getMesh();
+    if (!mesh) continue;
+    for (const prim of mesh.listPrimitives()) {
+      const position = prim.getAttribute('POSITION');
+      const normal = prim.getAttribute('NORMAL');
+      const v = [0, 0, 0];
+      const out = [0, 0, 0];
+      for (let i = 0; i < position.getCount(); i++) {
+        position.getElement(i, v);
+        position.setElement(i, transformPoint(toBone, v, out));
+        if (normal) {
+          normal.getElement(i, v);
+          normal.setElement(i, transformDirection(toBone, v, [0, 0, 0]));
+        }
+        seen++;
+      }
+      position.setArray(position.getArray());
+      // An attachment is parented to a bone, not skinned to a skeleton.
+      prim.setAttribute('JOINTS_0', null);
+      prim.setAttribute('WEIGHTS_0', null);
+    }
+    node.setSkin(null);
+  }
+  for (const skin of root.listSkins()) skin.dispose();
+  for (const animation of root.listAnimations()) animation.dispose();
+  // The base-body merge left its own buffer behind, and a GLB holds at most one.
+  const headBuffer = root.listBuffers()[0];
+  for (const accessor of root.listAccessors()) accessor.setBuffer(headBuffer);
+  for (const buffer of root.listBuffers().slice(1)) buffer.dispose();
+  await doc.transform(
+    dedup(),
+    prune(),
+    // Same treatment the bodies get, or the head ships every texture the kit
+    // brought along and lands at tens of megabytes for a few thousand vertices.
+    textureCompress({ encoder: sharp, targetFormat: 'webp', resize: [512, 512] }),
+    meshopt({ encoder: MeshoptEncoder, level: 'high' }),
+  );
+  await mkdir(dirname(EMIT_HEAD), { recursive: true });
+  await io.write(EMIT_HEAD, doc);
+  console.log(JSON.stringify({ head: EMIT_HEAD, vertices: seen }));
+  process.exit(0);
+}
+
+for (const style of HEADLESS ? [] : HAIR) {
   const hairPath = findFile(join(packRoot, 'ubc'), `${style}.gltf`);
   if (!hairPath) throw new Error(`hair ${style}.gltf not found under ${packRoot}/ubc`);
   healPackTextureNames(hairPath);
