@@ -5,7 +5,13 @@
 import { type Entity, isMechWearer, type PlayerClass } from '../../sim/types';
 import { logAssetMissOnce } from './asset_miss_log';
 import { quaterniusSpikeOn } from './character_spike_flag';
-import { mechHeldWeaponOverride, modularVisualKey, VISUALS, visualKeyFor } from './manifest';
+import {
+  mechHeldWeaponOverride,
+  modularVisualKey,
+  spikeVisualKeyFor,
+  VISUALS,
+  visualKeyFor,
+} from './manifest';
 import { MODULAR_WARRIOR_KEY, type ModularLook } from './modular';
 import { CharacterVisual } from './visual';
 
@@ -75,8 +81,19 @@ export function createCharacterVisual(
   // composing routes to a modular class rig that never reaches visualKeyFor.
   // The Quaternius rig has none of the modular part slots anyway.
   const spike = !formKey && e.kind === 'player' && quaterniusSpikeOn();
-  const look = formKey || spike || isMechWearer(e) ? null : (modularLookProvider?.(e) ?? null);
-  const key = formKey ?? (look ? modularKeyFor(e) : visualKeyFor(e));
+  // Read the authored look even when the spike claims the body: it is the only
+  // place a player's GENDER lives, and gender is a whole different body here
+  // rather than a slider. Everything else in that look (hair, face, dye) has no
+  // home on this rig, so the visual still composes from the fixed key.
+  const authored = formKey || isMechWearer(e) ? null : (modularLookProvider?.(e) ?? null);
+  const look = spike ? null : authored;
+  const key =
+    formKey ??
+    (spike
+      ? spikeVisualKeyFor(e.templateId, authored?.app.gender === 'female' ? 'female' : 'male')
+      : look
+        ? modularKeyFor(e)
+        : visualKeyFor(e));
   // The class-agnostic Combat Mech adopts the wearer's independent mainhand and
   // offhand layout. e.templateId is the player's class on every host, so this
   // matches offline and online.

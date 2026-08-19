@@ -8,7 +8,13 @@ import {
   yieldToMainThread,
 } from '../texture_prewarm';
 import { mechAssetsReady, preloadMechAssets } from './assets';
-import { modularVisualKey, VISUALS, type WeaponLayoutOverride } from './manifest';
+import { quaterniusSpikeOn } from './character_spike_flag';
+import {
+  modularVisualKey,
+  spikeVisualKeyFor,
+  VISUALS,
+  type WeaponLayoutOverride,
+} from './manifest';
 import {
   type ArmorLoadout,
   type ModularAppearance,
@@ -179,6 +185,10 @@ export class CharacterPreview {
     const weapon = weaponItemId !== undefined ? weaponItemId : (CLASSES[cls].startWeapon ?? null);
     const offhand =
       offhandItemId !== undefined ? offhandItemId : (CLASSES[cls].startOffhand ?? null);
+    if (quaterniusSpikeOn()) {
+      this.setVisualKey(spikeVisualKeyFor(cls, 'male'));
+      return;
+    }
     this.setVisualKey(`player_${cls}`, weapon, null, offhand);
   }
 
@@ -235,6 +245,15 @@ export class CharacterPreview {
     const weapon = weaponItemId !== undefined ? weaponItemId : (CLASSES[cls].startWeapon ?? null);
     const offhand =
       offhandItemId !== undefined ? offhandItemId : (CLASSES[cls].startOffhand ?? null);
+    if (quaterniusSpikeOn()) {
+      // The spike bodies are finished characters, not part libraries: gender and
+      // class pick a whole body and nothing else in the authored look has a home
+      // on this rig. Showing it here is the point, so the creator screen answers
+      // the same question the town does instead of previewing a body the world
+      // would not draw.
+      this.setVisualKey(spikeVisualKeyFor(cls, app.gender === 'female' ? 'female' : 'male'));
+      return;
+    }
     this.setVisualKey(modularVisualKey(cls), weapon, null, offhand);
     // The face/body sliders ride the live body rather than the rebuild
     // signature (see modularBuildSignature): the creator emits on every `input`

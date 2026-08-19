@@ -3218,6 +3218,19 @@ const SPIKE_SWAPPABLE_MOBS = new Set([
   'delve_mob_acolyte',
 ]);
 
+/**
+ * The spike body a class and gender compose to. With only two kits in the free
+ * tier the mapping is coarse on purpose: the ranger leathers carry every class
+ * that fights up close or at range, and the peasant tunic stands in for the
+ * robe classes until the paid kits (which include a wizard) are on disk. What
+ * this DOES prove out is the gender toggle, which is a real body swap here.
+ */
+export function spikeVisualKeyFor(cls: string, gender: 'male' | 'female'): string {
+  const robed = cls === 'mage' || cls === 'priest' || cls === 'warlock';
+  const kit = robed ? 'peasant' : 'ranger';
+  return `spike_${gender}_${kit}`;
+}
+
 /** Deterministic per-template pick, so a given villager keeps the same body. */
 function spikeVariantFor(templateId: string): string {
   let hash = 0;
@@ -3228,7 +3241,9 @@ function spikeVariantFor(templateId: string): string {
 export function visualKeyFor(e: Entity): string {
   const spike = quaterniusSpikeOn();
   if (e.kind === 'player') {
-    if (spike) return 'spike_male_ranger';
+    // Gender rides the composed look, which the factory reads; this arm is the
+    // fallback for a player with no authored appearance.
+    if (spike) return spikeVisualKeyFor(e.templateId, 'male');
     if (isMechWearer(e)) return 'player_mech';
     return VISUALS[`player_${e.templateId}`] ? `player_${e.templateId}` : 'player_warrior';
   }
