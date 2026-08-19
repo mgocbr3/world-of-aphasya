@@ -488,7 +488,12 @@ await doc.transform(
   resample(),
   dedup(),
   prune(),
-  textureCompress({ encoder: sharp, targetFormat: 'webp', resize: [1024, 1024] }),
+  // 512 rather than 1024: textures, not geometry, are what make these bodies
+  // heavy (four of them came to 28 MB), and a character seen from the game's
+  // chase camera never resolves a 1024 atlas. The kits paint flat colour blocks
+  // with almost no fine detail, so the halving is close to free visually and
+  // takes the set to roughly a quarter of its size.
+  textureCompress({ encoder: sharp, targetFormat: 'webp', resize: [512, 512] }),
   meshopt({ encoder: MeshoptEncoder, level: 'high' }),
 );
 

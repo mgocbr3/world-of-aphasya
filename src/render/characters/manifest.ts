@@ -279,23 +279,28 @@ function spikeVisuals(): Record<string, VisualDef> {
   // Built here rather than at module scope: WEAPONS is declared further down,
   // and this function only runs while VISUALS itself is being assembled.
   const SPIKE_HANDS: AttachDef[] = [
-    // Scale is derived, not eyeballed: the weapon packs are modelled for a rig
-    // authored at HUMANOID_H, and this body is authored at about 1.87 and then
-    // normalized UP to the same height, so anything parented to its hand
-    // inherits that 1.39x. Dividing the KayKit sword grip's own 0.8876 by it
-    // lands the blade at the size the class rigs show, and a realistic hand
-    // wants a touch less than a chibi one does.
+    // Every number here is measured, not eyeballed. The rig's hand bone points
+    // its LOCAL +Y down the fingers (0.996 of the wrist-to-knuckle vector), and
+    // the weapon models put their long axis on +Y around a centred origin, so
+    // the blade needs NO tilt to run along the grip: an earlier quarter turn
+    // here is what had it pointing backwards. The lift is half the blade at
+    // this scale, which is what seats the handle in the fist instead of the
+    // blade's midpoint. Scale divides the KayKit sword grip's own 0.8876 by the
+    // 1.39x this body inherits from being authored at 1.87 and normalized up to
+    // HUMANOID_H.
     {
       url: `${WEAPONS}/sword_1handed.glb`,
       bone: 'hand_r',
-      position: [0, 0.03, 0],
-      rotation: [Math.PI / 2, 0, 0],
+      position: [0, 0.26, 0],
+      rotation: [0, Math.PI, 0],
       scale: 0.42,
     },
+    // The shield is a disc in its own XY plane, so it takes the quarter turn the
+    // sword refuses: that swings its face perpendicular to the forearm.
     {
       url: `${WEAPONS}/shield_round.glb`,
       bone: 'hand_l',
-      position: [0, 0.03, 0],
+      position: [0, 0.12, 0],
       rotation: [Math.PI / 2, 0, 0],
       scale: 0.42,
     },
