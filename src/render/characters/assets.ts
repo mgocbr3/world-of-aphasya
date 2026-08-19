@@ -27,6 +27,7 @@ import { backGripFor } from './back_grips';
 import { quaterniusSpikeOn } from './character_spike_flag';
 import { scaledVisualHeight } from './character_world_scale';
 import { dequantizeAttribute } from './dequantize_attribute';
+import { gripScaleFor, handRigOf, stowBoneFor } from './hand_rig_core';
 import { type HandGrip, KAYKIT_SHIELD_ACCESSORIES, KAYKIT_SHIELD_GRIPS } from './held_item_grips';
 import { buildMakeupDecal } from './makeup';
 import {
@@ -266,9 +267,10 @@ const KAYKIT_HAND_GRIPS: Record<string, { r: HandGrip; l?: HandGrip }> = {
   ...KAYKIT_SHIELD_GRIPS,
 };
 
+/** KayKit's own handslots. Gates the accessory-node grip lookup below, whose
+ *  reference nodes only exist on that rig. Use isHandBone for "is this a hand". */
 function isHandslotBone(name: string): boolean {
-  const n = name.replace(/[[\].:/]/g, '');
-  return n === 'handslotr' || n === 'handslotl';
+  return handRigOf(name) === 'kaykit';
 }
 
 function handSide(bone: string): 'r' | 'l' {
@@ -345,7 +347,6 @@ const SWAP_OFFHAND_TAG = 'swapOffhandHolder';
 const HELD_PROP_TAG = 'heldPropHolder';
 
 // Sheathed props re-parent onto the chest bone (shared KayKit Rig_Medium).
-const STOW_BONE = 'chest';
 
 // Grip for a variant-pack weapon. Its origin is authored AT the grip, so we attach
 // at the origin (no recenter) and only clamp an oversized model so its blade does
@@ -367,14 +368,19 @@ function applyVariantGrip(
   bone: string,
   grip: VariantGrip,
   url: string,
+  rigScale = 1,
 ): void {
   variantBox.setFromObject(payload);
   const height = variantBox.max.y - variantBox.min.y;
+  // The family table's lift and height clamp are expressed in KayKit bone
+  // units; a rig whose bones carry a different scale corrects both by the same
+  // factor, so the weapon keeps its authored proportions and only its size in
+  // the hand changes.
   const t = variantGripTransform(
     height,
     handSide(bone) === 'l',
-    grip.lift,
-    grip.maxHeight,
+    grip.lift * rigScale,
+    grip.maxHeight * rigScale,
     WEAPON_GRIP_OVERRIDES[modelBasename(url)],
   );
   payload.position.set(t.position[0], t.position[1], t.position[2]);
@@ -402,9 +408,15 @@ function attachProp(
     payload.userData.heldSlot = 1;
   }
   payload.userData[HELD_PROP_TAG] = true;
-  const variantGrip = isHandslotBone(att.bone) ? variantGripFor(att.url) : null;
-  if (variantGrip) {
-    applyVariantGrip(payload, att.bone, variantGrip, att.url);
+  // Per-weapon grip sizing is rig-agnostic: it measures the model and clamps it
+  // to a per-family height, so a staff and a dagger stop sharing one transform.
+  // It runs for ANY hand, with a per-rig correction for bone-unit scale; the
+  // authored fallback below is only for a hand holding something the family
+  // table does not know.
+  const handRig = handRigOf(att.bone);
+  const variantGrip = handRig ? variantGripFor(att.url) : null;
+  if (variantGrip && handRig) {
+    applyVariantGrip(payload, att.bone, variantGrip, att.url, gripScaleFor(handRig));
   } else if (
     att.position ||
     att.rotationY !== undefined ||
@@ -429,6 +441,10 @@ function attachProp(
   // Sheathed: override where the prop SITS (on-back position/lean, chest-bone
   // space; the caller resolved the chest bone) but keep the SCALE the normal
   // grip pass just computed, so variant-pack size clamps carry over.
+  // KayKit only: the on-back offsets are hand-tuned in ITS chest-bone frame
+  // against in-game screenshots. Another rig sheathes to its own spine joint
+  // (attachTargetBone) and keeps the grip transform it already has, which reads
+  // as a weapon riding the back rather than as one placed by measurement.
   if (stowed && isHandslotBone(att.bone)) {
     const grip = backGripFor(kaykitAccessoryFor(att.url), handSide(att.bone));
     payload.position.set(...grip.position);
@@ -1564,7 +1580,13 @@ function attachTargetBone(
   att: AttachDef,
   stowed: boolean,
 ): THREE.Object3D | null {
-  return resolveBone(root, stowed && isHandslotBone(att.bone) ? STOW_BONE : att.bone);
+  const rig = stowed ? handRigOf(att.bone) : null;
+  if (!rig) return resolveBone(root, att.bone);
+  // A rig that names no stow bone, or whose stow bone this particular model
+  // does not carry, keeps the weapon in hand rather than dropping it at the
+  // origin: sheathing is cosmetic, and losing the prop is worse than not
+  // playing the gesture.
+  return resolveBone(root, stowBoneFor(rig)) ?? resolveBone(root, att.bone);
 }
 
 // Attach every authored prop: swappable slots take the equipped item's model (or an
