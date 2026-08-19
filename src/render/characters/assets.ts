@@ -372,20 +372,21 @@ function applyVariantGrip(
 ): void {
   variantBox.setFromObject(payload);
   const height = variantBox.max.y - variantBox.min.y;
-  // The family table's lift and height clamp are expressed in KayKit bone
-  // units; a rig whose bones carry a different scale corrects both by the same
-  // factor, so the weapon keeps its authored proportions and only its size in
-  // the hand changes.
+  // The clamp runs in the table's OWN units and the result is converted after,
+  // rather than scaling the cap. Scaling the cap looks equivalent and is not:
+  // the clamp is a min(1, ...), so a weapon already under the cap comes out at
+  // scale 1 and then renders at whatever the rig's bone units happen to be. A
+  // sword that fit a KayKit fist arrived 39% oversized on this rig that way.
   const t = variantGripTransform(
     height,
     handSide(bone) === 'l',
     grip.lift * rigScale,
-    grip.maxHeight * rigScale,
+    grip.maxHeight,
     WEAPON_GRIP_OVERRIDES[modelBasename(url)],
   );
   payload.position.set(t.position[0], t.position[1], t.position[2]);
   payload.quaternion.set(t.quaternion[0], t.quaternion[1], t.quaternion[2], t.quaternion[3]);
-  payload.scale.setScalar(t.scale);
+  payload.scale.setScalar(t.scale * rigScale);
 }
 
 function attachProp(

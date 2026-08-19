@@ -326,14 +326,25 @@ function spikeVisuals(): Record<string, VisualDef> {
       rotation: [0, Math.PI, 0],
       scale: 0.42,
     },
-    // The shield is a disc in its own XY plane, so it takes the quarter turn the
-    // sword refuses: that swings its face perpendicular to the forearm.
+    // The shield takes NO turn, which is the opposite of what it looks like it
+    // should need. A shield straps along the forearm, so its face is PARALLEL
+    // to the arm: the disc already lies in a plane containing the bone's +Y, and
+    // the quarter turn that was here stood it on edge and read as a floating
+    // plate. KayKit's own authored round-shield grip agrees, carrying the
+    // identity quaternion; its offset and scale are reused here, divided by the
+    // normalize this body inherits.
+    // Offsets measured against the rig in bind pose, not copied across: KayKit's
+    // authored shield row is expressed in ITS hand frame, and the two rigs do
+    // not agree on which local axis leaves the palm. Centred on the hand the
+    // fist punched through the shield's face; pushed out along the bone's +Z it
+    // sits in front of the hand and covers the forearm, which is how a strapped
+    // shield reads.
     {
       url: `${WEAPONS}/shield_round.glb`,
       bone: 'hand_l',
-      position: [0, 0.12, 0],
-      rotation: [Math.PI / 2, 0, 0],
-      scale: 0.42,
+      position: [0, 0.02, 0.09],
+      rotation: [0, 0, 0],
+      scale: 0.32,
     },
   ];
   const out: Record<string, VisualDef> = {};
