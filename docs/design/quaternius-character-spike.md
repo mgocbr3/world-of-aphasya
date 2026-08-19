@@ -40,20 +40,55 @@ continuam esqueletos e bichos continuam bichos, de proposito.
 - Arma e escudo equipados chegam as maos e respeitam a escala autorada.
 - Criacao de personagem: genero troca o corpo inteiro, classe troca o kit.
 
+## Variedade racial e proporcao
+
+A raca e um ANEXO de cabeca, nao um corpo por raca: assar a raca no corpo
+transformaria quatro arquivos em vinte (raca por genero por kit), enquanto uma
+cabeca sao alguns milhares de triangulos que qualquer corpo veste. E a cabeca e
+a unica parte que pode ser rigida sem parecer, por ser um osso so de ponta a
+ponta, entao nao precisa de transferencia de peso.
+
+Mapeamento por arquetipo, sem tocar em nenhum numero: orc no guerreiro, elfo no
+cacador e no ladino, anao no xama e no druida, humano no paladino e no
+sacerdote, necromante no mago e no bruxo.
+
+Proporcao vem de ESCALA DE OSSO, do jeito que um MMO de rig compartilhado faz:
+sem geometria, sem morph, e as 84 animacoes seguem tocando por cima. Nove eixos,
+todos na aba Corpo da criacao (altura, tamanho de cabeca, ombros, peito,
+quadris, maos, cotovelos, joelhos, pes). Tres regras que o modulo carrega no
+cabecalho: escala se propaga pela cadeia, entao cada entrada nomeia os filhos a
+desfazer; o comprimento de um osso e o +Y local dele (medido em 0.996 do vetor
+punho-para-no); e o plano descreve o corpo inteiro em vez da diferenca, que e o
+que faz voltar um controle ao zero restaurar o corpo esculpido.
+
+O ROSTO nao tem osso para escalar e a cabeca nao tem morph, entao as feicoes sao
+encontradas na geometria: cada vertice e pontuado contra uma regiao na caixa
+normalizada da cabeca e deslocado com queda suave. Funciona em qualquer cabeca
+(um cranio gerado ganha os mesmos controles sem passe de autoria) e nao consegue
+rasgar a malha. Medido contra a cabeca em disco: os cinco eixos alcancam
+geometria real e movem entre 1.2% e 2.5% da altura da cabeca.
+
+As linhas de proporcao aparecem SO contra este rig, e isso e uma decisao: o
+corpo enviado assa suas proporcoes no Fit Studio, e uma criacao que oferecesse
+um segundo conjunto estaria mentindo sobre o que controla. Este rig nao assa
+nada, entao la elas sao a unica coisa que molda o corpo.
+
 ## O que NAO funciona, e por que
 
-- **Customizacao profunda.** Cabelos escolhiveis, sliders de rosto, barbas,
-  brincos, maquiagem e dye de armadura nao tem onde morar neste rig. Os
-  controles seguem na tela sem efeito. Reconstruir isso e o maior item de um
-  eventual go.
-- **Guardar arma nas costas.** A logica procura um osso `chest` e trata apenas
-  os nomes `handslot.r`/`handslot.l` como maos; este rig tem `spine_03`,
-  `hand_r` e `hand_l`. Nao quebra nada, so nao acontece.
+- **Cabelos, barbas, brincos, maquiagem e dye de armadura.** Continuam sem
+  lugar neste rig. Cabelo e o proximo: os oito estilos do pack sao presos ao
+  osso da cabeca e, com a cabeca ja sendo anexo, entram pelo mesmo caminho.
+- **Guardar arma nas costas.** Resolvido: `hand_rig_core` separa "isto e uma
+  mao" de "este rig usa a tabela do KayKit", e cada rig aponta seu proprio osso
+  de guarda. O que continua do KayKit sao os offsets autorados na moldura de
+  peito dele, que nao transferem.
 - **Andar de re.** A biblioteca nao tem o clipe; o fallback repete a caminhada
   para frente.
-- **Uma empunhadura por slot.** As classes usam uma tabela por variante de arma
-  calibrada na mao KayKit; este rig fica fora dela de proposito (aqueles valores
-  plantariam toda lamina de lado), entao espada e cajado dividem o mesmo grip.
+- **Uma empunhadura por slot.** Resolvido: a tabela por variante e agnostica de
+  rig (mede a arma e aplica um teto por familia), entao espada, cajado e adaga
+  deixaram de dividir um transform. A correcao de unidades converte o RESULTADO,
+  nunca o teto: escalar o teto nao faz nada quando a arma ja cabe embaixo dele,
+  que foi o que deixou toda lamina 39% grande.
 - **Dois kits apenas.** O tier gratis traz ranger e peasant. As classes de robe
   usam o peasant como substituto ate os 12 kits pagos entrarem.
 
