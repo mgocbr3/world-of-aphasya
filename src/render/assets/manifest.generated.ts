@@ -314,7 +314,7 @@ export const MEDIA_ASSETS: Record<string, string> =
   "models/chars/players/spike/quaternius_female_peasant.glb": "/media/models/chars/players/spike/quaternius_female_peasant.00596b4e725f.glb",
   "models/chars/players/spike/quaternius_female_ranger.glb": "/media/models/chars/players/spike/quaternius_female_ranger.e7a8f7ab1081.glb",
   "models/chars/players/spike/quaternius_male_peasant.glb": "/media/models/chars/players/spike/quaternius_male_peasant.3b4fc1c4dd06.glb",
-  "models/chars/players/spike/quaternius_male_ranger.glb": "/media/models/chars/players/spike/quaternius_male_ranger.77a8978f1807.glb",
+  "models/chars/players/spike/quaternius_male_ranger.glb": "/media/models/chars/players/spike/quaternius_male_ranger.12082da86192.glb",
   "models/chars/players/swim_anims.glb": "/media/models/chars/players/swim_anims.6021e6fc7132.glb",
   "models/chars/players/warlock_ability_anims.glb": "/media/models/chars/players/warlock_ability_anims.3c9ce0f27de6.glb",
   "models/chars/players/warrior_ability_anims.glb": "/media/models/chars/players/warrior_ability_anims.5cabf7ef81b8.glb",

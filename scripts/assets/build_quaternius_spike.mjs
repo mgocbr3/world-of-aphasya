@@ -29,8 +29,21 @@ import {
   resample,
   textureCompress,
 } from '@gltf-transform/functions';
-import { MeshoptEncoder } from 'meshoptimizer';
+import { MeshoptDecoder, MeshoptEncoder } from 'meshoptimizer';
 import sharp from 'sharp';
+import {
+  buildNearestIndex,
+  invertMat4,
+  transformDirection,
+  transformPoint,
+} from './lib/skin_weight_transfer.mjs';
+
+// Where a skinned armour piece is anchored before its weights are transferred:
+// the upper spine, with a small forward lift so the plate sits on the chest
+// rather than inside it. Only the placement uses this; once weights are copied
+// the piece follows the whole rig, shoulders included.
+const ARMOR_BONE = 'spine_03';
+const ARMOR_OFFSET = [0, 0.06, 0.02];
 
 const packRoot = process.argv[2];
 const outPath = process.argv[3];
@@ -131,9 +144,10 @@ function findFile(root, name) {
 }
 
 await MeshoptEncoder.ready;
+await MeshoptDecoder.ready;
 const io = new NodeIO()
   .registerExtensions(ALL_EXTENSIONS)
-  .registerDependencies({ 'meshopt.encoder': MeshoptEncoder });
+  .registerDependencies({ 'meshopt.encoder': MeshoptEncoder, 'meshopt.decoder': MeshoptDecoder });
 
 const outfitPath = findFile(join(packRoot, 'outfits'), `${OUTFIT}.gltf`);
 if (!outfitPath) throw new Error(`outfit ${OUTFIT}.gltf not found under ${packRoot}/outfits`);
@@ -219,6 +233,125 @@ for (const sourceProp of [
 ]) {
   const merged = map.get(sourceProp);
   if (merged && !adopted.has(merged)) merged.dispose();
+}
+
+// Skin a generated armour piece INTO the body, if one was named. A prop bolted
+// to a single bone is rigid, so a raised arm drives the pauldron straight
+// through it; this makes the plate a real part of the character, deforming off
+// the same weights the shoulder does. See lib/skin_weight_transfer.mjs for why
+// nearest-vertex transfer beats distance-to-bone weighting at the shoulder.
+const ARMOR = process.argv[5];
+let armorStats = null;
+if (ARMOR) {
+  const armorDoc = await io.read(ARMOR);
+  const joints = outfitSkin.listJoints();
+  const boneIndex = joints.findIndex((j) => j.getName() === ARMOR_BONE);
+  if (boneIndex < 0) throw new Error(`armour anchor bone ${ARMOR_BONE} not in the rig`);
+  const ibm = outfitSkin.getInverseBindMatrices();
+  const bindWorld = invertMat4(ibm.getElement(boneIndex, new Array(16)));
+  if (!bindWorld) throw new Error('inverse bind matrix for the anchor bone is singular');
+
+  // Donor cloud: every skinned vertex of the character, already in bind space.
+  const donorPos = [];
+  const donorJoints = [];
+  const donorWeights = [];
+  for (const mesh of root.listMeshes()) {
+    for (const prim of mesh.listPrimitives()) {
+      const position = prim.getAttribute('POSITION');
+      const jointsAttr = prim.getAttribute('JOINTS_0');
+      const weightsAttr = prim.getAttribute('WEIGHTS_0');
+      if (!position || !jointsAttr || !weightsAttr) continue;
+      const p = [0, 0, 0];
+      const j = [0, 0, 0, 0];
+      const w = [0, 0, 0, 0];
+      for (let i = 0; i < position.getCount(); i++) {
+        position.getElement(i, p);
+        jointsAttr.getElement(i, j);
+        weightsAttr.getElement(i, w);
+        donorPos.push(p[0], p[1], p[2]);
+        donorJoints.push(j[0], j[1], j[2], j[3]);
+        donorWeights.push(w[0], w[1], w[2], w[3]);
+      }
+    }
+  }
+  // Donors are restricted to the band the plate actually covers. Without this
+  // the nearest vertex to the plate's lower rim is a thigh, so the skirt of the
+  // armour follows the LEGS: the piece splays open at a walk and stretches to
+  // the knees. A garment must only ever inherit from the part of the body it
+  // sits on, and for a breastplate that is the torso band.
+  const anchorY = bindWorld[13];
+  const bandLo = anchorY - 0.42;
+  const bandHi = anchorY + 0.55;
+  const bandPos = [];
+  const bandIndex = [];
+  for (let i = 0; i < donorPos.length / 3; i++) {
+    const y = donorPos[i * 3 + 1];
+    if (y < bandLo || y > bandHi) continue;
+    bandPos.push(donorPos[i * 3], y, donorPos[i * 3 + 2]);
+    bandIndex.push(i);
+  }
+  const nearestInBand = buildNearestIndex(bandPos);
+  const nearest = (x, y, z) => {
+    const hit = nearestInBand(x, y, z);
+    return hit >= 0 ? bandIndex[hit] : -1;
+  };
+
+  const armorMap = mergeDocuments(doc, armorDoc);
+  const armorRoot = armorDoc.getRoot();
+  const armorScene = armorRoot.getDefaultScene() ?? armorRoot.listScenes()[0];
+  const armorNodes = [];
+  armorScene?.traverse((node) => {
+    if (node.getMesh()) armorNodes.push(node);
+  });
+  let vertexCount = 0;
+  for (const sourceNode of armorNodes) {
+    const node = armorMap.get(sourceNode);
+    if (!node) continue;
+    node.getParentNode()?.removeChild(node);
+    for (const prim of node.getMesh().listPrimitives()) {
+      const position = prim.getAttribute('POSITION');
+      const normal = prim.getAttribute('NORMAL');
+      const count = position.getCount();
+      const jointArray = new Uint16Array(count * 4);
+      const weightArray = new Float32Array(count * 4);
+      const p = [0, 0, 0];
+      const n = [0, 0, 0];
+      const world = [0, 0, 0];
+      for (let i = 0; i < count; i++) {
+        position.getElement(i, p);
+        // Into bind space, through the anchor bone plus the authored offset.
+        transformPoint(
+          bindWorld,
+          [p[0] + ARMOR_OFFSET[0], p[1] + ARMOR_OFFSET[1], p[2] + ARMOR_OFFSET[2]],
+          world,
+        );
+        position.setElement(i, world);
+        if (normal) {
+          normal.getElement(i, n);
+          normal.setElement(i, transformDirection(bindWorld, n, [0, 0, 0]));
+        }
+        const donor = nearest(world[0], world[1], world[2]);
+        for (let k = 0; k < 4; k++) {
+          jointArray[i * 4 + k] = donor >= 0 ? donorJoints[donor * 4 + k] : 0;
+          weightArray[i * 4 + k] = donor >= 0 ? donorWeights[donor * 4 + k] : k === 0 ? 1 : 0;
+        }
+      }
+      position.setArray(position.getArray());
+      prim.setAttribute('JOINTS_0', doc.createAccessor().setType('VEC4').setArray(jointArray));
+      prim.setAttribute('WEIGHTS_0', doc.createAccessor().setType('VEC4').setArray(weightArray));
+      vertexCount += count;
+    }
+    node.setSkin(outfitSkin);
+    scene?.addChild(node);
+  }
+  // Drop the leftovers the merge brought (its scene, and any node that is not
+  // one of the mesh nodes just adopted), same rule as the base-body merge.
+  const adoptedArmor = new Set(armorNodes.map((node) => armorMap.get(node)).filter(Boolean));
+  for (const sourceProp of [...armorRoot.listNodes(), ...armorRoot.listScenes()]) {
+    const merged = armorMap.get(sourceProp);
+    if (merged && !adoptedArmor.has(merged)) merged.dispose();
+  }
+  armorStats = { donors: donorPos.length / 3, armorVertices: vertexCount };
 }
 
 // Kill the metal. The kits author a packed ORM map and leave metallicFactor at
@@ -333,5 +466,6 @@ console.log(
     animations: root.listAnimations().length,
     clipsCopied: copied,
     clipsSkippedUnbound: skippedUnbound,
+    armor: armorStats,
   }),
 );

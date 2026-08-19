@@ -237,12 +237,14 @@ export const SPIKE_VISUAL_KEYS = [
 const MESHY_PROPS: AttachDef[] = [
   // The skull sits ON the head bone, lifted to crown height and turned to face
   // the way the body does.
+  // The helm rides the head bone, which is all a rigid prop needs: a skull does
+  // not deform, and the head is one bone all the way through.
+  //
+  // The breastplate is NOT here. Bolted to the spine it was rigid, so a raised
+  // arm drove its pauldrons through the shoulders; it is now SKINNED into the
+  // body itself at build time (the exporter's weight-transfer step), which is
+  // the honest answer for anything that spans a joint.
   { url: 'models/props/meshy/revenant_skull.glb', bone: 'Head', position: [0, 0.12, 0.02] },
-  // Body armour, so it rides the upper spine and is authored centred on that
-  // bone rather than standing on it. It is a RIGID piece: a breastplate barely
-  // deforms, which is why a plate can ship as a prop while a sleeve or a skirt
-  // cannot and has to be skinned.
-  { url: 'models/props/meshy/infernal_aegis.glb', bone: 'spine_03', position: [0, 0.06, 0.02] },
 ];
 
 /** The spike bodies, one VisualDef each, all lazy and all off the boot path. */
