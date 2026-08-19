@@ -38,6 +38,14 @@ const flag = (name, fallback) => {
 };
 const TARGET_TRIS = flag('tris', 8000);
 const TARGET_HEIGHT = flag('height', 0);
+// Where the pivot lands. A helmet or a held weapon hangs off its base, so the
+// bone sits at the bottom of the model; a breastplate wraps a bone that runs
+// through its MIDDLE, so it centres instead. Getting this wrong is what put an
+// armour piece in a fist like a shield.
+const CENTERED = args.includes('--center');
+// Meshy authors metal as metal. Only pass --matte for cloth and leather, where
+// a live metalness map plus our sun reads wet (the character-kit problem).
+const MATTE = args.includes('--matte');
 
 await MeshoptEncoder.ready;
 await MeshoptSimplifier.ready;
@@ -94,11 +102,9 @@ if (TARGET_HEIGHT > 0) {
       const vertex = [0, 0, 0];
       for (let i = 0; i < position.getCount(); i++) {
         position.getElement(i, vertex);
-        // Centre on x/z and sit the base at the origin: an attach point is a
-        // bone, and a prop whose pivot floats is impossible to place by hand.
         position.setElement(i, [
           (vertex[0] - centerX) * scale,
-          (vertex[1] - lo[1]) * scale,
+          (vertex[1] - (CENTERED ? (hi[1] + lo[1]) / 2 : lo[1])) * scale,
           (vertex[2] - centerZ) * scale,
         ]);
       }
@@ -109,11 +115,11 @@ if (TARGET_HEIGHT > 0) {
   }
 }
 
-// Meshy bakes lighting into the base colour and ships a metal/rough pair that
-// reads wet under our sun; the same flattening the character kits needed.
-for (const material of root.listMaterials()) {
-  material.setMetallicFactor(0);
-  material.setRoughnessFactor(Math.max(material.getRoughnessFactor(), 0.8));
+if (MATTE) {
+  for (const material of root.listMaterials()) {
+    material.setMetallicFactor(0);
+    material.setRoughnessFactor(Math.max(material.getRoughnessFactor(), 0.8));
+  }
 }
 
 await doc.transform(

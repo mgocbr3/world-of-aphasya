@@ -238,7 +238,11 @@ const MESHY_PROPS: AttachDef[] = [
   // The skull sits ON the head bone, lifted to crown height and turned to face
   // the way the body does.
   { url: 'models/props/meshy/revenant_skull.glb', bone: 'Head', position: [0, 0.12, 0.02] },
-  { url: 'models/props/meshy/infernal_aegis.glb', bone: 'hand_l', position: [0, 0, 0] },
+  // Body armour, so it rides the upper spine and is authored centred on that
+  // bone rather than standing on it. It is a RIGID piece: a breastplate barely
+  // deforms, which is why a plate can ship as a prop while a sleeve or a skirt
+  // cannot and has to be skinned.
+  { url: 'models/props/meshy/infernal_aegis.glb', bone: 'spine_03', position: [0, 0.06, 0.02] },
 ];
 
 /** The spike bodies, one VisualDef each, all lazy and all off the boot path. */
