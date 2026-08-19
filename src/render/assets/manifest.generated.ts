@@ -311,6 +311,7 @@ export const MEDIA_ASSETS: Record<string, string> =
   "models/chars/players/rogue_hooded.glb": "/media/models/chars/players/rogue_hooded.876d60366dc2.glb",
   "models/chars/players/rogue_hooded_hit_variety_anims.glb": "/media/models/chars/players/rogue_hooded_hit_variety_anims.8c78648d53ff.glb",
   "models/chars/players/shaman_ability_anims.glb": "/media/models/chars/players/shaman_ability_anims.814c9e687619.glb",
+  "models/chars/players/spike/quaternius_ranger.glb": "/media/models/chars/players/spike/quaternius_ranger.abaad70671cd.glb",
   "models/chars/players/swim_anims.glb": "/media/models/chars/players/swim_anims.6021e6fc7132.glb",
   "models/chars/players/warlock_ability_anims.glb": "/media/models/chars/players/warlock_ability_anims.3c9ce0f27de6.glb",
   "models/chars/players/warrior_ability_anims.glb": "/media/models/chars/players/warrior_ability_anims.5cabf7ef81b8.glb",

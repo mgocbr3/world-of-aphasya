@@ -4,6 +4,7 @@
 // the Renderer constructs views.
 import { type Entity, isMechWearer, type PlayerClass } from '../../sim/types';
 import { logAssetMissOnce } from './asset_miss_log';
+import { quaterniusSpikeOn } from './character_spike_flag';
 import { mechHeldWeaponOverride, modularVisualKey, VISUALS, visualKeyFor } from './manifest';
 import { MODULAR_WARRIOR_KEY, type ModularLook } from './modular';
 import { CharacterVisual } from './visual';
@@ -69,7 +70,12 @@ export function createCharacterVisual(
   // Shapeshift forms are their own model and never compose, and neither does a
   // Combat Mech wearer: the mech is a whole replacement body, so the cosmetic
   // must win over the authored look (composing over it hid a purchased skin).
-  const look = formKey || isMechWearer(e) ? null : (modularLookProvider?.(e) ?? null);
+  // The proportion spike replaces the BODY, so it has to win over the composed
+  // look the same way the mech does: every player carries an authored look, and
+  // composing routes to a modular class rig that never reaches visualKeyFor.
+  // The Quaternius rig has none of the modular part slots anyway.
+  const spike = !formKey && e.kind === 'player' && quaterniusSpikeOn();
+  const look = formKey || spike || isMechWearer(e) ? null : (modularLookProvider?.(e) ?? null);
   const key = formKey ?? (look ? modularKeyFor(e) : visualKeyFor(e));
   // The class-agnostic Combat Mech adopts the wearer's independent mainhand and
   // offhand layout. e.templateId is the player's class on every host, so this

@@ -24,6 +24,7 @@ import { addRimGlow, EMISSIVE_GLOW, GFX, type GfxSettings } from '../gfx';
 import { applySurfaceDetail, riggedWornFamilyFor } from '../worn_stone';
 import { type ArmorDyeSpec, attachArmorDye } from './armor_dye';
 import { backGripFor } from './back_grips';
+import { quaterniusSpikeOn } from './character_spike_flag';
 import { scaledVisualHeight } from './character_world_scale';
 import { dequantizeAttribute } from './dequantize_attribute';
 import { type HandGrip, KAYKIT_SHIELD_ACCESSORIES, KAYKIT_SHIELD_GRIPS } from './held_item_grips';
@@ -599,6 +600,16 @@ function residentOrEnsure(url: string | null): string | null {
 
 for (const url of preloadUrls) {
   registerPreload(prepareCharacterUrl(url));
+}
+
+// The proportion spike's body joins the boot gate only when its URL flag asks
+// for it (VISUALS marks it lazyPreload, so it is never in preloadUrls). It has
+// to be IN the gate rather than streamed once requested: with the flag on it is
+// the local player's own body, and the character-select preview builds that
+// visual directly instead of through the fail-soft factory.
+if (quaterniusSpikeOn()) {
+  const spikeDef = VISUALS.player_spike_quaternius;
+  if (spikeDef) registerPreload(prepareCharacterUrl(spikeDef.url));
 }
 
 let streamedStarted = false;

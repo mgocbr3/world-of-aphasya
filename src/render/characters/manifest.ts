@@ -9,6 +9,7 @@ import { ITEMS, MOBS } from '../../sim/data';
 import { ALL_CLASSES, type Entity, isMechWearer, type PlayerClass } from '../../sim/types';
 import { ITEM_WEAPON_VARIANTS } from '../../ui/weapon_variants';
 import type { OverheadEmoteId } from '../../world_api';
+import { quaterniusSpikeOn } from './character_spike_flag';
 
 export interface EmoteClipSpec {
   clips: readonly string[];
@@ -191,6 +192,32 @@ const kaykit = (attack: string[], idle = 'Idle'): ClipMap => ({
   // shoulder toward the back, which reads as grabbing/planting the hilt.
   stow: '1H_Melee_Attack_Chop',
   emote: KAYKIT_EMOTES,
+});
+
+// The Universal Animation Library vocabulary, for the proportion spike only.
+// Named clips verified against the built GLB, not the store page: the free tier
+// really does carry a spell channel, a sword set, swimming and death, which is
+// most of what a class body asks for. What it does NOT carry (a bow draw, a
+// mount seat, per-ability gestures) is exactly the gap a real migration would
+// have to bake, and leaving those unmapped here keeps that visible.
+const quaternius = (): ClipMap => ({
+  idle: 'Idle_Loop',
+  walk: 'Walk_Loop',
+  run: 'Jog_Fwd_Loop',
+  attack: ['Sword_Regular_A', 'Sword_Regular_B', 'Sword_Regular_C'],
+  hit: ['Hit_Chest', 'Hit_Head'],
+  death: 'Death01',
+  cast: 'Spell_Simple_Idle_Loop',
+  sitDown: 'Sitting_Enter',
+  sitIdle: 'Sitting_Idle_Loop',
+  swim: 'Swim_Fwd_Loop',
+  swimIdle: 'Swim_Idle_Loop',
+  jump: 'Jump_Loop',
+  emote: {
+    dance: { clips: ['Dance_Loop'], timeScale: 1, repeats: 2 },
+    cheer: { clips: ['Yes'], timeScale: 1.05, repeats: 2 },
+    flex: { clips: ['Idle_FoldArms_Loop'], timeScale: 1 },
+  },
 });
 
 const skeletonClips = (attack: string[], flourish = 'Skeletons_Awaken_Standing'): ClipMap => ({
@@ -1543,6 +1570,30 @@ export const VISUALS: Record<string, VisualDef> = {
     weaponSlots: [0],
     lazyPreload: true,
   }),
+
+  // -- proportion spike (throwaway, spike/quaternius-characters) ------------
+  // One Quaternius humanoid (CC0: Universal Base Characters body wearing the
+  // Modular Character Outfits Fantasy ranger kit, clips from the Universal
+  // Animation Library) so the direction call about heroic vs chibi proportions
+  // is made against a real frame in the real town, not a store page. It is a
+  // COMPARISON asset: `?charspike=quaternius` swaps every player onto it,
+  // nothing reaches it otherwise, and it stays out of the boot sweep entirely
+  // (lazyPreload, fetched by preloadCharacterSpike() when the flag is on).
+  //
+  // Rig note: this is Quaternius's own 65-bone humanoid (root/pelvis/spine_01),
+  // NOT KayKit's Rig_Medium, so it shares nothing with the class bodies: no
+  // attach bones (handslot.r does not exist here, hence no held weapon), no
+  // modular part slots, no armor dye. That mismatch IS the finding the spike
+  // is meant to price.
+  player_spike_quaternius: {
+    url: `${PLAYERS}/spike/quaternius_ranger.glb`,
+    // Authored 1.87 world units crown-to-floor; the class rigs are 2.6 because
+    // a chibi head eats that budget. Held at the same manifest height so the
+    // comparison is like-for-like against the town kit, not a resize trick.
+    height: HUMANOID_H,
+    clips: quaternius(),
+    lazyPreload: true,
+  },
 
   // -- forms ---------------------------------------------------------------
   form_sheep: {
@@ -3141,6 +3192,7 @@ const NPC_KEYS: Record<string, string> = {
 
 export function visualKeyFor(e: Entity): string {
   if (e.kind === 'player') {
+    if (quaterniusSpikeOn()) return 'player_spike_quaternius';
     if (isMechWearer(e)) return 'player_mech';
     return VISUALS[`player_${e.templateId}`] ? `player_${e.templateId}` : 'player_warrior';
   }
