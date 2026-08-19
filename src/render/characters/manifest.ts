@@ -228,12 +228,26 @@ export const SPIKE_VISUAL_KEYS = [
   'spike_female_peasant',
 ] as const;
 
+// Meshy-generated props, hung on the spike bodies so the "can we author our own
+// gear with AI?" question gets a real frame too. These ride a single bone each,
+// which is the whole reason props are the lane to prove first: a helmet or a
+// shield needs no skinning weights, so a raw Meshy export reaches the screen
+// through decimation and placement alone (scripts/assets/build_meshy_prop.mjs).
+// Only the ranger kits carry them, so the town still shows plain bodies too.
+const MESHY_PROPS: AttachDef[] = [
+  // The skull sits ON the head bone, lifted to crown height and turned to face
+  // the way the body does.
+  { url: 'models/props/meshy/revenant_skull.glb', bone: 'Head', position: [0, 0.12, 0.02] },
+  { url: 'models/props/meshy/infernal_aegis.glb', bone: 'hand_l', position: [0, 0, 0] },
+];
+
 /** The spike bodies, one VisualDef each, all lazy and all off the boot path. */
 function spikeVisuals(): Record<string, VisualDef> {
   const out: Record<string, VisualDef> = {};
   for (const key of SPIKE_VISUAL_KEYS) {
     out[key] = {
       url: `${PLAYERS}/spike/quaternius_${key.slice('spike_'.length)}.glb`,
+      ...(key.endsWith('_ranger') ? { attach: MESHY_PROPS } : {}),
       // Authored about 1.87 world units crown to floor; the class rigs are 2.6
       // because a chibi head eats that budget. Held at the same manifest height
       // so the comparison is like-for-like against the town kit, not a resize.

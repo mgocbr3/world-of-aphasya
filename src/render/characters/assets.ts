@@ -612,7 +612,14 @@ for (const url of preloadUrls) {
 if (quaterniusSpikeOn()) {
   for (const key of SPIKE_VISUAL_KEYS) {
     const def = VISUALS[key];
-    if (def) registerPreload(prepareCharacterUrl(def.url));
+    if (!def) continue;
+    // Attachments too: manifestUrls() would have swept them, but a lazyPreload
+    // def is skipped there wholesale, and a missing attach GLB throws inside
+    // the preview's direct build rather than failing soft (an empty creator
+    // screen, which is exactly how this was found).
+    for (const url of [def.url, ...(def.attach ?? []).map((a) => a.url)]) {
+      registerPreload(prepareCharacterUrl(url));
+    }
   }
 }
 

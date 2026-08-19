@@ -949,6 +949,8 @@ export const MEDIA_ASSETS: Record<string, string> =
   "models/props/marsh_sluice_post.glb": "/media/models/props/marsh_sluice_post.f70e1546d481.glb",
   "models/props/maze_hedge_arch.glb": "/media/models/props/maze_hedge_arch.b5975894d3a4.glb",
   "models/props/maze_hedge_wall.glb": "/media/models/props/maze_hedge_wall.95bbd1dc1036.glb",
+  "models/props/meshy/infernal_aegis.glb": "/media/models/props/meshy/infernal_aegis.5c8261a2ea8a.glb",
+  "models/props/meshy/revenant_skull.glb": "/media/models/props/meshy/revenant_skull.165a775d1981.glb",
   "models/props/mining_ore_cart.glb": "/media/models/props/mining_ore_cart.6ee51fe49a47.glb",
   "models/props/mushroom_giant_purple.glb": "/media/models/props/mushroom_giant_purple.94cf295de472.glb",
   "models/props/mushroom_glow_cluster.glb": "/media/models/props/mushroom_glow_cluster.db1980cf6d57.glb",
