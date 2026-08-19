@@ -53,7 +53,9 @@ import {
   takeFarBakeBudget,
   tintedFarMaterials,
 } from './assets';
+import { type BodyAxes, bodyHeightScale, bodyScalePlan } from './body_shape_core';
 import { scaledVisualHeight } from './character_world_scale';
+import { applyFaceAxes, type FaceAxes, faceAxesAreNeutral } from './face_shape_core';
 import { HairSwayDriver } from './hair_sway';
 import { buildHalo } from './halo';
 import type { EmoteClipSpec, VisualDef, WeaponLayoutOverride } from './manifest';
@@ -418,6 +420,78 @@ export class CharacterVisual {
     this.look = { ...this.look, app };
     applyModularSliderMorphs(this.model, app);
   }
+
+  /**
+   * Reshape the body by scaling bones, for rigs that carry no shape keys. The
+   * plan is complete rather than a diff (see body_shape_core), so this is
+   * idempotent: re-applying it puts a rig someone already shaped back exactly
+   * where the axes say it belongs, which is what lets the creator drag a slider
+   * without rebuilding the character.
+   */
+  applyBodyAxes(axes: BodyAxes): void {
+    const root = this.model;
+    if (!root) return;
+    for (const step of bodyScalePlan(axes)) {
+      const bone = root.getObjectByName(step.bone);
+      if (!bone) continue;
+      bone.scale.set(step.scale[0], step.scale[1], step.scale[2]);
+      // Undo the inherited scale on the children that must not carry it. Done
+      // here rather than in the core because it needs the live child object,
+      // and because a child that is itself scaled later simply overwrites this.
+      for (const childName of step.compensate) {
+        const child = root.getObjectByName(childName);
+        if (!child) continue;
+        child.scale.set(
+          1 / (step.scale[0] || 1),
+          1 / (step.scale[1] || 1),
+          1 / (step.scale[2] || 1),
+        );
+      }
+    }
+    // Height rides the whole visual: scaling legs alone makes a wader, not a
+    // tall character, and lifts the feet off the ground the renderer places.
+    const height = bodyHeightScale(axes);
+    this.modelWrap.scale.setScalar(this.baseNormScale * height);
+  }
+
+  /**
+   * Reshape the face by displacing the head's own vertices. Unlike the body,
+   * this cannot share geometry: two characters with different noses are two
+   * different meshes, so the head is cloned on first use and the ORIGINAL
+   * positions are kept, because the displacement is absolute rather than
+   * incremental and a slider dragged twice would otherwise compound.
+   *
+   * A neutral face clones nothing at all, which is the common case.
+   */
+  applyFaceShape(axes: FaceAxes): void {
+    const root = this.model;
+    if (!root) return;
+    const head = root.getObjectByName('racial_head') ?? root.getObjectByName('Head');
+    if (!head) return;
+    head.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      if (!mesh.isMesh) return;
+      const position = mesh.geometry?.getAttribute('position');
+      if (!position) return;
+      if (faceAxesAreNeutral(axes) && !mesh.userData.faceBase) return;
+      if (!mesh.userData.faceBase) {
+        // Own the geometry before writing to it: the parse cache hands the same
+        // buffer to every character wearing this head.
+        mesh.geometry = mesh.geometry.clone();
+        const cloned = mesh.geometry.getAttribute('position');
+        mesh.userData.faceBase = Float32Array.from(cloned.array as Float32Array);
+      }
+      const target = mesh.geometry.getAttribute('position');
+      const values = target.array as Float32Array;
+      values.set(mesh.userData.faceBase as Float32Array);
+      applyFaceAxes(values, axes);
+      target.needsUpdate = true;
+      mesh.geometry.computeVertexNormals();
+      mesh.geometry.computeBoundingSphere();
+    });
+  }
+  /** The manifest-height normalize, kept so a height axis can multiply it. */
+  private baseNormScale = 1;
   private weaponSkinId: string | null = null;
   private weaponVfx: WeaponVfxHandle[] = [];
   // The skin's authored tuning row (the rig's 1.0 look) plus the shed
@@ -693,6 +767,7 @@ export class CharacterVisual {
       this.modelWrap.rotation.y = prep.def.yaw ?? 0;
       this.modelWrap.name = 'character_model_wrap';
       this.modelWrap.scale.setScalar(prep.normScale);
+      this.baseNormScale = prep.normScale;
       this.modelWrap.position.y = prep.yOffset;
       this.hairSway.build(this.model);
       this.modelWrap.add(this.model);
