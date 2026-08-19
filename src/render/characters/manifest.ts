@@ -220,6 +220,31 @@ const quaternius = (): ClipMap => ({
   },
 });
 
+// The four kits the free tier ships, in the order the town draws from them.
+export const SPIKE_VISUAL_KEYS = [
+  'spike_male_ranger',
+  'spike_female_ranger',
+  'spike_male_peasant',
+  'spike_female_peasant',
+] as const;
+
+/** The spike bodies, one VisualDef each, all lazy and all off the boot path. */
+function spikeVisuals(): Record<string, VisualDef> {
+  const out: Record<string, VisualDef> = {};
+  for (const key of SPIKE_VISUAL_KEYS) {
+    out[key] = {
+      url: `${PLAYERS}/spike/quaternius_${key.slice('spike_'.length)}.glb`,
+      // Authored about 1.87 world units crown to floor; the class rigs are 2.6
+      // because a chibi head eats that budget. Held at the same manifest height
+      // so the comparison is like-for-like against the town kit, not a resize.
+      height: HUMANOID_H,
+      clips: quaternius(),
+      lazyPreload: true,
+    };
+  }
+  return out;
+}
+
 const skeletonClips = (attack: string[], flourish = 'Skeletons_Awaken_Standing'): ClipMap => ({
   ...kaykit(attack, 'Idle_Combat'),
   flourish,
@@ -1585,15 +1610,7 @@ export const VISUALS: Record<string, VisualDef> = {
   // attach bones (handslot.r does not exist here, hence no held weapon), no
   // modular part slots, no armor dye. That mismatch IS the finding the spike
   // is meant to price.
-  player_spike_quaternius: {
-    url: `${PLAYERS}/spike/quaternius_ranger.glb`,
-    // Authored 1.87 world units crown-to-floor; the class rigs are 2.6 because
-    // a chibi head eats that budget. Held at the same manifest height so the
-    // comparison is like-for-like against the town kit, not a resize trick.
-    height: HUMANOID_H,
-    clips: quaternius(),
-    lazyPreload: true,
-  },
+  ...spikeVisuals(),
 
   // -- forms ---------------------------------------------------------------
   form_sheep: {
@@ -3190,19 +3207,39 @@ const NPC_KEYS: Record<string, string> = {
   huntsman_deral: 'npc_scout',
 };
 
+// Humanoid mob keys that ride the same KayKit adventurer rigs the players and
+// NPCs do, so the spike can swap them along with the rest of the cast. The
+// skeletons stay skeletons (undead read as undead whatever the art style), and
+// beasts, dragonkin and elementals are outside the swap entirely.
+const SPIKE_SWAPPABLE_MOBS = new Set([
+  'mob_bandit',
+  'mob_dark_caster',
+  'mob_bruiser',
+  'delve_mob_acolyte',
+]);
+
+/** Deterministic per-template pick, so a given villager keeps the same body. */
+function spikeVariantFor(templateId: string): string {
+  let hash = 0;
+  for (let i = 0; i < templateId.length; i++) hash = (hash * 31 + templateId.charCodeAt(i)) >>> 0;
+  return SPIKE_VISUAL_KEYS[hash % SPIKE_VISUAL_KEYS.length];
+}
+
 export function visualKeyFor(e: Entity): string {
+  const spike = quaterniusSpikeOn();
   if (e.kind === 'player') {
-    if (quaterniusSpikeOn()) return 'player_spike_quaternius';
+    if (spike) return 'spike_male_ranger';
     if (isMechWearer(e)) return 'player_mech';
     return VISUALS[`player_${e.templateId}`] ? `player_${e.templateId}` : 'player_warrior';
   }
   if (e.kind === 'mob') {
     const override = MOB_KEYS[e.templateId];
-    if (override) return override;
-    const family = MOBS[e.templateId]?.family;
-    return (family && FAMILY_KEYS[family]) || 'mob_bandit';
+    const key = override || (MOBS[e.templateId]?.family && FAMILY_KEYS[MOBS[e.templateId].family]);
+    const resolved = key || 'mob_bandit';
+    return spike && SPIKE_SWAPPABLE_MOBS.has(resolved) ? spikeVariantFor(e.templateId) : resolved;
   }
   // npcs — Brother Aldric recurs in every hub under suffixed ids
+  if (spike) return spikeVariantFor(e.templateId);
   if (e.templateId.startsWith('brother_aldric')) return 'npc_aldric';
   return NPC_KEYS[e.templateId] ?? 'npc_villager';
 }

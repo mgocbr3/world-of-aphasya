@@ -40,6 +40,7 @@ import {
   SKIN_EMISSIVE,
   SKINS,
   SKINS_DIR,
+  SPIKE_VISUAL_KEYS,
   VISUALS,
   type VisualDef,
   visibleAttachmentsForGraphics,
@@ -602,14 +603,17 @@ for (const url of preloadUrls) {
   registerPreload(prepareCharacterUrl(url));
 }
 
-// The proportion spike's body joins the boot gate only when its URL flag asks
-// for it (VISUALS marks it lazyPreload, so it is never in preloadUrls). It has
-// to be IN the gate rather than streamed once requested: with the flag on it is
-// the local player's own body, and the character-select preview builds that
-// visual directly instead of through the fail-soft factory.
+// The proportion spike's bodies join the boot gate only when its URL flag asks
+// for them (VISUALS marks them lazyPreload, so they are never in preloadUrls).
+// They have to be IN the gate rather than streamed once requested: with the
+// flag on these are the local player AND every townsfolk on screen at spawn,
+// and the character-select preview builds its visual directly instead of
+// through the fail-soft factory.
 if (quaterniusSpikeOn()) {
-  const spikeDef = VISUALS.player_spike_quaternius;
-  if (spikeDef) registerPreload(prepareCharacterUrl(spikeDef.url));
+  for (const key of SPIKE_VISUAL_KEYS) {
+    const def = VISUALS[key];
+    if (def) registerPreload(prepareCharacterUrl(def.url));
+  }
 }
 
 let streamedStarted = false;

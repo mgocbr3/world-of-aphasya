@@ -39,9 +39,12 @@ if (!packRoot || !outPath) {
   process.exit(1);
 }
 
-// The free tier ships two kits (Ranger, Peasant); Ranger is the one that reads
-// as an adventurer next to our town cast, so it is the spike's subject.
-const OUTFIT = 'Male_Ranger';
+// The free tier ships two kits (Ranger, Peasant) in both genders. All four are
+// built so the town can be repopulated end to end: judging one stranger among
+// chibi townsfolk says nothing about how the world reads when the whole cast
+// shares a proportion language.
+const OUTFIT = process.argv[4] ?? 'Male_Ranger';
+const BODY = OUTFIT.startsWith('Female') ? 'Superhero_Female_FullBody' : 'Superhero_Male_FullBody';
 
 // The Base Characters glTF references two textures under names the pack does
 // not actually ship (`T_Hair_1_Normal_png.png` for `T_Hair_1_Normal.png`, same
@@ -60,9 +63,12 @@ function healPackTextureNames(gltfPath) {
 }
 
 // Bind-pose height, in the pack's own units, of the cut between head and torso.
-// The kit's tunic tops out at 1.60 and its hood spans 1.53 to 1.87, so a cut
-// here leaves no gap at the collar and no seam in view.
-const NECK_CUT_Y = 1.6;
+// Deliberately BELOW the collarbone rather than at the jaw: a cut at the neck
+// line takes the neck with it and leaves a head floating over the collar, which
+// is worse than the torso overlap it avoids (direction call: "nao pode tirar o
+// pescoco, fica feio"). The kit's tunic spans 0.91 to 1.60 and its hood 1.53 to
+// 1.87, so everything kept below the chin sits inside collar and hood.
+const NECK_CUT_Y = 1.48;
 
 /**
  * Keep only the triangles fully above `cutY`, rewriting every vertex attribute
@@ -151,7 +157,7 @@ const root = doc.getRoot();
 // below, because a silent order mismatch would skin the body to the wrong bones
 // rather than fail), so the base body can be merged in and pointed at the
 // outfit's own skin with no index remap and no retarget.
-const bodyPath = findFile(join(packRoot, 'ubc'), 'Superhero_Male_FullBody.gltf');
+const bodyPath = findFile(join(packRoot, 'ubc'), `${BODY}.gltf`);
 if (!bodyPath) throw new Error(`base body not found under ${packRoot}/ubc`);
 healPackTextureNames(bodyPath);
 const bodyDoc = await io.read(bodyPath);
