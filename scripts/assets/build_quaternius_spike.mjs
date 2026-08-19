@@ -59,6 +59,16 @@ if (!packRoot || !outPath) {
 const OUTFIT = process.argv[4] ?? 'Male_Ranger';
 const FEMALE = OUTFIT.startsWith('Female');
 const BODY = FEMALE ? 'Superhero_Female_FullBody' : 'Superhero_Male_FullBody';
+// An optional replacement head (--head <glb>), for racial variety. The body,
+// the kit, the rig and all 84 clips stay exactly as they are: only the head
+// changes, which is where a fantasy race actually reads. An unrigged head is
+// bound by the same nearest-vertex weight transfer the armour used, restricted
+// to the neck and skull donors, so it follows the head bone like the original.
+const HEAD_OVERRIDE = argFlag('--head');
+function argFlag(name) {
+  const at = process.argv.indexOf(name);
+  return at >= 0 ? process.argv[at + 1] : null;
+}
 // Hair per kit, from the free tier's eight styles. The hooded ranger takes a
 // short cut that reads under a hood; the bare-headed peasant takes a fuller one
 // because it is the whole silhouette of the head. Brows come from the body
@@ -245,6 +255,131 @@ for (const sourceProp of [
   if (merged && !adopted.has(merged)) merged.dispose();
 }
 
+// Swap in a generated racial head, if one was named. The trick that makes this
+// cheap: the pack's own head is merged FIRST and used as the weight DONOR, then
+// discarded. Its vertices carry the artist's authored head and neck weights, so
+// a generated head inherits exactly the binding the original had, and nothing
+// about the body, the kit, the rig or the 84 clips changes. Race reads through
+// the skull it swaps in.
+let headStats = null;
+if (HEAD_OVERRIDE) {
+  // Bounds of the head already in the scene: the target the new one matches, so
+  // a generated head lands at the pack's own scale instead of needing a magic
+  // number per file.
+  let lo = [Infinity, Infinity, Infinity];
+  let hi = [-Infinity, -Infinity, -Infinity];
+  const donorPos = [];
+  const donorJoints = [];
+  const donorWeights = [];
+  for (const node of adopted) {
+    const mesh = node.getMesh();
+    if (!mesh) continue;
+    for (const prim of mesh.listPrimitives()) {
+      const position = prim.getAttribute('POSITION');
+      const jointsAttr = prim.getAttribute('JOINTS_0');
+      const weightsAttr = prim.getAttribute('WEIGHTS_0');
+      if (!position || !jointsAttr || !weightsAttr) continue;
+      const p = [0, 0, 0];
+      const j = [0, 0, 0, 0];
+      const w = [0, 0, 0, 0];
+      for (let i = 0; i < position.getCount(); i++) {
+        position.getElement(i, p);
+        jointsAttr.getElement(i, j);
+        weightsAttr.getElement(i, w);
+        // Bounds come from the vertices actually read, not the accessor's
+        // cached min/max: those go stale the moment a primitive is rewritten.
+        lo = lo.map((v, k) => Math.min(v, p[k]));
+        hi = hi.map((v, k) => Math.max(v, p[k]));
+        donorPos.push(p[0], p[1], p[2]);
+        donorJoints.push(j[0], j[1], j[2], j[3]);
+        donorWeights.push(w[0], w[1], w[2], w[3]);
+      }
+    }
+  }
+  if (donorPos.length === 0) throw new Error('no donor head in the scene to bind against');
+  const nearest = buildNearestIndex(donorPos);
+
+  const headDoc = await io.read(HEAD_OVERRIDE);
+  const headRoot = headDoc.getRoot();
+  // Measure the incoming head so it can be fitted to the donor's box. Meshy
+  // exports land at whatever size and offset the generator chose.
+  let hlo = [Infinity, Infinity, Infinity];
+  let hhi = [-Infinity, -Infinity, -Infinity];
+  for (const mesh of headRoot.listMeshes()) {
+    for (const prim of mesh.listPrimitives()) {
+      const position = prim.getAttribute('POSITION');
+      if (!position) continue;
+      const v = [0, 0, 0];
+      for (let i = 0; i < position.getCount(); i++) {
+        position.getElement(i, v);
+        hlo = hlo.map((x, k) => Math.min(x, v[k]));
+        hhi = hhi.map((x, k) => Math.max(x, v[k]));
+      }
+    }
+  }
+  const fit = hhi[1] - hlo[1] > 1e-6 ? (hi[1] - lo[1]) / (hhi[1] - hlo[1]) : 1;
+
+  const headScene = headRoot.getDefaultScene() ?? headRoot.listScenes()[0];
+  const headNodes = [];
+  headScene?.traverse((node) => {
+    if (node.getMesh()) headNodes.push(node);
+  });
+  const headMap = mergeDocuments(doc, headDoc);
+  const keptHead = new Set();
+  let headVertices = 0;
+  for (const sourceNode of headNodes) {
+    const node = headMap.get(sourceNode);
+    if (!node) continue;
+    keptHead.add(node);
+    node.getParentNode()?.removeChild(node);
+    for (const prim of node.getMesh().listPrimitives()) {
+      const position = prim.getAttribute('POSITION');
+      const count = position.getCount();
+      const jointArray = new Uint16Array(count * 4);
+      const weightArray = new Float32Array(count * 4);
+      const p = [0, 0, 0];
+      for (let i = 0; i < count; i++) {
+        position.getElement(i, p);
+        // Fit to the donor box: uniform scale on height, centred on x and z,
+        // base seated at the donor's own base so the neck meets the collar.
+        const fitted = [
+          (p[0] - (hhi[0] + hlo[0]) / 2) * fit + (hi[0] + lo[0]) / 2,
+          (p[1] - hlo[1]) * fit + lo[1],
+          (p[2] - (hhi[2] + hlo[2]) / 2) * fit + (hi[2] + lo[2]) / 2,
+        ];
+        position.setElement(i, fitted);
+        const donor = nearest(fitted[0], fitted[1], fitted[2]);
+        for (let k = 0; k < 4; k++) {
+          jointArray[i * 4 + k] = donor >= 0 ? donorJoints[donor * 4 + k] : 0;
+          weightArray[i * 4 + k] = donor >= 0 ? donorWeights[donor * 4 + k] : k === 0 ? 1 : 0;
+        }
+      }
+      position.setArray(position.getArray());
+      prim.setAttribute('JOINTS_0', doc.createAccessor().setType('VEC4').setArray(jointArray));
+      prim.setAttribute('WEIGHTS_0', doc.createAccessor().setType('VEC4').setArray(weightArray));
+      headVertices += count;
+    }
+    node.setSkin(outfitSkin);
+    // Name it, because a generated export usually arrives anonymous and an
+    // unnamed mesh is invisible in every later inspection.
+    node.setName('racial_head');
+    node.getMesh().setName('racial_head');
+    scene?.addChild(node);
+  }
+  for (const sourceProp of [
+    ...headRoot.listNodes(),
+    ...headRoot.listScenes(),
+    ...headRoot.listSkins(),
+  ]) {
+    const merged = headMap.get(sourceProp);
+    if (merged && !keptHead.has(merged)) merged.dispose();
+  }
+  // The pack head has done its job as donor and now goes, or the two would
+  // occupy the same skull.
+  for (const node of adopted) node.dispose();
+  headStats = { donors: donorPos.length / 3, headVertices, fitScale: +fit.toFixed(3) };
+}
+
 // Hair, and a beard where the kit suits one. Composing the head alone left
 // every character bald, which the hood hides on a ranger and nothing hides on a
 // peasant. These ship as their own skinned GLBs on the same 65-bone rig (the
@@ -287,7 +422,8 @@ for (const style of HAIR) {
 // through it; this makes the plate a real part of the character, deforming off
 // the same weights the shoulder does. See lib/skin_weight_transfer.mjs for why
 // nearest-vertex transfer beats distance-to-bone weighting at the shoulder.
-const ARMOR = process.argv[5];
+// Positional, so it must not swallow a flag that follows the outfit name.
+const ARMOR = process.argv[5]?.startsWith('--') ? null : process.argv[5];
 let armorStats = null;
 if (ARMOR) {
   const armorDoc = await io.read(ARMOR);
@@ -519,5 +655,6 @@ console.log(
     clipsCopied: copied,
     clipsSkippedUnbound: skippedUnbound,
     armor: armorStats,
+    head: headStats,
   }),
 );
