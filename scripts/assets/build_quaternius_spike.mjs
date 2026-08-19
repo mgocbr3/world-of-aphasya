@@ -16,12 +16,19 @@
 //   node scripts/assets/build_quaternius_spike.mjs <packRoot> public/models/chars/players/spike/quaternius_ranger.glb
 // where packRoot holds the extracted ubc/, outfits/, ual1/, ual2/ folders.
 
-import { existsSync, readdirSync } from 'node:fs';
+import { copyFileSync, existsSync, readdirSync, readFileSync } from 'node:fs';
 import { mkdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
-import { dedup, meshopt, prune, resample, textureCompress } from '@gltf-transform/functions';
+import {
+  dedup,
+  mergeDocuments,
+  meshopt,
+  prune,
+  resample,
+  textureCompress,
+} from '@gltf-transform/functions';
 import { MeshoptEncoder } from 'meshoptimizer';
 import sharp from 'sharp';
 
@@ -35,6 +42,74 @@ if (!packRoot || !outPath) {
 // The free tier ships two kits (Ranger, Peasant); Ranger is the one that reads
 // as an adventurer next to our town cast, so it is the spike's subject.
 const OUTFIT = 'Male_Ranger';
+
+// The Base Characters glTF references two textures under names the pack does
+// not actually ship (`T_Hair_1_Normal_png.png` for `T_Hair_1_Normal.png`, same
+// for the eye normal): an export bug on their side, fatal to any strict glTF
+// reader. Materialize the missing aliases beside the real files rather than
+// rewriting the glTF, so the pack stays byte-identical to what was downloaded.
+function healPackTextureNames(gltfPath) {
+  const dir = dirname(gltfPath);
+  const gltf = JSON.parse(readFileSync(gltfPath, 'utf8'));
+  for (const image of gltf.images ?? []) {
+    const uri = image.uri ? decodeURIComponent(image.uri) : null;
+    if (!uri || existsSync(join(dir, uri))) continue;
+    const real = uri.replace(/_png\.png$/, '.png');
+    if (real !== uri && existsSync(join(dir, real))) copyFileSync(join(dir, real), join(dir, uri));
+  }
+}
+
+// Bind-pose height, in the pack's own units, of the cut between head and torso.
+// The kit's tunic tops out at 1.60 and its hood spans 1.53 to 1.87, so a cut
+// here leaves no gap at the collar and no seam in view.
+const NECK_CUT_Y = 1.6;
+
+/**
+ * Keep only the triangles fully above `cutY`, rewriting every vertex attribute
+ * so the result carries no orphan vertices. Operates per primitive and in place
+ * on the mesh. Skinning survives untouched: JOINTS_0/WEIGHTS_0 travel with
+ * their vertex, so the kept cap stays bound to the same neck and head bones.
+ */
+function keepAbove(mesh, cutY) {
+  for (const prim of mesh.listPrimitives()) {
+    const position = prim.getAttribute('POSITION');
+    const indices = prim.getIndices();
+    if (!position || !indices) continue;
+    const kept = [];
+    const remap = new Map();
+    const vertex = [0, 0, 0];
+    for (let i = 0; i < indices.getCount(); i += 3) {
+      const tri = [indices.getScalar(i), indices.getScalar(i + 1), indices.getScalar(i + 2)];
+      if (!tri.every((v) => position.getElement(v, vertex) && vertex[1] >= cutY)) continue;
+      for (const v of tri) {
+        if (!remap.has(v)) remap.set(v, remap.size);
+        kept.push(remap.get(v));
+      }
+    }
+    if (kept.length === 0 || remap.size === 0) {
+      prim.dispose();
+      continue;
+    }
+    const order = [...remap.entries()].sort((a, b) => a[1] - b[1]).map(([old]) => old);
+    for (const semantic of prim.listSemantics()) {
+      const src = prim.getAttribute(semantic);
+      const stride = src.getElementSize();
+      const Ctor = src.getArray().constructor;
+      const dst = doc
+        .createAccessor()
+        .setType(src.getType())
+        .setNormalized(src.getNormalized())
+        .setArray(new Ctor(order.length * stride));
+      const element = new Array(stride).fill(0);
+      order.forEach((old, next) => {
+        src.getElement(old, element);
+        dst.setElement(next, element);
+      });
+      prim.setAttribute(semantic, dst);
+    }
+    prim.setIndices(doc.createAccessor().setArray(new Uint32Array(kept)));
+  }
+}
 
 function findFile(root, name) {
   const stack = [root];
@@ -59,6 +134,100 @@ if (!outfitPath) throw new Error(`outfit ${OUTFIT}.gltf not found under ${packRo
 
 const doc = await io.read(outfitPath);
 const root = doc.getRoot();
+
+// The outfit kits are GARMENTS, not characters: a kit ships the tunic, the
+// sleeves, the trousers, the boots and the hood, and the body wearing them
+// (head included) comes from the Universal Base Characters pack. Composing the
+// kit alone is what shipped an empty hood on the first build of this spike.
+//
+// Only the HEAD is taken from that body. The kit already carries every scrap of
+// skin it needs (bare hands, the neck line), and the free tier ships Superhero
+// proportions while the kits are fitted to Regular, so a whole base body reads
+// as a bulkier torso bursting through its own tunic. Cutting at the neck keeps
+// the face, drops about 10k triangles of hidden torso, and the hood covers the
+// seam.
+//
+// Both packs export the same 65-bone humanoid in the SAME joint order (asserted
+// below, because a silent order mismatch would skin the body to the wrong bones
+// rather than fail), so the base body can be merged in and pointed at the
+// outfit's own skin with no index remap and no retarget.
+const bodyPath = findFile(join(packRoot, 'ubc'), 'Superhero_Male_FullBody.gltf');
+if (!bodyPath) throw new Error(`base body not found under ${packRoot}/ubc`);
+healPackTextureNames(bodyPath);
+const bodyDoc = await io.read(bodyPath);
+
+const outfitSkin = root.listSkins()[0];
+const bodySkin = bodyDoc.getRoot().listSkins()[0];
+if (!outfitSkin || !bodySkin) throw new Error('expected a skin in both the outfit and the body');
+const outfitJoints = outfitSkin.listJoints().map((j) => j.getName());
+const bodyJoints = bodySkin.listJoints().map((j) => j.getName());
+if (outfitJoints.length !== bodyJoints.length || outfitJoints.some((n, i) => n !== bodyJoints[i])) {
+  throw new Error('outfit and base body disagree on joint order; a JOINTS_0 remap would be needed');
+}
+
+const bodyScene = bodyDoc.getRoot().getDefaultScene() ?? bodyDoc.getRoot().listScenes()[0];
+const bodyMeshNodes = [];
+bodyScene?.traverse((node) => {
+  if (node.getMesh()) bodyMeshNodes.push(node);
+});
+const map = mergeDocuments(doc, bodyDoc);
+const scene = root.getDefaultScene() ?? root.listScenes()[0];
+const adopted = new Set();
+for (const sourceNode of bodyMeshNodes) {
+  const node = map.get(sourceNode);
+  if (!node) continue;
+  adopted.add(node);
+  // Take the mesh OUT of the merged hierarchy before adopting it: the merge
+  // brings the body's own copy of the 65-bone skeleton along, and three binds
+  // animation tracks by node NAME, so a second node called "pelvis" in the file
+  // silently captures the tracks and the whole character holds bind pose (the
+  // T-pose this spike shipped once). Re-skin to the outfit's rig, reparent onto
+  // the outfit's scene, then drop the merged scene so prune() can collect the
+  // duplicate bones with it.
+  node.getParentNode()?.removeChild(node);
+  if (node.getSkin()) node.setSkin(outfitSkin);
+  scene?.addChild(node);
+  // The eyes and brows are already head-only; the body mesh is the whole figure
+  // and gets cut down to its head.
+  // Identify the figure by its EXTENT, not its name: the pack exports the body
+  // under a sculpting leftover ("Sphere.005_Retopology.004") while the eyes and
+  // brows are already head-height, so anything reaching below the waist is the
+  // mesh to cut.
+  const mesh = node.getMesh();
+  const lowest = Math.min(
+    ...mesh
+      .listPrimitives()
+      .map((prim) => prim.getAttribute('POSITION')?.getMin([])[1] ?? Number.POSITIVE_INFINITY),
+  );
+  if (lowest < NECK_CUT_Y - 0.5) keepAbove(mesh, NECK_CUT_Y);
+}
+// Everything else the merge produced goes, explicitly: prune() will not collect
+// an orphaned bone hierarchy (the nodes are still linked to each other and to
+// their skins), and leaving it behind is what shadows the real skeleton by name.
+// Disposing through the map covers the merged scene, its skins and all 65
+// duplicate joints without guessing at names.
+for (const sourceProp of [
+  ...bodyDoc.getRoot().listNodes(),
+  ...bodyDoc.getRoot().listScenes(),
+  ...bodyDoc.getRoot().listSkins(),
+]) {
+  const merged = map.get(sourceProp);
+  if (merged && !adopted.has(merged)) merged.dispose();
+}
+
+// Kill the metal. The kits author a packed ORM map and leave metallicFactor at
+// 1, so a fragment's metalness is whatever survives in the blue channel: fine
+// in an offline renderer, wrong here twice over. The game ships its GLB
+// textures KTX2/Basis, a luma-first codec that mangles packed non-colour maps,
+// and a wet-looking metal sheen on cloth and leather reads as a bug against a
+// stylized cast anyway (direction call: "muito reflexivo, muito metalico").
+// Zeroing the factor makes the material codec-proof: cloth stays cloth however
+// the blue channel is quantized. Buckles lose their metal too, a trade this
+// spike happily takes.
+for (const material of root.listMaterials()) {
+  material.setMetallicFactor(0);
+  material.setRoughnessFactor(Math.max(material.getRoughnessFactor(), 0.85));
+}
 
 // The animation libraries ride the same 65-bone humanoid rig as the outfits,
 // so their clips bind by joint NAME with no retarget step. Copy every clip in
@@ -122,6 +291,12 @@ for (const source of clipSources) {
     copied += 1;
   }
 }
+
+// A merge brings the source document's own buffer along, and a GLB may hold at
+// most one: point every accessor at the first buffer before writing.
+const primaryBuffer = root.listBuffers()[0];
+for (const accessor of root.listAccessors()) accessor.setBuffer(primaryBuffer);
+for (const buffer of root.listBuffers().slice(1)) buffer.dispose();
 
 await doc.transform(
   resample(),
