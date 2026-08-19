@@ -405,9 +405,21 @@ function attachProp(
   const variantGrip = isHandslotBone(att.bone) ? variantGripFor(att.url) : null;
   if (variantGrip) {
     applyVariantGrip(payload, att.bone, variantGrip, att.url);
-  } else if (att.position || att.rotationY !== undefined) {
+  } else if (
+    att.position ||
+    att.rotationY !== undefined ||
+    att.scale !== undefined ||
+    att.rotation
+  ) {
     if (att.position) payload.position.set(...att.position);
-    if (att.rotationY !== undefined) payload.rotation.y = att.rotationY;
+    if (att.rotation) payload.rotation.set(...att.rotation);
+    else if (att.rotationY !== undefined) payload.rotation.y = att.rotationY;
+    // Authored grips carry their own size. The per-variant grip table above
+    // bakes a scale per weapon because the weapon packs are modelled for the
+    // KayKit hand; a rig that stays off that path (the Quaternius spike bodies)
+    // otherwise mounts every weapon at raw pack scale, which reads as a sword
+    // half the character's height.
+    if (att.scale !== undefined) payload.scale.setScalar(att.scale);
   } else if (att.gripRef) {
     const ref = findAccessoryNode(root, att.gripRef);
     if (ref) copyAccessoryTransform(payload, ref);

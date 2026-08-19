@@ -74,6 +74,13 @@ export interface AttachDef {
   bone: string;
   position?: [number, number, number];
   rotationY?: number;
+  /** Uniform scale for an authored grip. The per-variant grip table carries its
+   *  own scale, so this is only for attachments that bypass it (a rig whose hand
+   *  bones are not KayKit's, where those tuned transforms do not apply). */
+  scale?: number;
+  /** Full euler grip rotation, for the same bypass case: `rotationY` alone
+   *  cannot align a blade to a hand whose bone axes differ from KayKit's. */
+  rotation?: [number, number, number];
   /** Copy grip from a built-in accessory node on the character rig (e.g. Spellbook_open). */
   gripRef?: string;
 }
@@ -204,19 +211,46 @@ const quaternius = (): ClipMap => ({
   idle: 'Idle_Loop',
   walk: 'Walk_Loop',
   run: 'Jog_Fwd_Loop',
+  // No backpedal exists in the library, so `walkBack` stays unset on purpose and
+  // the fallback replays the forward walk, which is what the field is for.
   attack: ['Sword_Regular_A', 'Sword_Regular_B', 'Sword_Regular_C'],
-  hit: ['Hit_Chest', 'Hit_Head'],
+  // Weapon-style overrides: the library carries a two-handed heavy swing and a
+  // full combo, so a greatsword and a dual-wielder stop sharing the one-hand
+  // rotation the way every class rig differentiates them.
+  attackByHand: { twohand: 'Sword_Heavy_Combo', dualwield: 'Sword_Regular_Combo' },
+  hit: ['Hit_Chest', 'Hit_Head', 'Hit_Knockback'],
   death: 'Death01',
+  // A respawn beat, the same role flourish plays on the skeleton rigs.
+  flourish: 'Sword_Regular_Combo',
   cast: 'Spell_Simple_Idle_Loop',
   sitDown: 'Sitting_Enter',
   sitIdle: 'Sitting_Idle_Loop',
   swim: 'Swim_Fwd_Loop',
   swimIdle: 'Swim_Idle_Loop',
+  // Jump_Loop is the airborne pose and doubles as the long-drop flail; Jump_Land
+  // is the touchdown one-shot, and its presence is ALSO what stops the jump pose
+  // looping forever through a fall (visual.ts clamps on the last airborne frame
+  // once a rig has a landing clip).
   jump: 'Jump_Loop',
+  fall: 'Jump_Loop',
+  land: 'Jump_Land',
+  // Wading is the crouch-forward walk: the library has no water-specific step,
+  // and a shortened stride reads better in shin-deep water than the dry stride.
+  wade: 'Crouch_Fwd_Loop',
   emote: {
     dance: { clips: ['Dance_Loop'], timeScale: 1, repeats: 2 },
     cheer: { clips: ['Yes'], timeScale: 1.05, repeats: 2 },
     flex: { clips: ['Idle_FoldArms_Loop'], timeScale: 1 },
+    wave: { clips: ['Idle_Rail_Call'], timeScale: 1.1 },
+    point: { clips: ['Interact'], timeScale: 1 },
+    laugh: { clips: ['Idle_Talking_Loop'], timeScale: 1.3, repeats: 2 },
+    question: { clips: ['Idle_No_Loop'], timeScale: 1.1 },
+    kneel: { clips: ['Fixing_Kneeling'], timeScale: 1 },
+    salute: { clips: ['Idle_Rail_Call'], timeScale: 0.9 },
+    roar: { clips: ['Shield_OneShot'], timeScale: 1 },
+    clap: { clips: ['Yes'], timeScale: 1.4, repeats: 3 },
+    cry: { clips: ['Idle_No_Loop'], timeScale: 0.8 },
+    bow: { clips: ['Interact'], timeScale: 0.85 },
   },
 });
 
@@ -228,32 +262,51 @@ export const SPIKE_VISUAL_KEYS = [
   'spike_female_peasant',
 ] as const;
 
-// Meshy-generated props, hung on the spike bodies so the "can we author our own
-// gear with AI?" question gets a real frame too. These ride a single bone each,
-// which is the whole reason props are the lane to prove first: a helmet or a
-// shield needs no skinning weights, so a raw Meshy export reaches the screen
-// through decimation and placement alone (scripts/assets/build_meshy_prop.mjs).
-// Only the ranger kits carry them, so the town still shows plain bodies too.
-const MESHY_PROPS: AttachDef[] = [
-  // The skull sits ON the head bone, lifted to crown height and turned to face
-  // the way the body does.
-  // The helm rides the head bone, which is all a rigid prop needs: a skull does
-  // not deform, and the head is one bone all the way through.
-  //
-  // The breastplate is NOT here. Bolted to the spine it was rigid, so a raised
-  // arm drove its pauldrons through the shoulders; it is now SKINNED into the
-  // body itself at build time (the exporter's weight-transfer step), which is
-  // the honest answer for anything that spans a joint.
-  { url: 'models/props/meshy/revenant_skull.glb', bone: 'Head', position: [0, 0.12, 0.02] },
-];
+/**
+ * Hands for the spike bodies. Two things make this different from a class def.
+ * The bones are the Quaternius rig's own (`hand_r`/`hand_l`), not KayKit's
+ * `handslot.r`; and they are deliberately NOT named so that isHandslotBone()
+ * recognizes them, because that gate routes an attachment through the
+ * KayKit-tuned per-variant grip table (assets.ts KAYKIT_GRIP), whose positions
+ * and quaternions are authored in a different hand-bone frame and would plant
+ * every weapon sideways. Staying off that path means these offsets apply to
+ * every weapon a player equips, so one grip serves a sword and a staff alike:
+ * coarser than the class rigs, and the honest cost of a second rig.
+ */
 
 /** The spike bodies, one VisualDef each, all lazy and all off the boot path. */
 function spikeVisuals(): Record<string, VisualDef> {
+  // Built here rather than at module scope: WEAPONS is declared further down,
+  // and this function only runs while VISUALS itself is being assembled.
+  const SPIKE_HANDS: AttachDef[] = [
+    // Scale is derived, not eyeballed: the weapon packs are modelled for a rig
+    // authored at HUMANOID_H, and this body is authored at about 1.87 and then
+    // normalized UP to the same height, so anything parented to its hand
+    // inherits that 1.39x. Dividing the KayKit sword grip's own 0.8876 by it
+    // lands the blade at the size the class rigs show, and a realistic hand
+    // wants a touch less than a chibi one does.
+    {
+      url: `${WEAPONS}/sword_1handed.glb`,
+      bone: 'hand_r',
+      position: [0, 0.03, 0],
+      rotation: [Math.PI / 2, 0, 0],
+      scale: 0.42,
+    },
+    {
+      url: `${WEAPONS}/shield_round.glb`,
+      bone: 'hand_l',
+      position: [0, 0.03, 0],
+      rotation: [Math.PI / 2, 0, 0],
+      scale: 0.42,
+    },
+  ];
   const out: Record<string, VisualDef> = {};
   for (const key of SPIKE_VISUAL_KEYS) {
     out[key] = {
       url: `${PLAYERS}/spike/quaternius_${key.slice('spike_'.length)}.glb`,
-      ...(key.endsWith('_ranger') ? { attach: MESHY_PROPS } : {}),
+      attach: SPIKE_HANDS,
+      weaponSlots: [0],
+      offhandSlot: 1,
       // Authored about 1.87 world units crown to floor; the class rigs are 2.6
       // because a chibi head eats that budget. Held at the same manifest height
       // so the comparison is like-for-like against the town kit, not a resize.

@@ -57,7 +57,17 @@ if (!packRoot || !outPath) {
 // chibi townsfolk says nothing about how the world reads when the whole cast
 // shares a proportion language.
 const OUTFIT = process.argv[4] ?? 'Male_Ranger';
-const BODY = OUTFIT.startsWith('Female') ? 'Superhero_Female_FullBody' : 'Superhero_Male_FullBody';
+const FEMALE = OUTFIT.startsWith('Female');
+const BODY = FEMALE ? 'Superhero_Female_FullBody' : 'Superhero_Male_FullBody';
+// Hair per kit, from the free tier's eight styles. The hooded ranger takes a
+// short cut that reads under a hood; the bare-headed peasant takes a fuller one
+// because it is the whole silhouette of the head. Brows come from the body
+// merge already, so only hair and beard are named here.
+const HAIR = FEMALE
+  ? ['Hair_Long']
+  : OUTFIT.endsWith('Peasant')
+    ? ['Hair_SimpleParted', 'Hair_Beard']
+    : ['Hair_Buzzed', 'Hair_Beard'];
 
 // The Base Characters glTF references two textures under names the pack does
 // not actually ship (`T_Hair_1_Normal_png.png` for `T_Hair_1_Normal.png`, same
@@ -233,6 +243,43 @@ for (const sourceProp of [
 ]) {
   const merged = map.get(sourceProp);
   if (merged && !adopted.has(merged)) merged.dispose();
+}
+
+// Hair, and a beard where the kit suits one. Composing the head alone left
+// every character bald, which the hood hides on a ranger and nothing hides on a
+// peasant. These ship as their own skinned GLBs on the same 65-bone rig (the
+// "Rigged to Head Bone" export), so they merge exactly like the body did: adopt
+// the mesh, point it at the outfit's skin, drop the duplicate skeleton behind
+// it. Note they are SKINNED, not parented to a bone, which is what lets long
+// hair swing off the neck bones instead of rotating rigidly with the skull.
+for (const style of HAIR) {
+  const hairPath = findFile(join(packRoot, 'ubc'), `${style}.gltf`);
+  if (!hairPath) throw new Error(`hair ${style}.gltf not found under ${packRoot}/ubc`);
+  healPackTextureNames(hairPath);
+  const hairDoc = await io.read(hairPath);
+  const hairScene = hairDoc.getRoot().getDefaultScene() ?? hairDoc.getRoot().listScenes()[0];
+  const hairNodes = [];
+  hairScene?.traverse((node) => {
+    if (node.getMesh()) hairNodes.push(node);
+  });
+  const hairMap = mergeDocuments(doc, hairDoc);
+  const keep = new Set();
+  for (const sourceNode of hairNodes) {
+    const node = hairMap.get(sourceNode);
+    if (!node) continue;
+    keep.add(node);
+    node.getParentNode()?.removeChild(node);
+    if (node.getSkin()) node.setSkin(outfitSkin);
+    scene?.addChild(node);
+  }
+  for (const sourceProp of [
+    ...hairDoc.getRoot().listNodes(),
+    ...hairDoc.getRoot().listScenes(),
+    ...hairDoc.getRoot().listSkins(),
+  ]) {
+    const merged = hairMap.get(sourceProp);
+    if (merged && !keep.has(merged)) merged.dispose();
+  }
 }
 
 // Skin a generated armour piece INTO the body, if one was named. A prop bolted
