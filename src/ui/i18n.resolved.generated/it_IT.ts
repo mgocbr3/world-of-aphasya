@@ -483,12 +483,12 @@ export const it_IT: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "Negozio WOC",
-      "close": "Chiudi il negozio WOC",
-      "tabsLabel": "Sezioni del negozio WOC",
+      "title": "Negozio Aphasium",
+      "close": "Chiudi il negozio Aphasium",
+      "tabsLabel": "Sezioni del negozio Aphasium",
       "storeTab": "Negozio",
       "rewardsTab": "Premi giornalieri",
-      "loading": "Caricamento del negozio WOC...",
+      "loading": "Caricamento del negozio Aphasium...",
       "error": "Il negozio WOC non è al momento disponibile. Per favore riprova a breve.",
       "balance": "Saldo Aphasium",
       "buyClaudium": "Acquista Aphasium",
@@ -3688,7 +3688,7 @@ export const it_IT: EnTranslations = {
       "sourceDelve": "Si trova nell'incursione {delve}",
       "sourceRift": "Bottino delle conquiste di Squarci di rango {rank}",
       "sourceQuest": "Ricompensa della missione {quest}",
-      "sourceStore": "Si acquista nel Negozio WOC",
+      "sourceStore": "Si acquista nel Negozio Aphasium",
       "sourceActivityCorpseHarvest": "Recuperata raccogliendo dalle carcasse delle creature",
       "sourceActivityMasterworkCraft": "Si ottiene creando un capolavoro",
       "sourceActivityRiftFirstClear": "Assegnata a ogni membro del gruppo che ottiene la prima conquista di uno Squarcio classificato",
@@ -4455,7 +4455,7 @@ export const it_IT: EnTranslations = {
       "mobileTitle": "Su telefoni e tablet",
       "mobileBody": "I comandi touch compaiono da soli, e il layout si adatta alle dimensioni del tuo schermo: una disposizione compatta su un telefono piccolo, una standard su un telefono più grande, e una più spaziosa su un tablet.\n\nLe tue abilità stanno in un anello anziché in una fila di numeri: il pulsante Attacca con cinque pulsanti di azione accanto, e un interruttore di pagina che scorre l'anello attraverso il resto delle tue caselle, fino a sette pagine una volta attivate tutte e tre le barre delle azioni. Intorno a essi stanno i pulsanti a cui un giocatore su touch ricorre più spesso: Scambia bersaglio, Usa per ciò che hai davanti, e Salta, più una fila estraibile dei tuoi consumabili che si riempie da sola con quello che porti.\n\nLungo il bordo inferiore trovi Chat, Sociale, Missioni, Impostazioni e Altro. Altro apre un vassoio con il resto delle tue finestre, tra cui il tuo personaggio, il Cercatore di Dungeon, il PvP, la Coppa della Valle, le emote e la wiki. Qui le finestre riempiono lo schermo invece di fluttuarci sopra.\n\nSpostare i tuoi riquadri unità è una cosa da desktop: su touch il layout li posiziona al posto tuo.",
       "railTitle": "La fila dei pulsanti",
-      "railBody": "Giù nell'angolo in basso a destra dello schermo, lontano dalla minimappa, sta una fila di piccoli pulsanti quadrati, uno per finestra, disposti in due colonne corte affiancate. La maggior parte porta stampato il proprio tasto predefinito.\n\nLa prima colonna copre il tuo personaggio, il libro degli incantesimi, i talenti, il registro delle missioni, il Libro delle Imprese, le professioni, la mappa del mondo, le borse e la creazione. La seconda si apre con il Negozio WOC e prosegue con il PvP, il Cercatore di Dungeon, la Coppa della Valle, il Duello di Carte, la classifica, le emote, la musica, amici e gilda, questa wiki e il menu di gioco. Alcuni altri si aggiungono solo quando si applicano."
+      "railBody": "Giù nell'angolo in basso a destra dello schermo, lontano dalla minimappa, sta una fila di piccoli pulsanti quadrati, uno per finestra, disposti in due colonne corte affiancate. La maggior parte porta stampato il proprio tasto predefinito.\n\nLa prima colonna copre il tuo personaggio, il libro degli incantesimi, i talenti, il registro delle missioni, il Libro delle Imprese, le professioni, la mappa del mondo, le borse e la creazione. La seconda si apre con il Negozio Aphasium e prosegue con il PvP, il Cercatore di Dungeon, la Coppa della Valle, il Duello di Carte, la classifica, le emote, la musica, amici e gilda, questa wiki e il menu di gioco. Alcuni altri si aggiungono solo quando si applicano."
     },
     "commandsPage": {
       "intro": "Ogni comando che puoi digitare in chat, raggruppato per funzione, con le sue forme brevi.",
@@ -4674,7 +4674,7 @@ export const it_IT: EnTranslations = {
       "reinsTerm": "Redini",
       "reinsDef": "L'oggetto che rappresenta una cavalcatura. Tienine un paio nelle borse o in banca e quella cavalcatura è tua; usale per cavalcare. Le redini possono essere scambiate, spedite per posta e vendute ad altri giocatori.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "La valuta del Negozio WOC, spesa solo in cosmetici e in nient'altro. Non compra mai potere o progressione.",
+      "claudiumDef": "La valuta del Negozio Aphasium, spesa solo in cosmetici e in nient'altro. Non compra mai potere o progressione.",
       "worldTerm": "Mondo",
       "worldDef": "Una copia condivisa del gioco online, con i propri giocatori, il proprio mercato e le proprie classifiche. Questa guida lo chiama anche reame, e il tuo personaggio vive nel mondo in cui lo hai creato."
     },
@@ -6547,10 +6547,7 @@ export const it_IT: EnTranslations = {
     "playAria": "Gioca a World of Aphasya",
     "serverLabel": "Scegli il tuo mondo",
     "serverAria": "Seleziona il mondo: Online o Offline",
-    "serverOfflineSub": "Mondo locale istantaneo",
-    "caLabel": "Indirizzo del contratto $WOC",
-    "caCopyAria": "Copia l'indirizzo del contratto",
-    "caNote": "WOC è il token della nostra community. Non serve per giocare. Entra nel Discord per discutere dell'utilità e del flywheel di WOC."
+    "serverOfflineSub": "Mondo locale istantaneo"
   },
   "auth": {
     "enterRealm": "Entra nel mondo",
@@ -6989,7 +6986,7 @@ export const it_IT: EnTranslations = {
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "Mondo {realm}",
     "defaultRealm": "Mondo di Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} reclutati",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

@@ -483,12 +483,12 @@ export const tr_TR: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "WOC Mağazası",
-      "close": "WOC Mağazasını Kapat",
-      "tabsLabel": "WOC Mağaza bölümleri",
+      "title": "Aphasium Mağazası",
+      "close": "Aphasium Mağazasını Kapat",
+      "tabsLabel": "Aphasium Mağaza bölümleri",
       "storeTab": "Mağaza",
       "rewardsTab": "Günlük Ödüller",
-      "loading": "WOC Mağazası yükleniyor...",
+      "loading": "Aphasium Mağazası yükleniyor...",
       "error": "WOC Mağazası şu anda kullanılamıyor. Lütfen kısa süre sonra tekrar deneyin.",
       "balance": "Aphasium Bakiyesi",
       "buyClaudium": "Aphasium'u satın al",
@@ -3688,7 +3688,7 @@ export const tr_TR: EnTranslations = {
       "sourceDelve": "{delve} mağara seferinde bulunur",
       "sourceRift": "{rank} derecesindeki Yarık tamamlamalarından düşer",
       "sourceQuest": "{quest} görevinin ödülü",
-      "sourceStore": "WOC Mağazası'ndan satın alınır",
+      "sourceStore": "Aphasium Mağazası'ndan satın alınır",
       "sourceActivityCorpseHarvest": "Yaratık leşlerini işlerken elde edilir",
       "sourceActivityMasterworkCraft": "Bir şaheser üreterek kazanılır",
       "sourceActivityRiftFirstClear": "Dereceli bir Yarık'ın ilk tamamlamasını kazanan grubun her üyesine verilir",
@@ -4455,7 +4455,7 @@ export const tr_TR: EnTranslations = {
       "mobileTitle": "Telefonda ya da tablette",
       "mobileBody": "Dokunmatik denetimler kendiliğinden belirir ve düzen kendini ekranına göre boyutlandırır: küçük bir telefonda kompakt bir düzen, daha büyük bir telefonda standart bir düzen ve bir tablette daha ferah bir düzen.\n\nYeteneklerin bir sayı sırası yerine bir halkada durur: yanında beş eylem düğmesi olan saldırı düğmesi ve halkayı geri kalan yuvaların arasında değiştiren bir sayfa geçişi, üç eylem çubuğunun tamamını açtığında yedi sayfaya kadar. Etraflarında dokunmatik bir oyuncunun en çok başvurduğu düğmeler durur: hedef değiştirme, önündekini kullanma ve zıplama, ayrıca taşıdıklarından kendiliğinden dolan, dışarı çekilebilen bir sarf malzemesi sırası.\n\nAlt kenar boyunca Sohbet, Sosyal, Görevler, Ayarlar ve Daha Fazla bulunur. Daha Fazla, karakterin, Zindan Bulucu, PvP, Vadi Kupası, ifadeler ve wiki dahil geri kalan pencerelerini tutan bir tepsi açar. Pencereler burada üzerine yüzmek yerine ekranı doldurur.\n\nBirim çerçevelerini taşımak masaüstüne özgü bir şeydir: dokunmatikte düzen onları senin için yerleştirir.",
       "railTitle": "Düğme rayı",
-      "railBody": "Ekranın sağ alt köşesinde, mini haritadan epey uzakta, pencere başına bir tane olmak üzere, yan yana iki kısa sütun halinde düzenlenmiş küçük kare düğmelerden oluşan bir ray durur. Çoğunun üzerinde varsayılan tuşu yazılıdır.\n\nİlk sütun karakterini, büyü kitabını, yeteneklerini, görev günlüğünü, Yiğitlikler Kitabı'nı, mesleklerini, dünya haritanı, çantalarını ve üretimi kapsar. İkincisi WOC Mağazası ile açılır ve PvP, Zindan Bulucu, Vadi Kupası, Kart Düellosu, lider tablosu, ifadeler, müzik, arkadaşlar ve lonca, bu wiki ve oyun menüsüyle devam eder. Yalnızca geçerli olduklarında birkaçı daha onlara katılır."
+      "railBody": "Ekranın sağ alt köşesinde, mini haritadan epey uzakta, pencere başına bir tane olmak üzere, yan yana iki kısa sütun halinde düzenlenmiş küçük kare düğmelerden oluşan bir ray durur. Çoğunun üzerinde varsayılan tuşu yazılıdır.\n\nİlk sütun karakterini, büyü kitabını, yeteneklerini, görev günlüğünü, Yiğitlikler Kitabı'nı, mesleklerini, dünya haritanı, çantalarını ve üretimi kapsar. İkincisi Aphasium Mağazası ile açılır ve PvP, Zindan Bulucu, Vadi Kupası, Kart Düellosu, lider tablosu, ifadeler, müzik, arkadaşlar ve lonca, bu wiki ve oyun menüsüyle devam eder. Yalnızca geçerli olduklarında birkaçı daha onlara katılır."
     },
     "commandsPage": {
       "intro": "Sohbete yazabileceğin her komut, ne işe yaradığına göre gruplanmış, kısa biçimleriyle birlikte.",
@@ -4674,7 +4674,7 @@ export const tr_TR: EnTranslations = {
       "reinsTerm": "Dizgin",
       "reinsDef": "Bir bineğin karşılığı olan eşya. Çantanda ya da bankanda bir çift dizgin tut, o binek artık senindir; binmek için onları kullan. Dizginler diğer oyuncularla takas edilebilir, postalanabilir ve satılabilir.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "WOC Mağazası'nın para birimi, yalnızca kozmetiklere harcanır, başka hiçbir şeye değil. Asla güç ya da ilerleme satın almaz.",
+      "claudiumDef": "Aphasium Mağazası'nın para birimi, yalnızca kozmetiklere harcanır, başka hiçbir şeye değil. Asla güç ya da ilerleme satın almaz.",
       "worldTerm": "Dünya",
       "worldDef": "Çevrim içi oyunun, kendi oyuncuları, pazarı ve sıralamalarıyla paylaşılan tek bir kopyası. Bu rehber ona diyar da der ve karakterin, onu yarattığın dünyada yaşar."
     },
@@ -6547,10 +6547,7 @@ export const tr_TR: EnTranslations = {
     "playAria": "World of Aphasya oyna",
     "serverLabel": "Dünyanı seç",
     "serverAria": "Dünya seç: Çevrimiçi veya Çevrimdışı",
-    "serverOfflineSub": "Anında yerel dünya",
-    "caLabel": "$WOC Sözleşme Adresi",
-    "caCopyAria": "Sözleşme adresini kopyala",
-    "caNote": "WOC topluluk jetonumuzdur. Oynamak için gerekli değildir. WOC'un faydasını ve döngüsünü tartışmak için Discord'a katılın."
+    "serverOfflineSub": "Anında yerel dünya"
   },
   "auth": {
     "enterRealm": "Dünyaya Gir",
@@ -6989,7 +6986,7 @@ export const tr_TR: EnTranslations = {
     "topPercent": "İLK %{percent}",
     "realmSubtitle": "{realm} Dünyası",
     "defaultRealm": "World of Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} davet edildi",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

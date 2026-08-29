@@ -483,13 +483,13 @@ export const nl_NL: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "WOC-winkel",
-      "close": "WOC-winkel sluiten",
-      "tabsLabel": "Onderdelen van de WOC-winkel",
+      "title": "Aphasium-winkel",
+      "close": "Aphasium-winkel sluiten",
+      "tabsLabel": "Onderdelen van de Aphasium-winkel",
       "storeTab": "Winkel",
       "rewardsTab": "Dagelijkse beloningen",
-      "loading": "WOC-winkel laden...",
-      "error": "De WOC Store is momenteel niet beschikbaar. Probeer het binnenkort opnieuw.",
+      "loading": "Aphasium-winkel laden...",
+      "error": "De Aphasium Store is momenteel niet beschikbaar. Probeer het binnenkort opnieuw.",
       "balance": "Aphasium-saldo",
       "buyClaudium": "Aphasium kopen",
       "owned": "In bezit",
@@ -3688,7 +3688,7 @@ export const nl_NL: EnTranslations = {
       "sourceDelve": "Te vinden in de delve {delve}",
       "sourceRift": "Valt bij voltooiingen van Rifts met rang {rank}",
       "sourceQuest": "Beloning van de opdracht {quest}",
-      "sourceStore": "Gekocht in de WOC-winkel",
+      "sourceStore": "Gekocht in de Aphasium-winkel",
       "sourceActivityCorpseHarvest": "Geborgen bij het oogsten van kadavers van wezens",
       "sourceActivityMasterworkCraft": "Verdiend door een meesterwerk te vervaardigen",
       "sourceActivityRiftFirstClear": "Toegekend aan elk lid van de groep die de eerste voltooiing van een gerangschikte Rift wint",
@@ -4455,7 +4455,7 @@ export const nl_NL: EnTranslations = {
       "mobileTitle": "Op een telefoon of tablet",
       "mobileBody": "Aanraakbediening verschijnt vanzelf, en de indeling past zich aan je scherm aan: een compacte opstelling op een kleine telefoon, een standaardindeling op een grotere telefoon, en een ruimere op een tablet.\n\nJe vaardigheden staan in een ring in plaats van een cijferrij: de aanvalsknop met vijf actieknoppen ernaast, en een paginaschakelaar die de ring door de rest van je vakken laat bladeren, tot zeven pagina's zodra je alle drie de actiebalken hebt ingeschakeld. Eromheen staan de knoppen die een aanraakspeler het vaakst gebruikt: doelwit wisselen, gebruiken wat vlak voor je staat, en springen, plus een uitschuifbare rij verbruiksartikelen die zichzelf vult met wat je bij je draagt.\n\nLangs de onderrand staan Chat, Sociaal, Quests, Instellingen en Meer. Meer opent een lade met de rest van je vensters, waaronder je personage, de Kerkerzoekmachine, PvP, de Dalbeker, emotes en de wiki. Vensters vullen hier het scherm in plaats van erover te zweven.\n\nJe frames verplaatsen is een desktopding: op aanraking regelt de indeling dat voor je.",
       "railTitle": "De knoppenrij",
-      "railBody": "Rechtsonder in de hoek van het scherm, een eind bij de minimap vandaan, staat een rij kleine vierkante knoppen, een per venster, opgesteld in twee korte kolommen naast elkaar. De meeste dragen hun standaardtoets als opschrift.\n\nDe eerste kolom bestrijkt je personage, spreukenboek, talenten, questlogboek, Boek der Daden, beroepen, wereldkaart, tassen en knutselen. De tweede begint met de WOC-winkel en loopt door via PvP, de Kerkerzoekmachine, de Dalbeker, Kaartduel, de ranglijst, emotes, muziek, vrienden en gilde, deze wiki, en het spelmenu. Een paar andere sluiten zich aan, alleen wanneer ze van toepassing zijn."
+      "railBody": "Rechtsonder in de hoek van het scherm, een eind bij de minimap vandaan, staat een rij kleine vierkante knoppen, een per venster, opgesteld in twee korte kolommen naast elkaar. De meeste dragen hun standaardtoets als opschrift.\n\nDe eerste kolom bestrijkt je personage, spreukenboek, talenten, questlogboek, Boek der Daden, beroepen, wereldkaart, tassen en knutselen. De tweede begint met de Aphasium-winkel en loopt door via PvP, de Kerkerzoekmachine, de Dalbeker, Kaartduel, de ranglijst, emotes, muziek, vrienden en gilde, deze wiki, en het spelmenu. Een paar andere sluiten zich aan, alleen wanneer ze van toepassing zijn."
     },
     "commandsPage": {
       "intro": "Elk commando dat je in de chat kunt typen, gegroepeerd op waar het voor dient, met de bijbehorende korte vormen.",
@@ -4674,7 +4674,7 @@ export const nl_NL: EnTranslations = {
       "reinsTerm": "Teugels",
       "reinsDef": "Het voorwerp dat een rijdier is. Bewaar een paar in je tassen of je bank en dat rijdier is van jou; gebruik ze om te rijden. Teugels kunnen worden verhandeld, per post verzonden en verkocht aan andere spelers.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "De valuta van de WOC Store, uitgegeven aan cosmetica en niets anders. Het koopt nooit kracht of voortgang.",
+      "claudiumDef": "De valuta van de Aphasium Store, uitgegeven aan cosmetica en niets anders. Het koopt nooit kracht of voortgang.",
       "worldTerm": "Wereld",
       "worldDef": "Een gedeelde kopie van het onlinespel, met eigen spelers, markt en ranglijst. Deze gids noemt het ook wel een rijk, en je personage leeft op de wereld waarop je het hebt aangemaakt."
     },
@@ -6547,10 +6547,7 @@ export const nl_NL: EnTranslations = {
     "playAria": "Speel World of Aphasya",
     "serverLabel": "Kies je wereld",
     "serverAria": "Kies wereld: Online of Offline",
-    "serverOfflineSub": "Directe lokale wereld",
-    "caLabel": "$WOC Contractadres",
-    "caCopyAria": "Contractadres kopiëren",
-    "caNote": "WOC is onze communitytoken. Het is niet nodig om te spelen. Word lid van Discord om de WOC-toepassing en het vliegwiel te bespreken."
+    "serverOfflineSub": "Directe lokale wereld"
   },
   "auth": {
     "enterRealm": "Betreed de wereld",
@@ -6989,7 +6986,7 @@ export const nl_NL: EnTranslations = {
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "Wereld {realm}",
     "defaultRealm": "World of Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} geworven",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

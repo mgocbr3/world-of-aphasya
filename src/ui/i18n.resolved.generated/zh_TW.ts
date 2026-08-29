@@ -483,13 +483,13 @@ export const zh_TW: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "WOC 商店",
-      "close": "關閉 WOC 商店",
-      "tabsLabel": "WOC 商店分區",
+      "title": "Aphasium 商店",
+      "close": "關閉 Aphasium 商店",
+      "tabsLabel": "Aphasium 商店分區",
       "storeTab": "商店",
       "rewardsTab": "每日獎勵",
-      "loading": "正在載入 WOC 商店…",
-      "error": "WOC 商店目前無法使用，請稍後再試。",
+      "loading": "正在載入 Aphasium 商店…",
+      "error": "Aphasium 商店目前無法使用，請稍後再試。",
       "balance": "Aphasium 餘額",
       "buyClaudium": "購買 Aphasium",
       "owned": "已擁有",
@@ -3688,7 +3688,7 @@ export const zh_TW: EnTranslations = {
       "sourceDelve": "在秘探「{delve}」中獲得",
       "sourceRift": "通關{rank}級裂隙時掉落",
       "sourceQuest": "任務「{quest}」獎勵",
-      "sourceStore": "在 WOC 商店購買",
+      "sourceStore": "在 Aphasium 商店購買",
       "sourceActivityCorpseHarvest": "採集生物屍體時獲得",
       "sourceActivityMasterworkCraft": "製作傑作時獲得",
       "sourceActivityRiftFirstClear": "授予率先通關分級裂隙的隊伍全體成員",
@@ -4674,7 +4674,7 @@ export const zh_TW: EnTranslations = {
       "reinsTerm": "韁繩",
       "reinsDef": "那件本身就是坐騎的物品。把一副韁繩留在背包或銀行裡，那頭坐騎就是你的了；使用它們即可騎乘。韁繩可以交易、郵寄，也可以賣給其他玩家。",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "WOC 商店的貨幣，只花在外觀上，別無他用。它絕不會買到力量或進度。",
+      "claudiumDef": "Aphasium 商店的貨幣，只花在外觀上，別無他用。它絕不會買到力量或進度。",
       "worldTerm": "世界",
       "worldDef": "線上遊戲的一份共享副本，有自己的玩家、市場與排名。本指南也稱它為王國，而你的角色住在你創建它的那個世界上。"
     },
@@ -6547,10 +6547,7 @@ export const zh_TW: EnTranslations = {
     "playAria": "遊玩 World of Aphasya",
     "serverLabel": "選擇你的世界",
     "serverAria": "選擇世界：線上或離線",
-    "serverOfflineSub": "即時本地世界",
-    "caLabel": "$WOC 合約地址",
-    "caCopyAria": "複製合約地址",
-    "caNote": "WOC 是我們的社群代幣，並非遊玩所需。加入 Discord 一起討論 WOC 的用途與飛輪效應。"
+    "serverOfflineSub": "即時本地世界"
   },
   "auth": {
     "enterRealm": "進入世界",
@@ -6989,7 +6986,7 @@ export const zh_TW: EnTranslations = {
     "topPercent": "前 {percent}%",
     "realmSubtitle": "{realm} 世界",
     "defaultRealm": "Aphasya 世界",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "已招募 {count} 人",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

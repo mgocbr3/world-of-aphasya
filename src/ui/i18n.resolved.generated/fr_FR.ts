@@ -483,12 +483,12 @@ export const fr_FR: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "Boutique WOC",
-      "close": "Fermer la boutique WOC",
-      "tabsLabel": "Sections de la boutique WOC",
+      "title": "Boutique Aphasium",
+      "close": "Fermer la boutique Aphasium",
+      "tabsLabel": "Sections de la boutique Aphasium",
       "storeTab": "Boutique",
       "rewardsTab": "Récompenses quotidiennes",
-      "loading": "Chargement de la boutique WOC...",
+      "loading": "Chargement de la boutique Aphasium...",
       "error": "La boutique WOC est indisponible pour le moment. Veuillez réessayer dans quelques instants.",
       "balance": "Solde de Aphasium",
       "buyClaudium": "Acheter du Aphasium",
@@ -3688,7 +3688,7 @@ export const fr_FR: EnTranslations = {
       "sourceDelve": "Trouvée dans la plongée {delve}",
       "sourceRift": "Butin des conquêtes de Failles de rang {rank}",
       "sourceQuest": "Récompense de la quête {quest}",
-      "sourceStore": "Achetée dans la Boutique WOC",
+      "sourceStore": "Achetée dans la Boutique Aphasium",
       "sourceActivityCorpseHarvest": "Récupérée en récoltant des cadavres de créatures",
       "sourceActivityMasterworkCraft": "Obtenue en fabriquant un chef-d'œuvre",
       "sourceActivityRiftFirstClear": "Attribuée à chaque membre du groupe qui remporte la première conquête d'une Faille classée",
@@ -4455,7 +4455,7 @@ export const fr_FR: EnTranslations = {
       "mobileTitle": "Sur téléphone ou tablette",
       "mobileBody": "Les commandes tactiles apparaissent d'elles-mêmes, et la disposition s'adapte à votre écran : un agencement compact sur un petit téléphone, un standard sur un téléphone plus grand, et un plus spacieux sur une tablette.\n\nVos capacités se tiennent en anneau plutôt qu'en rangée de chiffres : le bouton d'attaque avec cinq boutons d'action à côté, et un bouton de page qui fait défiler l'anneau à travers le reste de vos emplacements, jusqu'à sept pages une fois vos trois barres d'action activées. Autour d'eux se tiennent les boutons qu'un joueur tactile utilise le plus, changer de cible, utiliser ce qui se trouve devant vous, et sauter, plus une rangée escamotable de vos consommables qui se remplit d'elle-même à partir de ce que vous transportez.\n\nLe long du bord inférieur se trouvent Discussion, Social, Quêtes, Réglages et Plus. Plus ouvre un tiroir contenant le reste de vos fenêtres, dont votre personnage, le Chercheur de donjons, le JcJ, la Coupe du Val, les emotes et le wiki. Les fenêtres remplissent ici l'écran plutôt que de flotter par-dessus.\n\nDéplacer vos cadres d'unité est une chose réservée à l'ordinateur : au tactile, la disposition les place pour vous.",
       "railTitle": "Le rail de boutons",
-      "railBody": "Loin en bas à droite de l'écran, à bonne distance de la minicarte, se tient un rail de petits boutons carrés, un par fenêtre, disposés en deux courtes colonnes côte à côte. La plupart affichent leur touche par défaut.\n\nLa première colonne couvre votre personnage, votre grimoire, vos talents, votre journal de quêtes, le Livre des hauts faits, vos métiers, la carte du monde, vos sacs et l'artisanat. La seconde s'ouvre avec la boutique WOC et se poursuit avec le JcJ, le Chercheur de donjons, la Coupe du Val, le Duel de cartes, le classement, les emotes, la musique, les amis et la guilde, ce wiki, et le menu du jeu. Quelques autres les rejoignent seulement quand ils s'appliquent."
+      "railBody": "Loin en bas à droite de l'écran, à bonne distance de la minicarte, se tient un rail de petits boutons carrés, un par fenêtre, disposés en deux courtes colonnes côte à côte. La plupart affichent leur touche par défaut.\n\nLa première colonne couvre votre personnage, votre grimoire, vos talents, votre journal de quêtes, le Livre des hauts faits, vos métiers, la carte du monde, vos sacs et l'artisanat. La seconde s'ouvre avec la boutique Aphasium et se poursuit avec le JcJ, le Chercheur de donjons, la Coupe du Val, le Duel de cartes, le classement, les emotes, la musique, les amis et la guilde, ce wiki, et le menu du jeu. Quelques autres les rejoignent seulement quand ils s'appliquent."
     },
     "commandsPage": {
       "intro": "Toutes les commandes que vous pouvez taper dans la discussion, regroupées par usage, avec leurs formes courtes.",
@@ -4674,7 +4674,7 @@ export const fr_FR: EnTranslations = {
       "reinsTerm": "Rênes",
       "reinsDef": "L'objet qui constitue une monture. Gardez une paire dans vos sacs ou votre banque et cette monture est à vous ; utilisez-la pour chevaucher. Les rênes peuvent être échangées, envoyées par courrier et vendues à d'autres joueurs.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "La monnaie de la boutique WOC, dépensée uniquement en cosmétiques. Elle n'achète jamais de puissance ni de progression.",
+      "claudiumDef": "La monnaie de la boutique Aphasium, dépensée uniquement en cosmétiques. Elle n'achète jamais de puissance ni de progression.",
       "worldTerm": "Monde",
       "worldDef": "Une copie partagée du jeu en ligne, avec ses propres joueurs, son marché et ses classements. Ce guide l'appelle aussi un royaume, et votre personnage vit sur le monde où vous l'avez créé."
     },
@@ -6547,10 +6547,7 @@ export const fr_FR: EnTranslations = {
     "playAria": "Jouer à World of Aphasya",
     "serverLabel": "Choisissez votre monde",
     "serverAria": "Choisir le monde : En ligne ou Hors ligne",
-    "serverOfflineSub": "Monde local instantané",
-    "caLabel": "Adresse du contrat $WOC",
-    "caCopyAria": "Copier l'adresse du contrat",
-    "caNote": "WOC est notre jeton communautaire. Il n'est pas nécessaire pour jouer. Rejoignez le Discord pour discuter de l'utilité et de la dynamique du WOC."
+    "serverOfflineSub": "Monde local instantané"
   },
   "auth": {
     "enterRealm": "Entrer dans le monde",
@@ -6989,7 +6986,7 @@ export const fr_FR: EnTranslations = {
     "topPercent": "TOP {percent} %",
     "realmSubtitle": "Monde {realm}",
     "defaultRealm": "Monde de Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} recrutés",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

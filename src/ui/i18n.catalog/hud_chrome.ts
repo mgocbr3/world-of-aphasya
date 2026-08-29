@@ -214,13 +214,13 @@ export const hudChromeStrings = {
     },
   },
   wocStore: {
-    title: 'WOC Store',
-    close: 'Close WOC Store',
-    tabsLabel: 'WOC Store sections',
+    title: 'Aphasium Store',
+    close: 'Close Aphasium Store',
+    tabsLabel: 'Aphasium Store sections',
     storeTab: 'Store',
     rewardsTab: 'Daily Rewards',
-    loading: 'Loading WOC Store...',
-    error: 'The WOC Store is unavailable right now. Please try again shortly.',
+    loading: 'Loading the Aphasium Store...',
+    error: 'The Aphasium Store is unavailable right now. Please try again shortly.',
     balance: 'Aphasium Balance',
     buyClaudium: 'Purchase Aphasium',
     owned: 'Owned',
@@ -4785,7 +4785,7 @@ export const hudChromeStrings = {
     // sim.rift.raceWorldWin), and the reins come off the CLEAR, not one boss.
     sourceRift: 'Drops from {rank}-rank Rift clears',
     sourceQuest: 'Reward from the quest {quest}',
-    sourceStore: 'Purchased from the WOC Store',
+    sourceStore: 'Purchased from the Aphasium Store',
     // Award activities: the player action itself is the source, with no mob,
     // vendor, or quest in between.
     sourceActivityCorpseHarvest: 'Recovered while harvesting creature corpses',

@@ -483,13 +483,13 @@ export const da_DK: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "WOC-butik",
-      "close": "Luk WOC-butikken",
-      "tabsLabel": "Sektioner i WOC-butikken",
+      "title": "Aphasium-butik",
+      "close": "Luk Aphasium-butikken",
+      "tabsLabel": "Sektioner i Aphasium-butikken",
       "storeTab": "Butik",
       "rewardsTab": "Daglige belønninger",
-      "loading": "Indlæser WOC-butikken...",
-      "error": "WOC-butikken er ikke tilgængelig lige nu. Prøv igen om lidt.",
+      "loading": "Indlæser Aphasium-butikken...",
+      "error": "Aphasium-butikken er ikke tilgængelig lige nu. Prøv igen om lidt.",
       "balance": "Aphasium-saldo",
       "buyClaudium": "Køb Aphasium",
       "owned": "Du ejer dette",
@@ -3688,7 +3688,7 @@ export const da_DK: EnTranslations = {
       "sourceDelve": "Findes i delven {delve}",
       "sourceRift": "Falder fra gennemførsler af Rifter med rang {rank}",
       "sourceQuest": "Belønning fra opgaven {quest}",
-      "sourceStore": "Købes i WOC-butikken",
+      "sourceStore": "Købes i Aphasium-butikken",
       "sourceActivityCorpseHarvest": "Bjærget ved høst af kadavere fra skabninger",
       "sourceActivityMasterworkCraft": "Optjenes ved at fremstille et mesterværk",
       "sourceActivityRiftFirstClear": "Tildeles hvert medlem af den gruppe, der vinder den første gennemførsel af en rangeret Rift",
@@ -4455,7 +4455,7 @@ export const da_DK: EnTranslations = {
       "mobileTitle": "På en telefon eller tablet",
       "mobileBody": "Berøringsstyring vises af sig selv, og layoutet tilpasser sig din skærm: en kompakt opstilling på en lille telefon, en standard på en større telefon, og en rummeligere på en tablet.\n\nDine evner sidder i en ring i stedet for en talrække: angrebsknappen med fem handlingsknapper ved siden af, og en sideknap, der skifter ringen gennem resten af dine pladser, op til syv sider, når du har alle tre handlingsbjælker slået til. Omkring dem sidder de knapper, en berøringsspiller griber til oftest: skift mål, brug det, der er foran dig, og hop, plus en udtrækkelig række af dine forbrugsvarer, der fylder sig selv fra det, du bærer.\n\nLangs bunden er Chat, Socialt, Quests, Indstillinger og Mere. Mere åbner en bakke, der rummer resten af dine vinduer, herunder din karakter, Fangekældersfinderen, PvP, Dalpokalen, emotes og wikien. Vinduer fylder hele skærmen her i stedet for at flyde ovenpå den.\n\nAt flytte dine enhedsrammer er en desktop-ting: på berøring placerer layoutet dem for dig.",
       "railTitle": "Knapskinnen",
-      "railBody": "Nede i nederste højre hjørne af skærmen, langt fra minikortet, sidder en skinne af små firkantede knapper, én pr. vindue, sat op i to korte kolonner side om side. De fleste af dem er trykt med deres standardtast.\n\nDen første kolonne dækker din karakter, besværgelsesbog, talenter, questlog, Bedrifternes Bog, erhverv, verdenskort, tasker og håndværk. Den anden åbner med WOC-butikken og fortsætter gennem PvP, Fangekældersfinderen, Dalpokalen, Kortduel, Resultattavlen, emotes, musik, venner og lav, denne wiki og spilmenuen. Et par flere slutter sig til dem kun, når de er relevante."
+      "railBody": "Nede i nederste højre hjørne af skærmen, langt fra minikortet, sidder en skinne af små firkantede knapper, én pr. vindue, sat op i to korte kolonner side om side. De fleste af dem er trykt med deres standardtast.\n\nDen første kolonne dækker din karakter, besværgelsesbog, talenter, questlog, Bedrifternes Bog, erhverv, verdenskort, tasker og håndværk. Den anden åbner med Aphasium-butikken og fortsætter gennem PvP, Fangekældersfinderen, Dalpokalen, Kortduel, Resultattavlen, emotes, musik, venner og lav, denne wiki og spilmenuen. Et par flere slutter sig til dem kun, når de er relevante."
     },
     "commandsPage": {
       "intro": "Hver kommando, du kan skrive i chatten, grupperet efter, hvad den bruges til, med dens korte former.",
@@ -4674,7 +4674,7 @@ export const da_DK: EnTranslations = {
       "reinsTerm": "Tøjler",
       "reinsDef": "Genstanden, der er selve ridedyret. Behold et par i dine tasker eller din bank, så er det ridedyr dit; brug dem til at ride. Tøjler kan byttes, sendes med posten og sælges til andre spillere.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "Valutaen i WOC-butikken, brugt på kosmetik og intet andet. Den køber aldrig styrke eller fremgang.",
+      "claudiumDef": "Valutaen i Aphasium-butikken, brugt på kosmetik og intet andet. Den køber aldrig styrke eller fremgang.",
       "worldTerm": "Verden",
       "worldDef": "Én delt kopi af online-spillet, med sine egne spillere, sit eget marked og sine egne placeringer. Denne guide kalder den også et rige, og din karakter lever på den verden, du oprettede den på."
     },
@@ -6547,10 +6547,7 @@ export const da_DK: EnTranslations = {
     "playAria": "Spil World of Aphasya",
     "serverLabel": "Vælg din verden",
     "serverAria": "Vælg verden: Online eller Offline",
-    "serverOfflineSub": "Øjeblikkelig lokal verden",
-    "caLabel": "$WOC Kontraktadresse",
-    "caCopyAria": "Kopiér kontraktadresse",
-    "caNote": "WOC er vores fællesskabstoken. Det er ikke nødvendigt for at spille. Tilslut dig Discord for at diskutere WOC-nytten og svinghjulet."
+    "serverOfflineSub": "Øjeblikkelig lokal verden"
   },
   "auth": {
     "enterRealm": "Træd ind i Verdenen",
@@ -6989,7 +6986,7 @@ export const da_DK: EnTranslations = {
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "Verdenen {realm}",
     "defaultRealm": "World of Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} rekrutteret",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

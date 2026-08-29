@@ -483,13 +483,13 @@ export const ja_JP: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "WOCストア",
-      "close": "WOCストアを閉じる",
-      "tabsLabel": "WOCストアのセクション",
+      "title": "Aphasiumストア",
+      "close": "Aphasiumストアを閉じる",
+      "tabsLabel": "Aphasiumストアのセクション",
       "storeTab": "ストア",
       "rewardsTab": "デイリー報酬",
-      "loading": "WOCストアを読み込み中…",
-      "error": "WOCストアは現在利用できません。しばらくしてからお試しください。",
+      "loading": "Aphasiumストアを読み込み中…",
+      "error": "Aphasiumストアは現在利用できません。しばらくしてからお試しください。",
       "balance": "Aphasium残高",
       "buyClaudium": "Aphasiumを購入",
       "owned": "所有済み",
@@ -3688,7 +3688,7 @@ export const ja_JP: EnTranslations = {
       "sourceDelve": "デルヴ「{delve}」で入手",
       "sourceRift": "{rank}ランク・リフトのクリアでドロップ",
       "sourceQuest": "クエスト「{quest}」の報酬",
-      "sourceStore": "WOCストアで購入",
+      "sourceStore": "Aphasiumストアで購入",
       "sourceActivityCorpseHarvest": "敵の死体の採取で入手",
       "sourceActivityMasterworkCraft": "傑作の製作で入手",
       "sourceActivityRiftFirstClear": "ランク付きリフトの初回クリアを制したパーティーの全員に授与",
@@ -4674,7 +4674,7 @@ export const ja_JP: EnTranslations = {
       "reinsTerm": "手綱",
       "reinsDef": "マウントそのものであるアイテムです。バッグか銀行に一組持っていれば、そのマウントはあなたのもの。使えば騎乗できます。手綱は取引や郵送ができ、ほかのプレイヤーに売ることもできます。",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "WOCストアの通貨で、装飾品にしか使えません。強さや進行を買うことは決してありません。",
+      "claudiumDef": "Aphasiumストアの通貨で、装飾品にしか使えません。強さや進行を買うことは決してありません。",
       "worldTerm": "ワールド",
       "worldDef": "オンラインゲームの共有された一つの写しで、独自のプレイヤー、マーケット、ランキングを持ちます。このガイドではレルムとも呼び、あなたのキャラクターは作成したワールドに住みます。"
     },
@@ -6547,10 +6547,7 @@ export const ja_JP: EnTranslations = {
     "playAria": "World of Aphasyaをプレイ",
     "serverLabel": "ワールドを選択",
     "serverAria": "ワールドを選択：オンラインまたはオフライン",
-    "serverOfflineSub": "即座にローカルの世界へ",
-    "caLabel": "$WOC コントラクトアドレス",
-    "caCopyAria": "コントラクトアドレスをコピー",
-    "caNote": "WOCはコミュニティトークンです。プレイには必要ありません。Discordに参加して、WOCのユーティリティとフライホイールについて語り合いましょう。"
+    "serverOfflineSub": "即座にローカルの世界へ"
   },
   "auth": {
     "enterRealm": "ワールドに入る",
@@ -6989,7 +6986,7 @@ export const ja_JP: EnTranslations = {
     "topPercent": "上位 {percent}%",
     "realmSubtitle": "{realm} ワールド",
     "defaultRealm": "Aphasyaの世界",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "招待 {count}人",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

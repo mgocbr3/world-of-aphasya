@@ -483,13 +483,13 @@ export const id_ID: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "Toko WOC",
-      "close": "Tutup Toko WOC",
-      "tabsLabel": "Bagian Toko WOC",
+      "title": "Toko Aphasium",
+      "close": "Tutup Toko Aphasium",
+      "tabsLabel": "Bagian Toko Aphasium",
       "storeTab": "Toko",
       "rewardsTab": "Hadiah Harian",
-      "loading": "Memuat Toko WOC...",
-      "error": "Toko WOC tidak tersedia saat ini. Silakan coba lagi sebentar lagi.",
+      "loading": "Memuat Toko Aphasium...",
+      "error": "Toko Aphasium tidak tersedia saat ini. Silakan coba lagi sebentar lagi.",
       "balance": "Saldo Aphasium",
       "buyClaudium": "Beli Aphasium",
       "owned": "Dimiliki",
@@ -3688,7 +3688,7 @@ export const id_ID: EnTranslations = {
       "sourceDelve": "Ditemukan di delve {delve}",
       "sourceRift": "Jatuh dari penyelesaian Rift peringkat {rank}",
       "sourceQuest": "Hadiah dari misi {quest}",
-      "sourceStore": "Dibeli di Toko WOC",
+      "sourceStore": "Dibeli di Toko Aphasium",
       "sourceActivityCorpseHarvest": "Didapat saat memanen bangkai makhluk",
       "sourceActivityMasterworkCraft": "Diraih dengan membuat sebuah karya besar",
       "sourceActivityRiftFirstClear": "Diberikan kepada setiap anggota kelompok yang meraih penyelesaian pertama sebuah Rift berperingkat",
@@ -4455,7 +4455,7 @@ export const id_ID: EnTranslations = {
       "mobileTitle": "Di ponsel atau tablet",
       "mobileBody": "Kontrol sentuh muncul dengan sendirinya, dan tata letaknya menyesuaikan ukuran layarmu: susunan ringkas di ponsel kecil, susunan standar di ponsel yang lebih besar, dan susunan yang lebih lapang di tablet.\n\nKemampuanmu berada dalam sebuah cincin, bukan baris angka: tombol serang dengan lima tombol aksi di sampingnya, dan sebuah sakelar halaman yang menukar cincin itu melalui sisa slotmu, hingga tujuh halaman begitu ketiga bilah aksimu diaktifkan semua. Di sekelilingnya berada tombol-tombol yang paling sering dijangkau pemain sentuh: menukar target, menggunakan apa yang ada di depanmu, dan melompat, ditambah sebuah baris tarik keluar berisi bahan konsumsimu yang mengisi dirinya sendiri dari apa yang kamu bawa.\n\nDi sepanjang tepi bawah ada Obrolan, Sosial, Misi, Pengaturan, dan Lainnya. Lainnya membuka sebuah baki yang menyimpan sisa jendelamu, termasuk karaktermu, Pencari Dungeon, PvP, Piala Lembah, emote, dan wiki. Jendela di sini memenuhi seluruh layar alih-alih melayang di atasnya.\n\nMemindahkan bingkai unitmu adalah hal khas desktop: di layar sentuh, tata letak menempatkannya untukmu.",
       "railTitle": "Rel tombol",
-      "railBody": "Di sudut kanan bawah layar, jauh dari peta mini, terdapat sebuah rel berisi tombol-tombol kecil persegi, satu untuk tiap jendela, tersusun dalam dua kolom pendek berdampingan. Sebagian besar dicetak dengan tombol bawaannya.\n\nKolom pertama mencakup karaktermu, buku mantra, talenta, catatan misi, Kitab Jasa, profesi, peta dunia, tas, dan kerajinan. Kolom kedua dibuka dengan Toko WOC dan berlanjut melalui PvP, Pencari Dungeon, Piala Lembah, Duel Kartu, papan peringkat, emote, musik, teman dan guild, wiki ini, dan menu permainan. Beberapa lagi bergabung dengan mereka hanya saat berlaku."
+      "railBody": "Di sudut kanan bawah layar, jauh dari peta mini, terdapat sebuah rel berisi tombol-tombol kecil persegi, satu untuk tiap jendela, tersusun dalam dua kolom pendek berdampingan. Sebagian besar dicetak dengan tombol bawaannya.\n\nKolom pertama mencakup karaktermu, buku mantra, talenta, catatan misi, Kitab Jasa, profesi, peta dunia, tas, dan kerajinan. Kolom kedua dibuka dengan Toko Aphasium dan berlanjut melalui PvP, Pencari Dungeon, Piala Lembah, Duel Kartu, papan peringkat, emote, musik, teman dan guild, wiki ini, dan menu permainan. Beberapa lagi bergabung dengan mereka hanya saat berlaku."
     },
     "commandsPage": {
       "intro": "Setiap perintah yang bisa kamu ketik ke dalam obrolan, dikelompokkan menurut kegunaannya, lengkap dengan bentuk pendeknya.",
@@ -4674,7 +4674,7 @@ export const id_ID: EnTranslations = {
       "reinsTerm": "Tali Kekang",
       "reinsDef": "Barang yang merupakan tunggangan. Simpan sepasang di tasmu atau di bank dan tunggangan itu menjadi milikmu; gunakan untuk menunggang. Tali kekang bisa diperdagangkan, dikirim lewat pos, dan dijual kepada pemain lain.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "Mata uang Toko WOC, dibelanjakan untuk kosmetik dan tidak untuk hal lain. Ia tidak pernah membeli kekuatan atau perkembangan.",
+      "claudiumDef": "Mata uang Toko Aphasium, dibelanjakan untuk kosmetik dan tidak untuk hal lain. Ia tidak pernah membeli kekuatan atau perkembangan.",
       "worldTerm": "Dunia",
       "worldDef": "Satu salinan bersama dari permainan daring, dengan pemainnya sendiri, pasarnya sendiri, dan peringkatnya sendiri. Panduan ini juga menyebutnya realm, dan karaktermu hidup di dunia tempat kamu membuatnya."
     },
@@ -6547,10 +6547,7 @@ export const id_ID: EnTranslations = {
     "playAria": "Mainkan World of Aphasya",
     "serverLabel": "Pilih dunia Anda",
     "serverAria": "Pilih dunia: Online atau Offline",
-    "serverOfflineSub": "Dunia lokal seketika",
-    "caLabel": "Alamat Kontrak $WOC",
-    "caCopyAria": "Salin alamat kontrak",
-    "caNote": "WOC adalah token komunitas kami. Token ini tidak diperlukan untuk bermain. Gabung Discord untuk membahas utilitas dan flywheel WOC."
+    "serverOfflineSub": "Dunia lokal seketika"
   },
   "auth": {
     "enterRealm": "Masuki Dunia",
@@ -6989,7 +6986,7 @@ export const id_ID: EnTranslations = {
     "topPercent": "TERATAS {percent}%",
     "realmSubtitle": "Dunia {realm}",
     "defaultRealm": "World of Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} direkrut",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

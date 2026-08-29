@@ -483,12 +483,12 @@ export const de_DE: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "WOC-Shop",
-      "close": "WOC-Shop schließen",
-      "tabsLabel": "Bereiche des WOC-Shops",
+      "title": "Aphasium-Shop",
+      "close": "Aphasium-Shop schließen",
+      "tabsLabel": "Bereiche des Aphasium-Shops",
       "storeTab": "Shop",
       "rewardsTab": "Tägliche Belohnungen",
-      "loading": "WOC-Shop wird geladen...",
+      "loading": "Aphasium-Shop wird geladen...",
       "error": "Der WOC-Shop ist derzeit nicht verfügbar. Bitte versuche es gleich noch einmal.",
       "balance": "Aphasium-Guthaben",
       "buyClaudium": "Aphasium kaufen",
@@ -3688,7 +3688,7 @@ export const de_DE: EnTranslations = {
       "sourceDelve": "Im Tiefgang {delve} zu finden",
       "sourceRift": "Beute aus Rissdurchgängen des Rangs {rank}",
       "sourceQuest": "Belohnung der Quest {quest}",
-      "sourceStore": "Im WOC-Shop erworben",
+      "sourceStore": "Im Aphasium-Shop erworben",
       "sourceActivityCorpseHarvest": "Beim Ausweiden von Kreaturenkadavern geborgen",
       "sourceActivityMasterworkCraft": "Durch die Herstellung eines Meisterwerks verdient",
       "sourceActivityRiftFirstClear": "Wird jedem Mitglied der Gruppe verliehen, die den ersten Durchgang eines gewerteten Risses gewinnt",
@@ -4455,7 +4455,7 @@ export const de_DE: EnTranslations = {
       "mobileTitle": "Auf einem Smartphone oder Tablet",
       "mobileBody": "Die Touch-Steuerung erscheint von selbst, und das Layout passt sich deinem Bildschirm an: eine kompakte Anordnung auf einem kleinen Telefon, eine Standardanordnung auf einem größeren Telefon und eine großzügigere auf einem Tablet.\n\nDeine Fähigkeiten liegen in einem Ring statt in einer Zahlenreihe: die Angreifen-Taste mit fünf Aktionstasten daneben, sowie ein Seitenschalter, der den Ring durch den Rest deiner Plätze blättert, bis zu sieben Seiten, sobald alle drei Aktionsleisten eingeschaltet sind. Darum herum liegen die Tasten, die ein Touch-Spieler am häufigsten braucht: Ziel wechseln, das benutzen, was vor dir liegt, und springen, dazu eine ausziehbare Reihe deiner Verbrauchsgüter, die sich von selbst aus dem füllt, was du bei dir trägst.\n\nAm unteren Rand liegen Chat, Soziales, Quests, Einstellungen und Mehr. Mehr öffnet ein Fach mit dem Rest deiner Fenster, darunter dein Charakter, der Instanzfinder, PvP, der Talpokal, Emotes und das Wiki. Fenster füllen hier den Bildschirm, statt darüber zu schweben.\n\nDas Verschieben deiner Einheitenfenster ist eine Desktop-Sache: Bei Touch platziert das Layout sie für dich.",
       "railTitle": "Die Schaltflächenleiste",
-      "railBody": "Unten in der rechten Bildschirmecke, weit entfernt von der Minikarte, liegt eine Leiste kleiner quadratischer Schaltflächen, eine pro Fenster, angeordnet in zwei kurzen, nebeneinanderliegenden Spalten. Auf den meisten steht ihre Standardtaste.\n\nDie erste Spalte deckt deinen Charakter, dein Zauberbuch, deine Talente, dein Questlog, das Buch der Taten, deine Berufe, die Weltkarte, deine Taschen und das Basteln ab. Die zweite beginnt mit dem WOC-Shop und führt weiter über PvP, den Instanzfinder, den Talpokal, den Kartenkampf, die Bestenliste, Emotes, Musik, Freunde und Gilde, dieses Wiki, bis hin zum Spielmenü. Ein paar weitere gesellen sich dazu, wenn sie zutreffen."
+      "railBody": "Unten in der rechten Bildschirmecke, weit entfernt von der Minikarte, liegt eine Leiste kleiner quadratischer Schaltflächen, eine pro Fenster, angeordnet in zwei kurzen, nebeneinanderliegenden Spalten. Auf den meisten steht ihre Standardtaste.\n\nDie erste Spalte deckt deinen Charakter, dein Zauberbuch, deine Talente, dein Questlog, das Buch der Taten, deine Berufe, die Weltkarte, deine Taschen und das Basteln ab. Die zweite beginnt mit dem Aphasium-Shop und führt weiter über PvP, den Instanzfinder, den Talpokal, den Kartenkampf, die Bestenliste, Emotes, Musik, Freunde und Gilde, dieses Wiki, bis hin zum Spielmenü. Ein paar weitere gesellen sich dazu, wenn sie zutreffen."
     },
     "commandsPage": {
       "intro": "Jeder Befehl, den du in den Chat tippen kannst, gruppiert nach seinem Zweck, mit seinen Kurzformen.",
@@ -4674,7 +4674,7 @@ export const de_DE: EnTranslations = {
       "reinsTerm": "Zügel",
       "reinsDef": "Der Gegenstand, der ein Reittier ist. Bewahre ein Paar in deinen Taschen oder deiner Bank auf, und das Reittier gehört dir; benutze es, um zu reiten. Zügel lassen sich handeln, verschicken und an andere Spieler verkaufen.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "Die Währung des WOC-Shops, ausgegeben für Kosmetik und nichts sonst. Sie kauft niemals Macht oder Fortschritt.",
+      "claudiumDef": "Die Währung des Aphasium-Shops, ausgegeben für Kosmetik und nichts sonst. Sie kauft niemals Macht oder Fortschritt.",
       "worldTerm": "Welt",
       "worldDef": "Eine gemeinsam genutzte Kopie des Online-Spiels, mit eigenen Spielern, einem eigenen Markt und eigenen Platzierungen. Dieser Leitfaden nennt sie auch ein Reich, und dein Charakter lebt auf der Welt, auf der du ihn erstellt hast."
     },
@@ -6547,10 +6547,7 @@ export const de_DE: EnTranslations = {
     "playAria": "World of Aphasya spielen",
     "serverLabel": "Wähle deine Welt",
     "serverAria": "Welt wählen: Online oder Offline",
-    "serverOfflineSub": "Sofortige lokale Welt",
-    "caLabel": "$WOC-Vertragsadresse",
-    "caCopyAria": "Vertragsadresse kopieren",
-    "caNote": "WOC ist unser Community-Token. Es wird zum Spielen nicht benötigt. Tritt dem Discord bei, um über den Nutzen und das Schwungrad von WOC zu sprechen."
+    "serverOfflineSub": "Sofortige lokale Welt"
   },
   "auth": {
     "enterRealm": "Welt betreten",
@@ -6989,7 +6986,7 @@ export const de_DE: EnTranslations = {
     "topPercent": "TOP {percent} %",
     "realmSubtitle": "Welt {realm}",
     "defaultRealm": "Welt von Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} rekrutiert",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

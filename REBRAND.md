@@ -158,8 +158,14 @@ espalhado. Pontos de edição:
   padrão `STEAM_ENABLED`/`RIFT_FORGE_ENABLED` (fail closed).
 - **Acoplamento de gameplay:** `server/bank_entitlements.ts` dá +2 slots de banco por
   wallet vinculada; desligar wallet sem tratar isso muda a economia de slots.
-- **Marketing $WOC na landing:** endereço do contrato hardcoded em `index.html`
-  (`#token-ca`) e whitepaper PDF no footer; saem do fork na limpeza web3 (fase 1b).
+- **Marketing $WOC na landing:** FEITO (2026-08-29): o bloco `#token-ca` saiu de
+  `index.html` junto com seu copiador em `src/main.ts`, as chaves `mode.ca*` e as
+  regras CSS (pin de `tests/client_shell.test.ts` atualizado); o whitepaper ja havia
+  saido na fase 1. No mesmo passe, o wordmark do player card (esquecido pela fase 1)
+  virou WORLD OF APHASYA em todas as linguas e a loja de cosmeticos passou a se
+  apresentar como Aphasium Store (chaves `wocStore.*`, rotas e arquivos continuam
+  mecanicos). As superficies de wallet/daily-rewards que citam o token continuam
+  atras das flags e mudam na fase 6.
 
 ## 5. Registro de assets restritos (isolar e substituir)
 

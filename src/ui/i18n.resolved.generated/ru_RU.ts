@@ -483,13 +483,13 @@ export const ru_RU: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "Магазин WOC",
-      "close": "Закрыть магазин WOC",
-      "tabsLabel": "Разделы магазина WOC",
+      "title": "Магазин Aphasium",
+      "close": "Закрыть магазин Aphasium",
+      "tabsLabel": "Разделы магазина Aphasium",
       "storeTab": "Магазин",
       "rewardsTab": "Ежедневные награды",
-      "loading": "Загрузка магазина WOC…",
-      "error": "Магазин WOC сейчас недоступен. Повторите попытку позже.",
+      "loading": "Загрузка магазина Aphasium…",
+      "error": "Магазин Aphasium сейчас недоступен. Повторите попытку позже.",
       "balance": "Баланс Aphasium",
       "buyClaudium": "Купить Aphasium",
       "owned": "Получено",
@@ -3688,7 +3688,7 @@ export const ru_RU: EnTranslations = {
       "sourceDelve": "Находится в вылазке {delve}",
       "sourceRift": "Падает при прохождении разломов ранга {rank}",
       "sourceQuest": "Награда за задание {quest}",
-      "sourceStore": "Покупается в магазине WOC",
+      "sourceStore": "Покупается в магазине Aphasium",
       "sourceActivityCorpseHarvest": "Находится при сборе с трупов существ",
       "sourceActivityMasterworkCraft": "Даётся за создание шедевра",
       "sourceActivityRiftFirstClear": "Вручается каждому участнику группы, первой прошедшей ранговый разлом",
@@ -4674,7 +4674,7 @@ export const ru_RU: EnTranslations = {
       "reinsTerm": "Поводья",
       "reinsDef": "Предмет, который и есть скакун. Держите поводья в сумках или в банке, и этот скакун ваш; чтобы поехать, просто используйте их. Поводья можно менять, отправлять почтой и продавать другим игрокам.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "Валюта Магазина WOC, что тратится на косметику и больше ни на что. Она никогда не покупает силу или прогресс.",
+      "claudiumDef": "Валюта Магазина Aphasium, что тратится на косметику и больше ни на что. Она никогда не покупает силу или прогресс.",
       "worldTerm": "Мир",
       "worldDef": "Одна общая копия сетевой игры со своими игроками, рынком и рейтингами. В этом руководстве он зовётся ещё и королевством, а ваш персонаж живёт на том мире, где вы его создали."
     },
@@ -6547,10 +6547,7 @@ export const ru_RU: EnTranslations = {
     "playAria": "Играть в World of Aphasya",
     "serverLabel": "Выберите свой мир",
     "serverAria": "Выберите мир: В сети или Не в сети",
-    "serverOfflineSub": "Мгновенный локальный мир",
-    "caLabel": "Адрес контракта $WOC",
-    "caCopyAria": "Скопировать адрес контракта",
-    "caNote": "WOC - токен нашего сообщества. Он не нужен для игры. Присоединяйтесь к Discord, чтобы обсудить применение и экосистему WOC."
+    "serverOfflineSub": "Мгновенный локальный мир"
   },
   "auth": {
     "enterRealm": "Войти в игровой мир",
@@ -6989,7 +6986,7 @@ export const ru_RU: EnTranslations = {
     "topPercent": "ТОП {percent}%",
     "realmSubtitle": "Мир {realm}",
     "defaultRealm": "Мир Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "приглашено: {count}",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

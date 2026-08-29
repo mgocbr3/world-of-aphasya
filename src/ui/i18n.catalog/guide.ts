@@ -783,7 +783,7 @@ export const guideStrings = {
       'Touch controls appear on their own, and the layout sizes itself to your screen: a compact arrangement on a small phone, a standard one on a larger phone, and a roomier one on a tablet.\n\nYour abilities sit in a ring rather than a number row: the attack button with five action buttons beside it, and a page toggle that swaps the ring through the rest of your slots, up to seven pages once you have all three action bars switched on. Around them sit the buttons a touch player reaches for most, swapping target, using what is in front of you, and jumping, plus a pull-out row of your consumables that fills itself from what you are carrying.\n\nAlong the bottom edge are Chat, Social, Quests, Settings, and More. More opens a tray holding the rest of your windows, including your character, the Dungeon Finder, PvP, the Vale Cup, emotes, and the wiki. Windows fill the screen here rather than floating over it.\n\nMoving your unit frames is a desktop thing: on touch the layout places them for you.',
     railTitle: 'The button rail',
     railBody:
-      'Down in the bottom right corner of the screen, a long way from the minimap, sits a rail of small square buttons, one per window, arranged in two short columns side by side. Most of them are printed with their default key.\n\nThe first column covers your character, spellbook, talents, quest log, Book of Deeds, professions, world map, bags, and crafting. The second opens with the WOC Store and runs on through PvP, the Dungeon Finder, the Vale Cup, Card Duel, the leaderboard, emotes, music, friends and guild, this wiki, and the game menu. A few more join them only when they apply.',
+      'Down in the bottom right corner of the screen, a long way from the minimap, sits a rail of small square buttons, one per window, arranged in two short columns side by side. Most of them are printed with their default key.\n\nThe first column covers your character, spellbook, talents, quest log, Book of Deeds, professions, world map, bags, and crafting. The second opens with the Aphasium Store and runs on through PvP, the Dungeon Finder, the Vale Cup, Card Duel, the leaderboard, emotes, music, friends and guild, this wiki, and the game menu. A few more join them only when they apply.',
   },
 
   // Slash Commands reference: the chat command surface, grouped by purpose.
@@ -1132,7 +1132,7 @@ export const guideStrings = {
       'The item that is a mount. Keep a pair in your bags or your bank and that mount is yours; use them to ride. Reins can be traded, mailed, and sold to other players.',
     claudiumTerm: 'Aphasium',
     claudiumDef:
-      'The currency of the WOC Store, spent on cosmetics and nothing else. It never buys power or progression.',
+      'The currency of the Aphasium Store, spent on cosmetics and nothing else. It never buys power or progression.',
     worldTerm: 'World',
     worldDef:
       'One shared copy of the online game, with its own players, market, and standings. This guide also calls it a realm, and your character lives on the world you made it on.',
