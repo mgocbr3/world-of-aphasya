@@ -36,6 +36,7 @@ import {
 import {
   applyMaterials,
   applyModularSliderMorphs,
+  applySpikeSkin,
   assembleModel,
   buildSpikeHairPiece,
   ensureSkinTexture,
@@ -519,6 +520,21 @@ export class CharacterVisual {
   }
 
   /**
+   * Paint the rig's exposed skin (arms, neck band, skull) toward one colour:
+   * the race's fixed skin, or the player's tone wheel on the human. Runs after
+   * the build and again on every creator change; the claim-before-release
+   * order keeps shared tints alive across the swap like every other sweep.
+   */
+  setSpikeSkinTone(color: number): void {
+    const root = this.model;
+    if (!root) return;
+    const prevClaims = this.tintedSkinClaims;
+    this.tintedSkinClaims = new Set();
+    applySpikeSkin(root, color, this.tintedSkinClaims);
+    releaseTintedMaterials(prevClaims);
+  }
+
+  /**
    * Reshape the face by displacing the head's own vertices. Unlike the body,
    * this cannot share geometry: two characters with different noses are two
    * different meshes, so the head is cloned on first use and the ORIGINAL
@@ -573,6 +589,12 @@ export class CharacterVisual {
         // computeVertexNormals writing unit floats into an int8 array is what
         // turned every reshaped face into shading garbage.
         mesh.geometry = mesh.geometry.clone();
+        // This clone is a PER-INSTANCE geometry, not the shared parse-cache
+        // one the never-dispose rule protects; mark it owned so dispose() can
+        // free its GPU buffers (the ownsAuraGeometry pattern). Without the
+        // tag, every reshaped head leaked its clone on the creator's
+        // race/class swaps, which dispose the whole visual each time.
+        mesh.userData.ownsFaceGeometry = true;
         for (const name of ['position', 'normal'] as const) {
           const src = mesh.geometry.getAttribute(name);
           if (!src) continue;
@@ -728,6 +750,9 @@ export class CharacterVisual {
   // weapon swap re-runs the rig sweep without touching them (applyMaterials
   // skips them by userData, as it does the class halo).
   private tintedHairClaims: TintedMaterialClaims = new Set();
+  // The spike skin surfaces are the same shape of exception (they carry the
+  // race's skin or the player's tone wheel), with the same lease discipline.
+  private tintedSkinClaims: TintedMaterialClaims = new Set();
   // Ability VFX body glow (the gallery rim read): per-visual material clones
   // carrying an emissive tint while a spec'd cast or buff aura is live. Cloned
   // once per original because base materials are SHARED per-asset caches;
@@ -2706,6 +2731,14 @@ export class CharacterVisual {
     this.tintedFarClaims.clear();
     releaseTintedMaterials(this.tintedHairClaims);
     this.tintedHairClaims.clear();
+    releaseTintedMaterials(this.tintedSkinClaims);
+    this.tintedSkinClaims.clear();
+    // Face-reshaped heads own a cloned geometry (applyFaceShape); free it, or
+    // the creator's race/class swaps leak one clone per rebuild.
+    this.model?.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      if (mesh.isMesh && mesh.userData.ownsFaceGeometry) mesh.geometry.dispose();
+    });
     this.mixer.stopAllAction();
     this.mixer.uncacheRoot(this.model);
     this.skeletonUpdates.dispose();

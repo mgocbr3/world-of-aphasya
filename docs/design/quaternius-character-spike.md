@@ -100,12 +100,22 @@ nada, entao la elas sao a unica coisa que molda o corpo.
 
 ## O que NAO funciona, e por que
 
+- **Tom de pele.** Resolvido: `applySpikeSkin` pinta toda superficie de pele
+  exposta (bracos, faixa de pescoco, cranio) numa cor so, pelo mesmo caminho de
+  recolor multiplicativo do cabelo. A regra que importa: a RACA e dona da pele
+  dela (o orc e verde ate dentro da camisa, a roda de tom nao move; tabela
+  `SPIKE_RACE_SKIN`, os mesmos hex dos cranios gerados) e so o humano sem raca
+  responde a roda de tom do criador. Isso tambem fechou o mismatch de garganta
+  humana sob cabeca racial.
 - **Cabelo e barba.** Resolvidos: cinco pecas emitidas em espaco de osso de
   cabeca (`--emit-hair`), montadas por `setSpikeHair`, com os 37 estilos do
   criador resolvidos por silhueta (`spike_hair_core`) e pintados pela roda de
   cor via o cache de materiais tingidos (lease propria, para uma troca de skin
-  nao repintar o cabelo com o tint do corpo). Brincos, maquiagem e dye de
-  armadura continuam sem lugar neste rig.
+  nao repintar o cabelo com o tint do corpo). Brincos e maquiagem continuam sem
+  lugar neste rig; o dye de roupa e o proximo (o shader de zonas HSV do
+  armor_dye e generico, falta medir a banda de pano dos kits MI_Ranger e
+  MI_Peasant e ligar os swatches da aba STYLE, que hoje nao fazem nada no
+  spike).
 - **O pescoco.** Resolvido em duas partes. Os corpos headless perdiam o pescoco
   junto com a cabeca e o anexo corta acima da gola, entao a cabeca flutuava:
   `scripts/assets/build_spike_neck_band.mjs` recorta a FAIXA de pescoco dos

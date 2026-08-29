@@ -8,6 +8,7 @@ import { quaterniusSpikeOn } from './character_spike_flag';
 import {
   mechHeldWeaponOverride,
   modularVisualKey,
+  spikeRaceFor,
   spikeVisualKeyFor,
   VISUALS,
   visualKeyFor,
@@ -121,7 +122,7 @@ export function createCharacterVisual(
     // it can: the creator's turntable applies the same three (proportions, face,
     // hair) to its own visual, and without this the town drew every player with
     // a default body and a bald head no matter what they built.
-    if (spike && authored) applySpikeLook(visual, authored.app);
+    if (spike && authored) applySpikeLook(visual, authored.app, spikeRaceFor(e.templateId));
     return visual;
   } catch (err) {
     // key the dedupe on visual key PLUS message: two models failing with an

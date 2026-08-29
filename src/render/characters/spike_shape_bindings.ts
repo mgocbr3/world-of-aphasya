@@ -17,7 +17,9 @@
 
 import type { BodyAxes } from './body_shape_core';
 import type { FaceAxes } from './face_shape_core';
-import { hairColor, type ModularAppearance } from './modular';
+import type { SpikeRace } from './manifest';
+import { SPIKE_RACE_SKIN } from './manifest';
+import { hairColor, type ModularAppearance, skinColor } from './modular';
 import { spikeBeardPiece, spikeHairPiece, spikeHairUrl } from './spike_hair_core';
 
 /** Body sliders to bone axes. */
@@ -94,11 +96,24 @@ export interface SpikeLookTarget {
   applyBodyAxes(axes: BodyAxes): void;
   applyFaceShape(axes: FaceAxes): void;
   setSpikeHair(hairUrl: string | null, beardUrl: string | null, color: number): void;
+  setSpikeSkinTone(color: number): void;
 }
 
-export function applySpikeLook(visual: SpikeLookTarget, app: ModularAppearance): void {
+/** The skin a spike body wears: the race's own fixed colour, or the player's
+ *  tone wheel on the raceless human. One resolution rule for both call sites,
+ *  so an orc is green down into his shirt everywhere he is drawn. */
+export function spikeSkinTone(app: ModularAppearance, race: SpikeRace): number {
+  return SPIKE_RACE_SKIN[race] ?? skinColor(app);
+}
+
+export function applySpikeLook(
+  visual: SpikeLookTarget,
+  app: ModularAppearance,
+  race: SpikeRace,
+): void {
   visual.applyBodyAxes(spikeBodyAxes(app));
   visual.applyFaceShape(spikeFaceAxes(app));
   const hair = spikeHairLook(app);
   visual.setSpikeHair(hair.hair, hair.beard, hair.color);
+  visual.setSpikeSkinTone(spikeSkinTone(app, race));
 }

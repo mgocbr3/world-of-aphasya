@@ -955,6 +955,43 @@ export function characterResidencySources(): { parsedScenes: THREE.Object3D[] } 
  * Returns null rather than throwing when the piece is not resident: hair is
  * cosmetic, and a bald character is a far better failure than a blocked build.
  */
+/** The materials that ARE skin on the spike bodies and their head pieces: the
+ *  pack's bare-arm and skull materials, and the flat factor the generated
+ *  racial skulls ship. Eyes, brows and every kit cloth stay out. */
+const SPIKE_SKIN_MATERIAL = /^(MI_Regular_|MI_Superhero_|racial_skin)/;
+
+/**
+ * Paint every exposed-skin surface of a spike rig toward one colour: the
+ * race's own skin, or the player's tone wheel on the raceless human. Full
+ * strength on purpose, the same multiply-recolour path the hairpieces use
+ * (the pack skin texture is the shading, the colour underneath is the paint).
+ *
+ * Marks each mesh `spikeSkin` so the applyMaterials sweep leaves it alone from
+ * then on: a skin or weapon swap re-derives every other material, and without
+ * the mark it would repaint an orc's throat human again. Claims ride the
+ * caller's lease exactly like the rig sweep's.
+ */
+export function applySpikeSkin(
+  root: THREE.Object3D,
+  color: number,
+  claims: TintedMaterialClaims,
+): void {
+  root.traverse((o) => {
+    const mesh = o as THREE.Mesh;
+    if (!mesh.isMesh) return;
+    const source = sourceMaterials.get(mesh) ?? mesh.material;
+    const sourceList = Array.isArray(source) ? source : [source];
+    if (!sourceList.some((m) => SPIKE_SKIN_MATERIAL.test(m.name))) return;
+    sourceMaterials.set(mesh, source);
+    mesh.userData.spikeSkin = true;
+    const derive = (m: THREE.Material) =>
+      SPIKE_SKIN_MATERIAL.test(m.name)
+        ? tintedMaterial(m, color, 1, null, null, 'body', claims)
+        : m;
+    mesh.material = Array.isArray(source) ? source.map(derive) : derive(source);
+  });
+}
+
 export function buildSpikeHairPiece(url: string): THREE.Object3D | null {
   try {
     const piece = resolvedGltf(url).scene.clone(true);
@@ -2027,6 +2064,10 @@ export function applyMaterials(
     // (set at mount, on their own lease), and a later skin or weapon swap
     // re-running this sweep would repaint them with the body tint.
     if (mesh.userData.hairPiece) return;
+    // ...and so are spike SKIN surfaces once applySpikeSkin has claimed them:
+    // they carry the race's skin (or the player's tone wheel), which neither
+    // the body tint nor the weapon polish may repaint.
+    if (mesh.userData.spikeSkin) return;
     // Always derive a skin/material variant from the assembled model's source
     // material. Reusing the last applied variant would retain its alternate map
     // when skin 0 asks to restore the embedded default texture.

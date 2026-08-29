@@ -299,6 +299,30 @@ export const SPIKE_VISUAL_KEYS = (Object.keys(SPIKE_RACE_KITS) as SpikeRace[]).f
  * The human heads are cut from the same CC0 pack the bodies come from, which
  * also makes them the scale reference every generated head is fitted against.
  */
+/**
+ * The skin colour a race's BODY wears (arms, neck band, and the pack-textured
+ * human skull all multiply toward it, the same recolour path the hair uses).
+ * Null means the race has no fixed skin and the player's skin-tone wheel
+ * decides, which is the human. The racial hexes are the same ones their
+ * generated skulls were painted with (build_spike_racial_head.mjs --skin), so
+ * a throat no longer changes species at the collar: the orc is green down
+ * into his shirt.
+ */
+export const SPIKE_RACE_SKIN: Record<SpikeRace, number | null> = {
+  human: null,
+  orc: 0x6f8f4f,
+  elf: 0xdab894,
+  dwarf: 0xd9a077,
+  necromancer: 0x9aa39b,
+};
+
+/** The race baked into a spike visual key, or null for a non-spike key. */
+export function spikeRaceOfVisualKey(key: string): SpikeRace | null {
+  if (!key.startsWith('spike_')) return null;
+  const race = key.slice('spike_'.length).split('_')[0] as SpikeRace;
+  return race in SPIKE_RACE_SKIN ? race : null;
+}
+
 const SPIKE_RACE_HEADS: Record<SpikeRace, Record<'male' | 'female', string>> = {
   human: { male: 'head_human', female: 'head_human_female' },
   // The generated racial skulls are unisex on purpose: a race reads through
