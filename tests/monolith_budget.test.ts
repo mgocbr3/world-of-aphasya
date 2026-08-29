@@ -74,7 +74,10 @@ const MONOLITHS: MonolithRow[] = [
     // per the ratchet's rule: any further growth reds again.
     // Lowered by the Aphasya V1 ambience extraction: the per-biome grade push
     // and the god-ray ease moved to src/render/aphasya_grade_driver.ts.
-    ceiling: 13751,
+    // Lowered again by the V1 profile move: the BIOME_FOG/BIOME_LIGHT/
+    // BIOME_GOD_RAYS tables (plus the low and battleground fog presets) left
+    // for src/render/aphasya_art_profile.ts, the GDD 8.1 profile.
+    ceiling: 13617,
     seam: 'a new src/render/<thing>.ts module the renderer calls (src/render/CLAUDE.md)',
   },
   {
