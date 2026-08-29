@@ -39,6 +39,7 @@ import {
   applySpikeOutfitDyeSources,
   applySpikeSkin,
   assembleModel,
+  buildSpikeEarringPiece,
   buildSpikeHairPiece,
   ensureSkinTexture,
   farSourceMaterials,
@@ -69,7 +70,12 @@ import { HairSwayDriver } from './hair_sway';
 import { buildHalo } from './halo';
 import type { EmoteClipSpec, VisualDef, WeaponLayoutOverride } from './manifest';
 import { createMetamorphWingPose, metamorphWingPoseInto } from './metamorph_wing_motion_core';
-import type { ModularAppearance, ModularLook, OutfitColorway } from './modular';
+import type {
+  JewelMaterialSpec,
+  ModularAppearance,
+  ModularLook,
+  OutfitColorway,
+} from './modular';
 import {
   PALADIN_BASTION_SWEEP_CLIP,
   PALADIN_BASTION_SWEEP_DURATION,
@@ -521,6 +527,43 @@ export class CharacterVisual {
   }
 
   /**
+   * Mount a piercing set on the head bone, replacing whatever was there. Same
+   * mount contract as the hair: the set is exported in the head bone's own
+   * space, so parenting is the whole placement, and null is bare ears.
+   *
+   * `spec` null wears the authored mod_jewel factors baked into the GLB (the
+   * picker's `default`); a picked jewel material repaints every surface of the
+   * worn set with one flat standard material, which this visual owns.
+   */
+  setSpikeEarrings(node: string | null, spec: JewelMaterialSpec | null): void {
+    const root = this.model;
+    if (!root) return;
+    const head = root.getObjectByName('Head');
+    if (!head) return;
+    const existing = head.getObjectByName('spike_earrings');
+    if (existing) existing.removeFromParent();
+    for (const m of this.spikeEarringMaterials) m.dispose();
+    this.spikeEarringMaterials = [];
+    if (!node) return;
+    const piece = buildSpikeEarringPiece(node);
+    if (!piece) return;
+    piece.name = 'spike_earrings';
+    if (spec) {
+      const override = new THREE.MeshStandardMaterial({
+        color: spec.color,
+        metalness: spec.metalness,
+        roughness: spec.roughness,
+      });
+      this.spikeEarringMaterials.push(override);
+      piece.traverse((o) => {
+        const mesh = o as THREE.Mesh;
+        if (mesh.isMesh) mesh.material = override;
+      });
+    }
+    head.add(piece);
+  }
+
+  /**
    * Dress the kit cloth in an outfit colorway. The dye swaps each kit mesh's
    * SOURCE material for a hooked clone (assets.applySpikeOutfitDyeSources) and
    * re-runs the normal material sweep, which re-derives every tinted clone
@@ -768,6 +811,11 @@ export class CharacterVisual {
   // The spike skin surfaces are the same shape of exception (they carry the
   // race's skin or the player's tone wheel), with the same lease discipline.
   private tintedSkinClaims: TintedMaterialClaims = new Set();
+  // A jewel-material override on the worn earrings is a bespoke per-visual
+  // material rather than a shared tinted lease: the palette is twelve fixed
+  // specs of metalness/roughness, not a tint of the authored surface, and the
+  // geometry is tiny. Owned here, disposed on swap and in dispose().
+  private spikeEarringMaterials: THREE.Material[] = [];
   // Ability VFX body glow (the gallery rim read): per-visual material clones
   // carrying an emissive tint while a spec'd cast or buff aura is live. Cloned
   // once per original because base materials are SHARED per-asset caches;
@@ -2748,6 +2796,9 @@ export class CharacterVisual {
     this.tintedHairClaims.clear();
     releaseTintedMaterials(this.tintedSkinClaims);
     this.tintedSkinClaims.clear();
+    // The earring jewel override is per-visual and shared with nobody.
+    for (const m of this.spikeEarringMaterials) m.dispose();
+    this.spikeEarringMaterials = [];
     // Face-reshaped heads own a cloned geometry (applyFaceShape); free it, or
     // the creator's race/class swaps leak one clone per rebuild.
     this.model?.traverse((o) => {

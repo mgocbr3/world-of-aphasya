@@ -95,6 +95,7 @@ import { animatedNodeNames, mergeSkinnedParts } from './rig_merge';
 import { weaponSkinAttachBone, weaponSkinHandling } from './skin_attack';
 import { optimizeSkinGpuLayout } from './skin_gpu_layout';
 import { primeSkinnedSortSpheres } from './skinned_sort_spheres';
+import { SPIKE_EARRINGS_URL } from './spike_earrings_core';
 import { SPIKE_HAIR_PIECES, spikeHairUrl } from './spike_hair_core';
 import { spikeDyeSpec } from './spike_outfit_dye_core';
 import { buildStubbleDecal, headNodeName } from './stubble';
@@ -705,6 +706,8 @@ if (quaterniusSpikeOn()) {
   for (const piece of SPIKE_HAIR_PIECES) {
     registerPreload(prepareCharacterUrl(spikeHairUrl(piece)));
   }
+  // ...and the earring set is the same case: one file, mounted per character.
+  registerPreload(prepareCharacterUrl(SPIKE_EARRINGS_URL));
 }
 
 let streamedStarted = false;
@@ -1064,6 +1067,27 @@ export function applySpikeSkin(
         : m;
     mesh.material = Array.isArray(source) ? source.map(derive) : derive(source);
   });
+}
+
+/**
+ * Clone one earring style's subtree out of the shipped set. Meshes are tagged
+ * so the material sweep leaves them alone (they wear either the authored
+ * mod_jewel factors or the visual's own jewel override, never the body tint).
+ */
+export function buildSpikeEarringPiece(nodeName: string): THREE.Object3D | null {
+  try {
+    const set = resolvedGltf(SPIKE_EARRINGS_URL).scene;
+    const style = set.getObjectByName(nodeName);
+    if (!style) return null;
+    const piece = style.clone(true);
+    piece.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      if (mesh.isMesh) mesh.userData.earringPiece = true;
+    });
+    return piece;
+  } catch {
+    return null;
+  }
 }
 
 export function buildSpikeHairPiece(url: string): THREE.Object3D | null {
@@ -2138,6 +2162,9 @@ export function applyMaterials(
     // (set at mount, on their own lease), and a later skin or weapon swap
     // re-running this sweep would repaint them with the body tint.
     if (mesh.userData.hairPiece) return;
+    // Earrings too: they wear the authored jewel factors or the player's
+    // picked jewel material (visual.setSpikeEarrings), never the body tint.
+    if (mesh.userData.earringPiece) return;
     // ...and so are spike SKIN surfaces once applySpikeSkin has claimed them:
     // they carry the race's skin (or the player's tone wheel), which neither
     // the body tint nor the weapon polish may repaint.

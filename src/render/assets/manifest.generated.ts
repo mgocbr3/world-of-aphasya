@@ -311,6 +311,7 @@ export const MEDIA_ASSETS: Record<string, string> =
   "models/chars/players/rogue_hooded.glb": "/media/models/chars/players/rogue_hooded.876d60366dc2.glb",
   "models/chars/players/rogue_hooded_hit_variety_anims.glb": "/media/models/chars/players/rogue_hooded_hit_variety_anims.8c78648d53ff.glb",
   "models/chars/players/shaman_ability_anims.glb": "/media/models/chars/players/shaman_ability_anims.814c9e687619.glb",
+  "models/chars/players/spike/earrings.glb": "/media/models/chars/players/spike/earrings.8e3509cbb2c2.glb",
   "models/chars/players/spike/hair_beard.glb": "/media/models/chars/players/spike/hair_beard.2041e9546504.glb",
   "models/chars/players/spike/hair_buns.glb": "/media/models/chars/players/spike/hair_buns.ed8b5cc583d2.glb",
   "models/chars/players/spike/hair_buzzed.glb": "/media/models/chars/players/spike/hair_buzzed.c0f996fea074.glb",

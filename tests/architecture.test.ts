@@ -456,6 +456,7 @@ const RENDER_PURE_CORES = [
   'src/render/characters/hand_rig_core.ts',
   'src/render/characters/body_shape_core.ts',
   'src/render/characters/face_shape_core.ts',
+  'src/render/characters/spike_earrings_core.ts',
   'src/render/characters/spike_hair_core.ts',
   'src/render/characters/spike_outfit_dye_core.ts',
   'src/render/ability_vfx_longbuff_core.ts',

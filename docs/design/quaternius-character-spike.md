@@ -118,8 +118,8 @@ nada, entao la elas sao a unica coisa que molda o corpo.
   cabeca (`--emit-hair`), montadas por `setSpikeHair`, com os 37 estilos do
   criador resolvidos por silhueta (`spike_hair_core`) e pintados pela roda de
   cor via o cache de materiais tingidos (lease propria, para uma troca de skin
-  nao repintar o cabelo com o tint do corpo). Brincos e maquiagem continuam sem
-  lugar neste rig; o dye de roupa esta LIGADO: bandas de
+  nao repintar o cabelo com o tint do corpo). Maquiagem continua sem lugar
+  neste rig; o dye de roupa esta LIGADO: bandas de
   pano medidas dos atlas dos packs (spike_outfit_dye_core, verde do ranger e
   camisa creme do peasant, couro e calcas fora da janela), aplicadas pelo
   mesmo shader de zonas do armor_dye via troca de source
@@ -128,6 +128,19 @@ nada, entao la elas sao a unica coisa que molda o corpo.
   kits; os colorways de MATERIAL (gilded etc., zonas por set KayKit) caem em
   classic ate serem medidos aqui; e no tier low o dye nao existe (Lambert nao
   compila o hook), a mesma limitacao do KayKit.
+- **Brincos.** Resolvidos por EXTRACAO, nao por arte nova: os doze estilos
+  E2_* autorados da biblioteca modular legada sao pecas prontas com materiais
+  mod_jewel_* de fatores puros (sem textura), entao sobrevivem a troca de
+  moldura sem perda. `scripts/assets/build_spike_earrings.mjs` reconstroi a
+  bind-pose (o dequant do meshopt vive nas IBMs da skin), re-expressa no
+  espaco do osso de cabeca e mapeia legado -> spike com escala uniforme (aros
+  continuam redondos), um passeio suave de x calibrado no LOBULO (a primeira
+  calibragem usou a ponta da orelha e enterrou tudo dentro do cranio) e um
+  lift de y; o septum casa com o nariz sem correcao nenhuma de z. Um GLB, um
+  no por estilo, montado por `setSpikeEarrings` no mesmo contrato do cabelo;
+  `default` veste os fatores autorados, um material de joia escolhido repinta
+  o conjunto com um standard proprio do visual (specs fixos de metal, nao um
+  tint, entao fora do cache de leases de proposito).
 - **O pescoco.** Resolvido em duas partes. Os corpos headless perdiam o pescoco
   junto com a cabeca e o anexo corta acima da gola, entao a cabeca flutuava:
   `scripts/assets/build_spike_neck_band.mjs` recorta a FAIXA de pescoco dos
