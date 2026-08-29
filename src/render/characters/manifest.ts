@@ -308,6 +308,20 @@ export const SPIKE_VISUAL_KEYS = (Object.keys(SPIKE_RACE_KITS) as SpikeRace[]).f
  * a throat no longer changes species at the collar: the orc is green down
  * into his shirt.
  */
+/**
+ * Per-race seat nudge for the mounted skull, in head-bone units. The generated
+ * skulls are fitted chin-to-crown against the human reference, but a race's
+ * FACE sits differently inside that envelope (an orc's jaw eats the bottom
+ * third, so his eyes land lower than a human's and the head reads sunk into
+ * the hood). A couple of centimetres here is cheaper and more honest than
+ * refitting geometry per complaint, and it live-reloads while tuning.
+ */
+export const SPIKE_RACE_HEAD_SEAT: Partial<Record<SpikeRace, [number, number, number]>> = {
+  orc: [0, 0.024, 0.004],
+  dwarf: [0, 0.012, 0],
+  elf: [0, 0.016, 0.002],
+};
+
 export const SPIKE_RACE_SKIN: Record<SpikeRace, number | null> = {
   human: null,
   orc: 0x6f8f4f,
@@ -389,7 +403,11 @@ function spikeVisuals(): Record<string, VisualDef> {
         ...SPIKE_HANDS,
         // Seated on the bone, not offset: the head asset is exported with its
         // neck stump at the origin precisely so this needs no per-race nudge.
-        { url: `${PLAYERS}/spike/${SPIKE_RACE_HEADS[race][gender]}.glb`, bone: 'Head' },
+        {
+          url: `${PLAYERS}/spike/${SPIKE_RACE_HEADS[race][gender]}.glb`,
+          bone: 'Head',
+          position: SPIKE_RACE_HEAD_SEAT[race],
+        },
       ],
       weaponSlots: [0],
       offhandSlot: 1,

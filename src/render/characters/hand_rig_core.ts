@@ -60,6 +60,45 @@ export function gripScaleFor(rig: HandRig): number {
  * top spine joint. A caller that cannot resolve the returned name should leave
  * the weapon in hand rather than guess.
  */
+/**
+ * Per-family fit for a variant-pack weapon in a QUATERNIUS hand. The KayKit
+ * grip table cannot transfer (its lifts and quaternions are authored in the
+ * KayKit handslot frame), so this rig carries its own two numbers per family:
+ * `lift` seats the grip in the closed fist along the bone's +Y (down the
+ * fingers on this skeleton), `scale` converts the pack's KayKit-fist sizing to
+ * this body. Hand-tuned against creator screenshots, which is the same way the
+ * KayKit rows were made.
+ */
+export interface QuaterniusFit {
+  lift: number;
+  scale: number;
+}
+
+export const QUATERNIUS_VARIANT_FIT: Record<string, QuaterniusFit> = {
+  VAR_SWORD: { lift: 0.1, scale: 0.55 },
+  VAR_DAGGER: { lift: 0.06, scale: 0.6 },
+  VAR_STAFF: { lift: 0.16, scale: 0.55 },
+  VAR_AXE: { lift: 0.08, scale: 0.55 },
+  VAR_HAMMER: { lift: 0.08, scale: 0.55 },
+  VAR_MACE: { lift: 0.08, scale: 0.55 },
+  VAR_POLEARM: { lift: 0.16, scale: 0.5 },
+  VAR_WAND: { lift: 0.05, scale: 0.6 },
+  VAR_BOOK: { lift: 0.05, scale: 0.6 },
+  VAR_CROSSBOW: { lift: 0.06, scale: 0.55 },
+  VAR_BOW: { lift: 0.08, scale: 0.55 },
+};
+
+/** A weapon family this table does not know still needs a sane seat. */
+export const QUATERNIUS_FALLBACK_FIT: QuaterniusFit = { lift: 0.1, scale: 0.55 };
+
+/** Shields strap ALONG the forearm on this rig (measured for the base def):
+ *  face parallel to the arm, pushed out past the fist along +Z. One row serves
+ *  every shield; per-shield size differences ride the model itself. */
+export const QUATERNIUS_SHIELD_FIT = {
+  position: [0, 0.02, 0.09] as [number, number, number],
+  scale: 0.32,
+};
+
 export function stowBoneFor(rig: HandRig): string {
   return rig === 'quaternius' ? 'spine_03' : 'chest';
 }

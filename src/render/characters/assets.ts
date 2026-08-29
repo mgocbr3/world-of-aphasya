@@ -27,7 +27,14 @@ import { backGripFor } from './back_grips';
 import { quaterniusSpikeOn } from './character_spike_flag';
 import { scaledVisualHeight } from './character_world_scale';
 import { dequantizeAttribute } from './dequantize_attribute';
-import { gripScaleFor, handRigOf, stowBoneFor } from './hand_rig_core';
+import {
+  type HandRig,
+  handRigOf,
+  QUATERNIUS_FALLBACK_FIT,
+  QUATERNIUS_SHIELD_FIT,
+  QUATERNIUS_VARIANT_FIT,
+  stowBoneFor,
+} from './hand_rig_core';
 import { type HandGrip, KAYKIT_SHIELD_ACCESSORIES, KAYKIT_SHIELD_GRIPS } from './held_item_grips';
 import { buildMakeupDecal } from './makeup';
 import {
@@ -369,7 +376,7 @@ function applyVariantGrip(
   bone: string,
   grip: VariantGrip,
   url: string,
-  rigScale = 1,
+  rig: HandRig = 'kaykit',
 ): void {
   variantBox.setFromObject(payload);
   const height = variantBox.max.y - variantBox.min.y;
@@ -378,16 +385,26 @@ function applyVariantGrip(
   // the clamp is a min(1, ...), so a weapon already under the cap comes out at
   // scale 1 and then renders at whatever the rig's bone units happen to be. A
   // sword that fit a KayKit fist arrived 39% oversized on this rig that way.
+  //
+  // The Quaternius hand takes its OWN per-family lift and scale
+  // (QUATERNIUS_VARIANT_FIT): the KayKit lifts are authored in the KayKit
+  // handslot frame and seated blades mid-length on this rig, which read as a
+  // giant sword held by its blade (direction: "espadas grandes e nao
+  // encaixadas na mao").
+  const fit =
+    rig === 'quaternius'
+      ? (QUATERNIUS_VARIANT_FIT[kaykitAccessoryFor(url) ?? ''] ?? QUATERNIUS_FALLBACK_FIT)
+      : null;
   const t = variantGripTransform(
     height,
     handSide(bone) === 'l',
-    grip.lift * rigScale,
+    fit ? fit.lift : grip.lift,
     grip.maxHeight,
     WEAPON_GRIP_OVERRIDES[modelBasename(url)],
   );
   payload.position.set(t.position[0], t.position[1], t.position[2]);
   payload.quaternion.set(t.quaternion[0], t.quaternion[1], t.quaternion[2], t.quaternion[3]);
-  payload.scale.setScalar(t.scale * rigScale);
+  payload.scale.setScalar(t.scale * (fit ? fit.scale : 1));
 }
 
 function attachProp(
@@ -418,7 +435,7 @@ function attachProp(
   const handRig = handRigOf(att.bone);
   const variantGrip = handRig ? variantGripFor(att.url) : null;
   if (variantGrip && handRig) {
-    applyVariantGrip(payload, att.bone, variantGrip, att.url, gripScaleFor(handRig));
+    applyVariantGrip(payload, att.bone, variantGrip, att.url, handRig);
   } else if (
     att.position ||
     att.rotationY !== undefined ||
@@ -439,6 +456,20 @@ function attachProp(
     if (ref) copyAccessoryTransform(payload, ref);
   } else if (isHandslotBone(att.bone)) {
     applyHandGrip(payload, root, att.bone, att.url);
+  } else if (handRig === 'quaternius') {
+    // A Quaternius hand holding something no table above placed: an equipped
+    // KayKit-base model (their accessory rows live in the KayKit hand frame)
+    // or an unknown family. Without this arm the payload mounted at IDENTITY,
+    // which is a shield the size of the character floating off the arm.
+    const accessory = kaykitAccessoryFor(att.url);
+    if (accessory && accessory in KAYKIT_SHIELD_GRIPS) {
+      payload.position.set(...QUATERNIUS_SHIELD_FIT.position);
+      payload.scale.setScalar(QUATERNIUS_SHIELD_FIT.scale);
+    } else {
+      payload.position.set(0, QUATERNIUS_FALLBACK_FIT.lift, 0);
+      if (handSide(att.bone) !== 'l') payload.rotation.set(0, Math.PI, 0);
+      payload.scale.setScalar(QUATERNIUS_FALLBACK_FIT.scale);
+    }
   }
   // Sheathed: override where the prop SITS (on-back position/lean, chest-bone
   // space; the caller resolved the chest bone) but keep the SCALE the normal
