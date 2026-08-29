@@ -16,7 +16,7 @@
 import type { BeardStyle, HairStyle } from './modular';
 
 /** The pieces on disk, by the file suffix each is exported under. */
-export type SpikeHairPiece = 'long' | 'buns' | 'parted' | 'buzzed' | 'beard';
+export type SpikeHairPiece = 'long' | 'buns' | 'parted' | 'buzzed' | 'beard' | 'topknot';
 
 /** Long hair: anything that falls past the jaw. */
 const LONG: ReadonlySet<string> = new Set([
@@ -37,7 +37,6 @@ const LONG: ReadonlySet<string> = new Set([
 
 /** Gathered: anything tied up, which reads as a knot from any angle. */
 const GATHERED: ReadonlySet<string> = new Set([
-  'topknot',
   'highbun',
   'lowbun',
   'halfbun',
@@ -64,6 +63,9 @@ const CROPPED: ReadonlySet<string> = new Set([
  */
 export function spikeHairPiece(style: HairStyle): SpikeHairPiece | null {
   if (style === 'bald') return null;
+  // The top knot has its own generated piece (Meshy, untextured so the wheel
+  // paints it exactly), the first style to graduate out of the coarse sets.
+  if (style === 'topknot') return 'topknot';
   if (LONG.has(style)) return 'long';
   if (GATHERED.has(style)) return 'buns';
   if (CROPPED.has(style)) return 'buzzed';
@@ -88,6 +90,7 @@ export const SPIKE_HAIR_PIECES: readonly SpikeHairPiece[] = [
   'parted',
   'buzzed',
   'beard',
+  'topknot',
 ];
 
 /** Where a piece lives, so the manifest, the preload and the mount agree. */
