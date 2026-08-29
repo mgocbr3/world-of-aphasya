@@ -624,8 +624,12 @@ export class CharacterVisual {
         values[i + 2] = shifted.z;
       }
       target.needsUpdate = true;
+      // Normals must follow the surface or the reshaped region shades flat;
+      // the bounding sphere deliberately does NOT recompute per call: the
+      // displacement caps at a few percent of head height, far inside the
+      // sphere the clone inherited, and a dragged slider emits input events
+      // continuously.
       mesh.geometry.computeVertexNormals();
-      mesh.geometry.computeBoundingSphere();
     }
   }
   /** The manifest-height normalize, kept so a height axis can multiply it. */

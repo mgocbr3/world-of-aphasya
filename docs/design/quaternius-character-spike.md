@@ -64,8 +64,11 @@ orc chin 0.45 cut 0.20 mul 0.94; elfo chin 0.58 cut 0.42; anao chin 0.32 cut
 capuz do ranger e justo, entao encolher uma cabeca em 15% afunda o rosto no
 buraco e o que sobra e um ovo (escala cheia e o certo para racas de capuz); e o
 sculpt do elfo veio de proporcoes largas, funciona mas merece regerar com pose
-frontal ereta. O coque (topknot, 1326 tris) esta baixado e aguarda entrar como
-sexta peca de cabelo tingivel.
+frontal ereta. O coque (topknot, 1326 tris) esta baixado mas NAO entrou: o sculpt
+veio com uma moldura plana de fundo em volta (removivel por filtro de borda) e
+mechas soltas pendentes que nao assentam num crânio sem retrabalho manual;
+regenerar no Meshy como peca de cabelo isolada e limpa (5 creditos, smart poly)
+custa menos que domar este export.
 
 Proporcao vem de ESCALA DE OSSO, do jeito que um MMO de rig compartilhado faz:
 sem geometria, sem morph, e as 84 animacoes seguem tocando por cima. Nove eixos,

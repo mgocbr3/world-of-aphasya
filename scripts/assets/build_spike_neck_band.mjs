@@ -325,6 +325,14 @@ function mat4Direction(m, d) {
   ];
 }
 
+/** The normal matrix for a point transform: transpose(inverse(m)). */
+function invTranspose(m) {
+  const inv = invertMat4(m);
+  const t = new Array(16);
+  for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) t[c * 4 + r] = inv[r * 4 + c];
+  return t;
+}
+
 // --- main --------------------------------------------------------------------
 
 const baked = await io.read(bakedPath);
@@ -332,19 +340,30 @@ const headless = await io.read(headlessPath);
 const headAsset = PLANE_MODE ? null : await io.read(headAssetPath);
 
 // The baked body's own head mesh, by the name the exporter gave it.
-const bakedHead = baked
+const bakedHeadMatches = baked
   .getRoot()
   .listNodes()
-  .find((n) => /^superhero/i.test(n.getName()) && n.getMesh() && n.getSkin());
-if (!bakedHead) throw new Error('no SuperHero head mesh in the baked body');
+  .filter((n) => /^superhero/i.test(n.getName()) && n.getMesh() && n.getSkin());
+if (bakedHeadMatches.length !== 1) {
+  throw new Error(
+    `expected exactly one SuperHero head mesh in the baked body, found ${bakedHeadMatches.length}`,
+  );
+}
+const bakedHead = bakedHeadMatches[0];
 
 // The head ASSET's skull mesh (its eyes and brows sit far above the cut and
 // carry no collar triangles, so only the skull participates in the match).
-const assetSkull = headAsset
-  ?.getRoot()
-  .listNodes()
-  .find((n) => /^superhero/i.test(n.getName()) && n.getMesh());
-if (headAsset && !assetSkull) throw new Error('no SuperHero skull mesh in the head asset');
+const assetSkullMatches =
+  headAsset
+    ?.getRoot()
+    .listNodes()
+    .filter((n) => /^superhero/i.test(n.getName()) && n.getMesh()) ?? [];
+if (headAsset && assetSkullMatches.length !== 1) {
+  throw new Error(
+    `expected exactly one SuperHero skull in the head asset, found ${assetSkullMatches.length}`,
+  );
+}
+const assetSkull = assetSkullMatches[0] ?? null;
 
 // The head asset lives in HEAD-BONE space; carry it into body space through
 // the bind-pose world matrix of the Head bone. The headless skeleton is the
@@ -399,18 +418,33 @@ if (!bandNode || !bandSkin) throw new Error('merge dropped the head mesh');
 
 // Remap the band skin's joints, by name, onto the headless skeleton.
 const liveByName = new Map();
-for (const n of headlessNodesBefore) if (n.getName()) liveByName.set(n.getName(), n);
+const duplicateNames = new Set();
+for (const n of headlessNodesBefore) {
+  const name = n.getName();
+  if (!name) continue;
+  if (liveByName.has(name)) duplicateNames.add(name);
+  liveByName.set(name, n);
+}
 const mergedJoints = bandSkin.listJoints();
 for (const joint of mergedJoints) {
   const live = liveByName.get(joint.getName());
   if (!live) throw new Error(`headless skeleton has no bone named ${joint.getName()}`);
+  // An ambiguous name would remap this joint onto whichever node the map met
+  // last; that is a guess, and this tool refuses to guess.
+  if (duplicateNames.has(joint.getName())) {
+    throw new Error(`headless file has several nodes named ${joint.getName()}`);
+  }
 }
 // listJoints order defines JOINTS_0 indices; rebuild in the same order.
 const liveJoints = mergedJoints.map((j) => liveByName.get(j.getName()));
 for (const j of [...mergedJoints]) bandSkin.removeJoint(j);
 for (const j of liveJoints) bandSkin.addJoint(j);
 const skel = bandSkin.getSkeleton();
-if (skel) bandSkin.setSkeleton(liveByName.get(skel.getName()) ?? null);
+if (skel) {
+  const liveSkel = liveByName.get(skel.getName());
+  if (!liveSkel) throw new Error(`headless skeleton has no root named ${skel.getName()}`);
+  bandSkin.setSkeleton(liveSkel);
+}
 
 // Cut the band. Centroid mode keeps what the head asset did not match; plane
 // mode keeps what is not fully above the cut plane. Either way the band and the
@@ -549,7 +583,9 @@ if (EMIT_HEAD_OUT) {
     const node = hm.get(srcNode);
     const srcPrims = srcNode.getMesh().listPrimitives();
     const dstPrims = node.getMesh().listPrimitives();
+    const normalMatrixCache = new Map();
     for (let pi = 0; pi < srcPrims.length; pi++) {
+      normalMatrixCache.clear();
       // All measurement runs against the pristine BAKED side, whose skin still
       // carries the quantization frame these vertices are stored in.
       const positions = skinnedBindPositions(srcPrims[pi], srcNode.getSkin());
@@ -570,7 +606,15 @@ if (EMIT_HEAD_OUT) {
               el[1] = b[1];
               el[2] = b[2];
             } else if (semantic === 'NORMAL') {
-              const n = mat4Direction(toBone, mat4Direction(mats[v], [el[0], el[1], el[2]]));
+              // Normals transform by the INVERSE-TRANSPOSE of the point
+              // transform: these matrices carry the quantization scale meshopt
+              // folded into the IBMs, which need not be uniform per axis, and
+              // pushing a normal through the forward matrix under non-uniform
+              // scale skews its direction (normalizing afterwards fixes only
+              // the length).
+              const m = normalMatrixCache.get(v) ?? invTranspose(mat4Multiply(toBone, mats[v]));
+              normalMatrixCache.set(v, m);
+              const n = mat4Direction(m, [el[0], el[1], el[2]]);
               const len = Math.hypot(n[0], n[1], n[2]) || 1;
               el[0] = n[0] / len;
               el[1] = n[1] / len;

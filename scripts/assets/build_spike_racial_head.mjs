@@ -12,8 +12,9 @@
 //   2. SCALE so chin-to-crown height matches the human reference head. Height,
 //      not width, on purpose: an orc is WIDER than a human at the same height,
 //      and width-matching would shrink exactly what makes him an orc.
-//   3. SEAT: cut plane to the reference's bottom, x centred, skull z-centre to
-//      the reference skull's, so a big nose leans out of the face instead of
+//   3. SEAT: the CHIN lands at the reference's bottom (the stump below it just
+//      rides down inside the collar), x centred, skull z-centre to the
+//      reference skull's, so a big nose leans out of the face instead of
 //      dragging the whole head forward.
 //   4. NORMALS computed smooth (area-weighted accumulation).
 //   5. One matte material carrying the race's skin colour: these meshes ship
@@ -37,21 +38,27 @@ const FLIPZ = process.argv.includes('--flipz');
 // not share an anatomy (the orc is nearly all head on a pedestal, the elf is a
 // classic head-and-shoulders bust), so no single valley heuristic survives
 // contact with all four, and four hand-read numbers beat a clever guess.
-const chinAt = process.argv.indexOf('--chin-frac');
-const CHIN_FRAC = chinAt >= 0 ? Number(process.argv[chinAt + 1]) : 0.5;
-const cutAt = process.argv.indexOf('--cut-frac');
-const CUT_FRAC = cutAt >= 0 ? Number(process.argv[cutAt + 1]) : 0.3;
+function numFlag(name, fallback) {
+  const at = process.argv.indexOf(name);
+  if (at < 0) return fallback;
+  const value = Number(process.argv[at + 1]);
+  if (!Number.isFinite(value)) {
+    console.error(`${name} needs a numeric value, got ${process.argv[at + 1]}`);
+    process.exit(1);
+  }
+  return value;
+}
+const CHIN_FRAC = numFlag('--chin-frac', 0.5);
+const CUT_FRAC = numFlag('--cut-frac', 0.3);
 // Art-direction trim on top of the measured chin-to-crown match: some sculpts
 // read oversized against the shared body even at equal height (an elf whose
 // face is broad, a lich whose ears double his silhouette), and a few percent
 // off is what seats them back into the hood.
-const mulAt = process.argv.indexOf('--scale-mul');
-const SCALE_MUL = mulAt >= 0 ? Number(process.argv[mulAt + 1]) : 1;
+const SCALE_MUL = numFlag('--scale-mul', 1);
 // Straighten a bust sculpted looking down or up: degrees of backward pitch
 // applied about the cloud's centre before anything is measured, because every
 // fraction below assumes "up" runs chin to crown.
-const pitchAt = process.argv.indexOf('--pitch');
-const PITCH = ((pitchAt >= 0 ? Number(process.argv[pitchAt + 1]) : 0) * Math.PI) / 180;
+const PITCH = (numFlag('--pitch', 0) * Math.PI) / 180;
 if (!rawPath || !refPath || !outPath) {
   console.error(
     'usage: build_spike_racial_head.mjs <rawGlb> <refHeadGlb> <outGlb> --skin RRGGBB [--flipz]',
@@ -103,6 +110,9 @@ for (const node of ref.getRoot().listNodes()) {
     }
   }
 }
+if (refLo[0] > refHi[0]) {
+  throw new Error('reference head has no SuperHero-named skull mesh; wrong file?');
+}
 const refHeight = refHi[1] - refLo[1];
 const refZCentre = (refLo[2] + refHi[2]) / 2;
 console.log(
@@ -111,7 +121,13 @@ console.log(
 
 // --- raw bust in, positions out ---------------------------------------------
 const raw = await io.read(rawPath);
-const rawPrim = raw.getRoot().listMeshes()[0].listPrimitives()[0];
+const rawMeshes = raw.getRoot().listMeshes();
+if (rawMeshes.length !== 1 || rawMeshes[0].listPrimitives().length !== 1) {
+  throw new Error(
+    `expected one mesh with one primitive, found ${rawMeshes.length} meshes; refusing to silently drop geometry`,
+  );
+}
+const rawPrim = rawMeshes[0].listPrimitives()[0];
 const rawPos = rawPrim.getAttribute('POSITION');
 const rawIdx = rawPrim.getIndices();
 const count = rawPos.getCount();
@@ -159,9 +175,12 @@ if (PITCH !== 0) {
 
 const chinY = lo[1] + CHIN_FRAC * (hi[1] - lo[1]);
 const cutY = lo[1] + CUT_FRAC * (hi[1] - lo[1]);
-// The neck radius: what the bust measures just under the chin, with slack.
-// Below the chin only this cylinder survives, which is what strips shoulders
-// and display pedestals while keeping the neck that slides inside the collar.
+// The neck radius: what the bust measures just under the chin, TIGHTENED by
+// a fifth, because the widest thing in that band is often the trapezius
+// flare rather than the neck proper. Below the chin only this cylinder
+// survives, which is what strips shoulders and display pedestals while
+// keeping the neck that slides down inside the collar (its slightly ragged
+// cut edge is hidden there too).
 let neckR = 0;
 for (let i = 0; i < count; i++) {
   const y = P[i * 3 + 1];
@@ -217,13 +236,15 @@ const positions = new Float32Array(order.length * 3);
 for (let k = 0; k < order.length; k++) {
   const v = order[k];
   positions[k * 3] = (P[v * 3] - xMid) * scale;
-  // A trimmed head seats HIGHER by half of what the trim removed: chin glued
-  // to the reference bottom would sink a smaller face into the collar.
+  // A trimmed head seats HIGHER by a bit over half of what the trim removed
+  // (0.55, tuned on the necromancer): chin glued to the reference bottom
+  // would sink a smaller face into the collar.
   positions[k * 3 + 1] =
     (P[v * 3 + 1] - chinY) * scale + refLo[1] + (1 - SCALE_MUL) * refHeight * 0.55;
   positions[k * 3 + 2] = (P[v * 3 + 2] - zMid) * scale + refZCentre;
 }
-const indices = new Uint16Array(keptTris.length * 3);
+const IndexArray = order.length <= 65535 ? Uint16Array : Uint32Array;
+const indices = new IndexArray(keptTris.length * 3);
 keptTris.forEach((tri, t) => {
   for (let k = 0; k < 3; k++) indices[t * 3 + k] = remap.get(tri[k]);
 });
