@@ -1,5 +1,24 @@
 # Spike de personagens Quaternius (branch spike/quaternius-characters)
 
+> **ESTADO: PARADO em 2026-08-29 por decisao de direcao. NAO foi mergeado.**
+>
+> A direcao escolheu MANTER o elenco chibi KayKit e crescer com mais packs do
+> mesmo criador. Motivo registrado como dito: os corpos novos nao estavam
+> ficando bons e integra-los daria trabalho demais. Isto nao e um veredito
+> sobre o trabalho tecnico, e uma escolha de direcao de arte mais o custo de
+> integracao (dois estilos convivendo enquanto a cidade inteira segue KayKit,
+> cada NPC e cada mob precisando de decisao propria).
+>
+> **Nada foi perdido.** Tudo vive nesta branch e na tag
+> `parked/quaternius-cast-2026-08-29`, empurradas para o remote `aphasya`.
+> Para retomar: `git checkout spike/quaternius-characters` (ou a tag) e ler
+> este documento inteiro, que e o registro completo do que funciona, do que
+> nao funciona e de por que cada numero e o que e.
+>
+> **O que NAO fica parado:** os commits de rebrand puro que nasceram aqui
+> (AphasyaArtProfile, README do fork, saida do token e loja Aphasium, grama
+> mais curta) foram levados para `rebrand/identity`, a linha de trabalho viva.
+
 Registro do que este spike responde, o que ele custa e o que falta, para a
 direcao decidir entre manter o elenco chibi KayKit atual ou migrar para corpos
 de proporcao heroica.
