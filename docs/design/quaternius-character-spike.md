@@ -136,11 +136,24 @@ nada, entao la elas sao a unica coisa que molda o corpo.
   espaco do osso de cabeca e mapeia legado -> spike com escala uniforme (aros
   continuam redondos), um passeio suave de x calibrado no LOBULO (a primeira
   calibragem usou a ponta da orelha e enterrou tudo dentro do cranio) e um
-  lift de y; o septum casa com o nariz sem correcao nenhuma de z. Um GLB, um
-  no por estilo, montado por `setSpikeEarrings` no mesmo contrato do cabelo;
-  `default` veste os fatores autorados, um material de joia escolhido repinta
-  o conjunto com um standard proprio do visual (specs fixos de metal, nao um
-  tint, entao fora do cache de leases de proposito).
+  lift de y; o septum casa com o nariz sem correcao nenhuma de z. A validacao
+  em matriz pagou tres ajustes: a orelha legada e ALTA (um terco da cabeca) e
+  a spike e curta, entao o mapa comprime y em 0.78 sobre a linha do lobulo (o
+  warden pairava nas temporas); o cranio afunila acima da orelha, entao um
+  puxao de x cresce com a altura ate a peca abracar o perfil; e o anel do
+  septum (geometria central baixa) desce 3.5cm para pendurar sob a ponta do
+  nariz spike, que fica bem mais baixa que a legada (as correntes centrais
+  ALTAS do warden e do moonstar ficam na testa, o fade por y do sculpt as
+  poupa). Um GLB, um no por estilo, montado por `setSpikeEarrings` no mesmo
+  contrato do cabelo; `default` veste os fatores autorados, um material de
+  joia escolhido repinta o conjunto com um standard proprio do visual (specs
+  fixos de metal, nao um tint, entao fora do cache de leases de proposito).
+  Cabecas nao-humanas adaptam por uma tabela de fit
+  (`spikeEarringFit`: escala de x para as duas orelhas de uma vez, offset que
+  cavalga o seat racial; o necromante desce ate a orelha caida dele). O fit
+  COMPOE sobre o TRS do no, nunca sobrescreve: o TRS carrega a dequantizacao
+  do meshopt (escala ~0.07) e atribuir por cima mandou cada conjunto ajustado
+  um metro para fora da cabeca.
 - **O pescoco.** Resolvido em duas partes. Os corpos headless perdiam o pescoco
   junto com a cabeca e o anexo corta acima da gola, entao a cabeca flutuava:
   `scripts/assets/build_spike_neck_band.mjs` recorta a FAIXA de pescoco dos

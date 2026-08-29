@@ -5,8 +5,13 @@
 // has bare ears), so the gate reads the file the way the clipmap gate does.
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { SPIKE_RACE_HEAD_SEAT } from '../src/render/characters/manifest';
 import { EARRING_STYLES } from '../src/render/characters/modular';
-import { SPIKE_EARRINGS_URL, spikeEarringNode } from '../src/render/characters/spike_earrings_core';
+import {
+  SPIKE_EARRINGS_URL,
+  spikeEarringFit,
+  spikeEarringNode,
+} from '../src/render/characters/spike_earrings_core';
 
 const GLB_MAGIC = 0x46546c67; // 'glTF'
 const CHUNK_JSON = 0x4e4f534a; // 'JSON'
@@ -46,5 +51,22 @@ describe('spike earring set', () => {
       expect(node, style).not.toBeNull();
       expect(nodes.has(node as string), `${style} -> ${node} missing from GLB`).toBe(true);
     }
+  });
+
+  it('fits every seated racial head, and the human male is the baseline', () => {
+    // The shipped geometry IS the human male fit; everything else adapts.
+    expect(spikeEarringFit('human', 'male')).toBeNull();
+    // A racial head mounts with a seat offset; the worn set must move WITH the
+    // head, so every seated race carries a fit and none may narrow the set
+    // below the human ear line (racial heads are all wider there).
+    for (const race of Object.keys(SPIKE_RACE_HEAD_SEAT) as (keyof typeof SPIKE_RACE_HEAD_SEAT)[]) {
+      const fit = spikeEarringFit(race, 'male');
+      expect(fit, race).not.toBeNull();
+      expect(fit?.xScale, race).toBeGreaterThan(1);
+    }
+    // The female head is its own narrower sculpt: tucked, never widened.
+    const female = spikeEarringFit('human', 'female');
+    expect(female).not.toBeNull();
+    expect(female?.xScale).toBeLessThanOrEqual(1);
   });
 });

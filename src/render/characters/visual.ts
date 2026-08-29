@@ -69,6 +69,7 @@ import {
 import { HairSwayDriver } from './hair_sway';
 import { buildHalo } from './halo';
 import type { EmoteClipSpec, VisualDef, WeaponLayoutOverride } from './manifest';
+import type { SpikeEarringFit } from './spike_earrings_core';
 import { createMetamorphWingPose, metamorphWingPoseInto } from './metamorph_wing_motion_core';
 import type {
   JewelMaterialSpec,
@@ -533,9 +534,15 @@ export class CharacterVisual {
    *
    * `spec` null wears the authored mod_jewel factors baked into the GLB (the
    * picker's `default`); a picked jewel material repaints every surface of the
-   * worn set with one flat standard material, which this visual owns.
+   * worn set with one flat standard material, which this visual owns. `fit`
+   * adapts the set to the worn head (racial heads are wider at the ear and
+   * mount with a seat offset the earrings must ride).
    */
-  setSpikeEarrings(node: string | null, spec: JewelMaterialSpec | null): void {
+  setSpikeEarrings(
+    node: string | null,
+    spec: JewelMaterialSpec | null,
+    fit: SpikeEarringFit | null = null,
+  ): void {
     const root = this.model;
     if (!root) return;
     const head = root.getObjectByName('Head');
@@ -548,6 +555,16 @@ export class CharacterVisual {
     const piece = buildSpikeEarringPiece(node);
     if (!piece) return;
     piece.name = 'spike_earrings';
+    if (fit) {
+      // COMPOSE onto the node's own transform, never overwrite it: the GLB
+      // node's TRS carries the meshopt dequantization (scale ~0.07), and
+      // assigning over it inflates the normalized geometry by an order of
+      // magnitude (the first cut sent every fitted set a metre off the head).
+      piece.scale.x *= fit.xScale;
+      piece.position.x += fit.position[0];
+      piece.position.y += fit.position[1];
+      piece.position.z += fit.position[2];
+    }
     if (spec) {
       const override = new THREE.MeshStandardMaterial({
         color: spec.color,

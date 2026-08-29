@@ -65,6 +65,25 @@ const X_SHIFT_RAMP = 0.35;
 /** Lobe line lift: legacy stud centre 0.187*SCALE sits at 0.047, the spike
  *  lobe at ~0.087. */
 const Y_LIFT = 0.04;
+/** The legacy ear is TALL (a third of the head) while the spike ear is short,
+ *  so after the similarity map the tall styles (warden, moonstar) tower over
+ *  the spike ear. Compress y about the lobe line to bring them back into ear
+ *  range; near-lobe styles (stud, hoop) barely move. */
+const LOBE_Y = 0.087;
+const Y_COMPRESS = 0.78;
+/** The skull narrows above the ear line and the x walk is calibrated at the
+ *  lobe, so high side geometry (the warden's upper cuffs) floated off the
+ *  temples. Pull side verts inward with height: at the warden top (y 0.163)
+ *  the cap lands the piece on the skull profile (x 0.071). */
+const EAR_TOP_Y = 0.105;
+const X_PULL_PER_Y = 0.55;
+const X_PULL_MAX = 0.032;
+/** The septum's nose ring (central, legacy y 0.19..0.29) mapped onto the
+ *  BRIDGE of the spike nose, which sits much lower than the legacy one. Drop
+ *  low central geometry to hang under the nose tip (y ~0.065, z 0.12); the
+ *  warden/moonstar brow chains are central too but high (legacy y 0.44+), so
+ *  the drop fades out above legacy y 0.35 and leaves them on the brow. */
+const SEPTUM_DROP = 0.035;
 
 const mul = (A, B) => {
   const C = new Array(16);
@@ -138,12 +157,22 @@ const smoothstep = (lo, hi, x) => {
 
 /** legacy head-local -> spike head-local. */
 const place = (p) => {
-  const shift = X_SHIFT * smoothstep(0, X_SHIFT_RAMP, Math.abs(p[0]));
-  return [
-    SCALE * p[0] - Math.sign(p[0]) * shift,
-    SCALE * p[1] + Y_LIFT,
-    SCALE * p[2],
-  ];
+  const ax = Math.abs(p[0]);
+  const shift = X_SHIFT * smoothstep(0, X_SHIFT_RAMP, ax);
+  let x = SCALE * p[0] - Math.sign(p[0]) * shift;
+  let y = SCALE * p[1] + Y_LIFT;
+  const z = SCALE * p[2];
+  // vertical compression about the lobe line
+  y = LOBE_Y + (y - LOBE_Y) * Y_COMPRESS;
+  // height-dependent inward pull for side geometry above the ear line
+  if (y > EAR_TOP_Y) {
+    const pull =
+      Math.min(X_PULL_MAX, (y - EAR_TOP_Y) * X_PULL_PER_Y) * smoothstep(0.02, 0.06, Math.abs(x));
+    x -= Math.sign(x) * pull;
+  }
+  // low central geometry (the septum's nose ring) drops under the nose tip
+  y -= SEPTUM_DROP * (1 - smoothstep(0.25, 0.35, ax)) * (1 - smoothstep(0.35, 0.45, p[1]));
+  return [x, y, z];
 };
 
 const io = new NodeIO()

@@ -27,7 +27,11 @@ import {
   type OutfitColorway,
   skinColor,
 } from './modular';
-import { spikeEarringNode } from './spike_earrings_core';
+import {
+  type SpikeEarringFit,
+  spikeEarringFit,
+  spikeEarringNode,
+} from './spike_earrings_core';
 import { spikeBeardPiece, spikeHairPiece, spikeHairUrl } from './spike_hair_core';
 
 /** Body sliders to bone axes. */
@@ -104,7 +108,11 @@ export interface SpikeLookTarget {
   applyBodyAxes(axes: BodyAxes): void;
   applyFaceShape(axes: FaceAxes): void;
   setSpikeHair(hairUrl: string | null, beardUrl: string | null, color: number): void;
-  setSpikeEarrings(node: string | null, spec: JewelMaterialSpec | null): void;
+  setSpikeEarrings(
+    node: string | null,
+    spec: JewelMaterialSpec | null,
+    fit: SpikeEarringFit | null,
+  ): void;
   setSpikeSkinTone(color: number): void;
   setSpikeOutfitDye(outfit: OutfitColorway): void;
 }
@@ -128,6 +136,10 @@ export function applySpikeLook(
   visual.setSpikeOutfitDye(app.outfit ?? 'classic');
   const hair = spikeHairLook(app);
   visual.setSpikeHair(hair.hair, hair.beard, hair.color);
-  visual.setSpikeEarrings(spikeEarringNode(app.earrings), earringMaterialSpec(app));
+  visual.setSpikeEarrings(
+    spikeEarringNode(app.earrings),
+    earringMaterialSpec(app),
+    spikeEarringFit(race, app.gender),
+  );
   visual.setSpikeSkinTone(spikeSkinTone(app, race));
 }
