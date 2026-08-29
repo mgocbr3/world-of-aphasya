@@ -99,6 +99,8 @@ than free, so ask before you rely on it.
 | Extra character animation library (Rig_Medium) | Kay Lousberg (KayKit) | https://kaylousberg.itch.io/kaykit-character-animations | CC0 1.0 | Yes |
 | Animated creatures (wolf, bull, fox, stag, alpaca, spider, frog, goblin, orc, yeti, giant, demon, ghost, goleling, glub, tribal, velociraptor, dragon) | Quaternius | https://poly.pizza/u/Quaternius · https://quaternius.com | CC0 1.0 | Yes |
 | Stylized Nature MegaKit (trees, rocks, bushes, mushrooms, grass) | Quaternius | https://quaternius.itch.io/stylized-nature-megakit | CC0 1.0 | Yes |
+| Bestiary - Dungeon Monsters Kit, Standard tier (imp, puglin) | Quaternius | https://quaternius.itch.io/bestiary-dungeon-monsters-kit | QAL v1.0 (commercial use free, no credit required; the assets themselves may NOT be redistributed as assets) | No (QAL 3a) |
+| Universal Base Characters + Modular Character Outfits Fantasy + Universal Animation Library 1 and 2 (the composed player bodies under models/chars/players/spike/ and the retargeted creature clips) | Quaternius | https://quaternius.itch.io/universal-base-characters | CC0 1.0 (packs downloaded before the QAL switch; the 2026 re-download of UBC carries QAL v1.0, so treat the combination as QAL: no standalone redistribution) | No (QAL 3a) |
 | Medieval Village Pack (houses, inn, blacksmith, well, market, cart) | Quaternius | https://quaternius.com/packs/medievalvillage.html | CC0 1.0 | Yes |
 | Fantasy Props MegaKit (barrels, crates, lanterns, furniture, smithy) | Quaternius | https://quaternius.itch.io/fantasy-props-megakit | CC0 1.0 | Yes |
 | Nature Kit (modular cliffs), Graveyard Kit, Pirate Kit (docks/boats), Fantasy Town Kit, Castle Kit, Particle Pack (VFX sprites) | Kenney | https://kenney.nl | CC0 1.0 | Yes |

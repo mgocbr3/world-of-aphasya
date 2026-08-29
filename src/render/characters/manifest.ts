@@ -1787,6 +1787,23 @@ export const VISUALS: Record<string, VisualDef> = {
   // attach bones (handslot.r does not exist here, hence no held weapon), no
   // modular part slots, no armor dye. That mismatch IS the finding the spike
   // is meant to price.
+  // -- Bestiary kit creatures (QAL, quaternius.com; retargeted UAL clips) ----
+  // Composed by scripts/assets/build_bestiary_mob.mjs: the kit ships unanimated
+  // bodies on the same humanoid rig the spike bodies animate, so each creature
+  // carries a hand-picked subset of the shipped clips, retargeted by bone name.
+  mob_imp: {
+    url: `${CREATURES}/imp.glb`,
+    height: 1.5,
+    clips: bestiary(['Spell_Simple_Shoot', 'Punch_Cross']),
+    lazyPreload: true,
+  },
+  mob_puglin: {
+    url: `${CREATURES}/puglin.glb`,
+    height: 1.0,
+    clips: bestiary(['Punch_Cross', 'Punch_Jab']),
+    lazyPreload: true,
+  },
+
   ...spikeVisuals(),
 
   // -- forms ---------------------------------------------------------------
@@ -3311,6 +3328,23 @@ const MOB_KEYS: Record<string, string> = {
   rift_pact_acolyte: 'mob_dark_caster',
   rift_boss_ritualist: 'rift_ritualist',
 };
+
+/** ClipMap for a Bestiary-kit creature: the retargeted UAL subset every
+ *  build_bestiary_mob.mjs export carries, with the attack list per creature. */
+function bestiary(attack: string[]): ClipMap {
+  return {
+    idle: 'Idle_Loop',
+    walk: 'Walk_Loop',
+    run: 'Jog_Fwd_Loop',
+    attack,
+    death: 'Death01',
+    hit: ['Hit_Chest'],
+    swim: 'Swim_Fwd_Loop',
+    swimIdle: 'Swim_Idle_Loop',
+    jump: 'Jump_Loop',
+    land: 'Jump_Land',
+  };
+}
 
 const FAMILY_KEYS: Record<string, string> = {
   beast: 'mob_wolf',

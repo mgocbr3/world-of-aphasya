@@ -180,6 +180,7 @@ Fonte: README (License) + CREDITS.md. Estados: registrado, isolado, substituido.
 | Whitepaper $WOC | `public/World-of-ClaudeCraft-Whitepaper-v1.0.pdf` (linkado no footer do site, pinado em `tests/client_shell.test.ts`) | Documento da marca WoC | Remover do fork junto com o isolamento web3 | registrado |
 | Logos e title screen WoC | raiz + `public/` + shells nativos | Marca nao licenciada | Substituir por logo Aphasya (conceitos v1 disponíveis) | registrado |
 | Nome/branding em texto | código + i18n + docs | Marca nao licenciada | Fase 1 desta branch | em andamento |
+| Packs Quaternius QAL (Bestiary Standard: imp+puglin; UBC Standard re-baixado 2026-08-29) | `tmp/asset_src/` (fontes) + `public/models/creatures/{imp,puglin}.glb` | QAL v1.0: comercial livre, sem credito, SEM redistribuir como asset | Registrado em CREDITS.md; visuais mob_imp/mob_puglin prontos sem consumidor mapeado (atribuicao na fase de inimigos) | registrado |
 
 Regra do GDD 20: ao encontrar asset restrito ou licença incerta, isolar e registrar aqui;
 nunca presumir permissão.
