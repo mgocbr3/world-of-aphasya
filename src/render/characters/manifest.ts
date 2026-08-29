@@ -1791,17 +1791,19 @@ export const VISUALS: Record<string, VisualDef> = {
   // Composed by scripts/assets/build_bestiary_mob.mjs: the kit ships unanimated
   // bodies on the same humanoid rig the spike bodies animate, so each creature
   // carries a hand-picked subset of the shipped clips, retargeted by bone name.
+  // Both wired into MOB_KEYS below (the warlock's Fire Demon, the Mogger
+  // Lackey), so neither may be lazyPreload: a placed body must be in the
+  // preload set (desktop) or the creature stream (iOS carves models/creatures/
+  // out of the gate and mob views build fail-soft), see the P0 note above.
   mob_imp: {
     url: `${CREATURES}/imp.glb`,
     height: 1.5,
     clips: bestiary(['Spell_Simple_Shoot', 'Punch_Cross']),
-    lazyPreload: true,
   },
   mob_puglin: {
     url: `${CREATURES}/puglin.glb`,
     height: 1.0,
     clips: bestiary(['Punch_Cross', 'Punch_Jab']),
-    lazyPreload: true,
   },
 
   ...spikeVisuals(),
@@ -3168,6 +3170,10 @@ const MOB_KEYS: Record<string, string> = {
   tunnel_rat: 'mob_kobold_digger',
   // Grix has his own body now (mob_grix), so he no longer shares the Diggers'.
   grix_the_tunnelking: 'mob_grix',
+  // The Mogger Lackeys wear the Bestiary puglin: a small punchy brute with its
+  // own silhouette next to Mogger's bruiser, instead of the hooded outlaw the
+  // humanoid family falls back to (which made a monster camp read as bandits).
+  mogger_lackey: 'mob_puglin',
   // Ambient Highwatch stable horse: the Valorsteed mount model (mob_stable_horse
   // above) so it renders as an animated horse, not a humanoid.
   stable_horse: 'mob_stable_horse',
@@ -3182,7 +3188,10 @@ const MOB_KEYS: Record<string, string> = {
   gloomshade: 'mob_gloomshade',
   pyre_colossus: 'mob_pyre_colossus',
   water_elemental: 'mob_water_elemental',
-  warlock_imp: 'mob_demon_flying',
+  // The warlock's Fire Demon wears the Bestiary imp: a real imp body whose
+  // retargeted Spell_Simple_Shoot IS the pet's ranged Ashbolt read (the winged
+  // demon it borrowed stays with the flying-demon rift mobs).
+  warlock_imp: 'mob_imp',
   warlock_voidwalker: 'mob_demonalt',
   guardian_tithefiend: 'mob_demonalt',
   // Packlord Stampede guardians are transient local templates, not MOBS rows.
