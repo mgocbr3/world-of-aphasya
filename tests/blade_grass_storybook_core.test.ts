@@ -114,10 +114,10 @@ describe('storybook clump field', () => {
     expect(tallMeadowAt(3.7, 9.1, seed)).toBe(tallMeadowAt(3.7, 9.1, seed));
   });
 
-  it('stretches tall clusters up to about three times and clamps the input', () => {
+  it('stretches tall clusters to knee-to-waist height and clamps the input', () => {
     expect(tallGrassHeightScale(0)).toBeCloseTo(1, 5);
-    expect(tallGrassHeightScale(1)).toBeCloseTo(3, 5);
-    expect(tallGrassHeightScale(2)).toBeCloseTo(3, 5);
+    expect(tallGrassHeightScale(1)).toBeCloseTo(1.9, 5);
+    expect(tallGrassHeightScale(2)).toBeCloseTo(1.9, 5);
     expect(tallGrassHeightScale(-1)).toBeCloseTo(1, 5);
   });
 

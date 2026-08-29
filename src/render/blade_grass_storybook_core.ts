@@ -120,7 +120,13 @@ export function tallMeadowAt(x: number, z: number, seed: number): number {
   return smooth(t);
 }
 
-/** Vertical stretch for a cluster inside a tall band: up to ~3x at the heart. */
+/**
+ * Vertical stretch for a cluster inside a tall band: up to ~1.9x at the heart.
+ * Tuned down from 3x (direction call, 2026-08-18): at the old stretch the tall
+ * bands reached a standing character's chest and swallowed the town's props and
+ * NPC silhouettes. Knee-to-waist height still reads as a meadow you wade
+ * through, and keeps what stands in it legible.
+ */
 export function tallGrassHeightScale(tall: number): number {
-  return 1 + Math.min(1, Math.max(0, tall)) * 2.0;
+  return 1 + Math.min(1, Math.max(0, tall)) * 0.9;
 }
