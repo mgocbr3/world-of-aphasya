@@ -301,10 +301,13 @@ export const SPIKE_VISUAL_KEYS = (Object.keys(SPIKE_RACE_KITS) as SpikeRace[]).f
  */
 const SPIKE_RACE_HEADS: Record<SpikeRace, Record<'male' | 'female', string>> = {
   human: { male: 'head_human', female: 'head_human_female' },
-  orc: { male: 'head_human', female: 'head_human_female' },
-  elf: { male: 'head_human', female: 'head_human_female' },
-  dwarf: { male: 'head_human', female: 'head_human_female' },
-  necromancer: { male: 'head_human', female: 'head_human_female' },
+  // The generated racial skulls are unisex on purpose: a race reads through
+  // the skull's SHAPE, the two rigs' head bones both just wear it, and one
+  // file per race is the whole reason race stayed cheap.
+  orc: { male: 'head_orc', female: 'head_orc' },
+  elf: { male: 'head_elf', female: 'head_elf' },
+  dwarf: { male: 'head_dwarf', female: 'head_dwarf' },
+  necromancer: { male: 'head_necromancer', female: 'head_necromancer' },
 };
 
 /** The spike bodies, one VisualDef each, all lazy and all off the boot path. */

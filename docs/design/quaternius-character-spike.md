@@ -52,6 +52,21 @@ Mapeamento por arquetipo, sem tocar em nenhum numero: orc no guerreiro, elfo no
 cacador e no ladino, anao no xama e no druida, humano no paladino e no
 sacerdote, necromante no mago e no bruxo.
 
+As quatro cabecas raciais geradas no Meshy estao LIGADAS: baixadas do
+workspace, ajustadas por `scripts/assets/build_spike_racial_head.mjs` (corta o
+busto no queixo mais o cilindro do pescoco, escala queixo-para-coroa contra a
+cabeca humana de referencia, senta no frame do osso, gera normais e pinta um
+material fosco com a cor de pele da raca, ja que as malhas vem sem textura por
+decisao). As fracoes de corte sao lidas a mao da silhueta de cada sculpt e
+ficam registradas no proprio historico de invocacao:
+orc chin 0.45 cut 0.20 mul 0.94; elfo chin 0.58 cut 0.42; anao chin 0.32 cut
+0.17; necromante chin 0.40 cut 0.17 mul 0.85. Licoes que custaram iteracao: o
+capuz do ranger e justo, entao encolher uma cabeca em 15% afunda o rosto no
+buraco e o que sobra e um ovo (escala cheia e o certo para racas de capuz); e o
+sculpt do elfo veio de proporcoes largas, funciona mas merece regerar com pose
+frontal ereta. O coque (topknot, 1326 tris) esta baixado e aguarda entrar como
+sexta peca de cabelo tingivel.
+
 Proporcao vem de ESCALA DE OSSO, do jeito que um MMO de rig compartilhado faz:
 sem geometria, sem morph, e as 84 animacoes seguem tocando por cima. Nove eixos,
 todos na aba Corpo da criacao (altura, tamanho de cabeca, ombros, peito,
