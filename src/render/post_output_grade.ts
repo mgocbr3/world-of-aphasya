@@ -12,11 +12,13 @@ import {
   type Texture,
   type ToneMapping,
   Vector2,
+  Vector3,
   Vector4,
   type WebGLRenderer,
   type WebGLRenderTarget,
 } from 'three';
 import { FullScreenQuad, Pass } from 'three/examples/jsm/postprocessing/Pass.js';
+import { NEUTRAL_GRADE } from './aphasya_grade_core';
 
 interface TimeUniform {
   value: number;
@@ -37,9 +39,13 @@ export const OUTPUT_GRADE_FRAGMENT_SHADER = /* glsl */ `
   in vec2 vUv;
   out vec4 pc_fragColor;
 
-  const vec3 LIFT = vec3(0.010, 0.008, 0.010);
-  const vec3 GAIN = vec3(1.10, 1.035, 0.90);
-  const vec3 GAMMA = vec3(0.975);
+  // Aphasya per-biome grade (aphasya_grade_core.ts): the renderer eases these
+  // toward the camera biome's authored target; the defaults reproduce the
+  // legacy hardcoded grade exactly.
+  uniform vec3 uLift;
+  uniform vec3 uGain;
+  uniform float uGamma;
+  uniform float uSat;
 
   // Keep the exact RGBA16F boundaries removed by the bloom-add fusion and by
   // the earlier OutputPass plus GradePass fusion.
@@ -251,10 +257,10 @@ export const OUTPUT_GRADE_FRAGMENT_SHADER = /* glsl */ `
     // one, so on that path this is the grade's own entry quantize and nothing
     // more; the taps it blended are deliberately not quantized individually.
     vec3 c = quantizeHalf(outputColor.rgb);
-    c = pow(max(vec3(0.0), c * GAIN + LIFT), GAMMA);
+    c = pow(max(vec3(0.0), c * uGain + uLift), vec3(uGamma));
     c = mix(c, c * c * (3.0 - 2.0 * c), 0.23);
     float l = dot(c, vec3(0.2126, 0.7152, 0.0722));
-    c = mix(vec3(l), c, 1.07);
+    c = mix(vec3(l), c, uSat);
     vec2 d = vUv - 0.5;
     c *= 1.0 - 0.20 * smoothstep(0.60, 0.95, dot(d, d) * 2.2);
     c += (fract(sin(dot(vUv * 731.7 + uTime, vec2(12.9898, 78.233))) * 43758.5) - 0.5) * 0.012;
@@ -296,6 +302,10 @@ export class OutputGradePass extends Pass {
     uTime: TimeUniform;
     uInputUvRect: { value: Vector4 };
     uInputTexelSize: { value: Vector2 };
+    uLift: { value: Vector3 };
+    uGain: { value: Vector3 };
+    uGamma: { value: number };
+    uSat: { value: number };
   };
   readonly material: RawShaderMaterial;
   readonly fsQuad: FullScreenQuad;
@@ -319,6 +329,10 @@ export class OutputGradePass extends Pass {
       uTime: timeUniform,
       uInputUvRect: { value: new Vector4(1, 1, 1, 1) },
       uInputTexelSize: { value: new Vector2(0, 0) },
+      uLift: { value: new Vector3(...NEUTRAL_GRADE.lift) },
+      uGain: { value: new Vector3(...NEUTRAL_GRADE.gain) },
+      uGamma: { value: NEUTRAL_GRADE.gamma },
+      uSat: { value: NEUTRAL_GRADE.sat },
     };
     this.material = new RawShaderMaterial({
       name: 'OutputGradeShader',
@@ -334,6 +348,19 @@ export class OutputGradePass extends Pass {
 
   setInputUvRect(scaleX: number, scaleY: number, maxX: number, maxY: number): void {
     this.uniforms.uInputUvRect.value.set(scaleX, scaleY, maxX, maxY);
+  }
+
+  /** Push the eased Aphasya biome grade (see aphasya_grade_core.ts); alloc-free. */
+  setGrade(
+    lift: readonly [number, number, number],
+    gain: readonly [number, number, number],
+    gamma: number,
+    sat: number,
+  ): void {
+    this.uniforms.uLift.value.set(lift[0], lift[1], lift[2]);
+    this.uniforms.uGain.value.set(gain[0], gain[1], gain[2]);
+    this.uniforms.uGamma.value = gamma;
+    this.uniforms.uSat.value = sat;
   }
 
   override render(

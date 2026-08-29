@@ -6,6 +6,16 @@ import {
   type DenseSlotState,
   deactivateDenseSlot,
 } from './blade_grass_dense_core';
+import {
+  bladeClumpAt,
+  clumpDensityGate,
+  clumpScale,
+  meadowClusterScale,
+  meadowCoverGate,
+  storybookBladeColor,
+  tallGrassHeightScale,
+  tallMeadowAt,
+} from './blade_grass_storybook_core';
 import { GRASS_BIOME_DENSITY } from './foliage';
 import { insideGrassHubExclusion } from './foliage_core';
 import { patchConstantUpNormalVertexShader } from './foliage_shader_core';
@@ -65,15 +75,22 @@ export function mulberry32(seed: number): () => number {
 // origin. Every blade rolls its own yaw, root offset, base tilt, bow, length,
 // and width, and the bow eases in quadratically toward the tip, so the tuft
 // reads as grown grass arcing over rather than a symmetric fan of straight
-// spikes. Vertex colors carry a base->tip brighten so blades read rooted
-// without a texture; instanceColor multiplies in the per-spot ground tint.
-// Exported (geometry unchanged): the mid-band (blade_grass_band.ts) and the
-// ground bake (grass_ground_bake.ts) must use these EXACT clusters so the
-// carpet, the band, and the painted ground are one look by construction.
-export function clusterGeometry(rng: () => number): THREE.BufferGeometry {
+// spikes. Vertex colors carry the storybook root-to-tip ramp (dark cool
+// roots, bright warm tips; blade_grass_storybook_core.ts) so blades read
+// rooted without a texture; instanceColor multiplies in the per-spot ground
+// tint. `?sbgrass=off` falls back to the legacy grey brighten for A/B.
+// Exported: the mid-band (blade_grass_band.ts) and the ground bake
+// (grass_ground_bake.ts) must use these EXACT clusters so the carpet, the
+// band, and the painted ground are one look by construction (the storybook
+// default parameter keeps all three call sites in step).
+export function clusterGeometry(
+  rng: () => number,
+  storybook: boolean = !renderLayerDisabled('sbgrass'),
+): THREE.BufferGeometry {
   const positions: number[] = [];
   const colors: number[] = [];
   const indices: number[] = [];
+  const rampColor: [number, number, number] = [0, 0, 0];
   const BLADES = 5;
   for (let b = 0; b < BLADES; b++) {
     // even fan for coverage, heavy jitter so no two blades pair up
@@ -94,6 +111,9 @@ export function clusterGeometry(rng: () => number): THREE.BufferGeometry {
     // widths run perpendicular to the lean so the silhouette shows the bow
     const px = -sin;
     const pz = cos;
+    // per-blade shade jitter keeps neighbouring blades from banding once the
+    // ramp replaces the old per-vertex grey spread
+    const bladeShade = 0.94 + rng() * 0.12;
     const put = (wx: number, t: number, shade: number): void => {
       // quadratic bend: roots stay planted, tips arc over like real grass
       const lean = (tilt * t + bow * t * t) * len;
@@ -101,7 +121,16 @@ export function clusterGeometry(rng: () => number): THREE.BufferGeometry {
       // all-up normals: blades take the terrain's lighting response, the
       // same trick the card tufts use, so the carpet never shades apart
       // from the ground it grows in
-      colors.push(shade, shade, shade);
+      if (storybook) {
+        storybookBladeColor(t, rampColor);
+        colors.push(
+          rampColor[0] * bladeShade,
+          rampColor[1] * bladeShade,
+          rampColor[2] * bladeShade,
+        );
+      } else {
+        colors.push(shade, shade, shade);
+      }
     };
     put(-w0, 0, 0.62);
     put(w0, 0, 0.62);
@@ -152,6 +181,9 @@ export function buildBladeGrass(
   if (RADIUS <= 0 || renderLayerDisabled('bladegrass')) {
     return { group, update: () => undefined };
   }
+  // ?sbgrass=off: the storybook clump/ramp A/B (colour falls back inside
+  // clusterGeometry via its default parameter)
+  const storybookGrass = !renderLayerDisabled('sbgrass');
   const GRID_W = Math.ceil((RADIUS * 2) / CELL); // slots per axis
   const POOL = GRID_W * GRID_W;
 
@@ -248,10 +280,18 @@ export function buildBladeGrass(
       // bare between them (squared for hard patch edges)
       const lush = groundLushnessAt(x, z, seed);
       const biomeDensity = GRASS_BIOME_DENSITY[zoneBiomeAt(x, z)] ?? 1;
+      // storybook clumping: a two-yard tuft field under the broad lush
+      // patches. On green soil the meadow cover gate fades the thinning out
+      // so the field carpets solid; the tuft gaps survive on dry ground
+      // (blade_grass_storybook_core.ts; 0.5 is the neutral mean when the
+      // ?sbgrass=off A/B disables the layer)
+      const clump = storybookGrass ? bladeClumpAt(x, z, seed) : 0.5;
+      const cover = storybookGrass ? meadowCoverGate(clump, lush) : clumpDensityGate(clump);
       // higher floor + gain than the tufts: coverage is the carpet's job,
       // the patch structure just modulates it
-      ok = r1 < (0.44 + 1.7 * lush * lush) * 1.05 * Math.min(biomeDensity, 1.2);
-      if (ok) ok = roadDistance(x, z) > 2.4;
+      ok = r1 < (0.44 + 1.7 * lush * lush) * 1.05 * cover * Math.min(biomeDensity, 1.2);
+      const rd = ok ? roadDistance(x, z) : 0;
+      if (ok) ok = rd > 2.4;
       if (ok) ok = !insideGrassHubExclusion(getActiveWorldContent().zones, x, z);
       if (ok) {
         const h = terrainHeight(x, z, seed);
@@ -264,8 +304,8 @@ export function buildBladeGrass(
           // clumps, so the meadow reads as one grown surface. A hash-gated
           // size class turns ~10% of cells into taller tufts (x1.5 to x1.8)
           // that punctuate the fine carpet the rest of the cells lay down.
-          const lushHere = 0.5 + lush * 0.6;
-          let s = (0.22 + hash(ci, cj, 3) * 0.34) * lushHere;
+          const lushHere = storybookGrass ? meadowClusterScale(lush) : 0.5 + lush * 0.6;
+          let s = (0.22 + hash(ci, cj, 3) * 0.34) * lushHere * clumpScale(clump);
           const rTuft = hash(ci, cj, 4);
           if (rTuft < 0.1) s *= 1.5 + rTuft * 3.0;
           q.setFromAxisAngle(up, r1 * 12.9);
@@ -277,7 +317,12 @@ export function buildBladeGrass(
           q.premultiply(qLean.setFromAxisAngle(leanAxis, rLean * 0.21));
           // per-cluster height jitter on top of the blade-level length spread
           const hJit = 0.82 + hash(ci, cj, 6) * 0.36;
-          m.compose(v.set(x, h - 0.02, z), q, sv.set(s, s * (0.85 + lush * 0.5) * hJit, s));
+          // tall-meadow bands (the chest-height reference look): coherent
+          // patches stretch vertically, kept well off roads so travel routes
+          // stay readable (blade_grass_storybook_core.ts)
+          const tall = storybookGrass && rd > 6 ? tallMeadowAt(x, z, seed) : 0;
+          const sy = s * (0.85 + lush * 0.5) * hJit * tallGrassHeightScale(tall);
+          m.compose(v.set(x, h - 0.02, z), q, sv.set(s, sy, s));
           groundGrassColorAt(x, z, seed, c);
           // slight lift over the raw ground tint: blades catch more sky
           // than the soil they stand on

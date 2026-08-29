@@ -25,6 +25,7 @@ import { addRimGlow, EMISSIVE_GLOW, GFX, type GfxSettings } from '../gfx';
 import { applySurfaceDetail, riggedWornFamilyFor } from '../worn_stone';
 import { type ArmorDyeSpec, attachArmorDye } from './armor_dye';
 import { backGripFor } from './back_grips';
+import { scaledVisualHeight } from './character_world_scale';
 import { dequantizeAttribute } from './dequantize_attribute';
 import { type HandGrip, KAYKIT_SHIELD_ACCESSORIES, KAYKIT_SHIELD_GRIPS } from './held_item_grips';
 import { composedLookReady } from './look_pieces';
@@ -2310,7 +2311,7 @@ export function prepareVisual(key: string): PreparedVisual {
     });
   }
   const rawHeight = Math.max(1e-3, bounds.max.y - bounds.min.y);
-  const normScale = def.height / rawHeight;
+  const normScale = scaledVisualHeight(def.height) / rawHeight;
   const yOffset = (def.hover ?? 0) - bounds.min.y * normScale;
   const clickRadius = Math.min(
     2.2,

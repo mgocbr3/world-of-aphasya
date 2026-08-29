@@ -180,8 +180,18 @@ export function buildFish(
     inst.traverse((child) => {
       if (child instanceof THREE.Mesh) child.castShadow = GFX.standardMaterials;
     });
-    inst.visible = false;
-    return inst;
+    // The Tripo fish is authored facing -z and leapt tail-first: the leap
+    // math steers a +z-facing body (the procedural fallback's convention).
+    // The flip lives on an inner wrapper because update() resets the outer
+    // body rotation every frame before applying heading and pitch.
+    inst.rotation.y = Math.PI;
+    const wrap = new THREE.Group();
+    wrap.add(inst);
+    // The hidden flag rides the RETURNED object, which is now the wrapper:
+    // the reveal toggles `f.body.visible`, and leaving it on the inner
+    // instance would keep every fish invisible for good.
+    wrap.visible = false;
+    return wrap;
   };
 
   const fish: Fish[] = [];

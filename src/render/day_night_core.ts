@@ -272,8 +272,12 @@ export function realmLightTint(
   ];
 }
 
-const NIGHT_SKY: [number, number, number] = [0.045, 0.06, 0.15];
-const NIGHT_FOG: [number, number, number] = [0.14, 0.18, 0.31];
+// Deep BLUE night, never near-black: a pure-dark zenith against the lighter
+// horizon fog read as a harsh milky band under a black void (direction call,
+// 2026-08-18). The sky floor rises toward a rich blue and the fog endpoint
+// moves closer to it, so the dome grades smoothly instead of stepping.
+const NIGHT_SKY: [number, number, number] = [0.075, 0.1, 0.24];
+const NIGHT_FOG: [number, number, number] = [0.115, 0.15, 0.28];
 const NIGHT_FAR_SCALE = 0.82;
 
 /** A signature realm's own night: per-channel sky/fog endpoints replacing the

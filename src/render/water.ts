@@ -722,6 +722,18 @@ ${BIOME_HAZE_DECLARATIONS}
     // dappled shimmer that fades with distance so it never reads as speckle
     float shimmer = max(n1.x * 0.7 + n2.y * 0.55, 0.0) * nearFade;
     col *= 0.92 + 0.4 * shimmer;
+    // Aphasya caustics (W6): the sun's light web on the shallow seabed, read
+    // through the surface. Three drifting sine folds warped by the two normal
+    // maps already sampled; the sharpened ridge where their sum crosses zero
+    // is what reads as a caustic cell wall. Analytic (no mip chain), so it
+    // rides the same near fade as the shimmer, and it scales with uSunColor
+    // so night water stays quiet. Gated to the shallows where a seabed is
+    // close enough to light.
+    float causA = sin(vWPos.x * 0.90 + n1.x * 5.0 + uTime * 0.70);
+    float causB = sin(vWPos.z * 0.83 - n2.y * 5.0 + uTime * 0.55);
+    float causC = sin((vWPos.x + vWPos.z) * 0.61 + n2.x * 4.0 - uTime * 0.62);
+    float caus = pow(clamp(1.0 - abs(causA + causB + causC) * 0.34, 0.0, 1.0), 7.0);
+    col += uSunColor * caus * (1.0 - depth) * (1.0 - depth) * nearFade * 0.55;
     // wind lanes: hue and brightness drift with the lane field
     col = mix(col, col * vec3(0.86, 1.04, 1.07), (seaLane - 0.5) * 0.9);
     col *= 0.93 + seaLane * 0.14;
@@ -863,7 +875,7 @@ ${BIOME_HAZE_DECLARATIONS}
     // lake takes the air of the zone it lies in and stops being the one
     // surface in the vista with no realm character. Compiled out entirely
     // when no field exists, so the fogged tiers are byte-identical.
-${biomeHazeFragmentGlsl('vWPos.xz')}
+${biomeHazeFragmentGlsl('vWPos.xz', 'vWPos.y')}
 #endif
     #include <fog_fragment>
   }

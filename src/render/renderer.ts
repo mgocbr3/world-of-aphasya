@@ -62,6 +62,7 @@ import { type AmberFeaturesView, buildAmberFeatures } from './amber_features';
 import { isVisuallyDead } from './anim_state';
 import { AOE_RING_LIFETIME, aoeRingAnim } from './aoe_ring';
 import { arrivalCoverActive, noteArrivalIfTeleported } from './arrival_cover';
+import { AphasyaGradeDriver, aphasyaToneMapping } from './aphasya_grade_driver';
 import { ktx2RetainedSourceBytes } from './assets/ktx2_mip_release';
 import { formatResidencyBudget, residencyBudget } from './assets/residency_budget';
 import type { AmbientPointSource, SpatialAudioSink, Surface } from './audio_sink';
@@ -1880,11 +1881,8 @@ export class Renderer {
 
   private lowGfx: boolean;
   private post: PostPipeline | null = null;
+  private readonly aphasyaGrade = new AphasyaGradeDriver();
   private godRays: THREE.Sprite[] = [];
-  // Eased per-biome god-ray strength (BIOME_GOD_RAYS via updateAmbience): the
-  // shafts are "sun through bright air" and read as detached glowing streaks
-  // over the twilight and gloom realms, so those fade them out entirely.
-  private godRayZoneScale = 1;
   private viewport = { width: 1, height: 1 };
   private viewportPollTimer = 0;
   private nameplateTimer = 0;
@@ -2093,7 +2091,7 @@ export class Renderer {
     // rendered near-hard regardless of tuning. The live radius is deliberately
     // crisp without dropping all the way to a razor edge.
     this.webgl.shadowMap.type = THREE.PCFShadowMap;
-    this.webgl.toneMapping = THREE.ACESFilmicToneMapping; // OutputPass reads this on the composer path
+    this.webgl.toneMapping = aphasyaToneMapping(); // composer OutputPass reads this; ?tonemap=agx A/B
     this.webgl.toneMappingExposure = this.baseExposure;
     // Only worth gating view draws on compileAsync when programs can link OFF the
     // main thread; without the extension compileAsync compiles synchronously, so
@@ -9082,26 +9080,6 @@ export class Renderer {
       });
   }
 
-  // Outdoor fog presets per biome (high tier eases between them as the player
-  // crosses zone bands; low keeps one preset everywhere). Distances are the
-  // pre-residency-clamp table opened back up (roughly x1.5): with the
-  // visible-zone streaming lane keeping neighbours resident before they can
-  // be seen, the fog no longer has to hide unloaded regions itself, so the
-  // sky and real vistas read again. fogFarForPreparedZones stays as the
-  // safety clamp for the brief window a build is still catching up. No far
-  // exceeds MAX_OUTDOOR_FOG_FAR (the rendering/culling envelope).
-  //
-  // The MURKY realms (marsh, haunt, frost, ember, dusk, amber and the two
-  // paint-only caves) then got a readability pass: their `near` was where the
-  // "cannot see anything in front of me" reports came from, since the chase
-  // camera sits ~12 yd behind the player and a near of 45 puts the fog barely
-  // 30 yd ahead of the character. `near` moves out further than `far` here,
-  // which does steepen those gradients slightly, but it is the plane the
-  // complaint is actually about and it costs nothing to draw. `far` moves only
-  // enough to keep each realm's silhouette depth (fog far drives terrain,
-  // prop and foliage culling, so it is the expensive half). The clear realms
-  // (vale, peaks, fen, jungle, garden, gale and friends) were already open and
-  // are untouched.
   private static BIOME_FOG: Record<BiomeId, { color: number; near: number; far: number }> = {
     // The blue-sky biomes carry a deeper sky-blue haze (the old paler values
     // tonemapped to near white, so fully fogged distant trees and zones read
@@ -9226,7 +9204,6 @@ export class Renderer {
     volcano: 0.3,
     marsh: 0.3,
   };
-
   private outdoorFogPreset(): { color: number; near: number; far: number } {
     if (this.lowGfx) return Renderer.LOW_FOG;
     return Renderer.BIOME_FOG[zoneBiomeAt(this.sim.player.pos.x, this.sim.player.pos.z)];
@@ -9352,11 +9329,9 @@ export class Renderer {
     const settleVistaEntry = this.vistaEntrySettlePending;
     this.vistaEntrySettlePending = false;
     const biome = zoneBiomeAt(this.sim.player.pos.x, pz);
-    // Per-biome god-ray strength, eased over about half a second so a border
-    // crossing fades the shafts with the rest of the ambience.
-    const shaftTarget = Renderer.BIOME_GOD_RAYS[biome] ?? 1;
-    this.godRayZoneScale +=
-      (shaftTarget - this.godRayZoneScale) * (1 - Math.exp(-2 * Math.max(0, dt)));
+    const agGrade = this.post?.grade ?? null;
+    const agShaft = Renderer.BIOME_GOD_RAYS[biome];
+    this.aphasyaGrade.update(biome, dt, agGrade, agShaft, this.dnGrade.nightAmt);
     const phaseOverride = dayNightPhaseOverride();
     if (this.lowGfx && DAY_ONLY && phaseOverride === null) {
       if (this.fixedLowDayBiome !== biome) {
@@ -9762,8 +9737,7 @@ export class Renderer {
     // authored fog range while sharing the overworld's color and light grade.
     if (usesLiveDayNightLighting(desired)) {
       const g = this.dnGrade;
-      const preset =
-        desired === 'battleground' ? Renderer.BATTLEGROUND_FOG : this.outdoorFogPreset();
+      const preset = desired === 'battleground' ? Renderer.BATTLEGROUND_FOG : this.outdoorFogPreset();
       const k = transitionAlpha(dt, ZONE_ENVIRONMENT_RESPONSE);
       if (this.lowGfx) return;
       // fog color: the biome hue multiplied by the day/night color (a dark
@@ -9892,20 +9866,15 @@ export class Renderer {
     // the biome's light-level scale applies to the IBL too, or a dimmed realm
     // (Nightbloom twilight) would keep full-daylight ambient from its HDRI.
     // `dominant` is a SkyKey: the place-keyed sky (farshore) has no
-    // BIOME_LIGHT row and takes the neutral 1.
-    const envScale =
-      dominant in Renderer.BIOME_LIGHT
-        ? (Renderer.BIOME_LIGHT[dominant as BiomeId].envScale ?? 1)
-        : 1;
+    // Renderer.BIOME_LIGHT row and takes the neutral 1.
+    const envScale = dominant in Renderer.BIOME_LIGHT ? (Renderer.BIOME_LIGHT[dominant as BiomeId].envScale ?? 1) : 1;
     // ...and at night the realm's own sky energy is normalized toward the Vale's.
     // The IBL is the realm's DAYTIME HDRI and those differ twenty-two fold in
     // measured irradiance, so an identical ambient scale left Willowfen and
     // Palmreach reading as an overcast afternoon while Eastbrook read as night.
     // Level only: the HDRI keeps its colour, so a realm's night stays its own.
     const nightEnvScale =
-      dominant in Renderer.BIOME_LIGHT
-        ? nightIblScale(dominant as BiomeId, this.dnGrade.nightAmt)
-        : 1;
+      dominant in Renderer.BIOME_LIGHT ? nightIblScale(dominant as BiomeId, this.dnGrade.nightAmt) : 1;
     const target = this.envRTs.has(dominant) ? dominant : this.envTransition.current;
     // The IBL is ambient, so it follows the grade's ambient floor, not the sun's.
     const settledIntensity =
@@ -12546,9 +12515,9 @@ export class Renderer {
     // screen-space shafts read as giant triangles against an enclosed rim.
     // Both keep the sun, sky, and outdoor grade while these shafts stay
     // reserved for the overworld. Twilight and gloom realms also fade them
-    // completely through BIOME_GOD_RAYS, so skip their draw and math once the
+    // completely through Renderer.BIOME_GOD_RAYS, so skip their draw and math once the
     // eased scale reaches zero.
-    const shafts = this.fogState === 'outdoor' && this.godRayZoneScale > 0.02;
+    const shafts = this.fogState === 'outdoor' && this.aphasyaGrade.godRayScale > 0.02;
     // azimuth-only alignment, the chase cam always pitches down while the
     // sun sits high, so a full 3D dot product would never light the shafts
     this.camera.getWorldDirection(this.tmpV);
@@ -12570,7 +12539,7 @@ export class Renderer {
         .addScaledVector(side, (i - 1) * 30 + sway);
       sp.position.y = this.camera.position.y + 16 + i * 7;
       sp.material.opacity =
-        facing * facing * facing * (0.3 - i * 0.05) * this.sunUp * this.godRayZoneScale;
+        facing * facing * facing * (0.3 - i * 0.05) * this.sunUp * this.aphasyaGrade.godRayScale;
     }
   }
 

@@ -6,8 +6,9 @@ import {
   type DrainLifeParticleSink,
   DrainLifeVfx,
 } from './drain_life_vfx';
-import { GFX } from './gfx';
+import { GFX, VFX_HDR_BOOST } from './gfx';
 import { PaladinSpellVfxController, type PaladinSpellVfxSprite } from './paladin_spell_vfx';
+import { renderLayerDisabled } from './render_dev_flags';
 import type { VfxAnchorResolver, VfxOffsetAnchorResolver } from './vfx_anchor';
 import {
   insertActiveParticleSlot,
@@ -35,9 +36,12 @@ const DRAW_SPRITE = 8;
 const DRAW_ROTATION = 9;
 const DRAW_RADIUS_SQ = 10;
 
-// HDR multipliers (graphics-plan step 9); 1.0 on the no-composer path
+// HDR multipliers (graphics-plan step 9); 1.0 on the no-composer path. The
+// Aphasya boost rides on top so magic crosses the bloom threshold decisively
+// (gfx.ts VFX_HDR_BOOST).
 function hdr(k: number): number {
-  return GFX.composer ? k : 1;
+  const boost = renderLayerDisabled('vfxhdr') ? 1 : VFX_HDR_BOOST;
+  return GFX.composer ? k * boost : 1;
 }
 
 // Per-school projectile colors, cached: a bolt burst used to allocate three

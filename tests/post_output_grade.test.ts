@@ -13,9 +13,9 @@ describe('fused output and grade shader', () => {
     const toneMapAt = shader.indexOf('outputColor.rgb = ACESFilmicToneMapping(outputColor.rgb);');
     const srgbAt = shader.indexOf('outputColor = sRGBTransferOETF(outputColor);');
     const halfAt = shader.indexOf('vec3 c = quantizeHalf(outputColor.rgb);');
-    const liftAt = shader.indexOf('c = pow(max(vec3(0.0), c * GAIN + LIFT), GAMMA);');
+    const liftAt = shader.indexOf('c = pow(max(vec3(0.0), c * uGain + uLift), vec3(uGamma));');
     const curveAt = shader.indexOf('c = mix(c, c * c * (3.0 - 2.0 * c), 0.23);');
-    const saturationAt = shader.indexOf('c = mix(vec3(l), c, 1.07);');
+    const saturationAt = shader.indexOf('c = mix(vec3(l), c, uSat);');
     const vignetteAt = shader.indexOf('c *= 1.0 - 0.20 * smoothstep(0.60, 0.95, dot(d, d) * 2.2);');
     const grainAt = shader.indexOf(
       'c += (fract(sin(dot(vUv * 731.7 + uTime, vec2(12.9898, 78.233))) * 43758.5) - 0.5) * 0.012;',
@@ -32,9 +32,14 @@ describe('fused output and grade shader', () => {
     expect(saturationAt).toBeGreaterThan(curveAt);
     expect(vignetteAt).toBeGreaterThan(saturationAt);
     expect(grainAt).toBeGreaterThan(vignetteAt);
-    expect(shader).toContain('const vec3 LIFT = vec3(0.010, 0.008, 0.010);');
-    expect(shader).toContain('const vec3 GAIN = vec3(1.10, 1.035, 0.90);');
-    expect(shader).toContain('const vec3 GAMMA = vec3(0.975);');
+    // The grade values moved from baked constants to uniforms for the Aphasya
+    // per-biome grade; the legacy values are pinned as NEUTRAL_GRADE in
+    // tests/aphasya_grade_core.test.ts, and the pass constructor defaults the
+    // uniforms to them.
+    expect(shader).toContain('uniform vec3 uLift;');
+    expect(shader).toContain('uniform vec3 uGain;');
+    expect(shader).toContain('uniform float uGamma;');
+    expect(shader).toContain('uniform float uSat;');
     expect(shader).toContain('unpackHalf2x16(packHalf2x16(value.rg))');
     expect(shader).toContain('unpackHalf2x16(packHalf2x16(vec2(value.b, 0.0))).x');
     expect(shader).toContain('pc_fragColor = vec4(c, 1.0);');
