@@ -9,25 +9,81 @@
 // Reproducibility is checked by tests/i18n_resolved_equivalence.test.ts.
 
 export const pending: Record<string, readonly string[]> = {
-  "es": [],
-  "es_ES": [],
-  "fr_FR": [],
-  "fr_CA": [],
+  "es": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "es_ES": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "fr_FR": [
+    "hudChrome.theme.presets.aphasya",
+    "mode.play",
+    "mode.playAria",
+    "mode.serverAria",
+    "mode.serverLabel",
+    "mode.serverOffline",
+    "mode.serverOfflineSub",
+    "mode.serverOnline",
+    "news.empty"
+  ],
+  "fr_CA": [
+    "hudChrome.theme.presets.aphasya",
+    "mode.play",
+    "mode.playAria",
+    "mode.serverAria",
+    "mode.serverLabel",
+    "mode.serverOffline",
+    "mode.serverOfflineSub",
+    "mode.serverOnline",
+    "news.empty"
+  ],
   "en_CA": [],
-  "it_IT": [],
-  "de_DE": [],
-  "zh_CN": [],
-  "zh_TW": [],
-  "ko_KR": [],
-  "ja_JP": [],
-  "pt_BR": [],
-  "ru_RU": [],
-  "cs_CZ": [],
-  "nl_NL": [],
-  "pl_PL": [],
-  "id_ID": [],
-  "tr_TR": [],
-  "sv_SE": [],
-  "vi_VN": [],
-  "da_DK": []
+  "it_IT": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "de_DE": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "zh_CN": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "zh_TW": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "ko_KR": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "ja_JP": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "pt_BR": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "ru_RU": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "cs_CZ": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "nl_NL": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "pl_PL": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "id_ID": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "tr_TR": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "sv_SE": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "vi_VN": [
+    "hudChrome.theme.presets.aphasya"
+  ],
+  "da_DK": [
+    "hudChrome.theme.presets.aphasya"
+  ]
 };

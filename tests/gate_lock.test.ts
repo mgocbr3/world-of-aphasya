@@ -154,7 +154,7 @@ describe('acquireFullSuiteLock', () => {
       sleep: async () => {},
       log: (message) => logs.push(message),
     });
-    expect(logs.some((message) => message.includes('not a World of Claudecraft'))).toBe(true);
+    expect(logs.some((message) => message.includes('not a World of Aphasya'))).toBe(true);
     await lock.release();
     await new Promise<void>((resolve) => foreign.close(() => resolve()));
   });

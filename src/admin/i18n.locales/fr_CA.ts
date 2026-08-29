@@ -10,7 +10,7 @@ export const fr_CA: Record<string, string> = {
   'error.flagActiveExists': 'ce compte a déjà un drapeau ouvert de ce type',
   'wealth.largeMovementsUnavailable':
     "les grands mouvements bancaires n'ont pas pu être chargés (la lecture du grand livre a expiré), le détail de l'or ci-dessus est complet",
-  'app.title': 'World of ClaudeCraft - Administration',
+  'app.title': 'World of Aphasya - Administration',
   'app.shortTitle': 'Administrateur WoC',
   'auth.username': "Nom d'utilisateur",
   'auth.password': 'Mot de passe',

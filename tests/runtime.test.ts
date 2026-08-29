@@ -13,18 +13,14 @@ describe('desktop runtime helpers', () => {
   });
 
   it('normalizes HTTP origins and rejects non-web origins', () => {
-    expect(normalizeOrigin('https://worldofclaudecraft.com/')).toBe(
-      'https://worldofclaudecraft.com',
-    );
-    expect(() => normalizeOrigin('app://worldofclaudecraft')).toThrow(
-      'unsupported origin protocol',
-    );
+    expect(normalizeOrigin('https://worldofaphasya.com/')).toBe('https://worldofaphasya.com');
+    expect(() => normalizeOrigin('app://worldofaphasya')).toThrow('unsupported origin protocol');
   });
 
   it('builds websocket URLs from desktop API origins', () => {
-    expect(
-      runtimeWebSocketUrl('app:', 'worldofclaudecraft', 'https://worldofclaudecraft.com'),
-    ).toBe('wss://worldofclaudecraft.com/ws');
+    expect(runtimeWebSocketUrl('app:', 'worldofaphasya', 'https://worldofaphasya.com')).toBe(
+      'wss://worldofaphasya.com/ws',
+    );
     expect(runtimeWebSocketUrl('http:', '127.0.0.1:5173', '')).toBe('ws://127.0.0.1:5173/ws');
   });
 

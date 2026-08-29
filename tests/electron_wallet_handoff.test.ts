@@ -11,8 +11,8 @@ describe('Electron wallet browser handoff', () => {
   const code = 'A'.repeat(43);
 
   it('puts the secret in the URL fragment so it is not sent in the HTTP request', () => {
-    const url = buildWalletHandoffBrowserUrl('https://worldofclaudecraft.com', code);
-    expect(url).toBe(`https://worldofclaudecraft.com/wallet-handoff#code=${code}`);
+    const url = buildWalletHandoffBrowserUrl('https://worldofaphasya.com', code);
+    expect(url).toBe(`https://worldofaphasya.com/wallet-handoff#code=${code}`);
     expect(new URL(url).search).toBe('');
   });
 
@@ -23,12 +23,10 @@ describe('Electron wallet browser handoff', () => {
   });
 
   it('parses only the wallet-handoff custom protocol target', () => {
-    expect(parseWalletHandoffDeepLink(`worldofclaudecraft://wallet-handoff?code=${code}`)).toEqual({
+    expect(parseWalletHandoffDeepLink(`worldofaphasya://wallet-handoff?code=${code}`)).toEqual({
       code,
     });
-    expect(
-      parseWalletHandoffDeepLink(`worldofclaudecraft://desktop-login?code=${code}`),
-    ).toBeNull();
+    expect(parseWalletHandoffDeepLink(`worldofaphasya://desktop-login?code=${code}`)).toBeNull();
     expect(
       parseWalletHandoffDeepLink(`https://example.com/wallet-handoff?code=${code}`),
     ).toBeNull();

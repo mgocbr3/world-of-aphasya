@@ -11,7 +11,7 @@ import {
 
 const PACKAGE_JSON = JSON.stringify(
   {
-    name: 'world-of-claudecraft',
+    name: 'world-of-aphasya',
     version: '0.20.0',
     private: true,
   },
@@ -31,20 +31,20 @@ MARKETING_VERSION = 0.20.0;
 CURRENT_PROJECT_VERSION = 4;
 MARKETING_VERSION = 0.20.0;`;
 
-const INDEX_HTML = `<a href="https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-0.20.0-mac-universal.dmg">Download</a>
-<a href="https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-0.20.0-linux-x86_64.AppImage">Download</a>
-<a href="https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-0.20.0-win-x64.exe">Download</a>
+const INDEX_HTML = `<a href="https://updates.worldofaphasya.com/desktop/world-of-aphasya-0.20.0-mac-universal.dmg">Download</a>
+<a href="https://updates.worldofaphasya.com/desktop/world-of-aphasya-0.20.0-linux-x86_64.AppImage">Download</a>
+<a href="https://updates.worldofaphasya.com/desktop/world-of-aphasya-0.20.0-win-x64.exe">Download</a>
 <div id="game-version">v0.10</div>`;
 
 // play.html omits Linux but carries the macOS and Windows links.
-const PLAY_HTML = `<a href="https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-0.20.0-mac-universal.dmg">Download</a>
-<a href="https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-0.20.0-win-x64.exe">Download</a>
+const PLAY_HTML = `<a href="https://updates.worldofaphasya.com/desktop/world-of-aphasya-0.20.0-mac-universal.dmg">Download</a>
+<a href="https://updates.worldofaphasya.com/desktop/world-of-aphasya-0.20.0-win-x64.exe">Download</a>
 <div id="game-version">v0.10</div>`;
 
 // A page migrated before the per-arch cutover (or hand-edited afterward) can still
 // carry the legacy combined-installer filename ("-win.exe", no arch suffix).
-const LEGACY_WINDOWS_HTML = `<a href="https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-0.20.0-mac-universal.dmg">Download</a>
-<a href="https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-0.20.0-win.exe">Download</a>
+const LEGACY_WINDOWS_HTML = `<a href="https://updates.worldofaphasya.com/desktop/world-of-aphasya-0.20.0-mac-universal.dmg">Download</a>
+<a href="https://updates.worldofaphasya.com/desktop/world-of-aphasya-0.20.0-win.exe">Download</a>
 <div id="game-version">v0.10</div>`;
 
 const README_MD = `[![Version](https://img.shields.io/badge/version-0.20.0-blue)](package.json)`;
@@ -97,38 +97,38 @@ describe('release version transforms', () => {
   it('updates package.json without disturbing surrounding fields', () => {
     const out = JSON.parse(setPackageVersion(PACKAGE_JSON, '0.21.0'));
     expect(out.version).toBe('0.21.0');
-    expect(out.name).toBe('world-of-claudecraft');
+    expect(out.name).toBe('world-of-aphasya');
     expect(out.private).toBe(true);
   });
 
   it('updates macOS desktop artifact links', () => {
     const out = setDesktopDownloadVersion(INDEX_HTML, '0.21.0', 'index.html');
-    expect(out).toContain('world-of-claudecraft-0.21.0-mac-universal.dmg');
-    expect(out).not.toContain('world-of-claudecraft-0.20.0-mac-universal.dmg');
+    expect(out).toContain('world-of-aphasya-0.21.0-mac-universal.dmg');
+    expect(out).not.toContain('world-of-aphasya-0.20.0-mac-universal.dmg');
   });
 
   it('updates Linux AppImage artifact links where present', () => {
     const out = setDesktopDownloadVersion(INDEX_HTML, '0.21.0', 'index.html');
-    expect(out).toContain('world-of-claudecraft-0.21.0-linux-x86_64.AppImage');
-    expect(out).not.toContain('world-of-claudecraft-0.20.0-linux-x86_64.AppImage');
+    expect(out).toContain('world-of-aphasya-0.21.0-linux-x86_64.AppImage');
+    expect(out).not.toContain('world-of-aphasya-0.20.0-linux-x86_64.AppImage');
   });
 
   it('updates Windows installer artifact links', () => {
     const out = setDesktopDownloadVersion(INDEX_HTML, '0.21.0', 'index.html');
-    expect(out).toContain('world-of-claudecraft-0.21.0-win-x64.exe');
-    expect(out).not.toContain('world-of-claudecraft-0.20.0-win-x64.exe');
+    expect(out).toContain('world-of-aphasya-0.21.0-win-x64.exe');
+    expect(out).not.toContain('world-of-aphasya-0.20.0-win-x64.exe');
   });
 
   it('migrates a legacy combined Windows installer link to the per-arch form', () => {
     const out = setDesktopDownloadVersion(LEGACY_WINDOWS_HTML, '0.21.0', 'index.html');
-    expect(out).toContain('world-of-claudecraft-0.21.0-win-x64.exe');
-    expect(out).not.toContain('world-of-claudecraft-0.20.0-win.exe');
-    expect(out).not.toMatch(/world-of-claudecraft-\d+\.\d+\.\d+-win\.exe/);
+    expect(out).toContain('world-of-aphasya-0.21.0-win-x64.exe');
+    expect(out).not.toContain('world-of-aphasya-0.20.0-win.exe');
+    expect(out).not.toMatch(/world-of-aphasya-\d+\.\d+\.\d+-win\.exe/);
   });
 
   it('tolerates pages without a Linux link (play.html)', () => {
     const out = setDesktopDownloadVersion(PLAY_HTML, '0.21.0', 'play.html');
-    expect(out).toContain('world-of-claudecraft-0.21.0-mac-universal.dmg');
+    expect(out).toContain('world-of-aphasya-0.21.0-mac-universal.dmg');
     expect(out).not.toContain('AppImage');
   });
 
@@ -139,7 +139,7 @@ describe('release version transforms', () => {
   });
 
   it('fails loudly when a README has no version badge', () => {
-    expect(() => setReadmeVersionBadge('# World of ClaudeCraft', '0.21.0', 'README.md')).toThrow(
+    expect(() => setReadmeVersionBadge('# World of Aphasya', '0.21.0', 'README.md')).toThrow(
       /version badge/,
     );
   });
@@ -169,12 +169,10 @@ describe('planReleaseVersion', () => {
     expect(JSON.parse(plan.packageJson).version).toBe('0.21.0');
     expect(plan.gradle).toContain('versionName "0.21.0"');
     expect(plan.pbxproj.match(/MARKETING_VERSION = 0\.21\.0;/g)).toHaveLength(2);
-    expect(plan.htmlFiles['index.html']).toContain('world-of-claudecraft-0.21.0-mac-universal.dmg');
-    expect(plan.htmlFiles['index.html']).toContain(
-      'world-of-claudecraft-0.21.0-linux-x86_64.AppImage',
-    );
-    expect(plan.htmlFiles['index.html']).toContain('world-of-claudecraft-0.21.0-win-x64.exe');
-    expect(plan.htmlFiles['play.html']).toContain('world-of-claudecraft-0.21.0-win-x64.exe');
+    expect(plan.htmlFiles['index.html']).toContain('world-of-aphasya-0.21.0-mac-universal.dmg');
+    expect(plan.htmlFiles['index.html']).toContain('world-of-aphasya-0.21.0-linux-x86_64.AppImage');
+    expect(plan.htmlFiles['index.html']).toContain('world-of-aphasya-0.21.0-win-x64.exe');
+    expect(plan.htmlFiles['play.html']).toContain('world-of-aphasya-0.21.0-win-x64.exe');
     expect(plan.htmlFiles['play.html']).toContain('<div id="game-version">v0.21.0</div>');
     expect(plan.readmeFiles['README.md']).toContain('version-0.21.0-blue');
   });
@@ -236,8 +234,8 @@ describe('collectReleaseVersionFailures', () => {
       pbxproj: PBXPROJ,
       htmlFiles: {
         'index.html': setGameVersionText(LEGACY_WINDOWS_HTML, '0.21.0', 'index.html').replace(
-          'world-of-claudecraft-0.20.0-mac-universal.dmg',
-          'world-of-claudecraft-0.21.0-mac-universal.dmg',
+          'world-of-aphasya-0.20.0-mac-universal.dmg',
+          'world-of-aphasya-0.21.0-mac-universal.dmg',
         ),
       },
       readmeFiles: {

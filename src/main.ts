@@ -618,7 +618,7 @@ applyNativeDeviceLanguage({
 // boot's profile is already resolved, and a missing bridge no-ops.
 void primeNativeDeviceMemoryHint();
 
-const SITE_URL = 'https://worldofclaudecraft.com/';
+const SITE_URL = 'https://worldofaphasya.com/';
 
 const RESOURCE_KEYS = {
   mana: 'classDetails.resources.mana',
@@ -6231,7 +6231,7 @@ async function completeDesktopBrowserLogin(): Promise<boolean> {
   try {
     const { code } = await api.createDesktopLoginCode();
     if (!code) throw new Error('missing desktop login code');
-    location.href = `worldofclaudecraft://desktop-login?code=${encodeURIComponent(code)}`;
+    location.href = `worldofaphasya://desktop-login?code=${encodeURIComponent(code)}`;
   } catch (err) {
     loginError(userFacingApiError(err));
     show('#login-panel');
@@ -7582,13 +7582,13 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
   const jsonLd = document.getElementById('structured-data') as HTMLScriptElement | null;
   if (jsonLd) {
     const sameAs = [
-      'https://github.com/levy-street/world-of-claudecraft',
-      'https://discord.com/invite/worldofclaudecraft',
-      'https://www.youtube.com/@WoClaudeCraft',
-      'https://x.com/WoClaudecraft',
-      'https://www.instagram.com/worldofclaudecraft/',
-      'https://www.tiktok.com/@worldofclaudecraft',
-      'https://www.reddit.com/r/WorldofClaudecraft/',
+      'https://github.com/mgocbr3/world-of-aphasya',
+      'https://discord.com/invite/worldofaphasya',
+      'https://www.youtube.com/@WoAphasya',
+      'https://x.com/WoAphasya',
+      'https://www.instagram.com/worldofaphasya/',
+      'https://www.tiktok.com/@worldofaphasya',
+      'https://www.reddit.com/r/WorldofAphasya/',
     ];
     jsonLd.textContent = JSON.stringify(
       {
@@ -7596,39 +7596,39 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
         '@graph': [
           {
             '@type': 'WebSite',
-            '@id': 'https://worldofclaudecraft.com/#website',
-            name: 'World of ClaudeCraft',
-            alternateName: 'World of Claudecraft',
+            '@id': 'https://worldofaphasya.com/#website',
+            name: 'World of Aphasya',
+            alternateName: 'World of Aphasya',
             url: canonicalHref,
             inLanguage: languageTag(lang),
             description: t('seo.description'),
             publisher: {
-              '@id': 'https://worldofclaudecraft.com/#organization',
+              '@id': 'https://worldofaphasya.com/#organization',
             },
           },
           {
             '@type': 'Organization',
-            '@id': 'https://worldofclaudecraft.com/#organization',
-            name: 'World of ClaudeCraft',
-            url: 'https://worldofclaudecraft.com/',
-            logo: 'https://worldofclaudecraft.com/woc_logo_square.webp',
+            '@id': 'https://worldofaphasya.com/#organization',
+            name: 'World of Aphasya',
+            url: 'https://worldofaphasya.com/',
+            logo: 'https://worldofaphasya.com/woa_logo_square.webp',
             sameAs,
           },
           {
             '@type': 'VideoGame',
-            '@id': 'https://worldofclaudecraft.com/#game',
-            name: 'World of ClaudeCraft',
-            alternateName: 'World of Claudecraft',
+            '@id': 'https://worldofaphasya.com/#game',
+            name: 'World of Aphasya',
+            alternateName: 'World of Aphasya',
             genre: t('seo.genre'),
             playMode: t('seo.playMode'),
             applicationCategory: t('seo.applicationCategory'),
             operatingSystem: t('seo.operatingSystem'),
             url: canonicalHref,
-            image: 'https://worldofclaudecraft.com/woc_logo_square.webp',
+            image: 'https://worldofaphasya.com/woa_logo_square.webp',
             description: t('seo.description'),
             inLanguage: languageTag(lang),
             publisher: {
-              '@id': 'https://worldofclaudecraft.com/#organization',
+              '@id': 'https://worldofaphasya.com/#organization',
             },
             sameAs,
           },
@@ -7850,59 +7850,6 @@ async function loadHighscores(): Promise<void> {
 // out of this firewall file); this call site just supplies the host + fetcher.
 async function loadNews(): Promise<void> {
   await loadNewsInto($('#news-feed'), () => api.releases(20));
-}
-
-let caCopyResetTimer: number | null = null;
-
-// Click-to-copy for the $WOC contract address on the landing page. Falls back to
-// a hidden-textarea copy when the async Clipboard API is unavailable (insecure
-// context / older browsers); the copied state is only shown on a real success.
-function wireContractAddressCopy(): void {
-  const btn = document.getElementById('btn-copy-ca');
-  const container = document.getElementById('token-ca');
-  if (!btn || !container) return;
-
-  const showCopied = () => {
-    container.classList.add('is-copied');
-    if (caCopyResetTimer !== null) window.clearTimeout(caCopyResetTimer);
-    caCopyResetTimer = window.setTimeout(() => {
-      container.classList.remove('is-copied');
-      caCopyResetTimer = null;
-    }, 1800);
-  };
-
-  const fallbackCopy = (text: string): boolean => {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.setAttribute('readonly', '');
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    let ok = false;
-    try {
-      ok = document.execCommand('copy');
-    } catch {
-      ok = false;
-    }
-    document.body.removeChild(ta);
-    return ok;
-  };
-
-  btn.addEventListener('click', () => {
-    const ca = btn.getAttribute('data-ca');
-    if (!ca) return;
-    if (navigator.clipboard?.writeText) {
-      navigator.clipboard
-        .writeText(ca)
-        .then(showCopied)
-        .catch(() => {
-          if (fallbackCopy(ca)) showCopied();
-        });
-    } else if (fallbackCopy(ca)) {
-      showCopied();
-    }
-  });
 }
 
 function syncHomepageMusicToggle(): void {
@@ -8601,7 +8548,7 @@ const DISCORD_BUILD_ENABLED = String(import.meta.env.VITE_DISCORD_DISABLED ?? ''
 // falls back to DEFAULT_DISCORD_INVITE_URL (discord_status.ts) when the
 // server-fed value is not known yet (logged out, offline), so every caller
 // gets the fail-open behavior for free.
-const DONATE_URL = 'https://ko-fi.com/worldofclaudecraft';
+const DONATE_URL = 'https://ko-fi.com/worldofaphasya';
 const DISCORD_ONBOARD_KEY = 'woc_discord_onboard';
 let discordPopup: Window | null = null;
 
@@ -8639,7 +8586,7 @@ function startDiscordOAuth(mode: 'login' | 'link'): void {
     // openDesktopLogin, via shell.openExternal), never inside Electron itself, so
     // NATIVE_APP/DESKTOP_APP are both false here: the signal that this is a desktop
     // handoff is the page we are ON, not the runtime. Pass it through so the callback
-    // bounces back to /desktop-login (which mints the worldofclaudecraft:// deep-link
+    // bounces back to /desktop-login (which mints the worldofaphasya:// deep-link
     // code, see completeDesktopBrowserLogin) instead of the plain web '/'.
     void api
       .discordStart('login', false, '', undefined, isDesktopLoginPage())
@@ -9676,7 +9623,6 @@ function wireStartScreens(): void {
   for (const ensure of CONTENT_LOCALE_CHANNEL_ENSURERS) void ensure(bootLang).catch(() => {});
   hydrateIcons();
   void loadProjectStats();
-  wireContractAddressCopy();
   wireHomepageMusicToggle();
   void wireWallet();
   wireGithubLink();
@@ -9744,7 +9690,7 @@ function wireStartScreens(): void {
     // in place (doAuth -> api.login) without ever leaving the app. Only "Continue with
     // Discord" bounces to the external browser (wired below), because its OAuth redirect
     // would be blocked by the shell's in-app navigation guard; it returns a one-time code
-    // via the worldofclaudecraft://desktop-login deep link (onLoginCode ->
+    // via the worldofaphasya://desktop-login deep link (onLoginCode ->
     // completeDesktopAppLogin).
     show('#login-panel');
   };

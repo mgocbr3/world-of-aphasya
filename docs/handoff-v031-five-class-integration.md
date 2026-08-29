@@ -166,7 +166,7 @@ before the repairs.
 Method: check out `origin/main` and each of the five branch-head shas in the
 same worktree, run the failing subset against each, diff the results. The
 scripts and every captured run are preserved OUTSIDE both repos at
-`~/Documents/code/world-of-claudecraft/integration-audit-v031/`
+`~/Documents/code/world-of-aphasya/integration-audit-v031/`
 (`baseline.sh`, `baseline2.sh`, `baselines/`, `baselines2/`, `full2.txt` =
 the full-suite run on `db6999efe`). Prefer re-deriving over reusing these.
 

@@ -1,4 +1,4 @@
-# World of Claudecraft — Ability Rank Progressions, Levels 1–20 (all nine classes)
+# World of Aphasya — Ability Rank Progressions, Levels 1–20 (all nine classes)
 
 **Tuning anchors used throughout** (from `src/sim/data.ts` / `types.ts`): typical mob hp = 40 + 18·L → L10 ≈ 220, **L14 ≈ 292**, **L20 ≈ 400** (elites ×2.3). A rank‑3 nuke at L14 should average ~40–50 dmg (6–8 casts); R4 at L20 ~70–80 (5–6 casts, fresh-rank spike). Mana costs follow the Lightning Bolt curve given in the brief (15/25/40/60). Rage/energy costs stay flat per rank (classic-era behavior). All DoT/HoT totals divide evenly by tick count. Rank rows reuse the existing `ranks: AbilityRank[]` schema — **ids unchanged**; new ability ids are snake_case and must be appended to each `CLASSES[*].abilities` array in learn order.
 
@@ -422,7 +422,7 @@ archetype may serve at a time, and blocked summons spend no mana or Soul Fragmen
 | Warlock | fear@14, Duskfire@14, Ruinous Brand@16, Rain of Fire@18, Pyre Colossus@20 | Ruin, Desolation, Brand echo, temporary guardian |
 | Druid | regrowth@14, barkskin@16, starfire@18 | none |
 
-Files to touch when implementing: `/Users/reubenhorne/Documents/code/levy-street/world-of-claudecraft/src/sim/data.ts` (ABILITIES ranks + new entries, CLASSES.abilities arrays, 2 conjured-water items), `/Users/reubenhorne/Documents/code/levy-street/world-of-claudecraft/src/sim/types.ts` (one new AbilityEffect variant `finisherStun`, XP_TABLE/MAX_LEVEL extension per the brief).
+Files to touch when implementing: `/Users/reubenhorne/Documents/code/mgocbr3/world-of-aphasya/src/sim/data.ts` (ABILITIES ranks + new entries, CLASSES.abilities arrays, 2 conjured-water items), `/Users/reubenhorne/Documents/code/mgocbr3/world-of-aphasya/src/sim/types.ts` (one new AbilityEffect variant `finisherStun`, XP_TABLE/MAX_LEVEL extension per the brief).
 
 ---
 

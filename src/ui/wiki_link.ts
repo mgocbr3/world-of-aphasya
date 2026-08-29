@@ -16,7 +16,7 @@ import { NATIVE_APP } from '../client_origin';
 import { t } from './i18n';
 
 /** The canonical public wiki, for shells with no meaningful web origin. */
-export const CANONICAL_WIKI_URL = 'https://worldofclaudecraft.com/wiki/';
+export const CANONICAL_WIKI_URL = 'https://worldofaphasya.com/wiki/';
 
 export interface WikiUrlEnv {
   /** True in the Capacitor native app (its WebView origin is not the site). */
@@ -29,7 +29,7 @@ export interface WikiUrlEnv {
  *  web, or the desktop shell's dev build against the Vite server), so a dev
  *  deploy links to its own wiki; the canonical URL otherwise (a native WebView
  *  origin like capacitor://localhost, or the packaged desktop shell's
- *  app://worldofclaudecraft, is not the site and has no /wiki to serve; both
+ *  app://worldofaphasya, is not the site and has no /wiki to serve; both
  *  fail the http(s) test below). */
 export function resolveWikiUrl(env: WikiUrlEnv): string {
   if (!env.nativeApp && /^https?:\/\//.test(env.origin)) {

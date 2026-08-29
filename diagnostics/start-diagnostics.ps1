@@ -11,7 +11,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $repoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 $expectedPnpm = '10.34.5'
-$gameMarker = 'World of ClaudeCraft: Classic-Style Web MMO'
+$gameMarker = 'World of Aphasya: Classic-Style Web MMO'
 Set-Location -LiteralPath $repoRoot
 
 $existingListener = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue
@@ -80,7 +80,7 @@ if (-not (Test-Path -LiteralPath $viteEntry)) {
 }
 
 $url = "http://127.0.0.1:$Port/?diagnostics=1&perfTrace=1&diagnosticsAuto=1&diagnosticsCapture=1"
-$logRoot = Join-Path ([IO.Path]::GetTempPath()) 'world-of-claudecraft-diagnostics'
+$logRoot = Join-Path ([IO.Path]::GetTempPath()) 'world-of-aphasya-diagnostics'
 [IO.Directory]::CreateDirectory($logRoot) | Out-Null
 $runId = Get-Date -Format 'yyyyMMdd-HHmmss-fff'
 $stdoutLog = Join-Path $logRoot "vite-$Port-$runId.stdout.log"
@@ -110,7 +110,7 @@ $server = Start-Process `
   -PassThru
 
 try {
-  Write-Host "Starting World of ClaudeCraft diagnostics on $url"
+  Write-Host "Starting World of Aphasya diagnostics on $url"
   $ready = $false
   $deadline = (Get-Date).AddSeconds(90)
   while ((Get-Date) -lt $deadline -and -not $server.HasExited) {

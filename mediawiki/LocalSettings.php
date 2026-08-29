@@ -3,8 +3,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
-$wgSitename = 'World of Claudecraft Wiki';
-$wgMetaNamespace = 'World_of_Claudecraft';
+$wgSitename = 'World of Aphasya Wiki';
+$wgMetaNamespace = 'World_of_Aphasya';
 $wgScriptPath = '/wiki';
 $wgServer = getenv( 'MEDIAWIKI_SERVER' ) ?: 'http://localhost:8080';
 $wgArticlePath = "$wgScriptPath/index.php/$1";
@@ -30,7 +30,7 @@ $wgDBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=binary';
 $wgMainCacheType = CACHE_ACCEL;
 $wgMemCachedServers = [];
 
-$wgSecretKey = getenv( 'MEDIAWIKI_SECRET_KEY' ) ?: 'local-dev-change-me-world-of-claudecraft';
+$wgSecretKey = getenv( 'MEDIAWIKI_SECRET_KEY' ) ?: 'local-dev-change-me-world-of-aphasya';
 $wgAuthenticationTokenVersion = '1';
 $wgUpgradeKey = getenv( 'MEDIAWIKI_UPGRADE_KEY' ) ?: 'local-dev-upgrade-key';
 

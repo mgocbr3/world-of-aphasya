@@ -333,3 +333,25 @@ describe('baked weather veil', () => {
     expect(veiled.strength).toBeGreaterThan(HAZE_RAIN_STRENGTH_FLOOR);
   });
 });
+
+describe('height mist factor', () => {
+  it('fills the valley floor and clears the high ground, gently', async () => {
+    const { hazeHeightMistFactor, HAZE_MIST_FLOOR, HAZE_MIST_BOOST } = await import(
+      '../src/render/biome_haze_field_core'
+    );
+    const floor = hazeHeightMistFactor(0);
+    const base = hazeHeightMistFactor(6);
+    const peak = hazeHeightMistFactor(45);
+    expect(base).toBeCloseTo(HAZE_MIST_FLOOR + HAZE_MIST_BOOST, 5);
+    expect(floor).toBeCloseTo(base, 5);
+    expect(peak).toBeLessThan(1);
+    expect(peak).toBeGreaterThan(HAZE_MIST_FLOOR - 1e-9);
+    // monotonic with altitude above the base
+    let prev = base;
+    for (const y of [10, 16, 24, 34, 45]) {
+      const v = hazeHeightMistFactor(y);
+      expect(v).toBeLessThanOrEqual(prev + 1e-9);
+      prev = v;
+    }
+  });
+});

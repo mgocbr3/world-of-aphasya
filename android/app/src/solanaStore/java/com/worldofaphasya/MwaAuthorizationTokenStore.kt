@@ -1,4 +1,4 @@
-package com.worldofclaudecraft
+package com.worldofaphasya
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -182,7 +182,7 @@ class MwaAuthorizationTokenStore(
         private const val ANDROID_KEYSTORE = "AndroidKeyStore"
         private const val TRANSFORMATION = "AES/GCM/NoPadding"
         private const val PREFERENCES_NAME = "solana_mobile_auth"
-        private const val KEY_ALIAS = "world_of_claudecraft_mwa_authorization"
+        private const val KEY_ALIAS = "world_of_aphasya_mwa_authorization"
         private const val ENVELOPE_VERSION = 1
         private const val VERSION_KEY = "version"
         private const val IV_KEY = "iv"

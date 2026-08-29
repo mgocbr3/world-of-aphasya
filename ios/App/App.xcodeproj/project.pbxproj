@@ -329,7 +329,7 @@
 				);
 				MARKETING_VERSION = 0.40.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.worldofclaudecraft;
+				PRODUCT_BUNDLE_IDENTIFIER = com.worldofaphasya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -356,7 +356,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.40.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.worldofclaudecraft;
+				PRODUCT_BUNDLE_IDENTIFIER = com.worldofaphasya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

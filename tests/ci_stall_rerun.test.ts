@@ -480,7 +480,7 @@ describe('driver wiring', () => {
           ...process.env,
           PATH: `${stubDir}:${process.env.PATH ?? ''}`,
           RUN_ID: '31392590628',
-          GITHUB_REPOSITORY: 'levy-street/world-of-claudecraft',
+          GITHUB_REPOSITORY: 'mgocbr3/world-of-aphasya',
           STUB_DIR: stubDir,
           STUB_LOG: logPath,
           STUB_FAIL_RERUN: undefined,
@@ -510,7 +510,7 @@ describe('driver wiring', () => {
     expect(stdout).toContain('decision rerun=true');
     const rerunCalls = log.split('\n').filter((line) => line.includes('rerun-failed-jobs'));
     expect(rerunCalls).toEqual([
-      'api -X POST repos/levy-street/world-of-claudecraft/actions/runs/31392590628/rerun-failed-jobs',
+      'api -X POST repos/mgocbr3/world-of-aphasya/actions/runs/31392590628/rerun-failed-jobs',
     ]);
   });
 

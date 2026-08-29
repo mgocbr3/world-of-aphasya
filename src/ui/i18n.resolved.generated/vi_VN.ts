@@ -362,7 +362,7 @@ export const vi_VN: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "Mở Wiki?",
-      "confirmBody": "Thao tác này sẽ mở wiki của World of ClaudeCraft trong trình duyệt của bạn. Trò chơi vẫn tiếp tục chạy.",
+      "confirmBody": "Thao tác này sẽ mở wiki của World of Aphasya trong trình duyệt của bạn. Trò chơi vẫn tiếp tục chạy.",
       "confirmOpen": "Mở Wiki",
       "confirmCancel": "Hủy"
     },
@@ -572,14 +572,14 @@ export const vi_VN: EnTranslations = {
       "rewardsTab": "Phần thưởng hàng ngày",
       "loading": "Đang tải Cửa hàng WOC...",
       "error": "Cửa hàng WOC hiện không khả dụng. Vui lòng thử lại trong thời gian ngắn.",
-      "balance": "Số dư Claudium",
-      "buyClaudium": "Mua Claudium",
+      "balance": "Số dư Aphasium",
+      "buyClaudium": "Mua Aphasium",
       "owned": "Sở hữu",
-      "needMoreTitle": "Cần thêm Claudium",
-      "needMoreBody": "Bạn cần thêm {shortfall} Claudium để mua {item}.",
+      "needMoreTitle": "Cần thêm Aphasium",
+      "needMoreBody": "Bạn cần thêm {shortfall} Aphasium để mua {item}.",
       "cancel": "Hủy",
       "confirmTitle": "Xác nhận mua mỹ phẩm",
-      "confirmBody": "Mua {item} với giá {cost} Claudium?",
+      "confirmBody": "Mua {item} với giá {cost} Aphasium?",
       "confirmPurchase": "Mua",
       "priceChanged": "Giá đã thay đổi trước khi việc mua hàng hoàn tất. Xem lại giá đã làm mới và xác nhận lại.",
       "armoryEyebrow": "Mùa 1",
@@ -792,18 +792,18 @@ export const vi_VN: EnTranslations = {
       "equipHint": "Hãy trang bị {type} để áp dụng ngoại hình này."
     },
     "claudium": {
-      "title": "Claudium",
-      "open": "Mở Claudium",
-      "close": "Đóng Claudium",
-      "loading": "Đang tải Claudium...",
+      "title": "Aphasium",
+      "open": "Mở Aphasium",
+      "close": "Đóng Aphasium",
+      "loading": "Đang tải Aphasium...",
       "balanceLabel": "Số dư",
-      "balanceUnit": "{amount} Claudium",
+      "balanceUnit": "{amount} Aphasium",
       "solBalance": "SOL: {amount}",
       "usdcBalance": "USDC: {amount}",
       "wocBalance": "WOC: {amount}",
-      "unavailable": "Cửa hàng Claudium hiện không có sẵn. Số dư và giao dịch mua hàng của bạn không bị ảnh hưởng; vui lòng kiểm tra lại trong thời gian ngắn.",
-      "disclosure": "Claudium là loại tiền mềm một chiều: mua bằng tiền và tiêu vào mỹ phẩm. Nó không thể được đổi, chuyển nhượng hoặc rút tiền mặt.",
-      "buyTitle": "Mua Claudium",
+      "unavailable": "Cửa hàng Aphasium hiện không có sẵn. Số dư và giao dịch mua hàng của bạn không bị ảnh hưởng; vui lòng kiểm tra lại trong thời gian ngắn.",
+      "disclosure": "Aphasium là loại tiền mềm một chiều: mua bằng tiền và tiêu vào mỹ phẩm. Nó không thể được đổi, chuyển nhượng hoặc rút tiền mặt.",
+      "buyTitle": "Mua Aphasium",
       "railLabel": "Phương thức thanh toán",
       "railStripe": "Thẻ",
       "railSol": "SOL",
@@ -813,9 +813,9 @@ export const vi_VN: EnTranslations = {
       "railWocUnavailable": "Giá WOC hiện không có sẵn.",
       "railNativeUnavailable": "SOL/WOC hiện không khả dụng.",
       "amountLabel": "Số lượng",
-      "showAmounts": "Hiển thị tất cả số lượng Claudium",
-      "hideAmounts": "Ẩn số lượng Claudium bổ sung",
-      "skuRow": "{usd} đổi lấy {claudium} Claudium",
+      "showAmounts": "Hiển thị tất cả số lượng Aphasium",
+      "hideAmounts": "Ẩn số lượng Aphasium bổ sung",
+      "skuRow": "{usd} đổi lấy {claudium} Aphasium",
       "priceSol": "{amount} SOL",
       "priceUsdc": "{amount} USDC",
       "priceWoc": "{amount} WOC",
@@ -823,7 +823,7 @@ export const vi_VN: EnTranslations = {
       "buyUnavailable": "Mua hàng không có sẵn ngay bây giờ.",
       "storeTitle": "Cửa hàng mỹ phẩm",
       "storeEmpty": "Không có mỹ phẩm có sẵn ngay bây giờ.",
-      "storeCost": "{amount} Claudium",
+      "storeCost": "{amount} Aphasium",
       "spendButton": "Đổi",
       "kindCosmetic": "Mỹ phẩm",
       "kindSkin": "Ngoại hình",
@@ -834,10 +834,10 @@ export const vi_VN: EnTranslations = {
       "checkoutPending": "Giao dịch đang được tiến hành. Xác nhận trong ví của bạn và giữ bảng này mở.",
       "checkoutPendingButton": "Xử lý",
       "checkoutFailed": "Không thể tải thanh toán. Vui lòng thử lại.",
-      "checkoutUnavailable": "Việc mua Claudium đó hiện không khả dụng.",
-      "checkoutWalletRequired": "Kết nối ví Solana trước khi mua Claudium bằng tiền điện tử.",
+      "checkoutUnavailable": "Việc mua Aphasium đó hiện không khả dụng.",
+      "checkoutWalletRequired": "Kết nối ví Solana trước khi mua Aphasium bằng tiền điện tử.",
       "checkoutWalletUnsupported": "Ví này không thể ký và gửi giao dịch Solana.",
-      "checkoutNotSettled": "Giao dịch đã được gửi nhưng Claudium vẫn chưa được ghi có. Vui lòng thử lại trong thời gian ngắn."
+      "checkoutNotSettled": "Giao dịch đã được gửi nhưng Aphasium vẫn chưa được ghi có. Vui lòng thử lại trong thời gian ngắn."
     },
     "theme": {
       "preset": "Giao Diện UI",
@@ -845,6 +845,7 @@ export const vi_VN: EnTranslations = {
       "reset": "Đặt Lại",
       "presets": {
         "classic": "Vàng Cổ Điển",
+        "aphasya": "Aphasya",
         "midnight": "Nửa Đêm",
         "parchment": "Giấy Da",
         "highContrast": "Tương Phản Cao"
@@ -1141,8 +1142,8 @@ export const vi_VN: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Có Bản Cập Nhật",
-      "body": "Đã có phiên bản mới của World of ClaudeCraft. Cập nhật ngay để nhận các bản sửa lỗi và cải tiến mới nhất.",
-      "bodyWithVersion": "Đã có phiên bản {version} của World of ClaudeCraft. Cập nhật ngay để nhận các bản sửa lỗi và cải tiến mới nhất.",
+      "body": "Đã có phiên bản mới của World of Aphasya. Cập nhật ngay để nhận các bản sửa lỗi và cải tiến mới nhất.",
+      "bodyWithVersion": "Đã có phiên bản {version} của World of Aphasya. Cập nhật ngay để nhận các bản sửa lỗi và cải tiến mới nhất.",
       "notNow": "Không phải bây giờ",
       "update": "Cập Nhật"
     },
@@ -1685,8 +1686,8 @@ export const vi_VN: EnTranslations = {
         "offline": "Ngoại Tuyến"
       },
       "diagnostics": {
-        "panelAria": "Chẩn đoán hiệu năng World of ClaudeCraft",
-        "title": "Bác Sĩ Hiệu Năng ClaudeCraft",
+        "panelAria": "Chẩn đoán hiệu năng World of Aphasya",
+        "title": "Bác Sĩ Hiệu Năng Aphasya",
         "subtitle": "Một lượt quét dành riêng cho trò chơi, kèm bằng chứng và cách khắc phục ở cấp độ mã nguồn.",
         "aria": {
           "liveMeasurements": "Số đo hiệu năng trực tiếp",
@@ -1834,7 +1835,7 @@ export const vi_VN: EnTranslations = {
           }
         },
         "report": {
-          "title": "Chẩn đoán hiệu năng World of ClaudeCraft",
+          "title": "Chẩn đoán hiệu năng World of Aphasya",
           "statusLine": "Trạng thái: {status} ({score}/100)",
           "capturedLine": "Đã thu thập: {captured}",
           "topFindingLine": "Phát hiện hàng đầu: {finding}",
@@ -2742,7 +2743,7 @@ export const vi_VN: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "World of Aphasya",
       "open": "Discord",
       "close": "Đóng",
       "keybind": "Bảng Discord",
@@ -4438,8 +4439,8 @@ export const vi_VN: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "World of Aphasya",
+    "brandShort": "Aphasya",
     "tagline": "Một MMO phong cách cổ điển bạn chơi miễn phí ngay trên trình duyệt.",
     "skipToContent": "Chuyển đến nội dung chính",
     "loading": "Đang tải...",
@@ -4514,7 +4515,7 @@ export const vi_VN: EnTranslations = {
       "github": "Mã nguồn trên GitHub",
       "discord": "Tham gia Discord",
       "communityWiki": "Wiki Cộng Đồng",
-      "rights": "World of ClaudeCraft",
+      "rights": "World of Aphasya",
       "linksLabel": "Liên kết chơi và cộng đồng"
     },
     "language": {
@@ -4539,7 +4540,7 @@ export const vi_VN: EnTranslations = {
     },
     "home": {
       "eyebrow": "MMO cổ điển trên trình duyệt",
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "subtitle": "Làm nhiệm vụ, hợp sức và khám phá một thế giới được dựng thủ công, miễn phí ngay trong trình duyệt của bạn.",
       "ctaPlay": "Chơi Ngay",
       "ctaLearn": "Cách Chơi",
@@ -5161,7 +5162,7 @@ export const vi_VN: EnTranslations = {
       "ridingDef": "Kỹ năng cho phép bạn cưỡi thú cưỡi nói chung. Bạn mua nó một lần từ một Quản Mã ở cấp 20, và sau đó nó gắn liền với nhân vật của bạn mãi mãi.",
       "reinsTerm": "Dây Cương",
       "reinsDef": "Vật phẩm chính là thú cưỡi. Giữ một bộ trong túi đồ hoặc ngân khố của bạn và thú cưỡi ấy là của bạn; dùng chúng để cưỡi. Dây cương có thể trao đổi, gửi thư, và bán cho người chơi khác.",
-      "claudiumTerm": "Claudium",
+      "claudiumTerm": "Aphasium",
       "claudiumDef": "Loại tiền tệ của Cửa hàng WOC, chỉ dùng để mua mỹ phẩm và không gì khác. Nó không bao giờ mua được sức mạnh hay tiến trình.",
       "worldTerm": "Thế Giới",
       "worldDef": "Một bản sao chung của trò chơi trực tuyến, với người chơi, khu chợ, và bảng xếp hạng riêng của nó. Cẩm nang này cũng gọi nó là một vương quốc, và nhân vật của bạn sống trên thế giới mà bạn đã tạo ra nó."
@@ -5192,7 +5193,7 @@ export const vi_VN: EnTranslations = {
       "q11": "Làm sao để tìm một nhóm?",
       "a11": "Mời bất kỳ ai bạn gặp vào nhóm, hỏi trong kênh chat, hoặc hợp sức tại một hầm ngục. Phần lớn thế giới có thể chơi một mình, nên lập nhóm là một lựa chọn, không phải yêu cầu bắt buộc.",
       "q12": "Có cửa hàng trả phí không?",
-      "a12": "Có một cửa hàng mỹ phẩm tùy chọn. Nó bán ngoại hình: các ngoại hình vũ khí Kho Vũ Khí Mùa 1, mua bằng Claudium, loại tiền tệ của cửa hàng. Không có gì trong đó cộng thêm chỉ số, sức mạnh, hay tiến trình, và một ngoại hình không bao giờ thay đổi cách vũ khí của bạn đánh trúng, nên mọi món trang bị thực sự quan trọng vẫn đến từ việc chơi.",
+      "a12": "Có một cửa hàng mỹ phẩm tùy chọn. Nó bán ngoại hình: các ngoại hình vũ khí Kho Vũ Khí Mùa 1, mua bằng Aphasium, loại tiền tệ của cửa hàng. Không có gì trong đó cộng thêm chỉ số, sức mạnh, hay tiến trình, và một ngoại hình không bao giờ thay đổi cách vũ khí của bạn đánh trúng, nên mọi món trang bị thực sự quan trọng vẫn đến từ việc chơi.",
       "q13": "Tôi có thể tải ứng dụng ở đâu?",
       "a13": "Phiên bản trình duyệt không cần gì cả: mở trang web và chơi. Nếu bạn muốn có một ứng dụng, bản tải về cho máy tính dành cho Windows, macOS, và Linux có trên trang Tải Xuống của trang web trò chơi. Ứng dụng iOS và Android gốc đang được phát triển, và cho đến khi chúng ra mắt, điện thoại hay máy tính bảng chơi phiên bản trình duyệt với đầy đủ điều khiển cảm ứng. Mọi phiên bản đều đăng nhập vào cùng một tài khoản và cùng những thế giới, nên nhân vật của bạn sẽ theo bạn.",
       "q14": "Tôi cần gì để chạy trò chơi?",
@@ -5478,7 +5479,7 @@ export const vi_VN: EnTranslations = {
     },
     "worldPage": {
       "heading": "Thế giới",
-      "intro": "World of ClaudeCraft là một vùng đất liền mạch mà bạn băng qua bằng đôi chân. Con đường cũ chạy từ nam lên bắc, xuyên qua thung lũng khởi đầu, đầm lầy và các đỉnh núi, rồi vẫn leo tiếp qua chúng vào lòng chảo phía sau và xứ tuyết ở đầu bản đồ. Một dãy vương quốc cao hơn mở ra từ con đường ấy về phía tây và một dãy khác về phía đông, còn một hòn đảo nằm ngoài bờ đông của Thung Lũng. Không có di chuyển nhanh, không tuyến bay và không xe ngựa: mọi hành trình đều đi bộ hoặc cưỡi thú, nên việc tới nơi là một phần của cuộc phiêu lưu.\n\nVùng đất cũng giữ thời gian. Một chu kỳ ngày đêm chạy trên chiếc đồng hồ thật mà tất cả mọi người trên thế giới của bạn cùng chia sẻ, nên bầu trời chuyển từ hừng đông qua chính ngọ tới hoàng hôn rồi bóng tối cho tất cả các bạn cùng lúc, mặt trăng đến rồi đi qua các pha của nó, và ánh sáng trên mặt đất đổi thay theo. Mặt số quanh bản đồ nhỏ là nơi bạn đọc giờ.",
+      "intro": "World of Aphasya là một vùng đất liền mạch mà bạn băng qua bằng đôi chân. Con đường cũ chạy từ nam lên bắc, xuyên qua thung lũng khởi đầu, đầm lầy và các đỉnh núi, rồi vẫn leo tiếp qua chúng vào lòng chảo phía sau và xứ tuyết ở đầu bản đồ. Một dãy vương quốc cao hơn mở ra từ con đường ấy về phía tây và một dãy khác về phía đông, còn một hòn đảo nằm ngoài bờ đông của Thung Lũng. Không có di chuyển nhanh, không tuyến bay và không xe ngựa: mọi hành trình đều đi bộ hoặc cưỡi thú, nên việc tới nơi là một phần của cuộc phiêu lưu.\n\nVùng đất cũng giữ thời gian. Một chu kỳ ngày đêm chạy trên chiếc đồng hồ thật mà tất cả mọi người trên thế giới của bạn cùng chia sẻ, nên bầu trời chuyển từ hừng đông qua chính ngọ tới hoàng hôn rồi bóng tối cho tất cả các bạn cùng lúc, mặt trăng đến rồi đi qua các pha của nó, và ánh sáng trên mặt đất đổi thay theo. Mặt số quanh bản đồ nhỏ là nơi bạn đọc giờ.",
       "hub": "Căn cứ nhà",
       "mapHeading": "Con đường và những vương quốc bên kia",
       "mapSub": "Lối mòn nhiệm vụ chạy từ nam lên bắc dọc giữa bản đồ: thung lũng, đầm lầy, đỉnh núi, rồi vượt qua chúng vào lòng chảo và vùng tuyết. Các vương quốc khác mở ra dọc con đường đó chứ không phải sau nó, qua những cánh cổng phía đông và phía tây con đường đầm lầy, còn đảo Farshore thì tới được từ bờ đông của Thung Lũng. Thứ giữ bạn khỏi các vương quốc xa là dải cấp độ của chúng, không phải quãng đường: năm trong số đó cùng chia dải cao nhất, nên khi đã sẵn sàng bạn có thể đi chúng theo bất kỳ thứ tự nào. Farshore là ngoại lệ, một xứ cấp thấp mà bạn có thể ghé thăm từ sớm.",
@@ -6473,7 +6474,7 @@ export const vi_VN: EnTranslations = {
   },
   "editor": {
     "appTitle": "Trình Chỉnh Sửa Bản Đồ",
-    "docTitle": "Trình Chỉnh Sửa Bản Đồ - World of ClaudeCraft",
+    "docTitle": "Trình Chỉnh Sửa Bản Đồ - World of Aphasya",
     "untitledMap": "Bản Đồ Chưa Đặt Tên",
     "playtestPlayerName": "Người Tạo Bản Đồ",
     "topbar": {
@@ -6950,10 +6951,9 @@ export const vi_VN: EnTranslations = {
     "realmName": "Tên Thế Giới"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 World of Aphasya",
+    "githubLink": "https://github.com/levy-street/world-of-aphasya",
     "githubLabel": "Dự Án Mã Nguồn Mở",
-    "whitepaper": "Sách trắng",
     "terms": "Điều Khoản Dịch Vụ",
     "privacy": "Chính Sách Bảo Mật",
     "discordLabel": "Tham Gia Discord"
@@ -7008,13 +7008,10 @@ export const vi_VN: EnTranslations = {
     "serverOnline": "Trực Tuyến",
     "serverOffline": "Ngoại Tuyến",
     "play": "Chơi",
-    "playAria": "Chơi World of ClaudeCraft",
+    "playAria": "Chơi World of Aphasya",
     "serverLabel": "Chọn thế giới của bạn",
     "serverAria": "Chọn thế giới: Trực Tuyến hoặc Ngoại Tuyến",
-    "serverOfflineSub": "Thế giới cục bộ tức thì",
-    "caLabel": "Địa Chỉ Hợp Đồng $WOC",
-    "caCopyAria": "Sao chép địa chỉ hợp đồng",
-    "caNote": "WOC là token cộng đồng của chúng tôi. Không cần nó để chơi. Hãy tham gia Discord để thảo luận về tiện ích và vòng xoáy tăng trưởng của WOC."
+    "serverOfflineSub": "Thế giới cục bộ tức thì"
   },
   "auth": {
     "enterRealm": "Vào Thế Giới",
@@ -7334,12 +7331,12 @@ export const vi_VN: EnTranslations = {
     "extensionHelp": "Để thấy ví ở đây, hãy giữ một tiện ích ví trình duyệt như Solflare Wallet đang hoạt động.",
     "mobileAppHelp": "Hãy chọn Phantom hoặc Solflare. Ứng dụng ví của bạn sẽ yêu cầu phê duyệt. Giữ trò chơi này mở và quay lại khi hoàn thành.",
     "seekerAppHelp": "Tiếp tục với ví Seed Vault. Hãy xem xét các yêu cầu kết nối và xác minh trong Seed Vault, rồi quay lại trò chơi.",
-    "standaloneAppHelp": "Kết nối ví chưa có sẵn trong ứng dụng Màn hình chính. Hãy mở World of ClaudeCraft trong Safari hoặc Chrome để sử dụng Phantom hoặc Solflare.",
+    "standaloneAppHelp": "Kết nối ví chưa có sẵn trong ứng dụng Màn hình chính. Hãy mở World of Aphasya trong Safari hoặc Chrome để sử dụng Phantom hoặc Solflare.",
     "openAppTitle": "Tiếp tục trong {wallet}",
     "openAppHelp": "Hãy mở {wallet} để xem xét yêu cầu này. Giữ tab trò chơi này mở trong khi ứng dụng ví đang hoạt động.",
     "openAppButton": "Mở {wallet}",
     "manualReturnBrowserHelp": "Sau khi phê duyệt, hãy quay lại tab trò chơi này. Nếu iOS mở một trình duyệt khác, hãy đóng nó và quay lại trình duyệt gốc thủ công.",
-    "manualReturnStandaloneHelp": "Sau khi phê duyệt, hãy quay lại World of ClaudeCraft từ Màn hình chính của bạn. Nếu iOS mở một trình duyệt, hãy đóng nó và mở lại ứng dụng Màn hình chính thủ công.",
+    "manualReturnStandaloneHelp": "Sau khi phê duyệt, hãy quay lại World of Aphasya từ Màn hình chính của bạn. Nếu iOS mở một trình duyệt, hãy đóng nó và mở lại ứng dụng Màn hình chính thủ công.",
     "preparingAppButton": "Đang chuẩn bị {wallet}...",
     "walletAppUnavailable": "Không thể chuẩn bị {wallet}. Hãy đóng cửa sổ này và thử lại.",
     "flowConnect": "Chọn một ví. Quá trình xác minh sẽ tiếp tục tự động.",
@@ -7354,12 +7351,12 @@ export const vi_VN: EnTranslations = {
       "linkBody": "Hãy chọn một tiện ích mở rộng ví trong trình duyệt này. Bạn sẽ ký một tin nhắn xác minh, sau đó quay lại ứng dụng máy tính.",
       "paymentBody": "Hãy chọn ví đã liên kết với tài khoản của bạn và phê duyệt giao dịch trong trình duyệt này.",
       "extensionHelp": "Không tìm thấy tiện ích mở rộng ví tương thích nào. Hãy cài đặt hoặc mở khóa Phantom, Solflare hoặc ví trình duyệt Solana khác, rồi thử lại.",
-      "safety": "World of ClaudeCraft không bao giờ yêu cầu cụm từ khôi phục hoặc khóa riêng tư của bạn.",
+      "safety": "World of Aphasya không bao giờ yêu cầu cụm từ khôi phục hoặc khóa riêng tư của bạn.",
       "continueWith": "Tiếp tục với {wallet}",
       "reviewTitle": "Xem xét trong ví của bạn",
       "reviewBody": "Làm theo hướng dẫn từ {wallet}. Giữ trang trình duyệt này mở.",
       "completeTitle": "Ủy quyền ví hoàn tất",
-      "completeBody": "Bạn có thể quay lại ứng dụng máy tính World of ClaudeCraft.",
+      "completeBody": "Bạn có thể quay lại ứng dụng máy tính World of Aphasya.",
       "returnButton": "Quay lại ứng dụng máy tính",
       "failed": "Ủy quyền ví thất bại hoặc đã hết hạn. Hãy quay lại ứng dụng máy tính và thử lại.",
       "retry": "Thử Lại"
@@ -7457,7 +7454,7 @@ export const vi_VN: EnTranslations = {
     "levelClass": "Cấp {level} - {className}",
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "Thế Giới {realm}",
-    "defaultRealm": "World of ClaudeCraft",
+    "defaultRealm": "World of Aphasya",
     "brandWordmark": "WORLD OF CLAUDECRAFT",
     "recruited": "{count} người được chiêu mộ",
     "footerHandle": "@{handle}",
@@ -7465,8 +7462,8 @@ export const vi_VN: EnTranslations = {
     "footerCta": "Rèn nên huyền thoại của bạn: {siteUrl}",
     "arenaStat": "Đấu Trường",
     "shareTierBit": ", người nắm giữ $WOC hạng {tier}",
-    "shareText": "Tôi đang rèn nên huyền thoại của mình trong World of ClaudeCraft: {className} cấp {level}{tierBit}. Hãy tham gia thế giới của tôi:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Tôi đang rèn nên huyền thoại của mình trong World of Aphasya: {className} cấp {level}{tierBit}. Hãy tham gia thế giới của tôi:",
+    "nativeShareTitle": "World of Aphasya",
     "fileNameFallback": "nguoichoi",
     "actionShareX": "Chia Sẻ Lên X",
     "actionCopyReferral": "Sao Chép Liên Kết Giới Thiệu",
@@ -8164,14 +8161,14 @@ export const vi_VN: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: MMO Web Phong Cách Cổ Điển",
-    "description": "Bắt đầu cuộc phiêu lưu hoành tráng trong World of ClaudeCraft, một micro-MMO phong cách cổ điển chơi trực tiếp trên trình duyệt của bạn. Tham gia một thế giới chung bền vững, lên cấp các lớp nhân vật và đánh bại kẻ thù!",
+    "title": "World of Aphasya: MMO Web Phong Cách Cổ Điển",
+    "description": "Bắt đầu cuộc phiêu lưu hoành tráng trong World of Aphasya, một micro-MMO phong cách cổ điển chơi trực tiếp trên trình duyệt của bạn. Tham gia một thế giới chung bền vững, lên cấp các lớp nhân vật và đánh bại kẻ thù!",
     "genre": "MMORPG",
     "playMode": "Nhiều người chơi",
     "applicationCategory": "Trò chơi",
     "operatingSystem": "Trình duyệt web",
-    "officialLabel": "Trang web World of ClaudeCraft chính thức",
-    "officialBody": "worldofclaudecraft.com là trang MMO trên trình duyệt miễn phí chính thức cho thế giới Claudemoon. Chơi trực tuyến với một nhân vật bền vững, khám phá đơn lẻ ngoại tuyến, đọc wiki và theo dõi các liên kết cộng đồng đã được xác minh từ trang này."
+    "officialLabel": "Trang web World of Aphasya chính thức",
+    "officialBody": "worldofaphasya.com là trang MMO trên trình duyệt miễn phí chính thức cho thế giới Claudemoon. Chơi trực tuyến với một nhân vật bền vững, khám phá đơn lẻ ngoại tuyến, đọc wiki và theo dõi các liên kết cộng đồng đã được xác minh từ trang này."
   },
   "a11y": {
     "goHome": "Về trang chủ",
@@ -8179,9 +8176,9 @@ export const vi_VN: EnTranslations = {
     "mainNavigation": "Điều hướng chính",
     "languageSelection": "Chọn ngôn ngữ",
     "characterActions": "Hành động nhân vật",
-    "githubProject": "Mở dự án GitHub của World of ClaudeCraft",
-    "discordCommunity": "Tham gia cộng đồng Discord của World of ClaudeCraft",
-    "donateProject": "Quyên góp ủng hộ World of ClaudeCraft"
+    "githubProject": "Mở dự án GitHub của World of Aphasya",
+    "discordCommunity": "Tham gia cộng đồng Discord của World of Aphasya",
+    "donateProject": "Quyên góp ủng hộ World of Aphasya"
   },
   "entryGuard": {
     "title": "Đã hạ đồ họa",
@@ -8272,16 +8269,16 @@ export const vi_VN: EnTranslations = {
     "notify": {
       "updateReadyTitle": "Bản cập nhật {version} đã sẵn sàng",
       "updateReadyTitleNoVersion": "Bản cập nhật đã sẵn sàng",
-      "updateReadyBody": "Khởi động lại World of ClaudeCraft để áp dụng bản cập nhật.",
+      "updateReadyBody": "Khởi động lại World of Aphasya để áp dụng bản cập nhật.",
       "partyInviteTitle": "Lời mời tổ đội",
       "partyInviteBody": "{name} đã mời bạn gia nhập tổ đội của họ."
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "body": "Khung trò chơi đã ngừng hoạt động. Tải lại chứ?",
       "reload": "Tải lại",
       "quit": "Thoát",
-      "fatalBody": "World of ClaudeCraft gặp lỗi không mong muốn và cần đóng lại."
+      "fatalBody": "World of Aphasya gặp lỗi không mong muốn và cần đóng lại."
     },
     "titlebar": {
       "exitGame": "Thoát trò chơi"
@@ -8433,17 +8430,17 @@ export const vi_VN: EnTranslations = {
     "iosStandaloneDetail": "Bạn đang ở chế độ toàn màn hình từ màn hình chính. Hãy giữ thiết bị ở chế độ ngang.",
     "iosInstallDetail": "Để chơi toàn màn hình thực sự trên iPhone hoặc iPad, hãy cài đặt trang này vào Màn hình chính trước.",
     "iosShareStep": "Trong Safari, chạm vào Chia sẻ, rồi chọn Thêm vào Màn hình chính.",
-    "iosOpenStep": "Mở World of ClaudeCraft từ biểu tượng mới trên Màn hình chính.",
+    "iosOpenStep": "Mở World of Aphasya từ biểu tượng mới trên Màn hình chính.",
     "androidStandaloneDetail": "Bạn đang ở chế độ ứng dụng toàn màn hình. Hãy giữ thiết bị ở chế độ ngang.",
     "androidInstallDetail": "Để chơi toàn màn hình trên Android, hãy cài đặt trang này hoặc thêm vào Màn hình chính trước.",
     "androidInstallStep": "Trong Chrome, chạm vào menu, rồi chọn Cài đặt ứng dụng hoặc Thêm vào Màn hình chính.",
-    "androidOpenStep": "Mở World of ClaudeCraft từ biểu tượng mới.",
+    "androidOpenStep": "Mở World of Aphasya từ biểu tượng mới.",
     "otherStandaloneDetail": "Hãy giữ thiết bị ở chế độ ngang toàn màn hình.",
     "otherInstallDetail": "Hãy cài đặt hoặc thêm trang này vào Màn hình chính để có trải nghiệm toàn màn hình tốt nhất trên di động."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Thế Giới Không Khả Dụng",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "World of Aphasya - Thế Giới Không Khả Dụng",
+    "logoAlt": "World of Aphasya",
     "eyebrow": "Bảo trì thế giới",
     "heading": "Thế giới tạm thời không khả dụng.",
     "body": "Chúng tôi đang khởi động lại dịch vụ trò chơi và dự kiến Claudemoon sẽ trở lại trong giây lát. Trang này sẽ tự động tiếp tục kiểm tra.",

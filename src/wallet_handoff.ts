@@ -39,7 +39,7 @@ function renderError(message = t('wallet.browser.failed')): void {
   replaceWalletHandoffContent(
     root,
     `<div class="wallet-handoff-card">` +
-      `<img class="wallet-handoff-logo" src="/woc_logo_square.webp" alt="">` +
+      `<img class="wallet-handoff-logo" src="/woa_logo_square.webp" alt="">` +
       `<h1>${escapeHtml(t('wallet.browser.title'))}</h1>` +
       `<p role="alert">${escapeHtml(message)}</p>` +
       `<button type="button" data-retry>${escapeHtml(t('wallet.browser.retry'))}</button>` +
@@ -64,7 +64,7 @@ function renderWallets(): void {
   replaceWalletHandoffContent(
     root,
     `<div class="wallet-handoff-card">` +
-      `<img class="wallet-handoff-logo" src="/woc_logo_square.webp" alt="">` +
+      `<img class="wallet-handoff-logo" src="/woa_logo_square.webp" alt="">` +
       `<p class="wallet-handoff-eyebrow">${escapeHtml(t('wallet.browser.eyebrow'))}</p>` +
       `<h1>${escapeHtml(t('wallet.browser.title'))}</h1>` +
       `<p>${escapeHtml(
@@ -98,11 +98,11 @@ function renderBusy(wallet: string): void {
 
 function renderComplete(): void {
   if (!root || !code) return;
-  const returnUrl = `worldofclaudecraft://wallet-handoff?code=${encodeURIComponent(code)}`;
+  const returnUrl = `worldofaphasya://wallet-handoff?code=${encodeURIComponent(code)}`;
   replaceWalletHandoffContent(
     root,
     `<div class="wallet-handoff-card">` +
-      `<img class="wallet-handoff-logo" src="/woc_logo_square.webp" alt="">` +
+      `<img class="wallet-handoff-logo" src="/woa_logo_square.webp" alt="">` +
       `<h1 tabindex="-1" data-wallet-handoff-complete>${escapeHtml(t('wallet.browser.completeTitle'))}</h1>` +
       `<p>${escapeHtml(t('wallet.browser.completeBody'))}</p>` +
       `<a class="wallet-handoff-return" href="${returnUrl}">${escapeHtml(t('wallet.browser.returnButton'))}</a>` +

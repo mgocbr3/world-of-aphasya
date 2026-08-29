@@ -74,7 +74,7 @@ const DISCORD_PIPE_SLOTS = 10;
 const DISCORD_CLIENT_ID_PATTERN = /^\d{15,22}$/;
 
 /**
- * The official World of ClaudeCraft Discord application id, baked in by the
+ * The official World of Aphasya Discord application id, baked in by the
  * owner's provisioning decision (2026-08-15) once the registration landed
  * under exactly that name (the registration name is what Discord renders as
  * "Playing X"). An application id is public, every shipped build exposes it

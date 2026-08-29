@@ -71,7 +71,7 @@ const EMPTY_SNAPSHOT: ClaudiumSnapshot = {
 
 const WOC_DECIMALS = 6;
 const USDC_DECIMALS = 6;
-const WOC_ICON_URL = currencyImageUrl('woc_token') ?? '/woc_logo_square.webp';
+const WOC_ICON_URL = currencyImageUrl('woc_token') ?? '/woa_logo_square.webp';
 const SOL_ICON_URL = '/claudium/icons/solana-icon.webp';
 const USDC_ICON_URL = '/claudium/icons/usdc-icon.webp';
 type ClaudiumFocusTarget = { kind: 'rail' | 'sku'; value: string } | { kind: 'wallet' };

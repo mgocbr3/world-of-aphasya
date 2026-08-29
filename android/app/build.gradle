@@ -8,14 +8,14 @@ def playIntegrityCloudProjectNumber = providers
     .trim()
 
 android {
-    namespace = "com.worldofclaudecraft"
+    namespace = "com.worldofaphasya"
     compileSdk = rootProject.ext.compileSdkVersion
     flavorDimensions += "distribution"
     buildFeatures {
         buildConfig true
     }
     defaultConfig {
-        applicationId "com.worldofclaudecraft"
+        applicationId "com.worldofaphasya"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 50

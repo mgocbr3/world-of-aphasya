@@ -46,7 +46,7 @@ const failingFetch = (status: number) =>
 const BASE = {
   eventName: 'pull_request',
   prNumber: 123,
-  repo: 'levy-street/world-of-claudecraft',
+  repo: 'mgocbr3/world-of-aphasya',
   token: 'ghs_test',
 } as const;
 
@@ -193,7 +193,7 @@ describe('fetchPrFiles', () => {
     expect(listed[249]).toEqual({ filename: 'docs/f249.md' });
     expect(calls.map((c) => new URL(c.url).searchParams.get('page'))).toEqual(['1', '2', '3']);
     expect(calls[0].url).toBe(
-      'https://api.github.com/repos/levy-street/world-of-claudecraft/pulls/123/files?per_page=100&page=1',
+      'https://api.github.com/repos/mgocbr3/world-of-aphasya/pulls/123/files?per_page=100&page=1',
     );
   });
 
@@ -499,7 +499,7 @@ describe('detect_code_changes.mjs entry (subprocess)', () => {
       GITHUB_EVENT_PATH: eventFixture('docs-event', {
         pull_request: { number: 12, changed_files: 2 },
       }),
-      GITHUB_REPOSITORY: 'levy-street/world-of-claudecraft',
+      GITHUB_REPOSITORY: 'mgocbr3/world-of-aphasya',
       GITHUB_TOKEN: 'ghs_test',
       GITHUB_API_URL: apiUrl,
     });
@@ -526,7 +526,7 @@ describe('detect_code_changes.mjs entry (subprocess)', () => {
       GITHUB_EVENT_PATH: eventFixture('mismatch-event', {
         pull_request: { number: 12, changed_files: 5 },
       }),
-      GITHUB_REPOSITORY: 'levy-street/world-of-claudecraft',
+      GITHUB_REPOSITORY: 'mgocbr3/world-of-aphasya',
       GITHUB_TOKEN: 'ghs_test',
       GITHUB_API_URL: apiUrl,
     });

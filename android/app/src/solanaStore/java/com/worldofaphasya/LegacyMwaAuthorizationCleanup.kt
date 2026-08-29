@@ -1,4 +1,4 @@
-package com.worldofclaudecraft
+package com.worldofaphasya
 
 internal fun removeLegacyMwaAuthorizationToken(remove: () -> Boolean): Boolean =
     try {

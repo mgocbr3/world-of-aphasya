@@ -319,7 +319,7 @@ echo "Activated SFX bundle ${runtimeBundleId} in $target_sfx"
 }
 
 function readme(bundleId) {
-  return Buffer.from(`World of ClaudeCraft SFX production bundle
+  return Buffer.from(`World of Aphasya SFX production bundle
 
 Bundle: ${bundleId}
 
@@ -498,7 +498,7 @@ export function buildSfxProductionBundle(repoRoot) {
     metadata,
     runtimePack,
     sha256: sha256(zip),
-    filename: `world-of-claudecraft-sfx-${bundleId.slice(0, 16)}.zip`,
+    filename: `world-of-aphasya-sfx-${bundleId.slice(0, 16)}.zip`,
   };
 }
 

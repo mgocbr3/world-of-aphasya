@@ -35,7 +35,7 @@ describe('resolveTermsUrl', () => {
   });
 
   it('the canonical URL is the public terms page, and the path is what the site aliases', () => {
-    expect(CANONICAL_TERMS_URL).toBe('https://worldofclaudecraft.com/terms');
+    expect(CANONICAL_TERMS_URL).toBe('https://worldofaphasya.com/terms');
     expect(TERMS_PATH).toBe('/terms');
     // The test build is the web client (NATIVE_APP false), so an http origin
     // resolves same-origin through the painter-facing helper too.

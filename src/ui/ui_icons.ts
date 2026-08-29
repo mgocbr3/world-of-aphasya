@@ -242,7 +242,7 @@ const ICONS: Record<UiIconName, string> = {
   // chrome glyph so it tints with the error text token.
   alert:
     '<path d="M256 62 L472 438 H40 Z" fill="none" stroke="currentColor" stroke-width="40" stroke-linejoin="round"/><path d="M256 186v118" stroke="currentColor" stroke-width="44" stroke-linecap="round"/><circle cx="256" cy="374" r="28"/>',
-  // World of ClaudeCraft maker's mark: the exact project-owned calligraphic
+  // World of Aphasya maker's mark: the exact project-owned calligraphic
   // stroke used beside a crafted copy's provenance line. Unlike the filled
   // chrome glyphs above, this mark is intentionally an open currentColor line.
   'makers-mark':

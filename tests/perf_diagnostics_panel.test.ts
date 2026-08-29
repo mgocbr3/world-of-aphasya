@@ -136,7 +136,7 @@ describe('PerfDiagnosticsPanel', () => {
       method: 'POST',
       headers: { 'Content-Type': 'text/markdown;charset=UTF-8' },
     });
-    expect(String(init?.body)).toContain('# World of ClaudeCraft performance diagnosis');
+    expect(String(init?.body)).toContain('# World of Aphasya performance diagnosis');
   });
 
   it('excludes hidden-tab gaps from the required active gameplay time', () => {
@@ -433,7 +433,7 @@ describe('PerfDiagnosticsPanel', () => {
     expect(buttons).not.toHaveLength(0);
     expect(buttons.every((item) => /^\[.*\]$/.test(item.textContent ?? ''))).toBe(true);
     for (const rawEnglish of [
-      'ClaudeCraft Performance Doctor',
+      'Aphasya Performance Doctor',
       'Simulation work is consuming the frame',
       'A measured CPU phase is taking enough main-thread time',
       'Measured phase sim-cpu has a p95',
@@ -444,7 +444,7 @@ describe('PerfDiagnosticsPanel', () => {
       expect(panelText).not.toContain(rawEnglish);
       expect(report).not.toContain(rawEnglish);
     }
-    expect(report).not.toContain('# World of ClaudeCraft performance diagnosis');
+    expect(report).not.toContain('# World of Aphasya performance diagnosis');
     expect(report).not.toContain('Top finding:');
     expect(report).not.toContain('Raw snapshot');
   });

@@ -362,7 +362,7 @@ export const id_ID: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "Buka Wiki?",
-      "confirmBody": "Ini akan membuka wiki World of ClaudeCraft di perambanmu. Permainan tetap berjalan.",
+      "confirmBody": "Ini akan membuka wiki World of Aphasya di perambanmu. Permainan tetap berjalan.",
       "confirmOpen": "Buka Wiki",
       "confirmCancel": "Batal"
     },
@@ -572,14 +572,14 @@ export const id_ID: EnTranslations = {
       "rewardsTab": "Hadiah Harian",
       "loading": "Memuat Toko WOC...",
       "error": "Toko WOC tidak tersedia saat ini. Silakan coba lagi sebentar lagi.",
-      "balance": "Saldo Claudium",
-      "buyClaudium": "Beli Claudium",
+      "balance": "Saldo Aphasium",
+      "buyClaudium": "Beli Aphasium",
       "owned": "Dimiliki",
-      "needMoreTitle": "Dibutuhkan Lebih Banyak Claudium",
-      "needMoreBody": "Anda memerlukan {shortfall} lebih banyak Claudium untuk membeli {item}.",
+      "needMoreTitle": "Dibutuhkan Lebih Banyak Aphasium",
+      "needMoreBody": "Anda memerlukan {shortfall} lebih banyak Aphasium untuk membeli {item}.",
       "cancel": "Batal",
       "confirmTitle": "Konfirmasi Pembelian Kosmetik",
-      "confirmBody": "Beli {item} untuk {cost} Claudium?",
+      "confirmBody": "Beli {item} untuk {cost} Aphasium?",
       "confirmPurchase": "Beli",
       "priceChanged": "Harga berubah sebelum pembelian selesai. Tinjau harga baru dan konfirmasi lagi.",
       "armoryEyebrow": "Musim 1",
@@ -792,18 +792,18 @@ export const id_ID: EnTranslations = {
       "equipHint": "Kenakan {type} untuk menerapkan tampilan ini."
     },
     "claudium": {
-      "title": "Claudium",
-      "open": "Buka Claudium",
-      "close": "Tutup Claudium",
-      "loading": "Memuat Claudium...",
+      "title": "Aphasium",
+      "open": "Buka Aphasium",
+      "close": "Tutup Aphasium",
+      "loading": "Memuat Aphasium...",
       "balanceLabel": "Saldo",
-      "balanceUnit": "{amount} Claudium",
+      "balanceUnit": "{amount} Aphasium",
       "solBalance": "SOL: {amount}",
       "usdcBalance": "USDC: {amount}",
       "wocBalance": "WOC: {amount}",
-      "unavailable": "Toko Claudium tidak tersedia saat ini. Saldo dan pembelian Anda tidak terpengaruh; harap segera periksa kembali.",
-      "disclosure": "Claudium adalah mata uang lunak satu arah: beli dengan uang dan belanjakan untuk kosmetik. Itu tidak dapat ditebus, ditransfer, atau diuangkan.",
-      "buyTitle": "Beli Claudium",
+      "unavailable": "Toko Aphasium tidak tersedia saat ini. Saldo dan pembelian Anda tidak terpengaruh; harap segera periksa kembali.",
+      "disclosure": "Aphasium adalah mata uang lunak satu arah: beli dengan uang dan belanjakan untuk kosmetik. Itu tidak dapat ditebus, ditransfer, atau diuangkan.",
+      "buyTitle": "Beli Aphasium",
       "railLabel": "Metode pembayaran",
       "railStripe": "Kartu",
       "railSol": "SOL",
@@ -813,9 +813,9 @@ export const id_ID: EnTranslations = {
       "railWocUnavailable": "Harga WOC tidak tersedia saat ini.",
       "railNativeUnavailable": "SOL/WOC tidak tersedia.",
       "amountLabel": "Jumlah",
-      "showAmounts": "Tampilkan semua jumlah Claudium",
-      "hideAmounts": "Sembunyikan jumlah Claudium tambahan",
-      "skuRow": "{usd} untuk {claudium} Claudium",
+      "showAmounts": "Tampilkan semua jumlah Aphasium",
+      "hideAmounts": "Sembunyikan jumlah Aphasium tambahan",
+      "skuRow": "{usd} untuk {claudium} Aphasium",
       "priceSol": "{amount} SOL",
       "priceUsdc": "{amount} USDC",
       "priceWoc": "{amount} WOC",
@@ -823,7 +823,7 @@ export const id_ID: EnTranslations = {
       "buyUnavailable": "Pembelian tidak tersedia saat ini.",
       "storeTitle": "Toko Kosmetik",
       "storeEmpty": "Tidak ada kosmetik yang tersedia saat ini.",
-      "storeCost": "{amount} Claudium",
+      "storeCost": "{amount} Aphasium",
       "spendButton": "Tukar",
       "kindCosmetic": "Kosmetik",
       "kindSkin": "Tampilan",
@@ -834,10 +834,10 @@ export const id_ID: EnTranslations = {
       "checkoutPending": "Transaksi sedang berlangsung. Konfirmasikan di dompet Anda dan biarkan panel ini tetap terbuka.",
       "checkoutPendingButton": "Diproses",
       "checkoutFailed": "Pembayaran tidak dapat dimuat. Silakan coba lagi.",
-      "checkoutUnavailable": "Pembelian Claudium tersebut tidak tersedia saat ini.",
-      "checkoutWalletRequired": "Hubungkan dompet Solana sebelum membeli Claudium dengan kripto.",
+      "checkoutUnavailable": "Pembelian Aphasium tersebut tidak tersedia saat ini.",
+      "checkoutWalletRequired": "Hubungkan dompet Solana sebelum membeli Aphasium dengan kripto.",
       "checkoutWalletUnsupported": "Dompet ini tidak dapat menandatangani dan mengirim transaksi Solana.",
-      "checkoutNotSettled": "Transaksi sudah terkirim tetapi Claudium belum dikreditkan. Silakan coba lagi sebentar lagi."
+      "checkoutNotSettled": "Transaksi sudah terkirim tetapi Aphasium belum dikreditkan. Silakan coba lagi sebentar lagi."
     },
     "theme": {
       "preset": "Tema UI",
@@ -845,6 +845,7 @@ export const id_ID: EnTranslations = {
       "reset": "Atur Ulang",
       "presets": {
         "classic": "Emas Klasik",
+        "aphasya": "Aphasya",
         "midnight": "Tengah Malam",
         "parchment": "Perkamen",
         "highContrast": "Kontras Tinggi"
@@ -1141,8 +1142,8 @@ export const id_ID: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Pembaruan Tersedia",
-      "body": "Versi baru World of ClaudeCraft tersedia. Perbarui sekarang untuk perbaikan dan peningkatan terbaru.",
-      "bodyWithVersion": "Versi {version} World of ClaudeCraft tersedia. Perbarui sekarang untuk perbaikan dan peningkatan terbaru.",
+      "body": "Versi baru World of Aphasya tersedia. Perbarui sekarang untuk perbaikan dan peningkatan terbaru.",
+      "bodyWithVersion": "Versi {version} World of Aphasya tersedia. Perbarui sekarang untuk perbaikan dan peningkatan terbaru.",
       "notNow": "Jangan sekarang",
       "update": "Perbarui"
     },
@@ -1685,8 +1686,8 @@ export const id_ID: EnTranslations = {
         "offline": "Luring"
       },
       "diagnostics": {
-        "panelAria": "Diagnostik performa World of ClaudeCraft",
-        "title": "Dokter Performa ClaudeCraft",
+        "panelAria": "Diagnostik performa World of Aphasya",
+        "title": "Dokter Performa Aphasya",
         "subtitle": "Pemindaian khusus permainan dengan bukti dan perbaikan tingkat kode.",
         "aria": {
           "liveMeasurements": "Pengukuran performa langsung",
@@ -1834,7 +1835,7 @@ export const id_ID: EnTranslations = {
           }
         },
         "report": {
-          "title": "Diagnosis performa World of ClaudeCraft",
+          "title": "Diagnosis performa World of Aphasya",
           "statusLine": "Status: {status} ({score}/100)",
           "capturedLine": "Tertangkap: {captured}",
           "topFindingLine": "Temuan teratas: {finding}",
@@ -2742,7 +2743,7 @@ export const id_ID: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "World of Aphasya",
       "open": "Discord",
       "close": "Tutup",
       "keybind": "Panel Discord",
@@ -4438,8 +4439,8 @@ export const id_ID: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "World of Aphasya",
+    "brandShort": "Aphasya",
     "tagline": "MMO bergaya klasik yang bisa kamu mainkan gratis di peramban.",
     "skipToContent": "Lewati ke konten utama",
     "loading": "Memuat...",
@@ -4514,7 +4515,7 @@ export const id_ID: EnTranslations = {
       "github": "Sumber di GitHub",
       "discord": "Gabung Discord",
       "communityWiki": "Wiki Komunitas",
-      "rights": "World of ClaudeCraft",
+      "rights": "World of Aphasya",
       "linksLabel": "Tautan main dan komunitas"
     },
     "language": {
@@ -4539,7 +4540,7 @@ export const id_ID: EnTranslations = {
     },
     "home": {
       "eyebrow": "MMO browser bergaya klasik",
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "subtitle": "Berpetualang, bersatu, dan jelajahi dunia rakitan tangan, gratis di browser-mu.",
       "ctaPlay": "Main Sekarang",
       "ctaLearn": "Cara Bermain",
@@ -5161,7 +5162,7 @@ export const id_ID: EnTranslations = {
       "ridingDef": "Keterampilan yang memungkinkanmu menunggang sama sekali. Kamu membelinya sekali dari seorang Kepala Kandang di level 20, dan setelah itu ia melekat pada karaktermu untuk selamanya.",
       "reinsTerm": "Tali Kekang",
       "reinsDef": "Barang yang merupakan tunggangan. Simpan sepasang di tasmu atau di bank dan tunggangan itu menjadi milikmu; gunakan untuk menunggang. Tali kekang bisa diperdagangkan, dikirim lewat pos, dan dijual kepada pemain lain.",
-      "claudiumTerm": "Claudium",
+      "claudiumTerm": "Aphasium",
       "claudiumDef": "Mata uang Toko WOC, dibelanjakan untuk kosmetik dan tidak untuk hal lain. Ia tidak pernah membeli kekuatan atau perkembangan.",
       "worldTerm": "Dunia",
       "worldDef": "Satu salinan bersama dari permainan daring, dengan pemainnya sendiri, pasarnya sendiri, dan peringkatnya sendiri. Panduan ini juga menyebutnya realm, dan karaktermu hidup di dunia tempat kamu membuatnya."
@@ -5192,7 +5193,7 @@ export const id_ID: EnTranslations = {
       "q11": "Bagaimana cara menemukan sebuah kelompok?",
       "a11": "Undang siapa pun yang kamu temui ke sebuah kelompok, bertanyalah di obrolan, atau bekerja samalah di sebuah ruang bawah tanah. Sebagian besar dunia bisa dijalani sendiri, jadi membentuk kelompok adalah pilihan, bukan keharusan.",
       "q12": "Apakah ada toko berbayar?",
-      "a12": "Ada sebuah toko kosmetik opsional. Ia menjual tampilan: Skin senjata Gudang Senjata Musim 1, dibeli dengan Claudium, mata uang toko itu. Tak satu pun di dalamnya menambah statistik, kekuatan, atau perkembangan, dan sebuah Skin tidak pernah mengubah cara senjatamu menghantam, sehingga setiap perlengkapan yang penting tetap datang dari bermain.",
+      "a12": "Ada sebuah toko kosmetik opsional. Ia menjual tampilan: Skin senjata Gudang Senjata Musim 1, dibeli dengan Aphasium, mata uang toko itu. Tak satu pun di dalamnya menambah statistik, kekuatan, atau perkembangan, dan sebuah Skin tidak pernah mengubah cara senjatamu menghantam, sehingga setiap perlengkapan yang penting tetap datang dari bermain.",
       "q13": "Di mana saya bisa mendapatkan aplikasinya?",
       "a13": "Versi peramban tidak membutuhkan apa pun sama sekali: buka situsnya dan mainkan. Jika kamu lebih suka memakai aplikasi, unduhan desktop untuk Windows, macOS, dan Linux ada di halaman Unduh situs permainan. Aplikasi native iOS dan Android sedang dikerjakan, dan sampai keduanya hadir, sebuah ponsel atau tablet memainkan versi peramban dengan kontrol sentuh penuh. Setiap versi masuk ke akun yang sama dan dunia yang sama, sehingga karaktermu mengikutimu.",
       "q14": "Apa yang saya butuhkan untuk menjalankannya?",
@@ -5478,7 +5479,7 @@ export const id_ID: EnTranslations = {
     },
     "worldPage": {
       "heading": "Dunia",
-      "intro": "World of ClaudeCraft adalah satu daratan bersambung yang kamu seberangi dengan berjalan kaki. Jalan tua membentang dari selatan ke utara melewati lembah awal, rawa, dan puncak, dan terus mendaki melampauinya ke cekungan di baliknya serta negeri salju di puncak peta. Sederet alam yang lebih tinggi terbuka dari jalan itu ke barat dan sederet lagi ke timur, dan sebuah pulau terletak di lepas pantai timur Lembah. Tidak ada perjalanan cepat, tidak ada jalur terbang, dan tidak ada kereta: setiap perjalanan ditempuh dengan berjalan atau berkuda, jadi tibanya adalah bagian dari petualangan.\n\nDaratan itu juga menghitung waktu. Siklus siang dan malam berjalan di atas jam sungguhan yang dibagi semua orang di duniamu, sehingga langit beranjak dari fajar ke tengah hari lalu ke senja dan gelap untuk kalian semua sekaligus, bulan datang dan pergi melalui fase-fasenya, dan cahaya di tanah berubah bersamanya. Piringan di sekeliling peta kecilmu adalah tempat kamu membaca jam.",
+      "intro": "World of Aphasya adalah satu daratan bersambung yang kamu seberangi dengan berjalan kaki. Jalan tua membentang dari selatan ke utara melewati lembah awal, rawa, dan puncak, dan terus mendaki melampauinya ke cekungan di baliknya serta negeri salju di puncak peta. Sederet alam yang lebih tinggi terbuka dari jalan itu ke barat dan sederet lagi ke timur, dan sebuah pulau terletak di lepas pantai timur Lembah. Tidak ada perjalanan cepat, tidak ada jalur terbang, dan tidak ada kereta: setiap perjalanan ditempuh dengan berjalan atau berkuda, jadi tibanya adalah bagian dari petualangan.\n\nDaratan itu juga menghitung waktu. Siklus siang dan malam berjalan di atas jam sungguhan yang dibagi semua orang di duniamu, sehingga langit beranjak dari fajar ke tengah hari lalu ke senja dan gelap untuk kalian semua sekaligus, bulan datang dan pergi melalui fase-fasenya, dan cahaya di tanah berubah bersamanya. Piringan di sekeliling peta kecilmu adalah tempat kamu membaca jam.",
       "hub": "Markas utama",
       "mapHeading": "Jalan dan alam-alam di baliknya",
       "mapSub": "Jejak misi membentang dari selatan ke utara di tengah peta: lembah, rawa, puncak, dan terus melampauinya ke cekungan serta salju. Alam-alam lain terbuka di sepanjang jalan itu, bukan sesudahnya, lewat gerbang di timur dan barat jalan rawa, sementara pulau Farshore dicapai dari pantai timur Lembah. Yang menahanmu dari alam-alam jauh adalah pita levelnya, bukan perjalanannya: lima di antaranya berbagi pita tertinggi, jadi begitu kamu siap kamu bisa mengambilnya dalam urutan apa pun. Farshore adalah pengecualian, negeri berlevel rendah yang bisa kamu kunjungi sejak awal.",
@@ -6473,7 +6474,7 @@ export const id_ID: EnTranslations = {
   },
   "editor": {
     "appTitle": "Editor Peta",
-    "docTitle": "Editor Peta - World of ClaudeCraft",
+    "docTitle": "Editor Peta - World of Aphasya",
     "untitledMap": "Peta Tanpa Judul",
     "playtestPlayerName": "Pembuat Peta",
     "topbar": {
@@ -6950,10 +6951,9 @@ export const id_ID: EnTranslations = {
     "realmName": "Nama Dunia"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 World of Aphasya",
+    "githubLink": "https://github.com/levy-street/world-of-aphasya",
     "githubLabel": "Proyek Sumber Terbuka",
-    "whitepaper": "Whitepaper",
     "terms": "Ketentuan Layanan",
     "privacy": "Kebijakan Privasi",
     "discordLabel": "Gabung Discord"
@@ -7008,13 +7008,10 @@ export const id_ID: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Main",
-    "playAria": "Mainkan World of ClaudeCraft",
+    "playAria": "Mainkan World of Aphasya",
     "serverLabel": "Pilih dunia Anda",
     "serverAria": "Pilih dunia: Online atau Offline",
-    "serverOfflineSub": "Dunia lokal seketika",
-    "caLabel": "Alamat Kontrak $WOC",
-    "caCopyAria": "Salin alamat kontrak",
-    "caNote": "WOC adalah token komunitas kami. Token ini tidak diperlukan untuk bermain. Gabung Discord untuk membahas utilitas dan flywheel WOC."
+    "serverOfflineSub": "Dunia lokal seketika"
   },
   "auth": {
     "enterRealm": "Masuki Dunia",
@@ -7334,12 +7331,12 @@ export const id_ID: EnTranslations = {
     "extensionHelp": "Agar dompet tampil di sini, biarkan ekstensi dompet peramban seperti Solflare Wallet tetap aktif.",
     "mobileAppHelp": "Pilih Phantom atau Solflare. Aplikasi dompetmu akan meminta persetujuan. Jaga permainan ini tetap terbuka dan kembali ke sana saat selesai.",
     "seekerAppHelp": "Lanjutkan dengan Seed Vault Wallet. Tinjau permintaan koneksi dan verifikasi di Seed Vault, lalu kembali ke permainan.",
-    "standaloneAppHelp": "Koneksi dompet belum tersedia di aplikasi Layar Utama. Buka World of ClaudeCraft di Safari atau Chrome untuk menggunakan Phantom atau Solflare.",
+    "standaloneAppHelp": "Koneksi dompet belum tersedia di aplikasi Layar Utama. Buka World of Aphasya di Safari atau Chrome untuk menggunakan Phantom atau Solflare.",
     "openAppTitle": "Lanjutkan di {wallet}",
     "openAppHelp": "Buka {wallet} untuk meninjau permintaan ini. Jaga tab permainan ini tetap terbuka saat aplikasi dompet aktif.",
     "openAppButton": "Buka {wallet}",
     "manualReturnBrowserHelp": "Setelah persetujuan, kembali ke tab permainan ini. Jika iOS membuka browser lain, tutup dan kembali ke browser asli secara manual.",
-    "manualReturnStandaloneHelp": "Setelah persetujuan, kembali ke World of ClaudeCraft dari Layar Utamamu. Jika iOS membuka browser, tutup dan buka kembali aplikasi Layar Utama secara manual.",
+    "manualReturnStandaloneHelp": "Setelah persetujuan, kembali ke World of Aphasya dari Layar Utamamu. Jika iOS membuka browser, tutup dan buka kembali aplikasi Layar Utama secara manual.",
     "preparingAppButton": "Mempersiapkan {wallet}...",
     "walletAppUnavailable": "{wallet} tidak dapat dipersiapkan. Tutup jendela ini dan coba lagi.",
     "flowConnect": "Pilih sebuah dompet. Verifikasi berlanjut secara otomatis.",
@@ -7354,12 +7351,12 @@ export const id_ID: EnTranslations = {
       "linkBody": "Pilih ekstensi dompet di browser ini. Kamu akan menandatangani pesan verifikasi, lalu kembali ke aplikasi desktop.",
       "paymentBody": "Pilih dompet yang tertaut ke akunmu dan setujui transaksi di browser ini.",
       "extensionHelp": "Tidak ada ekstensi dompet yang kompatibel ditemukan. Instal atau buka Phantom, Solflare, atau dompet browser Solana lainnya, lalu coba lagi.",
-      "safety": "World of ClaudeCraft tidak pernah meminta frasa pemulihan atau kunci privatmu.",
+      "safety": "World of Aphasya tidak pernah meminta frasa pemulihan atau kunci privatmu.",
       "continueWith": "Lanjutkan dengan {wallet}",
       "reviewTitle": "Tinjau di dompetmu",
       "reviewBody": "Ikuti perintah dari {wallet}. Jaga halaman browser ini tetap terbuka.",
       "completeTitle": "Otorisasi dompet selesai",
-      "completeBody": "Kamu dapat kembali ke aplikasi desktop World of ClaudeCraft.",
+      "completeBody": "Kamu dapat kembali ke aplikasi desktop World of Aphasya.",
       "returnButton": "Kembali ke aplikasi desktop",
       "failed": "Otorisasi dompet gagal atau kedaluwarsa. Kembali ke aplikasi desktop dan coba lagi.",
       "retry": "Coba Lagi"
@@ -7457,7 +7454,7 @@ export const id_ID: EnTranslations = {
     "levelClass": "Level {level} - {className}",
     "topPercent": "TERATAS {percent}%",
     "realmSubtitle": "Dunia {realm}",
-    "defaultRealm": "World of ClaudeCraft",
+    "defaultRealm": "World of Aphasya",
     "brandWordmark": "WORLD OF CLAUDECRAFT",
     "recruited": "{count} direkrut",
     "footerHandle": "@{handle}",
@@ -7465,8 +7462,8 @@ export const id_ID: EnTranslations = {
     "footerCta": "Tempa legendamu: {siteUrl}",
     "arenaStat": "Arena",
     "shareTierBit": ", pemegang $WOC peringkat {tier}",
-    "shareText": "Aku sedang menempa legendaku di World of ClaudeCraft: Level {level} {className}{tierBit}. Bergabunglah dengan duniaku:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Aku sedang menempa legendaku di World of Aphasya: Level {level} {className}{tierBit}. Bergabunglah dengan duniaku:",
+    "nativeShareTitle": "World of Aphasya",
     "fileNameFallback": "pemain",
     "actionShareX": "Bagikan ke X",
     "actionCopyReferral": "Salin Tautan Rujukan",
@@ -8164,14 +8161,14 @@ export const id_ID: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: MMO Web Bergaya Klasik",
-    "description": "Mulailah petualangan epik di World of ClaudeCraft, micro-MMO bergaya klasik yang dapat dimainkan langsung di peramban. Bergabunglah dengan dunia bersama yang persisten, naikkan level kelas, dan kalahkan musuh!",
+    "title": "World of Aphasya: MMO Web Bergaya Klasik",
+    "description": "Mulailah petualangan epik di World of Aphasya, micro-MMO bergaya klasik yang dapat dimainkan langsung di peramban. Bergabunglah dengan dunia bersama yang persisten, naikkan level kelas, dan kalahkan musuh!",
     "genre": "MMORPG",
     "playMode": "Multipemain",
     "applicationCategory": "Permainan",
     "operatingSystem": "Peramban web",
-    "officialLabel": "Situs resmi World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com adalah MMO peramban gratis resmi untuk dunia Claudemoon. Bermain daring dengan karakter yang persisten, jelajahi solo secara luring, baca wiki, dan ikuti tautan komunitas terverifikasi dari situs ini."
+    "officialLabel": "Situs resmi World of Aphasya",
+    "officialBody": "worldofaphasya.com adalah MMO peramban gratis resmi untuk dunia Claudemoon. Bermain daring dengan karakter yang persisten, jelajahi solo secara luring, baca wiki, dan ikuti tautan komunitas terverifikasi dari situs ini."
   },
   "a11y": {
     "goHome": "Ke halaman utama",
@@ -8179,9 +8176,9 @@ export const id_ID: EnTranslations = {
     "mainNavigation": "Navigasi utama",
     "languageSelection": "Pemilihan bahasa",
     "characterActions": "Aksi karakter",
-    "githubProject": "Buka proyek GitHub World of ClaudeCraft",
-    "discordCommunity": "Gabung komunitas Discord World of ClaudeCraft",
-    "donateProject": "Berdonasi untuk mendukung World of ClaudeCraft"
+    "githubProject": "Buka proyek GitHub World of Aphasya",
+    "discordCommunity": "Gabung komunitas Discord World of Aphasya",
+    "donateProject": "Berdonasi untuk mendukung World of Aphasya"
   },
   "entryGuard": {
     "title": "Grafis diturunkan",
@@ -8272,16 +8269,16 @@ export const id_ID: EnTranslations = {
     "notify": {
       "updateReadyTitle": "Pembaruan {version} siap",
       "updateReadyTitleNoVersion": "Pembaruan siap",
-      "updateReadyBody": "Mulai ulang World of ClaudeCraft untuk menerapkan pembaruan.",
+      "updateReadyBody": "Mulai ulang World of Aphasya untuk menerapkan pembaruan.",
       "partyInviteTitle": "Undangan Kelompok",
       "partyInviteBody": "{name} telah mengundangmu ke kelompoknya."
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "body": "Tampilan gim berhenti bekerja. Muat ulang?",
       "reload": "Muat Ulang",
       "quit": "Keluar",
-      "fatalBody": "World of ClaudeCraft mengalami kesalahan tak terduga dan perlu ditutup."
+      "fatalBody": "World of Aphasya mengalami kesalahan tak terduga dan perlu ditutup."
     },
     "titlebar": {
       "exitGame": "Keluar dari Gim"
@@ -8433,17 +8430,17 @@ export const id_ID: EnTranslations = {
     "iosStandaloneDetail": "Kamu berada dalam mode layar penuh layar-beranda. Pertahankan perangkat dalam posisi lanskap.",
     "iosInstallDetail": "Untuk layar penuh sejati di iPhone atau iPad, pasang halaman ini ke Layar Beranda terlebih dahulu.",
     "iosShareStep": "Di Safari, ketuk Bagikan, lalu Tambahkan ke Layar Beranda.",
-    "iosOpenStep": "Buka World of ClaudeCraft dari ikon Layar Beranda yang baru.",
+    "iosOpenStep": "Buka World of Aphasya dari ikon Layar Beranda yang baru.",
     "androidStandaloneDetail": "Kamu berada dalam mode aplikasi layar penuh. Pertahankan perangkat dalam posisi lanskap.",
     "androidInstallDetail": "Untuk layar penuh di Android, pasang halaman ini atau tambahkan ke layar Beranda terlebih dahulu.",
     "androidInstallStep": "Di Chrome, ketuk menu, lalu Pasang aplikasi atau Tambahkan ke layar Beranda.",
-    "androidOpenStep": "Buka World of ClaudeCraft dari ikon baru.",
+    "androidOpenStep": "Buka World of Aphasya dari ikon baru.",
     "otherStandaloneDetail": "Pertahankan perangkatmu dalam layar penuh posisi lanskap.",
     "otherInstallDetail": "Pasang atau tambahkan halaman ini ke layar Beranda untuk pengalaman seluler layar penuh terbaik."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Dunia Tidak Tersedia",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "World of Aphasya - Dunia Tidak Tersedia",
+    "logoAlt": "World of Aphasya",
     "eyebrow": "Pemeliharaan dunia",
     "heading": "Dunia sementara tidak tersedia.",
     "body": "Kami sedang memulai ulang layanan game dan memperkirakan Claudemoon akan kembali sebentar lagi. Halaman ini akan terus memeriksa secara otomatis.",

@@ -112,7 +112,7 @@ approved painting and two global anchors.
 ```text
 Use case: stylized-concept
 Asset type: opaque square fantasy MMORPG inventory item icon
-Primary request: paint [ITEM NAME] ([ITEM ID]) in the World of ClaudeCraft item style
+Primary request: paint [ITEM NAME] ([ITEM ID]) in the World of Aphasya item style
 contract woc-item-icon-v1.
 Subject and identity: [EXACT OBJECT, MATERIALS, CONSTRUCTION, LORE PALETTE, DAMAGE OR MAGIC].
 Composition: [FAMILY COMPOSITION FROM THIS DOCUMENT].

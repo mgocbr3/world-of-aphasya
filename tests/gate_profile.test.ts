@@ -96,12 +96,12 @@ describe('extractFileDurations and rankSlowestFiles', () => {
   const sampleReport = {
     testResults: [
       {
-        name: '/Users/dev/world-of-claudecraft/tests/sim.test.ts',
+        name: '/Users/dev/world-of-aphasya/tests/sim.test.ts',
         startTime: 1000,
         endTime: 5000,
       },
       {
-        name: '/Users/dev/world-of-claudecraft/tests/architecture.test.ts',
+        name: '/Users/dev/world-of-aphasya/tests/architecture.test.ts',
         duration: 9000,
       },
       {
@@ -111,10 +111,10 @@ describe('extractFileDurations and rankSlowestFiles', () => {
       },
       {
         // Missing timing: ignored
-        name: '/Users/dev/world-of-claudecraft/tests/empty.test.ts',
+        name: '/Users/dev/world-of-aphasya/tests/empty.test.ts',
       },
       {
-        name: '/Users/dev/world-of-claudecraft/tests/fast.test.ts',
+        name: '/Users/dev/world-of-aphasya/tests/fast.test.ts',
         durationMs: 50,
       },
     ],

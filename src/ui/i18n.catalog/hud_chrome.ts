@@ -70,8 +70,7 @@ export const hudChromeStrings = {
   // (confirm-first so a mid-fight tap never opens the browser by accident).
   wiki: {
     confirmTitle: 'Open the Wiki?',
-    confirmBody:
-      'This opens the World of ClaudeCraft wiki in your browser. The game keeps running.',
+    confirmBody: 'This opens the World of Aphasya wiki in your browser. The game keeps running.',
     confirmOpen: 'Open Wiki',
     confirmCancel: 'Cancel',
   },
@@ -374,21 +373,21 @@ export const hudChromeStrings = {
     },
   },
   wocStore: {
-    title: 'WOC Store',
-    close: 'Close WOC Store',
-    tabsLabel: 'WOC Store sections',
+    title: 'Aphasium Store',
+    close: 'Close Aphasium Store',
+    tabsLabel: 'Aphasium Store sections',
     storeTab: 'Store',
     rewardsTab: 'Daily Rewards',
-    loading: 'Loading WOC Store...',
-    error: 'The WOC Store is unavailable right now. Please try again shortly.',
-    balance: 'Claudium Balance',
-    buyClaudium: 'Purchase Claudium',
+    loading: 'Loading the Aphasium Store...',
+    error: 'The Aphasium Store is unavailable right now. Please try again shortly.',
+    balance: 'Aphasium Balance',
+    buyClaudium: 'Purchase Aphasium',
     owned: 'Owned',
-    needMoreTitle: 'More Claudium Required',
-    needMoreBody: 'You need {shortfall} more Claudium to purchase {item}.',
+    needMoreTitle: 'More Aphasium Required',
+    needMoreBody: 'You need {shortfall} more Aphasium to purchase {item}.',
     cancel: 'Cancel',
     confirmTitle: 'Confirm Cosmetic Purchase',
-    confirmBody: 'Purchase {item} for {cost} Claudium?',
+    confirmBody: 'Purchase {item} for {cost} Aphasium?',
     confirmPurchase: 'Purchase',
     priceChanged:
       'The price changed before the purchase completed. Review the refreshed price and confirm again.',
@@ -461,20 +460,20 @@ export const hudChromeStrings = {
   // economy service returns (balance, SKU credits, prices, store costs); it
   // computes nothing. One-way: buy with money, spend on cosmetics, never cashes out.
   claudium: {
-    title: 'Claudium',
-    open: 'Open Claudium',
-    close: 'Close Claudium',
-    loading: 'Loading Claudium...',
+    title: 'Aphasium',
+    open: 'Open Aphasium',
+    close: 'Close Aphasium',
+    loading: 'Loading Aphasium...',
     balanceLabel: 'Balance',
-    balanceUnit: '{amount} Claudium',
+    balanceUnit: '{amount} Aphasium',
     solBalance: 'SOL: {amount}',
     usdcBalance: 'USDC: {amount}',
     wocBalance: 'WOC: {amount}',
     unavailable:
-      'The Claudium store is unavailable right now. Your balance and purchases are unaffected; please check back shortly.',
+      'The Aphasium store is unavailable right now. Your balance and purchases are unaffected; please check back shortly.',
     disclosure:
-      'Claudium is a one-way soft currency: buy it with money and spend it on cosmetics. It cannot be redeemed, transferred, or cashed out.',
-    buyTitle: 'Buy Claudium',
+      'Aphasium is a one-way soft currency: buy it with money and spend it on cosmetics. It cannot be redeemed, transferred, or cashed out.',
+    buyTitle: 'Buy Aphasium',
     railLabel: 'Payment method',
     railStripe: 'Card',
     railSol: 'SOL',
@@ -484,9 +483,9 @@ export const hudChromeStrings = {
     railWocUnavailable: 'WOC pricing is unavailable right now.',
     railNativeUnavailable: 'Crypto off.',
     amountLabel: 'Amount',
-    showAmounts: 'Show all Claudium amounts',
-    hideAmounts: 'Hide extra Claudium amounts',
-    skuRow: '{usd} for {claudium} Claudium',
+    showAmounts: 'Show all Aphasium amounts',
+    hideAmounts: 'Hide extra Aphasium amounts',
+    skuRow: '{usd} for {claudium} Aphasium',
     // The pack price in the chosen crypto rail: the amount is a localized
     // number and the ticker is a template token, never a glued suffix (the
     // usd_text.ts rule for the USD arm, applied to the token arms).
@@ -497,7 +496,7 @@ export const hudChromeStrings = {
     buyUnavailable: 'Purchasing is unavailable right now.',
     storeTitle: 'Cosmetic Store',
     storeEmpty: 'No cosmetics are available right now.',
-    storeCost: '{amount} Claudium',
+    storeCost: '{amount} Aphasium',
     spendButton: 'Redeem',
     kindCosmetic: 'Cosmetic',
     kindSkin: 'Skin',
@@ -508,11 +507,11 @@ export const hudChromeStrings = {
     checkoutPending: 'Transaction in progress. Confirm in your wallet and keep this panel open.',
     checkoutPendingButton: 'Processing',
     checkoutFailed: 'Checkout could not be loaded. Please try again.',
-    checkoutUnavailable: 'That Claudium purchase is not available right now.',
-    checkoutWalletRequired: 'Connect a Solana wallet before buying Claudium with crypto.',
+    checkoutUnavailable: 'That Aphasium purchase is not available right now.',
+    checkoutWalletRequired: 'Connect a Solana wallet before buying Aphasium with crypto.',
     checkoutWalletUnsupported: 'This wallet cannot sign and send Solana transactions.',
     checkoutNotSettled:
-      'The transaction was sent but Claudium was not credited yet. Please try again shortly.',
+      'The transaction was sent but Aphasium was not credited yet. Please try again shortly.',
   },
   theme: {
     preset: 'UI Theme',
@@ -520,6 +519,7 @@ export const hudChromeStrings = {
     reset: 'Reset',
     presets: {
       classic: 'Classic Gold',
+      aphasya: 'Aphasya',
       midnight: 'Midnight',
       parchment: 'Parchment',
       highContrast: 'High Contrast',
@@ -1187,9 +1187,9 @@ export const hudChromeStrings = {
   },
   nativeUpdate: {
     title: 'Update Available',
-    body: 'A new version of World of ClaudeCraft is available. Update now for the latest fixes and improvements.',
+    body: 'A new version of World of Aphasya is available. Update now for the latest fixes and improvements.',
     bodyWithVersion:
-      'Version {version} of World of ClaudeCraft is available. Update now for the latest fixes and improvements.',
+      'Version {version} of World of Aphasya is available. Update now for the latest fixes and improvements.',
     notNow: 'Not now',
     update: 'Update',
   },
@@ -2067,8 +2067,8 @@ export const hudChromeStrings = {
       offline: 'Offline',
     },
     diagnostics: {
-      panelAria: 'World of ClaudeCraft performance diagnostics',
-      title: 'ClaudeCraft Performance Doctor',
+      panelAria: 'World of Aphasya performance diagnostics',
+      title: 'Aphasya Performance Doctor',
       subtitle: 'A game-specific scan with evidence and code-level fixes.',
       aria: {
         liveMeasurements: 'Live performance measurements',
@@ -2235,7 +2235,7 @@ export const hudChromeStrings = {
         },
       },
       report: {
-        title: 'World of ClaudeCraft performance diagnosis',
+        title: 'World of Aphasya performance diagnosis',
         statusLine: 'Status: {status} ({score}/100)',
         capturedLine: 'Captured: {captured}',
         topFindingLine: 'Top finding: {finding}',
@@ -3577,7 +3577,7 @@ export const hudChromeStrings = {
   },
   discord: {
     title: 'Discord',
-    panelTitle: 'World of ClaudeCraft',
+    panelTitle: 'World of Aphasya',
     open: 'Discord',
     close: 'Close',
     keybind: 'Discord Panel',
@@ -5335,7 +5335,7 @@ export const hudChromeStrings = {
     // sim.rift.raceWorldWin), and the reins come off the CLEAR, not one boss.
     sourceRift: 'Drops from {rank}-rank Rift clears',
     sourceQuest: 'Reward from the quest {quest}',
-    sourceStore: 'Purchased from the WOC Store',
+    sourceStore: 'Purchased from the Aphasium Store',
     // Award activities: the player action itself is the source, with no mob,
     // vendor, or quest in between.
     sourceActivityCorpseHarvest: 'Recovered while harvesting creature corpses',

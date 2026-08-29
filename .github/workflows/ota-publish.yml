@@ -2,7 +2,7 @@ name: OTA publish
 
 # Publishes a self-hosted OTA web bundle for the iOS/Android shells to the
 # update host (the Cloudflare R2 bucket that also serves desktop updates, under
-# https://updates.worldofclaudecraft.com/ota/). The full runbook is
+# https://updates.worldofaphasya.com/ota/). The full runbook is
 # docs/ota-updates.md.
 #
 # WHY THIS IS DISPATCH-ONLY, unlike Desktop publish which fires on a release tag:
@@ -86,7 +86,7 @@ jobs:
       # probe (rate limited, timed out) does NOT count as permission to publish.
       - name: Layout-epoch preflight against the live server
         if: ${{ !inputs.skip_server_check }}
-        run: node scripts/ota/check_server_layout.mjs wss://worldofclaudecraft.com/ws
+        run: node scripts/ota/check_server_layout.mjs wss://worldofaphasya.com/ws
 
       # Inputs go through env, never string-interpolated into the shell line.
       - name: Publish the bundle
@@ -104,7 +104,7 @@ jobs:
           AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
           OTA_S3_BUCKET: ${{ secrets.R2_BUCKET }}
           OTA_S3_PREFIX: ota
-          OTA_PUBLIC_BASE_URL: https://updates.worldofclaudecraft.com
+          OTA_PUBLIC_BASE_URL: https://updates.worldofaphasya.com
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
         run: |
           set -euo pipefail
@@ -128,7 +128,7 @@ jobs:
         run: |
           set -euo pipefail
           VERSION="$(node -p "require('./package.json').version")"
-          MANIFEST="https://updates.worldofclaudecraft.com/ota/latest.json"
+          MANIFEST="https://updates.worldofaphasya.com/ota/latest.json"
           echo "Expecting the update host and the game server to converge on ${VERSION}"
 
           published="$(curl -sSf --max-time 30 "${MANIFEST}" | jq -r .version)"
@@ -150,7 +150,7 @@ jobs:
           # healthy delta channel as a validation failure (the 0.37.0 deploy
           # false-alarmed on exactly this).
           for attempt in $(seq 1 12); do
-            offer="$(curl -sS --max-time 30 -X POST https://worldofclaudecraft.com/api/ota/updates \
+            offer="$(curl -sS --max-time 30 -X POST https://worldofaphasya.com/api/ota/updates \
               -H 'content-type: application/json' \
               -d '{"platform":"ios","version_name":"builtin","version_build":"0.0.1","plugin_version":"8.0.0"}')"
             offered="$(echo "${offer}" | jq -r '.version // empty')"

@@ -1,4 +1,4 @@
-# World of ClaudeCraft v0.28.0 Release Notes
+# World of Aphasya v0.28.0 Release Notes
 
 **Release:** v0.28.0
 **Date:** 2026-07-20

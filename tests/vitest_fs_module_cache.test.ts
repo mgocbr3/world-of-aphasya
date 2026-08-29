@@ -16,7 +16,7 @@ describe('Vitest fsModuleCache safety', () => {
 
   it('disables the experimental cache for the main OSS Brain checkout', () => {
     expect(
-      shouldDisableVitestFsModuleCache('/opt/ossbrain/work/world-of-claudecraft', {
+      shouldDisableVitestFsModuleCache('/opt/ossbrain/work/world-of-aphasya', {
         ORCH: '/opt/ossbrain',
       }),
     ).toBe(true);
@@ -24,7 +24,7 @@ describe('Vitest fsModuleCache safety', () => {
 
   it('keeps the cache enabled for an ordinary checkout outside automation', () => {
     expect(
-      shouldDisableVitestFsModuleCache(path.join(path.sep, 'home', 'dev', 'world-of-claudecraft'), {
+      shouldDisableVitestFsModuleCache(path.join(path.sep, 'home', 'dev', 'world-of-aphasya'), {
         ORCH: undefined,
         GAME_REPO: undefined,
         RUN_DIR: undefined,

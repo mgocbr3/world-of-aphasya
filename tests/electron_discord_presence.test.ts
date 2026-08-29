@@ -321,7 +321,7 @@ describe('discord candidate socket paths', () => {
 describe('discord app id resolution', () => {
   it('ships the official application id as the baked default', () => {
     // Pinned to the LITERAL, not through the constant production reads: the
-    // registration under the name "World of ClaudeCraft" carries exactly this
+    // registration under the name "World of Aphasya" carries exactly this
     // snowflake, and a drifted digit would dial a stranger's app while every
     // shape check stays green. Owner provisioning decision, 2026-08-15.
     expect(DEFAULT_DISCORD_APP_ID).toBe('1537920691200983141');

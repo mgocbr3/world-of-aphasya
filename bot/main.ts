@@ -1,4 +1,4 @@
-// World of ClaudeCraft Discord bot.
+// World of Aphasya Discord bot.
 //
 // Two-way bridge between the game and the official Discord server:
 //  - IN DISCORD: /whoami shows your link status, /link the connect instructions;
@@ -372,7 +372,7 @@ async function main(): Promise<void> {
             announced = true;
             void discord
               .createMessage(cfg.testChannelId, {
-                content: `:satellite: World of ClaudeCraft bot online and connected. Two-way sync active. Try \`/whoami\` or \`/link\`. Play at ${cfg.gameUrl}`,
+                content: `:satellite: World of Aphasya bot online and connected. Two-way sync active. Try \`/whoami\` or \`/link\`. Play at ${cfg.gameUrl}`,
               })
               .catch((e) => console.error('[bot] startup announce failed', e));
           }
@@ -844,7 +844,7 @@ async function main(): Promise<void> {
   // the reconnect-storm path this phase cares about.
   scheduler.startAll();
   gateway.connect(false);
-  console.log('[bot] World of ClaudeCraft Discord bot started');
+  console.log('[bot] World of Aphasya Discord bot started');
 }
 
 // ── small helpers ──────────────────────────────────────────────────────────────

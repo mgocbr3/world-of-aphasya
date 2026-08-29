@@ -48,7 +48,7 @@ describe('parseClientAttribution', () => {
       utmSource: 'facebook',
       utmCampaign: 'august_l5',
       utmMedium: 42,
-      landingUrl: 'https://worldofclaudecraft.com/?utm_source=facebook',
+      landingUrl: 'https://worldofaphasya.com/?utm_source=facebook',
       referrer: 'javascript:alert(1)',
       visitorId: 'a1b2c3d4e5f6a7b8',
     });
@@ -57,7 +57,7 @@ describe('parseClientAttribution', () => {
       utmSource: 'facebook',
       utmCampaign: 'august_l5',
       utmMedium: null,
-      landingUrl: 'https://worldofclaudecraft.com/?utm_source=facebook',
+      landingUrl: 'https://worldofaphasya.com/?utm_source=facebook',
       referrer: null,
       visitorId: 'a1b2c3d4e5f6a7b8',
     });

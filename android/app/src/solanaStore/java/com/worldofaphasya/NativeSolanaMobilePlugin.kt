@@ -1,4 +1,4 @@
-package com.worldofclaudecraft
+package com.worldofaphasya
 
 import android.content.Context
 import android.net.Uri
@@ -30,9 +30,9 @@ class NativeSolanaMobilePlugin : Plugin() {
     private var secureStorageReady = false
     private val walletAdapter = MobileWalletAdapter(
         connectionIdentity = ConnectionIdentity(
-            identityUri = Uri.parse("https://worldofclaudecraft.com"),
+            identityUri = Uri.parse("https://worldofaphasya.com"),
             iconUri = Uri.parse("favicon.ico"),
-            identityName = "World of ClaudeCraft",
+            identityName = "World of Aphasya",
         ),
     )
 

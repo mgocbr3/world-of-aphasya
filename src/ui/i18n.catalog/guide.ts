@@ -11,8 +11,8 @@
 
 export const guideStrings = {
   // Brand + shared chrome.
-  brand: 'World of ClaudeCraft',
-  brandShort: 'ClaudeCraft',
+  brand: 'World of Aphasya',
+  brandShort: 'Aphasya',
   tagline: 'A classic-style MMO you play free in your browser.',
   skipToContent: 'Skip to main content',
   loading: 'Loading...',
@@ -106,7 +106,7 @@ export const guideStrings = {
     github: 'Source on GitHub',
     discord: 'Join the Discord',
     communityWiki: 'Community Wiki',
-    rights: 'World of ClaudeCraft',
+    rights: 'World of Aphasya',
     linksLabel: 'Play and community links',
   },
 
@@ -139,7 +139,7 @@ export const guideStrings = {
   // Home / overview landing.
   home: {
     eyebrow: 'Classic-style browser MMO',
-    title: 'World of ClaudeCraft',
+    title: 'World of Aphasya',
     subtitle: 'Quest, group up, and explore a hand-built world, free in your browser.',
     ctaPlay: 'Play Now',
     ctaLearn: 'How to Play',
@@ -1568,7 +1568,7 @@ export const guideStrings = {
   worldPage: {
     heading: 'The world',
     intro:
-      "World of ClaudeCraft is one continuous land you cross on foot. The old road runs south to north through the starting valley, the marsh, and the peaks, and it keeps climbing past them into the hollow beyond and the snow country at the top of the map. A column of higher realms opens off that road to the west and another to the east, and an island sits off the Vale's east coast. There is no fast travel, no flight paths, and no taxis: every journey is walked or ridden, so getting there is part of the adventure.\n\nThe land also keeps time. A day and night cycle runs on a real clock shared by everyone on your world, so the sky grades from dawn through noon to dusk and dark for all of you at once, the moon comes and goes through its phases, and the light on the ground changes with it. The dial around your minimap is where you read the hour.",
+      "World of Aphasya is one continuous land you cross on foot. The old road runs south to north through the starting valley, the marsh, and the peaks, and it keeps climbing past them into the hollow beyond and the snow country at the top of the map. A column of higher realms opens off that road to the west and another to the east, and an island sits off the Vale's east coast. There is no fast travel, no flight paths, and no taxis: every journey is walked or ridden, so getting there is part of the adventure.\n\nThe land also keeps time. A day and night cycle runs on a real clock shared by everyone on your world, so the sky grades from dawn through noon to dusk and dark for all of you at once, the moon comes and goes through its phases, and the light on the ground changes with it. The dial around your minimap is where you read the hour.",
     hub: 'Home base',
     mapHeading: 'The road and the realms beyond',
     mapSub:

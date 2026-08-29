@@ -12,7 +12,7 @@ import { formatDateTime, t } from './i18n';
 // The public release-notes home. The character-select news panel renders its
 // "all releases" link with it, and the desktop update card's what's-new row
 // links it directly.
-export const GITHUB_RELEASES_URL = 'https://github.com/levy-street/world-of-claudecraft/releases';
+export const GITHUB_RELEASES_URL = 'https://github.com/mgocbr3/world-of-aphasya/releases';
 
 export interface NewsReleaseEntry {
   id: number;

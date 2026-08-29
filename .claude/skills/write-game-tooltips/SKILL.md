@@ -1,6 +1,6 @@
 ---
 name: write-game-tooltips
-description: Write or review World of ClaudeCraft spell, talent, aura, item, and mechanic tooltips in plain English. Use whenever player-facing tooltip text is added, changed, audited, or found to be vague, especially when damage, healing, duration, stacks, targets, resources, or Attack Power and Spell Power scaling must match live code.
+description: Write or review World of Aphasya spell, talent, aura, item, and mechanic tooltips in plain English. Use whenever player-facing tooltip text is added, changed, audited, or found to be vague, especially when damage, healing, duration, stacks, targets, resources, or Attack Power and Spell Power scaling must match live code.
 user-invocable: true
 ---
 

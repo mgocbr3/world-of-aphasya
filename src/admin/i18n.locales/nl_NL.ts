@@ -227,7 +227,7 @@ export const nl_NL: Record<string, string> = {
   'usage.metric.githubLinkFailure': 'Mislukte GitHub-koppelingen',
   'usage.metric.githubLinkRateLimited': 'Beperkte GitHub-koppelingsverzoeken',
   'usage.metric.githubLinkRequest': 'GitHub-koppelingsverzoeken',
-  'app.title': 'World of ClaudeCraft - Beheer',
+  'app.title': 'World of Aphasya - Beheer',
   'app.shortTitle': 'WoC-beheerder',
   'auth.username': 'Gebruikersnaam',
   'auth.password': 'Wachtwoord',

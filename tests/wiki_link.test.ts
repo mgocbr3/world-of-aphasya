@@ -13,11 +13,11 @@ afterEach(() => {
 
 describe('resolveWikiUrl', () => {
   it('stays same-origin on any http(s) deploy, so a dev deploy links its own wiki', () => {
-    expect(resolveWikiUrl({ nativeApp: false, origin: 'https://dev.worldofclaudecraft.com' })).toBe(
-      'https://dev.worldofclaudecraft.com/wiki/',
+    expect(resolveWikiUrl({ nativeApp: false, origin: 'https://dev.worldofaphasya.com' })).toBe(
+      'https://dev.worldofaphasya.com/wiki/',
     );
-    expect(resolveWikiUrl({ nativeApp: false, origin: 'https://worldofclaudecraft.com' })).toBe(
-      'https://worldofclaudecraft.com/wiki/',
+    expect(resolveWikiUrl({ nativeApp: false, origin: 'https://worldofaphasya.com' })).toBe(
+      'https://worldofaphasya.com/wiki/',
     );
     expect(resolveWikiUrl({ nativeApp: false, origin: 'http://localhost:5173' })).toBe(
       'http://localhost:5173/wiki/',
@@ -31,21 +31,21 @@ describe('resolveWikiUrl', () => {
     );
     expect(resolveWikiUrl({ nativeApp: false, origin: 'file://' })).toBe(CANONICAL_WIKI_URL);
     expect(resolveWikiUrl({ nativeApp: false, origin: '' })).toBe(CANONICAL_WIKI_URL);
-    // The PACKAGED desktop shell loads app://worldofclaudecraft, not the live
+    // The PACKAGED desktop shell loads app://worldofaphasya, not the live
     // site: not an http(s) origin, so it takes the canonical URL too.
-    expect(resolveWikiUrl({ nativeApp: false, origin: 'app://worldofclaudecraft' })).toBe(
+    expect(resolveWikiUrl({ nativeApp: false, origin: 'app://worldofaphasya' })).toBe(
       CANONICAL_WIKI_URL,
     );
   });
 
   it('pins the canonical wiki URL to its literal', () => {
-    expect(CANONICAL_WIKI_URL).toBe('https://worldofclaudecraft.com/wiki/');
+    expect(CANONICAL_WIKI_URL).toBe('https://worldofaphasya.com/wiki/');
   });
 });
 
 describe('promptWikiVisit', () => {
   it('asks with the wiki dialog copy and opens the resolved URL only on OK', () => {
-    vi.stubGlobal('location', { origin: 'https://dev.worldofclaudecraft.com' });
+    vi.stubGlobal('location', { origin: 'https://dev.worldofaphasya.com' });
     const openUrl = vi.fn();
     const confirm = vi.fn();
     promptWikiVisit({ confirm, openUrl });
@@ -54,7 +54,7 @@ describe('promptWikiVisit', () => {
     const [title, body, okText, cancelText, onOk] = confirm.mock.calls[0];
     expect(title).toBe('Open the Wiki?');
     expect(body).toBe(
-      'This opens the World of ClaudeCraft wiki in your browser. The game keeps running.',
+      'This opens the World of Aphasya wiki in your browser. The game keeps running.',
     );
     expect(okText).toBe('Open Wiki');
     expect(cancelText).toBe('Cancel');
@@ -63,7 +63,7 @@ describe('promptWikiVisit', () => {
     expect(openUrl).not.toHaveBeenCalled();
     (onOk as () => void)();
     expect(openUrl).toHaveBeenCalledTimes(1);
-    expect(openUrl).toHaveBeenCalledWith('https://dev.worldofclaudecraft.com/wiki/');
+    expect(openUrl).toHaveBeenCalledWith('https://dev.worldofaphasya.com/wiki/');
   });
 
   it('a dismissed dialog (onOk never fired) opens nothing', () => {

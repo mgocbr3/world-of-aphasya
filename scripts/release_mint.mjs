@@ -36,7 +36,7 @@ import {
   requiredChecksCoverage,
 } from './lib/release_mint.mjs';
 
-const OWNER_REPO = 'levy-street/world-of-claudecraft';
+const OWNER_REPO = 'mgocbr3/world-of-aphasya';
 const REQUIRED_CHECKS_RULESET = 20533396;
 const MERGE_QUEUE_RULESET = 20533398;
 

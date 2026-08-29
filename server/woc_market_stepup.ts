@@ -244,7 +244,7 @@ export function buildStepUpMessage(opts: {
           `Agreed price: ${usd(b.usdCents)}`,
         ];
   return [
-    'World of ClaudeCraft $WOC Exchange: authorize moving an item into escrow.',
+    'World of Aphasya $WOC Exchange: authorize moving an item into escrow.',
     '',
     ...action,
     '',

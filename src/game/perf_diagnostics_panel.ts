@@ -568,7 +568,7 @@ export class PerfDiagnosticsPanel {
     if (!text) return;
     const write = navigator.clipboard?.writeText(text);
     if (!write) {
-      console.info('World of ClaudeCraft diagnosis:', text);
+      console.info('World of Aphasya diagnosis:', text);
       this.copyButton.textContent = t('hudChrome.perf.diagnostics.controls.reportLogged');
       window.setTimeout(() => {
         this.copyButton.textContent = t('hudChrome.perf.diagnostics.controls.copyReport');
@@ -583,7 +583,7 @@ export class PerfDiagnosticsPanel {
         }, 1400);
       },
       () => {
-        console.info('World of ClaudeCraft diagnosis:', text);
+        console.info('World of Aphasya diagnosis:', text);
         this.copyButton.textContent = t('hudChrome.perf.diagnostics.controls.copyBlocked');
         window.setTimeout(() => {
           this.copyButton.textContent = t('hudChrome.perf.diagnostics.controls.copyReport');
@@ -598,7 +598,7 @@ export class PerfDiagnosticsPanel {
     const url = URL.createObjectURL(new Blob([text], { type: 'text/markdown' }));
     const anchor = el('a');
     anchor.href = url;
-    anchor.download = `claudecraft-performance-${new Date().toISOString().replace(/[:.]/g, '-')}.md`;
+    anchor.download = `aphasya-performance-${new Date().toISOString().replace(/[:.]/g, '-')}.md`;
     anchor.style.display = 'none';
     document.body.appendChild(anchor);
     anchor.click();

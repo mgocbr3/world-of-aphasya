@@ -1,7 +1,7 @@
 {
-  "body": "{\"releases\":[],\"repo\":\"levy-street/world-of-claudecraft\"}",
+  "body": "{\"releases\":[],\"repo\":\"mgocbr3/world-of-aphasya\"}",
   "headers": {
-    "content-length": 57,
+    "content-length": 49,
     "content-type": "application/json",
     "cross-origin-opener-policy": "same-origin",
     "cross-origin-resource-policy": "same-origin",

@@ -362,7 +362,7 @@ export const fr_FR: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "Ouvrir le wiki ?",
-      "confirmBody": "Cela ouvre le wiki de World of ClaudeCraft dans votre navigateur. Le jeu continue de tourner.",
+      "confirmBody": "Cela ouvre le wiki de World of Aphasya dans votre navigateur. Le jeu continue de tourner.",
       "confirmOpen": "Ouvrir le wiki",
       "confirmCancel": "Annuler"
     },
@@ -565,21 +565,21 @@ export const fr_FR: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "Boutique WOC",
+      "title": "Boutique Aphasium",
       "close": "Fermer la boutique WOC",
       "tabsLabel": "Sections de la boutique WOC",
       "storeTab": "Boutique",
       "rewardsTab": "Récompenses quotidiennes",
       "loading": "Chargement de la boutique WOC...",
       "error": "La boutique WOC est indisponible pour le moment. Veuillez réessayer dans quelques instants.",
-      "balance": "Solde de Claudium",
-      "buyClaudium": "Acheter du Claudium",
+      "balance": "Solde de Aphasium",
+      "buyClaudium": "Acheter du Aphasium",
       "owned": "Possédée",
-      "needMoreTitle": "Claudium supplémentaire requis",
-      "needMoreBody": "Il vous faut encore {shortfall} Claudium pour acheter {item}.",
+      "needMoreTitle": "Aphasium supplémentaire requis",
+      "needMoreBody": "Il vous faut encore {shortfall} Aphasium pour acheter {item}.",
       "cancel": "Annuler",
       "confirmTitle": "Confirmer l’achat de l’objet cosmétique",
-      "confirmBody": "Acheter {item} pour {cost} Claudium ?",
+      "confirmBody": "Acheter {item} pour {cost} Aphasium ?",
       "confirmPurchase": "Acheter",
       "priceChanged": "Le prix a changé avant la fin de l’achat. Vérifiez le nouveau prix, puis confirmez à nouveau.",
       "armoryEyebrow": "Saison 1",
@@ -792,18 +792,18 @@ export const fr_FR: EnTranslations = {
       "equipHint": "Équipez-vous d’un objet de type {type} pour appliquer cette apparence."
     },
     "claudium": {
-      "title": "Claudium",
-      "open": "Ouvrir le Claudium",
-      "close": "Fermer le Claudium",
-      "loading": "Chargement du Claudium...",
+      "title": "Aphasium",
+      "open": "Ouvrir le Aphasium",
+      "close": "Fermer le Aphasium",
+      "loading": "Chargement du Aphasium...",
       "balanceLabel": "Solde",
-      "balanceUnit": "{amount} Claudium",
+      "balanceUnit": "{amount} Aphasium",
       "solBalance": "SOL : {amount}",
       "usdcBalance": "USDC : {amount}",
       "wocBalance": "WOC : {amount}",
-      "unavailable": "La boutique de Claudium est indisponible pour le moment. Votre solde et vos achats ne sont pas affectés. Veuillez revenir dans quelques instants.",
-      "disclosure": "Le Claudium est une monnaie virtuelle à sens unique : achetez-en avec de l’argent et dépensez-le en objets cosmétiques. Il ne peut être ni remboursé, ni transféré, ni converti en argent.",
-      "buyTitle": "Acheter du Claudium",
+      "unavailable": "La boutique de Aphasium est indisponible pour le moment. Votre solde et vos achats ne sont pas affectés. Veuillez revenir dans quelques instants.",
+      "disclosure": "Le Aphasium est une monnaie virtuelle à sens unique : achetez-en avec de l’argent et dépensez-le en objets cosmétiques. Il ne peut être ni remboursé, ni transféré, ni converti en argent.",
+      "buyTitle": "Acheter du Aphasium",
       "railLabel": "Mode de paiement",
       "railStripe": "Carte",
       "railSol": "SOL",
@@ -813,9 +813,9 @@ export const fr_FR: EnTranslations = {
       "railWocUnavailable": "Les prix en WOC sont indisponibles pour le moment.",
       "railNativeUnavailable": "SOL/WOC désactivé.",
       "amountLabel": "Montant",
-      "showAmounts": "Afficher tous les montants de Claudium",
-      "hideAmounts": "Masquer les montants de Claudium supplémentaires",
-      "skuRow": "{claudium} Claudium pour {usd}",
+      "showAmounts": "Afficher tous les montants de Aphasium",
+      "hideAmounts": "Masquer les montants de Aphasium supplémentaires",
+      "skuRow": "{claudium} Aphasium pour {usd}",
       "priceSol": "{amount} SOL",
       "priceUsdc": "{amount} USDC",
       "priceWoc": "{amount} WOC",
@@ -823,7 +823,7 @@ export const fr_FR: EnTranslations = {
       "buyUnavailable": "Les achats sont indisponibles pour le moment.",
       "storeTitle": "Boutique d’objets cosmétiques",
       "storeEmpty": "Aucun objet cosmétique n’est disponible pour le moment.",
-      "storeCost": "{amount} Claudium",
+      "storeCost": "{amount} Aphasium",
       "spendButton": "Échanger",
       "kindCosmetic": "Objet cosmétique",
       "kindSkin": "Apparence",
@@ -834,10 +834,10 @@ export const fr_FR: EnTranslations = {
       "checkoutPending": "Transaction en cours. Confirmez-la dans votre portefeuille et gardez ce panneau ouvert.",
       "checkoutPendingButton": "Traitement en cours",
       "checkoutFailed": "Impossible de charger le paiement. Veuillez réessayer.",
-      "checkoutUnavailable": "Cet achat de Claudium est indisponible pour le moment.",
-      "checkoutWalletRequired": "Connectez un portefeuille Solana avant d’acheter du Claudium avec des cryptomonnaies.",
+      "checkoutUnavailable": "Cet achat de Aphasium est indisponible pour le moment.",
+      "checkoutWalletRequired": "Connectez un portefeuille Solana avant d’acheter du Aphasium avec des cryptomonnaies.",
       "checkoutWalletUnsupported": "Ce portefeuille ne peut ni signer ni envoyer de transactions Solana.",
-      "checkoutNotSettled": "La transaction a été envoyée, mais le Claudium n’a pas encore été crédité. Veuillez réessayer dans quelques instants."
+      "checkoutNotSettled": "La transaction a été envoyée, mais le Aphasium n’a pas encore été crédité. Veuillez réessayer dans quelques instants."
     },
     "theme": {
       "preset": "Thème de l'interface",
@@ -845,6 +845,7 @@ export const fr_FR: EnTranslations = {
       "reset": "Réinitialiser",
       "presets": {
         "classic": "Or classique",
+        "aphasya": "Aphasya",
         "midnight": "Minuit",
         "parchment": "Parchemin",
         "highContrast": "Contraste élevé"
@@ -1141,8 +1142,8 @@ export const fr_FR: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Mise à jour disponible",
-      "body": "Une nouvelle version de World of ClaudeCraft est disponible. Mettez à jour maintenant pour les derniers correctifs et améliorations.",
-      "bodyWithVersion": "La version {version} de World of ClaudeCraft est disponible. Mettez à jour maintenant pour les derniers correctifs et améliorations.",
+      "body": "Une nouvelle version de World of Aphasya est disponible. Mettez à jour maintenant pour les derniers correctifs et améliorations.",
+      "bodyWithVersion": "La version {version} de World of Aphasya est disponible. Mettez à jour maintenant pour les derniers correctifs et améliorations.",
       "notNow": "Pas maintenant",
       "update": "Mettre à jour"
     },
@@ -1685,8 +1686,8 @@ export const fr_FR: EnTranslations = {
         "offline": "Hors ligne"
       },
       "diagnostics": {
-        "panelAria": "Diagnostics de performance de World of ClaudeCraft",
-        "title": "Docteur des performances ClaudeCraft",
+        "panelAria": "Diagnostics de performance de World of Aphasya",
+        "title": "Docteur des performances Aphasya",
         "subtitle": "Un scan spécifique au jeu avec preuves et corrections au niveau du code.",
         "aria": {
           "liveMeasurements": "Mesures de performance en direct",
@@ -1834,7 +1835,7 @@ export const fr_FR: EnTranslations = {
           }
         },
         "report": {
-          "title": "Diagnostic de performance de World of ClaudeCraft",
+          "title": "Diagnostic de performance de World of Aphasya",
           "statusLine": "État : {status} ({score}/100)",
           "capturedLine": "Capturé : {captured}",
           "topFindingLine": "Constatation principale : {finding}",
@@ -2742,7 +2743,7 @@ export const fr_FR: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "World of Aphasya",
       "open": "Discord",
       "close": "Fermer",
       "keybind": "Panneau Discord",
@@ -3897,7 +3898,7 @@ export const fr_FR: EnTranslations = {
       "sourceDelve": "Trouvée dans la plongée {delve}",
       "sourceRift": "Butin des conquêtes de Failles de rang {rank}",
       "sourceQuest": "Récompense de la quête {quest}",
-      "sourceStore": "Achetée dans la Boutique WOC",
+      "sourceStore": "Achetée dans la Boutique Aphasium",
       "sourceActivityCorpseHarvest": "Récupérée en récoltant des cadavres de créatures",
       "sourceActivityMasterworkCraft": "Obtenue en fabriquant un chef-d'œuvre",
       "sourceActivityRiftFirstClear": "Attribuée à chaque membre du groupe qui remporte la première conquête d'une Faille classée",
@@ -4438,8 +4439,8 @@ export const fr_FR: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "World of Aphasya",
+    "brandShort": "Aphasya",
     "tagline": "Un MMO de style classique auquel vous jouez gratuitement dans votre navigateur.",
     "skipToContent": "Aller au contenu principal",
     "loading": "Chargement...",
@@ -4514,7 +4515,7 @@ export const fr_FR: EnTranslations = {
       "github": "Code source sur GitHub",
       "discord": "Rejoindre le Discord",
       "communityWiki": "Wiki communautaire",
-      "rights": "World of ClaudeCraft",
+      "rights": "World of Aphasya",
       "linksLabel": "Liens de jeu et de communauté"
     },
     "language": {
@@ -4539,7 +4540,7 @@ export const fr_FR: EnTranslations = {
     },
     "home": {
       "eyebrow": "MMO de style classique sur navigateur",
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "subtitle": "Partez en quête, formez un groupe et explorez un monde façonné à la main, gratuitement dans votre navigateur.",
       "ctaPlay": "Jouer maintenant",
       "ctaLearn": "Comment jouer",
@@ -5161,7 +5162,7 @@ export const fr_FR: EnTranslations = {
       "ridingDef": "La compétence qui vous permet tout simplement de monter. Vous l'achetez une fois pour toutes auprès d'une maîtresse d'écurie au niveau 20, et elle reste ensuite acquise à votre personnage pour toujours.",
       "reinsTerm": "Rênes",
       "reinsDef": "L'objet qui constitue une monture. Gardez une paire dans vos sacs ou votre banque et cette monture est à vous ; utilisez-la pour chevaucher. Les rênes peuvent être échangées, envoyées par courrier et vendues à d'autres joueurs.",
-      "claudiumTerm": "Claudium",
+      "claudiumTerm": "Aphasium",
       "claudiumDef": "La monnaie de la boutique WOC, dépensée uniquement en cosmétiques. Elle n'achète jamais de puissance ni de progression.",
       "worldTerm": "Monde",
       "worldDef": "Une copie partagée du jeu en ligne, avec ses propres joueurs, son marché et ses classements. Ce guide l'appelle aussi un royaume, et votre personnage vit sur le monde où vous l'avez créé."
@@ -5478,7 +5479,7 @@ export const fr_FR: EnTranslations = {
     },
     "worldPage": {
       "heading": "Le monde",
-      "intro": "World of ClaudeCraft est une terre continue que vous traversez à pied. La vieille route va du sud au nord à travers la vallée de départ, le marais et les pics, et elle continue de grimper au-delà, jusqu'au vallon suivant et au pays de neige en haut de la carte. Une colonne de royaumes plus élevés s'ouvre à l'ouest de cette route et une autre à l'est, et une île se trouve au large de la côte est du Val. Il n'y a ni voyage rapide, ni routes aériennes, ni diligences : chaque trajet se fait à pied ou en monture, l'arrivée fait donc partie de l'aventure.\n\nLa terre garde aussi le temps. Un cycle jour-nuit tourne sur une horloge réelle partagée par tous ceux de votre monde, si bien que le ciel passe de l'aube à midi puis au crépuscule et à la nuit pour vous tous en même temps, la lune va et vient au fil de ses phases, et la lumière au sol change avec elle. Le cadran autour de votre minicarte est là où vous lisez l'heure.",
+      "intro": "World of Aphasya est une terre continue que vous traversez à pied. La vieille route va du sud au nord à travers la vallée de départ, le marais et les pics, et elle continue de grimper au-delà, jusqu'au vallon suivant et au pays de neige en haut de la carte. Une colonne de royaumes plus élevés s'ouvre à l'ouest de cette route et une autre à l'est, et une île se trouve au large de la côte est du Val. Il n'y a ni voyage rapide, ni routes aériennes, ni diligences : chaque trajet se fait à pied ou en monture, l'arrivée fait donc partie de l'aventure.\n\nLa terre garde aussi le temps. Un cycle jour-nuit tourne sur une horloge réelle partagée par tous ceux de votre monde, si bien que le ciel passe de l'aube à midi puis au crépuscule et à la nuit pour vous tous en même temps, la lune va et vient au fil de ses phases, et la lumière au sol change avec elle. Le cadran autour de votre minicarte est là où vous lisez l'heure.",
       "hub": "Camp de base",
       "mapHeading": "La route et les royaumes au-delà",
       "mapSub": "La piste des quêtes va du sud au nord par le milieu de la carte : la vallée, le marais, les pics, et au-delà jusqu'au vallon et à la neige. Les autres royaumes s'ouvrent le long de cette route plutôt qu'après elle, par des portes à l'est et à l'ouest de la route du marais, l'île de Farshore se rejoignant depuis la côte est du Val. Ce qui vous tient à l'écart des royaumes lointains, ce sont leurs plages de niveau, pas la marche : cinq d'entre eux partagent la plage la plus haute, donc une fois prêt vous pouvez les prendre dans l'ordre qui vous plaît. Farshore fait exception : un pays de bas niveau que vous pouvez visiter tôt.",
@@ -6473,7 +6474,7 @@ export const fr_FR: EnTranslations = {
   },
   "editor": {
     "appTitle": "Éditeur de cartes",
-    "docTitle": "Éditeur de cartes - World of ClaudeCraft",
+    "docTitle": "Éditeur de cartes - World of Aphasya",
     "untitledMap": "Carte sans titre",
     "playtestPlayerName": "Cartographe",
     "topbar": {
@@ -6950,10 +6951,9 @@ export const fr_FR: EnTranslations = {
     "realmName": "Nom du monde"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 World of Aphasya",
+    "githubLink": "https://github.com/levy-street/world-of-aphasya",
     "githubLabel": "Projet open source",
-    "whitepaper": "Livre blanc",
     "terms": "Conditions d'utilisation",
     "privacy": "Politique de confidentialité",
     "discordLabel": "Rejoindre le Discord"
@@ -6977,7 +6977,7 @@ export const fr_FR: EnTranslations = {
     "desc": "Lisez les dernières notes de mise à jour, les événements et les nouvelles de la communauté.",
     "loading": "Chargement des dernières mises à jour...",
     "error": "Impossible de charger les mises à jour. Réessayez plus tard.",
-    "empty": "Aucune mise à jour pour l'instant ; revenez bientôt.",
+    "empty": "No updates yet — check back soon.",
     "prerelease": "Préversion",
     "viewOnGithub": "Voir sur GitHub",
     "new": "Nouveau",
@@ -7005,16 +7005,13 @@ export const fr_FR: EnTranslations = {
     "offlineAria": "Jouer hors ligne: démarrer une session solo locale instantanée",
     "tipTitle": "CONSEIL:",
     "tipText": "Pour une expérience optimale, désactivez les extensions de blocage de publicité sur ce site. Certains bloqueurs peuvent causer des latences.",
-    "serverOnline": "En ligne",
-    "serverOffline": "Hors ligne",
-    "play": "Jouer",
-    "playAria": "Jouer à World of ClaudeCraft",
-    "serverLabel": "Choisissez votre monde",
-    "serverAria": "Choisir le monde : En ligne ou Hors ligne",
-    "serverOfflineSub": "Monde local instantané",
-    "caLabel": "Adresse du contrat $WOC",
-    "caCopyAria": "Copier l'adresse du contrat",
-    "caNote": "WOC est notre jeton communautaire. Il n'est pas nécessaire pour jouer. Rejoignez le Discord pour discuter de l'utilité et de la dynamique du WOC."
+    "serverOnline": "Online",
+    "serverOffline": "Offline",
+    "play": "Play",
+    "playAria": "Play World of Aphasya",
+    "serverLabel": "Choose your world",
+    "serverAria": "Select world: Online or Offline",
+    "serverOfflineSub": "Instant local world"
   },
   "auth": {
     "enterRealm": "Entrer dans le monde",
@@ -7334,12 +7331,12 @@ export const fr_FR: EnTranslations = {
     "extensionHelp": "Pour voir un portefeuille ici, gardez active une extension de portefeuille de navigateur telle que Solflare Wallet.",
     "mobileAppHelp": "Choisissez Phantom ou Solflare. Votre application de portefeuille demandera une approbation. Gardez ce jeu ouvert et revenez-y une fois terminé.",
     "seekerAppHelp": "Continuez avec Seed Vault Wallet. Examinez les demandes de connexion et de vérification dans Seed Vault, puis revenez au jeu.",
-    "standaloneAppHelp": "Les connexions de portefeuille ne sont pas encore disponibles dans l'application de l'écran d'accueil. Ouvrez World of ClaudeCraft dans Safari ou Chrome pour utiliser Phantom ou Solflare.",
+    "standaloneAppHelp": "Les connexions de portefeuille ne sont pas encore disponibles dans l'application de l'écran d'accueil. Ouvrez World of Aphasya dans Safari ou Chrome pour utiliser Phantom ou Solflare.",
     "openAppTitle": "Continuer dans {wallet}",
     "openAppHelp": "Ouvrez {wallet} pour examiner cette demande. Gardez cet onglet de jeu ouvert pendant que l'application de portefeuille est active.",
     "openAppButton": "Ouvrir {wallet}",
     "manualReturnBrowserHelp": "Après approbation, revenez à cet onglet de jeu. Si iOS ouvre un autre navigateur, fermez-le et revenez manuellement au navigateur d'origine.",
-    "manualReturnStandaloneHelp": "Après approbation, revenez à World of ClaudeCraft depuis votre écran d'accueil. Si iOS ouvre un navigateur, fermez-le et rouvrez manuellement l'application de l'écran d'accueil.",
+    "manualReturnStandaloneHelp": "Après approbation, revenez à World of Aphasya depuis votre écran d'accueil. Si iOS ouvre un navigateur, fermez-le et rouvrez manuellement l'application de l'écran d'accueil.",
     "preparingAppButton": "Préparation de {wallet}...",
     "walletAppUnavailable": "{wallet} n'a pas pu être préparé. Fermez cette fenêtre et réessayez.",
     "flowConnect": "Choisissez un portefeuille. La vérification continue automatiquement.",
@@ -7354,12 +7351,12 @@ export const fr_FR: EnTranslations = {
       "linkBody": "Choisissez une extension de portefeuille dans ce navigateur. Vous signerez un message de vérification, puis retournerez dans l'application de bureau.",
       "paymentBody": "Choisissez le portefeuille lié à votre compte et approuvez la transaction dans ce navigateur.",
       "extensionHelp": "Aucune extension de portefeuille compatible n'a été trouvée. Installez ou déverrouillez Phantom, Solflare ou un autre portefeuille Solana pour navigateur, puis réessayez.",
-      "safety": "World of ClaudeCraft ne vous demande jamais votre phrase de récupération ni votre clé privée.",
+      "safety": "World of Aphasya ne vous demande jamais votre phrase de récupération ni votre clé privée.",
       "continueWith": "Continuer avec {wallet}",
       "reviewTitle": "Vérifier dans votre portefeuille",
       "reviewBody": "Suivez l'invite de {wallet}. Gardez cette page de navigateur ouverte.",
       "completeTitle": "Autorisation du portefeuille effectuée",
-      "completeBody": "Vous pouvez retourner dans l'application de bureau World of ClaudeCraft.",
+      "completeBody": "Vous pouvez retourner dans l'application de bureau World of Aphasya.",
       "returnButton": "Retourner dans l'application de bureau",
       "failed": "L'autorisation du portefeuille a échoué ou a expiré. Retournez dans l'application de bureau et réessayez.",
       "retry": "Réessayer"
@@ -7457,7 +7454,7 @@ export const fr_FR: EnTranslations = {
     "levelClass": "Niveau {level} - {className}",
     "topPercent": "TOP {percent} %",
     "realmSubtitle": "Monde {realm}",
-    "defaultRealm": "Monde de ClaudeCraft",
+    "defaultRealm": "Monde de Aphasya",
     "brandWordmark": "WORLD OF CLAUDECRAFT",
     "recruited": "{count} recrutés",
     "footerHandle": "@{handle}",
@@ -7465,8 +7462,8 @@ export const fr_FR: EnTranslations = {
     "footerCta": "Forgez votre légende: {siteUrl}",
     "arenaStat": "Arène",
     "shareTierBit": ", détenteur $WOC de rang {tier}",
-    "shareText": "Je forge ma légende dans World of ClaudeCraft : niveau {level} {className}{tierBit}. Rejoignez mon monde :",
-    "nativeShareTitle": "Monde de ClaudeCraft",
+    "shareText": "Je forge ma légende dans World of Aphasya : niveau {level} {className}{tierBit}. Rejoignez mon monde :",
+    "nativeShareTitle": "Monde de Aphasya",
     "fileNameFallback": "joueur",
     "actionShareX": "Partager sur X",
     "actionCopyReferral": "Copier le lien d'invitation",
@@ -8164,14 +8161,14 @@ export const fr_FR: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: MMO web de style classique",
-    "description": "Partez pour une aventure épique dans World of ClaudeCraft, un micro-MMO au style classique jouable directement dans votre navigateur. Rejoignez un monde persistant, progressez en classe et terrassez vos ennemis.",
+    "title": "World of Aphasya: MMO web de style classique",
+    "description": "Partez pour une aventure épique dans World of Aphasya, un micro-MMO au style classique jouable directement dans votre navigateur. Rejoignez un monde persistant, progressez en classe et terrassez vos ennemis.",
     "genre": "MMORPG",
     "playMode": "Multijoueur",
     "applicationCategory": "Jeu",
     "operatingSystem": "Navigateur web",
-    "officialLabel": "Site officiel de World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com est le MMO gratuit officiel sur navigateur du monde Claudemoon. Jouez en ligne avec un personnage persistant, explorez en solo hors ligne, lisez le wiki et suivez les liens communautaires vérifiés depuis ce site."
+    "officialLabel": "Site officiel de World of Aphasya",
+    "officialBody": "worldofaphasya.com est le MMO gratuit officiel sur navigateur du monde Claudemoon. Jouez en ligne avec un personnage persistant, explorez en solo hors ligne, lisez le wiki et suivez les liens communautaires vérifiés depuis ce site."
   },
   "a11y": {
     "goHome": "Aller à l'accueil",
@@ -8179,9 +8176,9 @@ export const fr_FR: EnTranslations = {
     "mainNavigation": "Navigation principale",
     "languageSelection": "Sélection de la langue",
     "characterActions": "Actions de personnage",
-    "githubProject": "Ouvrir le projet World of ClaudeCraft sur GitHub",
-    "discordCommunity": "Rejoindre la communauté World of ClaudeCraft sur Discord",
-    "donateProject": "Faire un don pour soutenir World of ClaudeCraft"
+    "githubProject": "Ouvrir le projet World of Aphasya sur GitHub",
+    "discordCommunity": "Rejoindre la communauté World of Aphasya sur Discord",
+    "donateProject": "Faire un don pour soutenir World of Aphasya"
   },
   "entryGuard": {
     "title": "Graphismes réduits",
@@ -8272,16 +8269,16 @@ export const fr_FR: EnTranslations = {
     "notify": {
       "updateReadyTitle": "La mise à jour {version} est prête",
       "updateReadyTitleNoVersion": "La mise à jour est prête",
-      "updateReadyBody": "Redémarrez World of ClaudeCraft pour appliquer la mise à jour.",
+      "updateReadyBody": "Redémarrez World of Aphasya pour appliquer la mise à jour.",
       "partyInviteTitle": "Invitation de groupe",
       "partyInviteBody": "{name} vous invite à rejoindre son groupe."
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "body": "L'affichage du jeu a cessé de fonctionner. Le recharger ?",
       "reload": "Recharger",
       "quit": "Quitter",
-      "fatalBody": "World of ClaudeCraft a rencontré une erreur inattendue et doit se fermer."
+      "fatalBody": "World of Aphasya a rencontré une erreur inattendue et doit se fermer."
     },
     "titlebar": {
       "exitGame": "Quitter le jeu"
@@ -8433,17 +8430,17 @@ export const fr_FR: EnTranslations = {
     "iosStandaloneDetail": "Vous êtes en mode plein écran depuis l'écran d'accueil. Gardez l'appareil en paysage.",
     "iosInstallDetail": "Pour un vrai plein écran sur iPhone ou iPad, ajoutez d'abord cette page à l'écran d'accueil.",
     "iosShareStep": "Dans Safari, touchez Partager, puis Ajouter à l'écran d'accueil.",
-    "iosOpenStep": "Ouvrez World of ClaudeCraft depuis la nouvelle icône de l'écran d'accueil.",
+    "iosOpenStep": "Ouvrez World of Aphasya depuis la nouvelle icône de l'écran d'accueil.",
     "androidStandaloneDetail": "Vous êtes en mode application plein écran. Gardez l'appareil en paysage.",
     "androidInstallDetail": "Pour le plein écran sur Android, installez cette page ou ajoutez-la à l'écran d'accueil.",
     "androidInstallStep": "Dans Chrome, ouvrez le menu, puis Installer l'application ou Ajouter à l'écran d'accueil.",
-    "androidOpenStep": "Ouvrez World of ClaudeCraft depuis la nouvelle icône.",
+    "androidOpenStep": "Ouvrez World of Aphasya depuis la nouvelle icône.",
     "otherStandaloneDetail": "Gardez votre appareil en plein écran paysage.",
     "otherInstallDetail": "Installez ou ajoutez cette page à votre écran d'accueil pour la meilleure expérience mobile plein écran."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Monde indisponible",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "World of Aphasya - Monde indisponible",
+    "logoAlt": "World of Aphasya",
     "eyebrow": "Maintenance du monde",
     "heading": "Le monde est temporairement indisponible.",
     "body": "Nous redémarrons le service de jeu et Claudemoon devrait revenir bientôt. Cette page continuera de vérifier automatiquement.",

@@ -227,7 +227,7 @@ export const sv_SE: Record<string, string> = {
   'usage.metric.githubLinkFailure': 'Misslyckade GitHub-länkningar',
   'usage.metric.githubLinkRateLimited': 'Strypta GitHub-länkningsförfrågningar',
   'usage.metric.githubLinkRequest': 'GitHub-länkningsförfrågningar',
-  'app.title': 'World of ClaudeCraft - Admin',
+  'app.title': 'World of Aphasya - Admin',
   'app.shortTitle': 'WoC-admin',
   'auth.username': 'Användarnamn',
   'auth.password': 'Lösenord',

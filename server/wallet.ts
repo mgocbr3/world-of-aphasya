@@ -1,7 +1,7 @@
 // Non-custodial Solana wallet linking.
 //
 // The chain is the source of truth for wallet ownership; this server only
-// *observes* it. To link a wallet to a World of ClaudeCraft account we issue a
+// *observes* it. To link a wallet to a World of Aphasya account we issue a
 // short-lived, single-use challenge message, the player signs it with their
 // wallet (Solana = ed25519 over the raw UTF-8 bytes), and we verify the
 // signature here. No private keys, seeds, or funds ever touch the server.
@@ -56,7 +56,7 @@ const CHALLENGE_TTL_MINUTES = 10;
 
 function requestDomain(req: http.IncomingMessage): string {
   const host = (req.headers.host ?? '').split(':')[0];
-  return host || 'world-of-claudecraft';
+  return host || 'world-of-aphasya';
 }
 
 // POST /api/wallet/link/challenge  { address }  → { nonce, message }

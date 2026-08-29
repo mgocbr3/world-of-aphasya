@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
 import {
@@ -78,10 +78,6 @@ const supportHtml = readFileSync(
   new URL('../public/support.html', import.meta.url),
   'utf8',
 ).replace(/\r\n/g, '\n');
-const whitepaperUrl = new URL(
-  '../public/World-of-ClaudeCraft-Whitepaper-v1.0.pdf',
-  import.meta.url,
-);
 const viteConfig = readFileSync(new URL('../vite.config.ts', import.meta.url), 'utf8').replace(
   /\r\n/g,
   '\n',
@@ -935,67 +931,55 @@ describe('client HTML shell', () => {
     expect(html).toContain(
       '<meta name="robots" content="index, follow, max-image-preview:large" />',
     );
-    expect(html).toContain('<link rel="canonical" href="https://worldofclaudecraft.com/" />');
-    expect(html).toContain('<meta property="og:site_name" content="World of ClaudeCraft" />');
-    expect(html).toContain('"alternateName": "World of Claudecraft"');
-    expect(html).toContain('"https://github.com/levy-street/world-of-claudecraft"');
-    expect(mainTs).toContain("alternateName: 'World of Claudecraft'");
-    expect(mainTs).toContain("'https://github.com/levy-street/world-of-claudecraft'");
+    expect(html).toContain('<link rel="canonical" href="https://worldofaphasya.com/" />');
+    expect(html).toContain('<meta property="og:site_name" content="World of Aphasya" />');
+    expect(html).toContain('"alternateName": "World of Aphasya"');
+    expect(html).toContain('"https://github.com/mgocbr3/world-of-aphasya"');
+    expect(mainTs).toContain("alternateName: 'World of Aphasya'");
+    expect(mainTs).toContain("'https://github.com/mgocbr3/world-of-aphasya'");
     expect(robotsTxt.trim()).toBe(
-      'User-agent: *\nAllow: /\n\nSitemap: https://worldofclaudecraft.com/sitemap.xml\nSitemap: https://worldofclaudecraft.com/sitemap-characters.xml',
+      'User-agent: *\nAllow: /\n\nSitemap: https://worldofaphasya.com/sitemap.xml\nSitemap: https://worldofaphasya.com/sitemap-characters.xml',
     );
-    expect(robotsTxt).toContain('Sitemap: https://worldofclaudecraft.com/sitemap.xml');
+    expect(robotsTxt).toContain('Sitemap: https://worldofaphasya.com/sitemap.xml');
     // The dynamic per-character sitemap (served by the game server) is advertised too.
-    expect(robotsTxt).toContain('Sitemap: https://worldofclaudecraft.com/sitemap-characters.xml');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/links</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/play</loc>');
+    expect(robotsTxt).toContain('Sitemap: https://worldofaphasya.com/sitemap-characters.xml');
+    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/</loc>');
+    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/links</loc>');
+    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/play</loc>');
+    expect(playHtml).toContain('<link rel="canonical" href="https://worldofaphasya.com/play" />');
     expect(playHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/play" />',
+      '<meta property="og:url" content="https://worldofaphasya.com/play" />',
     );
-    expect(playHtml).toContain(
-      '<meta property="og:url" content="https://worldofclaudecraft.com/play" />',
-    );
-    expect(playHtml).toContain('"url": "https://worldofclaudecraft.com/play"');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/privacy</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/terms</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/data-deletion</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/support</loc>');
+    expect(playHtml).toContain('"url": "https://worldofaphasya.com/play"');
+    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/privacy</loc>');
+    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/terms</loc>');
+    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/data-deletion</loc>');
+    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/support</loc>');
     expect(privacyHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/privacy" />',
+      '<link rel="canonical" href="https://worldofaphasya.com/privacy" />',
     );
     expect(privacyHtml).toContain('<h1>Privacy Policy</h1>');
     expect(privacyHtml).toContain('href="/support">Support</a>');
     expect(privacyHtml).toContain('href="/data-deletion">Data Deletion</a>');
-    expect(termsHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/terms" />',
-    );
+    expect(termsHtml).toContain('<link rel="canonical" href="https://worldofaphasya.com/terms" />');
     expect(termsHtml).toContain('<h1>Terms and Conditions</h1>');
     expect(termsHtml).toContain('href="/support">Support</a>');
     expect(termsHtml).toContain('href="/data-deletion">Data Deletion</a>');
     expect(dataDeletionHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/data-deletion" />',
+      '<link rel="canonical" href="https://worldofaphasya.com/data-deletion" />',
     );
     expect(dataDeletionHtml).toContain('<h1>Data Deletion</h1>');
     expect(dataDeletionHtml).toContain('href="mailto:woc@levystreet.com"');
-    expect(dataDeletionHtml).toContain('href="https://discord.com/invite/worldofclaudecraft"');
+    expect(dataDeletionHtml).toContain('href="https://discord.com/invite/worldofaphasya"');
     expect(dataDeletionHtml).toContain('href="/support">Support</a>');
     expect(supportHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/support" />',
+      '<link rel="canonical" href="https://worldofaphasya.com/support" />',
     );
     expect(supportHtml).toContain('<h1>Support</h1>');
     expect(supportHtml).toContain('href="mailto:woc@levystreet.com"');
-    expect(supportHtml).toContain('href="https://discord.com/invite/worldofclaudecraft"');
+    expect(supportHtml).toContain('href="https://discord.com/invite/worldofaphasya"');
     expect(supportHtml).toContain('href="/data-deletion">Data Deletion page</a>');
     expect(supportHtml).toContain('"@type": "ContactPage"');
-    expect(html).toContain(
-      'href="/World-of-ClaudeCraft-Whitepaper-v1.0.pdf" class="footer-link" data-i18n="footer.whitepaper"',
-    );
-    expect(html.indexOf('data-i18n="footer.whitepaper"')).toBeLessThan(
-      html.indexOf('data-i18n="footer.terms"'),
-    );
-    expect(existsSync(whitepaperUrl)).toBe(true);
-    expect(statSync(whitepaperUrl).size).toBeGreaterThan(0);
     expect(html).toContain('href="/terms" class="footer-link" data-i18n="footer.terms"');
     expect(html).toContain('href="/privacy" class="footer-link" data-i18n="footer.privacy"');
     expect(viteConfig).toContain("['/privacy', '/privacy.html']");
@@ -1038,7 +1022,7 @@ describe('client HTML shell', () => {
     );
     expect(hudCss).not.toContain('body.native-app .cs-wallet,');
     expect(hudCss).toContain('body.native-app #performance-tip,');
-    expect(hudCss).toContain('body.desktop-app #token-ca,\n  body.desktop-app .official-site-copy');
+    expect(hudCss).toContain('body.desktop-app .official-site-copy');
     expect(hudCss).not.toContain('body.desktop-app .cs-wallet');
     expect(html).toContain('<section class="account-card account-wallet-card">');
     expect(mainTs).toContain("document.body.classList.toggle('desktop-app', DESKTOP_APP);");
@@ -1191,7 +1175,7 @@ describe('client HTML shell', () => {
     // offline fallback (discordInviteUrl() itself falls back to
     // DEFAULT_DISCORD_INVITE_URL in discord_status.ts), and the Ko-fi page,
     // pinned to the shells' URLs.
-    expect(mainTs).toContain("const DONATE_URL = 'https://ko-fi.com/worldofclaudecraft';");
+    expect(mainTs).toContain("const DONATE_URL = 'https://ko-fi.com/worldofaphasya';");
     expect(mainTs).toContain("window.open(discordInviteUrl(), '_blank', 'noopener,noreferrer');");
     expect(mainTs).toContain(
       "onDonate: () => window.open(DONATE_URL, '_blank', 'noopener,noreferrer'),",
@@ -1200,7 +1184,7 @@ describe('client HTML shell', () => {
       ['index.html', html],
       ['play.html', playHtml],
     ] as const) {
-      expect(entry.match(/href="https:\/\/ko-fi\.com\/worldofclaudecraft"/g), name).toHaveLength(3);
+      expect(entry.match(/href="https:\/\/ko-fi\.com\/worldofaphasya"/g), name).toHaveLength(3);
       expect(entry, name).not.toContain('https://github.com/sponsors/levy-street');
     }
   });

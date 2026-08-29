@@ -362,7 +362,7 @@ export const zh_TW: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "開啟維基？",
-      "confirmBody": "將在瀏覽器中開啟 World of ClaudeCraft 維基，遊戲會繼續執行。",
+      "confirmBody": "將在瀏覽器中開啟 World of Aphasya 維基，遊戲會繼續執行。",
       "confirmOpen": "開啟維基",
       "confirmCancel": "取消"
     },
@@ -572,14 +572,14 @@ export const zh_TW: EnTranslations = {
       "rewardsTab": "每日獎勵",
       "loading": "正在載入 WOC 商店…",
       "error": "WOC 商店目前無法使用，請稍後再試。",
-      "balance": "Claudium 餘額",
-      "buyClaudium": "購買 Claudium",
+      "balance": "Aphasium 餘額",
+      "buyClaudium": "購買 Aphasium",
       "owned": "已擁有",
-      "needMoreTitle": "需要更多 Claudium",
-      "needMoreBody": "還需要 {shortfall} Claudium 才能購買 {item}。",
+      "needMoreTitle": "需要更多 Aphasium",
+      "needMoreBody": "還需要 {shortfall} Aphasium 才能購買 {item}。",
       "cancel": "取消",
       "confirmTitle": "確認購買外觀",
-      "confirmBody": "要用 {cost} Claudium 購買 {item} 嗎？",
+      "confirmBody": "要用 {cost} Aphasium 購買 {item} 嗎？",
       "confirmPurchase": "購買",
       "priceChanged": "購買完成前價格已變更。請查看刷新後的價格並再次確認。",
       "armoryEyebrow": "第一賽季",
@@ -792,18 +792,18 @@ export const zh_TW: EnTranslations = {
       "equipHint": "裝備{type}後才能使用此外觀。"
     },
     "claudium": {
-      "title": "Claudium",
-      "open": "開啟 Claudium",
-      "close": "關閉 Claudium",
-      "loading": "正在載入 Claudium…",
+      "title": "Aphasium",
+      "open": "開啟 Aphasium",
+      "close": "關閉 Aphasium",
+      "loading": "正在載入 Aphasium…",
       "balanceLabel": "餘額",
-      "balanceUnit": "{amount} Claudium",
+      "balanceUnit": "{amount} Aphasium",
       "solBalance": "SOL：{amount}",
       "usdcBalance": "USDC：{amount}",
       "wocBalance": "WOC：{amount}",
-      "unavailable": "Claudium 商店目前無法使用。您的餘額與購買不受影響，請稍後再試。",
-      "disclosure": "Claudium 是單向軟貨幣：可用金錢購買並用於兌換外觀物品，不能贖回、轉讓或兌現。",
-      "buyTitle": "購買 Claudium",
+      "unavailable": "Aphasium 商店目前無法使用。您的餘額與購買不受影響，請稍後再試。",
+      "disclosure": "Aphasium 是單向軟貨幣：可用金錢購買並用於兌換外觀物品，不能贖回、轉讓或兌現。",
+      "buyTitle": "購買 Aphasium",
       "railLabel": "付款方式",
       "railStripe": "信用卡",
       "railSol": "SOL",
@@ -813,9 +813,9 @@ export const zh_TW: EnTranslations = {
       "railWocUnavailable": "WOC 定價目前無法使用。",
       "railNativeUnavailable": "SOL/WOC 無法使用",
       "amountLabel": "數量",
-      "showAmounts": "顯示所有 Claudium 數量",
-      "hideAmounts": "隱藏其他 Claudium 數量",
-      "skuRow": "{usd} 可購買 {claudium} Claudium",
+      "showAmounts": "顯示所有 Aphasium 數量",
+      "hideAmounts": "隱藏其他 Aphasium 數量",
+      "skuRow": "{usd} 可購買 {claudium} Aphasium",
       "priceSol": "{amount} SOL",
       "priceUsdc": "{amount} USDC",
       "priceWoc": "{amount} WOC",
@@ -823,7 +823,7 @@ export const zh_TW: EnTranslations = {
       "buyUnavailable": "目前無法購買。",
       "storeTitle": "外觀商店",
       "storeEmpty": "目前沒有可用的外觀物品。",
-      "storeCost": "{amount} Claudium",
+      "storeCost": "{amount} Aphasium",
       "spendButton": "兌換",
       "kindCosmetic": "外觀物品",
       "kindSkin": "外觀",
@@ -834,10 +834,10 @@ export const zh_TW: EnTranslations = {
       "checkoutPending": "交易處理中。請在錢包中確認，並保持此面板開啟。",
       "checkoutPendingButton": "處理中",
       "checkoutFailed": "無法載入結帳頁面，請再試一次。",
-      "checkoutUnavailable": "該 Claudium 購買項目目前無法使用。",
-      "checkoutWalletRequired": "使用加密貨幣購買 Claudium 前，請先連接 Solana 錢包。",
+      "checkoutUnavailable": "該 Aphasium 購買項目目前無法使用。",
+      "checkoutWalletRequired": "使用加密貨幣購買 Aphasium 前，請先連接 Solana 錢包。",
       "checkoutWalletUnsupported": "此錢包無法簽署及傳送 Solana 交易。",
-      "checkoutNotSettled": "交易已傳送，但 Claudium 尚未入帳，請稍後再試。"
+      "checkoutNotSettled": "交易已傳送，但 Aphasium 尚未入帳，請稍後再試。"
     },
     "theme": {
       "preset": "介面主題",
@@ -845,6 +845,7 @@ export const zh_TW: EnTranslations = {
       "reset": "重設",
       "presets": {
         "classic": "經典金色",
+        "aphasya": "Aphasya",
         "midnight": "午夜",
         "parchment": "羊皮紙",
         "highContrast": "高對比"
@@ -1141,8 +1142,8 @@ export const zh_TW: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "有可用更新",
-      "body": "World of ClaudeCraft 有新版本可用。立即更新以取得最新修正與改進。",
-      "bodyWithVersion": "World of ClaudeCraft {version} 版本已可用。立即更新以取得最新修正與改進。",
+      "body": "World of Aphasya 有新版本可用。立即更新以取得最新修正與改進。",
+      "bodyWithVersion": "World of Aphasya {version} 版本已可用。立即更新以取得最新修正與改進。",
       "notNow": "暫不",
       "update": "更新"
     },
@@ -1685,8 +1686,8 @@ export const zh_TW: EnTranslations = {
         "offline": "離線"
       },
       "diagnostics": {
-        "panelAria": "World of ClaudeCraft 效能診斷",
-        "title": "ClaudeCraft 效能醫生",
+        "panelAria": "World of Aphasya 效能診斷",
+        "title": "Aphasya 效能醫生",
         "subtitle": "針對遊戲的掃描，提供證據與程式碼層級修正建議。",
         "aria": {
           "liveMeasurements": "即時效能測量",
@@ -1834,7 +1835,7 @@ export const zh_TW: EnTranslations = {
           }
         },
         "report": {
-          "title": "World of ClaudeCraft 效能診斷",
+          "title": "World of Aphasya 效能診斷",
           "statusLine": "狀態：{status}（{score}/100）",
           "capturedLine": "擷取時間：{captured}",
           "topFindingLine": "首要問題：{finding}",
@@ -2742,7 +2743,7 @@ export const zh_TW: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "World of Aphasya",
       "open": "Discord",
       "close": "關閉",
       "keybind": "Discord 面板",
@@ -4438,8 +4439,8 @@ export const zh_TW: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "World of Aphasya",
+    "brandShort": "Aphasya",
     "tagline": "一款可在瀏覽器中免費遊玩的經典風格MMO。",
     "skipToContent": "跳至主要內容",
     "loading": "載入中...",
@@ -4514,7 +4515,7 @@ export const zh_TW: EnTranslations = {
       "github": "GitHub上的原始碼",
       "discord": "加入Discord",
       "communityWiki": "社群Wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "World of Aphasya",
       "linksLabel": "遊玩與社群連結"
     },
     "language": {
@@ -4539,7 +4540,7 @@ export const zh_TW: EnTranslations = {
     },
     "home": {
       "eyebrow": "經典風格的瀏覽器MMO",
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "subtitle": "在你的瀏覽器中免費進行任務、組隊並探索一個精心打造的世界。",
       "ctaPlay": "立即遊玩",
       "ctaLearn": "如何遊玩",
@@ -5161,7 +5162,7 @@ export const zh_TW: EnTranslations = {
       "ridingDef": "讓你得以騎乘的技能。你在 20 級時向馬廄總管購買一次，此後它便永遠留在你的角色身上。",
       "reinsTerm": "韁繩",
       "reinsDef": "那件本身就是坐騎的物品。把一副韁繩留在背包或銀行裡，那頭坐騎就是你的了；使用它們即可騎乘。韁繩可以交易、郵寄，也可以賣給其他玩家。",
-      "claudiumTerm": "Claudium",
+      "claudiumTerm": "Aphasium",
       "claudiumDef": "WOC 商店的貨幣，只花在外觀上，別無他用。它絕不會買到力量或進度。",
       "worldTerm": "世界",
       "worldDef": "線上遊戲的一份共享副本，有自己的玩家、市場與排名。本指南也稱它為王國，而你的角色住在你創建它的那個世界上。"
@@ -5192,7 +5193,7 @@ export const zh_TW: EnTranslations = {
       "q11": "我該如何找隊伍？",
       "a11": "邀請你遇到的任何人組隊、在聊天中招募，或在地城前湊隊。世界上大部分內容都能單人完成，所以組隊是一種選擇，而非必要。",
       "q12": "有現金商店嗎？",
-      "a12": "有一家選擇性的外觀商店。它販售的是造型：以商店貨幣 Claudium 購買的第一賽季兵器庫武器外觀。裡頭沒有任何東西會增加屬性、力量或進度，外觀也絕不會改變你的武器如何命中，因此每一件真正要緊的裝備，仍然來自遊玩。",
+      "a12": "有一家選擇性的外觀商店。它販售的是造型：以商店貨幣 Aphasium 購買的第一賽季兵器庫武器外觀。裡頭沒有任何東西會增加屬性、力量或進度，外觀也絕不會改變你的武器如何命中，因此每一件真正要緊的裝備，仍然來自遊玩。",
       "q13": "我可以在哪裡取得應用程式？",
       "a13": "瀏覽器版什麼都不需要：開啟網站就能玩。如果你比較想要應用程式，Windows、macOS 與 Linux 的電腦版下載就在遊戲官網的下載頁面。iOS 與 Android 原生應用程式正在製作中，在它們推出之前，手機或平板可以用完整的觸控操作遊玩瀏覽器版。每個版本都登入同一個帳號與同樣的世界，因此你的角色會一路跟著你。",
       "q14": "我需要什麼才能執行它？",
@@ -5478,7 +5479,7 @@ export const zh_TW: EnTranslations = {
     },
     "worldPage": {
       "heading": "世界",
-      "intro": "World of ClaudeCraft 是一片你要靠雙腳走遍的連續大陸。古道自南向北穿過起始山谷、沼澤和山峰，並越過它們繼續攀升，通向其後的窪地以及地圖頂端的雪境。自那條路向西展開一列更高等級的國度，向東另有一列，谷地東岸外還有一座島嶼。這裡沒有快速旅行，沒有飛行路線，也沒有馬車：每一段路程都靠步行或騎乘完成，所以抵達本身就是冒險的一部分。\n\n這片大地也記錄著時間。晝夜循環依照一只你所在世界人人共享的真實時鐘運轉，因此天空會為你們所有人同時從黎明經正午走向黃昏與夜色，月亮循著盈虧來去，地面上的光影也隨之變化。小地圖周圍的錶盤，就是你讀取時辰的地方。",
+      "intro": "World of Aphasya 是一片你要靠雙腳走遍的連續大陸。古道自南向北穿過起始山谷、沼澤和山峰，並越過它們繼續攀升，通向其後的窪地以及地圖頂端的雪境。自那條路向西展開一列更高等級的國度，向東另有一列，谷地東岸外還有一座島嶼。這裡沒有快速旅行，沒有飛行路線，也沒有馬車：每一段路程都靠步行或騎乘完成，所以抵達本身就是冒險的一部分。\n\n這片大地也記錄著時間。晝夜循環依照一只你所在世界人人共享的真實時鐘運轉，因此天空會為你們所有人同時從黎明經正午走向黃昏與夜色，月亮循著盈虧來去，地面上的光影也隨之變化。小地圖周圍的錶盤，就是你讀取時辰的地方。",
       "hub": "主據點",
       "mapHeading": "這條路與路那頭的國度",
       "mapSub": "任務路線自南向北縱貫地圖中部：山谷、沼澤、山峰，再越過它們通向窪地與雪境。其餘國度是沿著這條路展開，而非在它之後，經由沼澤路東西兩側的傳送門抵達，遠岸島則從谷地東岸前往。把你擋在遠方國度之外的是它們的等級區間，而不是路途：其中五處共享最高的區間，因此一旦你準備就緒，便可按任意順序逐一挑戰。遠岸島是例外，那是一片你可以早早造訪的低等級土地。",
@@ -6473,7 +6474,7 @@ export const zh_TW: EnTranslations = {
   },
   "editor": {
     "appTitle": "地圖編輯器",
-    "docTitle": "地圖編輯器 - World of ClaudeCraft",
+    "docTitle": "地圖編輯器 - World of Aphasya",
     "untitledMap": "未命名地圖",
     "playtestPlayerName": "製圖師",
     "topbar": {
@@ -6950,10 +6951,9 @@ export const zh_TW: EnTranslations = {
     "realmName": "世界名稱"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 World of Aphasya",
+    "githubLink": "https://github.com/levy-street/world-of-aphasya",
     "githubLabel": "開源專案",
-    "whitepaper": "白皮書",
     "terms": "服務條款",
     "privacy": "隱私權政策",
     "discordLabel": "加入Discord社區"
@@ -7008,13 +7008,10 @@ export const zh_TW: EnTranslations = {
     "serverOnline": "線上",
     "serverOffline": "離線",
     "play": "開始遊戲",
-    "playAria": "遊玩 World of ClaudeCraft",
+    "playAria": "遊玩 World of Aphasya",
     "serverLabel": "選擇你的世界",
     "serverAria": "選擇世界：線上或離線",
-    "serverOfflineSub": "即時本地世界",
-    "caLabel": "$WOC 合約地址",
-    "caCopyAria": "複製合約地址",
-    "caNote": "WOC 是我們的社群代幣，並非遊玩所需。加入 Discord 一起討論 WOC 的用途與飛輪效應。"
+    "serverOfflineSub": "即時本地世界"
   },
   "auth": {
     "enterRealm": "進入世界",
@@ -7334,12 +7331,12 @@ export const zh_TW: EnTranslations = {
     "extensionHelp": "若要在此處看到錢包，請保持 Solflare Wallet 等瀏覽器錢包擴充功能處於啟用狀態。",
     "mobileAppHelp": "選擇 Phantom 或 Solflare。錢包應用程式會要求核准。請保持遊戲開啟，完成後返回遊戲。",
     "seekerAppHelp": "使用 Seed Vault Wallet 繼續。在 Seed Vault 中檢視連線與驗證要求，然後返回遊戲。",
-    "standaloneAppHelp": "主畫面應用程式目前尚不支援連接錢包。若要使用 Phantom 或 Solflare，請在 Safari 或 Chrome 中開啟 World of ClaudeCraft。",
+    "standaloneAppHelp": "主畫面應用程式目前尚不支援連接錢包。若要使用 Phantom 或 Solflare，請在 Safari 或 Chrome 中開啟 World of Aphasya。",
     "openAppTitle": "在 {wallet} 中繼續",
     "openAppHelp": "開啟 {wallet} 檢視此請求。錢包應用程式啟用時，請保持此遊戲分頁開啟。",
     "openAppButton": "開啟 {wallet}",
     "manualReturnBrowserHelp": "核准後請返回此遊戲分頁。如果 iOS 開啟了其他瀏覽器，請將其關閉並手動返回原本的瀏覽器。",
-    "manualReturnStandaloneHelp": "核准後請從主畫面返回 World of ClaudeCraft。如果 iOS 開啟了瀏覽器，請將其關閉並重新開啟主畫面 App。",
+    "manualReturnStandaloneHelp": "核准後請從主畫面返回 World of Aphasya。如果 iOS 開啟了瀏覽器，請將其關閉並重新開啟主畫面 App。",
     "preparingAppButton": "正在準備 {wallet}...",
     "walletAppUnavailable": "無法準備 {wallet}。請關閉此視窗並重試。",
     "flowConnect": "選擇一個錢包。驗證會自動繼續。",
@@ -7354,12 +7351,12 @@ export const zh_TW: EnTranslations = {
       "linkBody": "在此瀏覽器中選擇錢包擴充功能。簽署驗證訊息後返回桌面應用程式。",
       "paymentBody": "選擇已連結至帳號的錢包，並在此瀏覽器中核准交易。",
       "extensionHelp": "找不到相容的錢包擴充功能。請安裝或解鎖 Phantom、Solflare 或其他 Solana 瀏覽器錢包，然後再試一次。",
-      "safety": "World of ClaudeCraft 絕不會要求復原短語或私鑰。",
+      "safety": "World of Aphasya 絕不會要求復原短語或私鑰。",
       "continueWith": "使用 {wallet} 繼續",
       "reviewTitle": "在錢包中檢視",
       "reviewBody": "按照 {wallet} 的提示操作。請保持此瀏覽器頁面開啟。",
       "completeTitle": "錢包授權完成",
-      "completeBody": "現在可以返回 World of ClaudeCraft 桌面應用程式。",
+      "completeBody": "現在可以返回 World of Aphasya 桌面應用程式。",
       "returnButton": "返回桌面應用程式",
       "failed": "錢包授權失敗或已過期。請返回桌面應用程式並再試一次。",
       "retry": "再試一次"
@@ -7457,7 +7454,7 @@ export const zh_TW: EnTranslations = {
     "levelClass": "{level}級 - {className}",
     "topPercent": "前 {percent}%",
     "realmSubtitle": "{realm} 世界",
-    "defaultRealm": "ClaudeCraft 世界",
+    "defaultRealm": "Aphasya 世界",
     "brandWordmark": "WORLD OF CLAUDECRAFT",
     "recruited": "已招募 {count} 人",
     "footerHandle": "@{handle}",
@@ -7465,8 +7462,8 @@ export const zh_TW: EnTranslations = {
     "footerCta": "鑄就你的傳說：{siteUrl}",
     "arenaStat": "競技場",
     "shareTierBit": "，{tier}級 $WOC 持有者",
-    "shareText": "我正在 World of ClaudeCraft 中鑄就傳說：{level}級 {className}{tierBit}。加入我的世界：",
-    "nativeShareTitle": "ClaudeCraft 世界",
+    "shareText": "我正在 World of Aphasya 中鑄就傳說：{level}級 {className}{tierBit}。加入我的世界：",
+    "nativeShareTitle": "Aphasya 世界",
     "fileNameFallback": "玩家",
     "actionShareX": "分享到 X",
     "actionCopyReferral": "複製推薦連結",
@@ -8164,14 +8161,14 @@ export const zh_TW: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft：經典風格網頁 MMO",
-    "description": "在 World of ClaudeCraft 展開史詩冒險。這是一款可直接在瀏覽器中遊玩的經典風格微型 MMO。加入持續共享的世界，提升職業等級並擊敗敵人！",
+    "title": "World of Aphasya：經典風格網頁 MMO",
+    "description": "在 World of Aphasya 展開史詩冒險。這是一款可直接在瀏覽器中遊玩的經典風格微型 MMO。加入持續共享的世界，提升職業等級並擊敗敵人！",
     "genre": "MMORPG",
     "playMode": "多人遊戲",
     "applicationCategory": "遊戲",
     "operatingSystem": "網頁瀏覽器",
-    "officialLabel": "World of ClaudeCraft 官方網站",
-    "officialBody": "worldofclaudecraft.com 是 Claudemoon 世界的官方免費瀏覽器 MMO。你可以用持久角色線上遊玩，也可以離線單人探索、閱讀 wiki，並從本站前往已驗證的社群連結。"
+    "officialLabel": "World of Aphasya 官方網站",
+    "officialBody": "worldofaphasya.com 是 Claudemoon 世界的官方免費瀏覽器 MMO。你可以用持久角色線上遊玩，也可以離線單人探索、閱讀 wiki，並從本站前往已驗證的社群連結。"
   },
   "a11y": {
     "goHome": "前往首頁",
@@ -8179,9 +8176,9 @@ export const zh_TW: EnTranslations = {
     "mainNavigation": "主導覽",
     "languageSelection": "語言選擇",
     "characterActions": "角色操作",
-    "githubProject": "開啟 World of ClaudeCraft 的 GitHub 專案",
-    "discordCommunity": "加入 World of ClaudeCraft 的 Discord 社群",
-    "donateProject": "捐贈支持 World of ClaudeCraft"
+    "githubProject": "開啟 World of Aphasya 的 GitHub 專案",
+    "discordCommunity": "加入 World of Aphasya 的 Discord 社群",
+    "donateProject": "捐贈支持 World of Aphasya"
   },
   "entryGuard": {
     "title": "已降低圖形設定",
@@ -8272,16 +8269,16 @@ export const zh_TW: EnTranslations = {
     "notify": {
       "updateReadyTitle": "更新 {version} 已就緒",
       "updateReadyTitleNoVersion": "更新已就緒",
-      "updateReadyBody": "重新啟動 World of ClaudeCraft 以套用更新。",
+      "updateReadyBody": "重新啟動 World of Aphasya 以套用更新。",
       "partyInviteTitle": "組隊邀請",
       "partyInviteBody": "{name} 邀請你加入隊伍。"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "World of Aphasya",
       "body": "遊戲畫面已停止運作。要重新載入嗎？",
       "reload": "重新載入",
       "quit": "離開",
-      "fatalBody": "World of ClaudeCraft 發生未預期的錯誤，必須關閉。"
+      "fatalBody": "World of Aphasya 發生未預期的錯誤，必須關閉。"
     },
     "titlebar": {
       "exitGame": "離開遊戲"
@@ -8433,17 +8430,17 @@ export const zh_TW: EnTranslations = {
     "iosStandaloneDetail": "你正在從主畫面以全螢幕模式執行。請保持橫向。",
     "iosInstallDetail": "若要在 iPhone 或 iPad 上取得真正全螢幕，請先將此頁面加入主畫面。",
     "iosShareStep": "在 Safari 中點一下分享，然後選擇加入主畫面。",
-    "iosOpenStep": "從新的主畫面圖示開啟 World of ClaudeCraft。",
+    "iosOpenStep": "從新的主畫面圖示開啟 World of Aphasya。",
     "androidStandaloneDetail": "你正在全螢幕應用模式中。請保持橫向。",
     "androidInstallDetail": "若要在 Android 上全螢幕，請先安裝此頁面或加入主畫面。",
     "androidInstallStep": "在 Chrome 中點選選單，然後選擇安裝應用程式或加入主畫面。",
-    "androidOpenStep": "從新圖示開啟 World of ClaudeCraft。",
+    "androidOpenStep": "從新圖示開啟 World of Aphasya。",
     "otherStandaloneDetail": "請保持裝置為橫向全螢幕。",
     "otherInstallDetail": "安裝此頁面或將其加入主畫面，以獲得最佳行動裝置全螢幕體驗。"
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - 世界不可用",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "World of Aphasya - 世界不可用",
+    "logoAlt": "World of Aphasya",
     "eyebrow": "世界維護",
     "heading": "這個世界暫時無法使用。",
     "body": "我們正在重新啟動遊戲服務，Claudemoon 應會很快恢復。此頁面會自動持續檢查。",
