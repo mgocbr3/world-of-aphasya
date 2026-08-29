@@ -483,13 +483,13 @@ export const en_CA: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "WOC Store",
-      "close": "Close WOC Store",
-      "tabsLabel": "WOC Store sections",
+      "title": "Aphasium Store",
+      "close": "Close Aphasium Store",
+      "tabsLabel": "Aphasium Store sections",
       "storeTab": "Store",
       "rewardsTab": "Daily Rewards",
-      "loading": "Loading WOC Store...",
-      "error": "The WOC Store is unavailable right now. Please try again shortly.",
+      "loading": "Loading the Aphasium Store...",
+      "error": "The Aphasium Store is unavailable right now. Please try again shortly.",
       "balance": "Aphasium Balance",
       "buyClaudium": "Purchase Aphasium",
       "owned": "Owned",
@@ -3688,7 +3688,7 @@ export const en_CA: EnTranslations = {
       "sourceDelve": "Found in the delve {delve}",
       "sourceRift": "Drops from {rank}-rank Rift clears",
       "sourceQuest": "Reward from the quest {quest}",
-      "sourceStore": "Purchased from the WOC Store",
+      "sourceStore": "Purchased from the Aphasium Store",
       "sourceActivityCorpseHarvest": "Recovered while harvesting creature corpses",
       "sourceActivityMasterworkCraft": "Earned by crafting a masterwork",
       "sourceActivityRiftFirstClear": "Awarded to every member of the party that wins a ranked Rift's first clear",
@@ -4455,7 +4455,7 @@ export const en_CA: EnTranslations = {
       "mobileTitle": "On a phone or a tablet",
       "mobileBody": "Touch controls appear on their own, and the layout sizes itself to your screen: a compact arrangement on a small phone, a standard one on a larger phone, and a roomier one on a tablet.\n\nYour abilities sit in a ring rather than a number row: the attack button with five action buttons beside it, and a page toggle that swaps the ring through the rest of your slots, up to seven pages once you have all three action bars switched on. Around them sit the buttons a touch player reaches for most, swapping target, using what is in front of you, and jumping, plus a pull-out row of your consumables that fills itself from what you are carrying.\n\nAlong the bottom edge are Chat, Social, Quests, Settings, and More. More opens a tray holding the rest of your windows, including your character, the Dungeon Finder, PvP, the Vale Cup, emotes, and the wiki. Windows fill the screen here rather than floating over it.\n\nMoving your unit frames is a desktop thing: on touch the layout places them for you.",
       "railTitle": "The button rail",
-      "railBody": "Down in the bottom right corner of the screen, a long way from the minimap, sits a rail of small square buttons, one per window, arranged in two short columns side by side. Most of them are printed with their default key.\n\nThe first column covers your character, spellbook, talents, quest log, Book of Deeds, professions, world map, bags, and crafting. The second opens with the WOC Store and runs on through PvP, the Dungeon Finder, the Vale Cup, Card Duel, the leaderboard, emotes, music, friends and guild, this wiki, and the game menu. A few more join them only when they apply."
+      "railBody": "Down in the bottom right corner of the screen, a long way from the minimap, sits a rail of small square buttons, one per window, arranged in two short columns side by side. Most of them are printed with their default key.\n\nThe first column covers your character, spellbook, talents, quest log, Book of Deeds, professions, world map, bags, and crafting. The second opens with the Aphasium Store and runs on through PvP, the Dungeon Finder, the Vale Cup, Card Duel, the leaderboard, emotes, music, friends and guild, this wiki, and the game menu. A few more join them only when they apply."
     },
     "commandsPage": {
       "intro": "Every command you can type into chat, grouped by what it is for, with its short forms.",
@@ -4674,7 +4674,7 @@ export const en_CA: EnTranslations = {
       "reinsTerm": "Reins",
       "reinsDef": "The item that is a mount. Keep a pair in your bags or your bank and that mount is yours; use them to ride. Reins can be traded, mailed, and sold to other players.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "The currency of the WOC Store, spent on cosmetics and nothing else. It never buys power or progression.",
+      "claudiumDef": "The currency of the Aphasium Store, spent on cosmetics and nothing else. It never buys power or progression.",
       "worldTerm": "World",
       "worldDef": "One shared copy of the online game, with its own players, market, and standings. This guide also calls it a realm, and your character lives on the world you made it on."
     },
@@ -6547,10 +6547,7 @@ export const en_CA: EnTranslations = {
     "playAria": "Play World of Aphasya",
     "serverLabel": "Choose your world",
     "serverAria": "Select world: Online or Offline",
-    "serverOfflineSub": "Instant local world",
-    "caLabel": "$WOC Contract Address",
-    "caCopyAria": "Copy contract address",
-    "caNote": "WOC is our community token. It is not needed to play. Join Discord to discuss the WOC utility and flywheel."
+    "serverOfflineSub": "Instant local world"
   },
   "auth": {
     "enterRealm": "Enter the World",
@@ -6987,7 +6984,7 @@ export const en_CA: EnTranslations = {
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "{realm} World",
     "defaultRealm": "World of Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} recruited",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

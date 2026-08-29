@@ -483,12 +483,12 @@ export const pt_BR: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "Loja WOC",
-      "close": "Fechar loja WOC",
-      "tabsLabel": "Seções da loja WOC",
+      "title": "Loja Aphasium",
+      "close": "Fechar loja Aphasium",
+      "tabsLabel": "Seções da loja Aphasium",
       "storeTab": "Loja",
       "rewardsTab": "Recompensas Diárias",
-      "loading": "Carregando Loja WOC...",
+      "loading": "Carregando Loja Aphasium...",
       "error": "A Loja WOC não está disponível no momento. Por favor, tente novamente em breve.",
       "balance": "Saldo de Aphasium",
       "buyClaudium": "Comprar Aphasium",
@@ -3688,7 +3688,7 @@ export const pt_BR: EnTranslations = {
       "sourceDelve": "Encontrada na incursão {delve}",
       "sourceRift": "Espólio das conquistas de Fendas de grau {rank}",
       "sourceQuest": "Recompensa da missão {quest}",
-      "sourceStore": "Comprada na Loja WOC",
+      "sourceStore": "Comprada na Loja Aphasium",
       "sourceActivityCorpseHarvest": "Recuperada ao colher carcaças de criaturas",
       "sourceActivityMasterworkCraft": "Conquistada ao criar uma obra-prima",
       "sourceActivityRiftFirstClear": "Concedida a todos os membros do grupo que vence a primeira conquista de uma Fenda classificada",
@@ -4455,7 +4455,7 @@ export const pt_BR: EnTranslations = {
       "mobileTitle": "No celular ou tablet",
       "mobileBody": "Os controles de toque aparecem sozinhos, e o layout se ajusta ao tamanho da sua tela: um arranjo compacto num celular pequeno, um padrão num celular maior e um mais espaçoso num tablet.\n\nSuas habilidades ficam num anel em vez de numa fileira de números: o botão de ataque com cinco botões de ação ao lado, e um alternador de página que percorre o anel pelo resto das suas fileiras, até sete páginas depois que você ativa as três barras de ação. Ao redor deles ficam os botões que um jogador no toque mais usa, trocar de alvo, usar o que está à sua frente e pular, além de uma fileira retrátil de consumíveis que se preenche sozinha com o que você está carregando.\n\nAo longo da borda inferior ficam Chat, Comunidade, Missões, Configurações e Mais. Mais abre uma bandeja com o resto das suas janelas, incluindo seu personagem, o Localizador de Masmorras, JcJ, a Copa do Vale, emotes e a wiki. Aqui, as janelas preenchem a tela inteira em vez de flutuar sobre ela.\n\nMover seus quadros de unidade é algo exclusivo de computador: no toque, o layout os posiciona para você.",
       "railTitle": "O trilho de botões",
-      "railBody": "Lá no canto inferior direito da tela, bem longe do minimapa, fica um trilho de botões quadrados pequenos, um por janela, dispostos em duas colunas curtas lado a lado. A maioria deles traz impressa a sua tecla padrão.\n\nA primeira coluna cobre seu personagem, livro de feitiços, talentos, registro de missões, Livro dos Feitos, profissões, mapa do mundo, bolsas e criação. A segunda começa com a Loja WOC e segue por JcJ, o Localizador de Masmorras, a Copa do Vale, Duelo de Cartas, o placar de líderes, emotes, música, amigos e guilda, esta wiki e o menu do jogo. Mais algumas se juntam a elas só quando se aplicam."
+      "railBody": "Lá no canto inferior direito da tela, bem longe do minimapa, fica um trilho de botões quadrados pequenos, um por janela, dispostos em duas colunas curtas lado a lado. A maioria deles traz impressa a sua tecla padrão.\n\nA primeira coluna cobre seu personagem, livro de feitiços, talentos, registro de missões, Livro dos Feitos, profissões, mapa do mundo, bolsas e criação. A segunda começa com a Loja Aphasium e segue por JcJ, o Localizador de Masmorras, a Copa do Vale, Duelo de Cartas, o placar de líderes, emotes, música, amigos e guilda, esta wiki e o menu do jogo. Mais algumas se juntam a elas só quando se aplicam."
     },
     "commandsPage": {
       "intro": "Cada comando que você pode digitar no chat, agrupado pelo que faz, com suas formas curtas.",
@@ -4674,7 +4674,7 @@ export const pt_BR: EnTranslations = {
       "reinsTerm": "Rédeas",
       "reinsDef": "O item que é uma montaria. Guarde um par nas suas bolsas ou no seu banco e aquela montaria é sua; use-o para montar. As rédeas podem ser negociadas, enviadas pelo correio e vendidas a outros jogadores.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "A moeda da Loja WOC, gasta em cosméticos e em mais nada. Ela nunca compra poder ou progressão.",
+      "claudiumDef": "A moeda da Loja Aphasium, gasta em cosméticos e em mais nada. Ela nunca compra poder ou progressão.",
       "worldTerm": "Mundo",
       "worldDef": "Uma cópia compartilhada do jogo online, com seus próprios jogadores, mercado e classificações. Este guia também o chama de reino, e seu personagem vive no mundo em que você o criou."
     },
@@ -6547,10 +6547,7 @@ export const pt_BR: EnTranslations = {
     "playAria": "Jogar World of Aphasya",
     "serverLabel": "Escolha seu mundo",
     "serverAria": "Escolher mundo: Online ou Offline",
-    "serverOfflineSub": "Mundo local instantâneo",
-    "caLabel": "Endereço do contrato $WOC",
-    "caCopyAria": "Copiar endereço do contrato",
-    "caNote": "WOC é o token da nossa comunidade. Não é necessário para jogar. Entre no Discord para discutir a utilidade e o flywheel do WOC."
+    "serverOfflineSub": "Mundo local instantâneo"
   },
   "auth": {
     "enterRealm": "Entrar no mundo",
@@ -6987,7 +6984,7 @@ export const pt_BR: EnTranslations = {
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "Mundo {realm}",
     "defaultRealm": "Mundo de Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} recrutados",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

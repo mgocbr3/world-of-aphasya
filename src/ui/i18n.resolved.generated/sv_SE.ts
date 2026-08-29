@@ -483,13 +483,13 @@ export const sv_SE: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "WOC-butik",
-      "close": "Stäng WOC-butiken",
-      "tabsLabel": "Delar av WOC-butiken",
+      "title": "Aphasium-butik",
+      "close": "Stäng Aphasium-butiken",
+      "tabsLabel": "Delar av Aphasium-butiken",
       "storeTab": "Butik",
       "rewardsTab": "Dagliga belöningar",
-      "loading": "Laddar WOC-butiken...",
-      "error": "WOC-butiken är inte tillgänglig just nu. Försök igen om en stund.",
+      "loading": "Laddar Aphasium-butiken...",
+      "error": "Aphasium-butiken är inte tillgänglig just nu. Försök igen om en stund.",
       "balance": "Aphasium-saldo",
       "buyClaudium": "Köp Aphasium",
       "owned": "I din ägo",
@@ -3688,7 +3688,7 @@ export const sv_SE: EnTranslations = {
       "sourceDelve": "Hittas i delven {delve}",
       "sourceRift": "Fälls vid klarningar av Revor med rang {rank}",
       "sourceQuest": "Belöning från uppdraget {quest}",
-      "sourceStore": "Köps i WOC-butiken",
+      "sourceStore": "Köps i Aphasium-butiken",
       "sourceActivityCorpseHarvest": "Bärgad vid skörd av varelsekadaver",
       "sourceActivityMasterworkCraft": "Förtjänas genom att tillverka ett mästerverk",
       "sourceActivityRiftFirstClear": "Tilldelas varje medlem i gruppen som vinner första klarningen av en rankad Reva",
@@ -4455,7 +4455,7 @@ export const sv_SE: EnTranslations = {
       "mobileTitle": "På telefon eller surfplatta",
       "mobileBody": "Pekkontroller dyker upp av sig själva, och layouten anpassar sig efter din skärm: en kompakt uppställning på en liten telefon, en standarduppställning på en större telefon, och en rymligare på en surfplatta.\n\nDina förmågor sitter i en ring i stället för en sifferrad: anfallsknappen med fem handlingsknappar bredvid sig, och en sidväxlare som byter ringen genom resten av dina platser, upp till sju sidor när alla tre handlingsfält är påslagna. Runt omkring dem sitter de knappar en pekspelare når efter mest: byta mål, använda det som är framför dig, och hoppa, plus en utdragbar rad med dina förbrukningsvaror som fyller sig själv från det du bär.\n\nLängs nederkanten finns Chatt, Socialt, Uppdrag, Inställningar och Mer. Mer öppnar en bricka som rymmer resten av dina fönster, bland annat din karaktär, Fängelsehålsletaren, PvP, Dalcupen, emotes och wikin. Fönster fyller skärmen här snarare än flyter ovanpå den.\n\nAtt flytta dina enhetsramar är en skrivbordsgrej: på touch placerar layouten dem åt dig.",
       "railTitle": "Knappraden",
-      "railBody": "Nere i skärmens nedre högra hörn, långt från minikartan, sitter en rad av små fyrkantiga knappar, en per fönster, ordnade i två korta kolumner sida vid sida. De flesta av dem är märkta med sin standardtangent.\n\nDen första kolumnen täcker din karaktär, trollformelsbok, talanger, uppdragslogg, Bedrifternas bok, yrken, världskarta, väskor och hantverk. Den andra öppnar med WOC-butiken och fortsätter genom PvP, Fängelsehålsletaren, Dalcupen, Kortduell, topplistan, emotes, musik, vänner och gille, den här wikin och spelmenyn. Några till ansluter bara när de gäller."
+      "railBody": "Nere i skärmens nedre högra hörn, långt från minikartan, sitter en rad av små fyrkantiga knappar, en per fönster, ordnade i två korta kolumner sida vid sida. De flesta av dem är märkta med sin standardtangent.\n\nDen första kolumnen täcker din karaktär, trollformelsbok, talanger, uppdragslogg, Bedrifternas bok, yrken, världskarta, väskor och hantverk. Den andra öppnar med Aphasium-butiken och fortsätter genom PvP, Fängelsehålsletaren, Dalcupen, Kortduell, topplistan, emotes, musik, vänner och gille, den här wikin och spelmenyn. Några till ansluter bara när de gäller."
     },
     "commandsPage": {
       "intro": "Varje kommando du kan skriva i chatten, grupperat efter vad det används till, med sina korta former.",
@@ -4674,7 +4674,7 @@ export const sv_SE: EnTranslations = {
       "reinsTerm": "Tyglar",
       "reinsDef": "Föremålet som är ett riddjur. Behåll ett par i dina väskor eller din bank så är det riddjuret ditt; använd dem för att rida. Tyglar kan bytas, skickas med post och säljas till andra spelare.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "Valutan i WOC-butiken, spenderad på kosmetika och inget annat. Den köper aldrig styrka eller progression.",
+      "claudiumDef": "Valutan i Aphasium-butiken, spenderad på kosmetika och inget annat. Den köper aldrig styrka eller progression.",
       "worldTerm": "Värld",
       "worldDef": "En delad kopia av onlinespelet, med egna spelare, en egen marknad och en egen ställning. Den här guiden kallar den också för ett rike, och din karaktär bor på den värld du skapade den på."
     },
@@ -6547,10 +6547,7 @@ export const sv_SE: EnTranslations = {
     "playAria": "Spela World of Aphasya",
     "serverLabel": "Välj din värld",
     "serverAria": "Välj värld: Online eller Offline",
-    "serverOfflineSub": "Direkt lokal värld",
-    "caLabel": "$WOC Kontraktsadress",
-    "caCopyAria": "Kopiera kontraktsadress",
-    "caNote": "WOC är vår community-token. Den behövs inte för att spela. Gå med i Discord för att diskutera WOC:s nytta och svänghjul."
+    "serverOfflineSub": "Direkt lokal värld"
   },
   "auth": {
     "enterRealm": "Träd in i världen",
@@ -6987,7 +6984,7 @@ export const sv_SE: EnTranslations = {
     "topPercent": "TOPP {percent}%",
     "realmSubtitle": "Världen {realm}",
     "defaultRealm": "World of Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} värvade",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

@@ -483,12 +483,12 @@ export const vi_VN: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "Cửa hàng WOC",
-      "close": "Đóng cửa hàng WOC",
-      "tabsLabel": "Các phần của Cửa hàng WOC",
+      "title": "Cửa hàng Aphasium",
+      "close": "Đóng cửa hàng Aphasium",
+      "tabsLabel": "Các phần của Cửa hàng Aphasium",
       "storeTab": "Cửa hàng",
       "rewardsTab": "Phần thưởng hàng ngày",
-      "loading": "Đang tải Cửa hàng WOC...",
+      "loading": "Đang tải Cửa hàng Aphasium...",
       "error": "Cửa hàng WOC hiện không khả dụng. Vui lòng thử lại trong thời gian ngắn.",
       "balance": "Số dư Aphasium",
       "buyClaudium": "Mua Aphasium",
@@ -3688,7 +3688,7 @@ export const vi_VN: EnTranslations = {
       "sourceDelve": "Tìm thấy trong hang sâu {delve}",
       "sourceRift": "Rơi từ các lượt hoàn thành Rạn Nứt hạng {rank}",
       "sourceQuest": "Phần thưởng từ nhiệm vụ {quest}",
-      "sourceStore": "Mua tại Cửa Hàng WOC",
+      "sourceStore": "Mua tại Cửa Hàng Aphasium",
       "sourceActivityCorpseHarvest": "Thu được khi mổ xác sinh vật",
       "sourceActivityMasterworkCraft": "Nhận được khi chế tác một kiệt tác",
       "sourceActivityRiftFirstClear": "Trao cho mọi thành viên của tổ đội giành lượt hoàn thành đầu tiên của một Rạn Nứt xếp hạng",
@@ -4455,7 +4455,7 @@ export const vi_VN: EnTranslations = {
       "mobileTitle": "Trên điện thoại hoặc máy tính bảng",
       "mobileBody": "Các điều khiển cảm ứng tự xuất hiện, và bố cục tự co giãn theo màn hình của bạn: một sắp xếp gọn nhẹ trên điện thoại nhỏ, một bố cục tiêu chuẩn trên điện thoại lớn hơn, và một bố cục rộng rãi hơn trên máy tính bảng.\n\nKỹ năng của bạn nằm trong một vòng tròn thay vì một hàng số: nút tấn công cùng năm nút hành động bên cạnh, và một nút chuyển trang hoán đổi vòng tròn qua các ô còn lại, tối đa bảy trang khi bạn đã bật cả ba thanh kỹ năng. Quanh chúng là những nút một người chơi cảm ứng dùng nhiều nhất: đổi mục tiêu, dùng thứ trước mặt bạn, và nhảy, cùng một hàng kéo ra chứa đồ tiêu hao tự động lấp đầy từ những gì bạn đang mang theo.\n\nDọc theo cạnh dưới là Trò Chuyện, Xã Hội, Nhiệm Vụ, Cài Đặt, và Thêm. Thêm mở ra một khay chứa các cửa sổ còn lại, gồm nhân vật, Tìm Hầm Ngục, PvP, Cúp Thung Lũng, biểu cảm, và wiki. Ở đây các cửa sổ lấp đầy màn hình thay vì nổi lên trên nó.\n\nDi chuyển khung đơn vị là việc dành cho máy tính để bàn: trên cảm ứng, bố cục tự đặt chúng cho bạn.",
       "railTitle": "Dải nút bấm",
-      "railBody": "Ở góc dưới bên phải màn hình, cách xa bản đồ nhỏ, là một dải nút vuông nhỏ, mỗi nút cho một cửa sổ, xếp thành hai cột ngắn cạnh nhau. Hầu hết được in kèm phím mặc định của chúng.\n\nCột thứ nhất gồm nhân vật, sách phép, tài năng, nhật ký nhiệm vụ, Sách Kỳ Công, nghề nghiệp, bản đồ thế giới, túi đồ, và chế tác. Cột thứ hai mở đầu với Cửa hàng WOC rồi tiếp tục qua PvP, Tìm Hầm Ngục, Cúp Thung Lũng, Đấu Bài, bảng xếp hạng, biểu cảm, âm nhạc, bạn bè và bang hội, wiki này, và menu trò chơi. Vài nút khác chỉ gia nhập khi có thể áp dụng."
+      "railBody": "Ở góc dưới bên phải màn hình, cách xa bản đồ nhỏ, là một dải nút vuông nhỏ, mỗi nút cho một cửa sổ, xếp thành hai cột ngắn cạnh nhau. Hầu hết được in kèm phím mặc định của chúng.\n\nCột thứ nhất gồm nhân vật, sách phép, tài năng, nhật ký nhiệm vụ, Sách Kỳ Công, nghề nghiệp, bản đồ thế giới, túi đồ, và chế tác. Cột thứ hai mở đầu với Cửa hàng Aphasium rồi tiếp tục qua PvP, Tìm Hầm Ngục, Cúp Thung Lũng, Đấu Bài, bảng xếp hạng, biểu cảm, âm nhạc, bạn bè và bang hội, wiki này, và menu trò chơi. Vài nút khác chỉ gia nhập khi có thể áp dụng."
     },
     "commandsPage": {
       "intro": "Mọi lệnh bạn có thể gõ vào khung chat, được nhóm theo công dụng, cùng các dạng viết tắt của chúng.",
@@ -4674,7 +4674,7 @@ export const vi_VN: EnTranslations = {
       "reinsTerm": "Dây Cương",
       "reinsDef": "Vật phẩm chính là thú cưỡi. Giữ một bộ trong túi đồ hoặc ngân khố của bạn và thú cưỡi ấy là của bạn; dùng chúng để cưỡi. Dây cương có thể trao đổi, gửi thư, và bán cho người chơi khác.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "Loại tiền tệ của Cửa hàng WOC, chỉ dùng để mua mỹ phẩm và không gì khác. Nó không bao giờ mua được sức mạnh hay tiến trình.",
+      "claudiumDef": "Loại tiền tệ của Cửa hàng Aphasium, chỉ dùng để mua mỹ phẩm và không gì khác. Nó không bao giờ mua được sức mạnh hay tiến trình.",
       "worldTerm": "Thế Giới",
       "worldDef": "Một bản sao chung của trò chơi trực tuyến, với người chơi, khu chợ, và bảng xếp hạng riêng của nó. Cẩm nang này cũng gọi nó là một vương quốc, và nhân vật của bạn sống trên thế giới mà bạn đã tạo ra nó."
     },
@@ -6547,10 +6547,7 @@ export const vi_VN: EnTranslations = {
     "playAria": "Chơi World of Aphasya",
     "serverLabel": "Chọn thế giới của bạn",
     "serverAria": "Chọn thế giới: Trực Tuyến hoặc Ngoại Tuyến",
-    "serverOfflineSub": "Thế giới cục bộ tức thì",
-    "caLabel": "Địa Chỉ Hợp Đồng $WOC",
-    "caCopyAria": "Sao chép địa chỉ hợp đồng",
-    "caNote": "WOC là token cộng đồng của chúng tôi. Không cần nó để chơi. Hãy tham gia Discord để thảo luận về tiện ích và vòng xoáy tăng trưởng của WOC."
+    "serverOfflineSub": "Thế giới cục bộ tức thì"
   },
   "auth": {
     "enterRealm": "Vào Thế Giới",
@@ -6987,7 +6984,7 @@ export const vi_VN: EnTranslations = {
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "Thế Giới {realm}",
     "defaultRealm": "World of Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} người được chiêu mộ",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

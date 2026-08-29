@@ -483,13 +483,13 @@ export const ko_KR: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "WOC 상점",
-      "close": "WOC 상점 닫기",
-      "tabsLabel": "WOC 상점 구역",
+      "title": "Aphasium 상점",
+      "close": "Aphasium 상점 닫기",
+      "tabsLabel": "Aphasium 상점 구역",
       "storeTab": "상점",
       "rewardsTab": "일일 보상",
-      "loading": "WOC 상점 불러오는 중…",
-      "error": "현재 WOC 상점을 이용할 수 없습니다. 잠시 후 다시 시도해 주세요.",
+      "loading": "Aphasium 상점 불러오는 중…",
+      "error": "현재 Aphasium 상점을 이용할 수 없습니다. 잠시 후 다시 시도해 주세요.",
       "balance": "Aphasium 잔액",
       "buyClaudium": "Aphasium 구매",
       "owned": "보유 중",
@@ -3688,7 +3688,7 @@ export const ko_KR: EnTranslations = {
       "sourceDelve": "탐굴 \"{delve}\"에서 발견",
       "sourceRift": "{rank} 등급 균열 클리어에서 획득",
       "sourceQuest": "퀘스트 \"{quest}\" 보상",
-      "sourceStore": "WOC 상점에서 구매",
+      "sourceStore": "Aphasium 상점에서 구매",
       "sourceActivityCorpseHarvest": "시체 채집으로 획득",
       "sourceActivityMasterworkCraft": "걸작 제작으로 획득",
       "sourceActivityRiftFirstClear": "등급 균열의 최초 클리어를 차지한 파티 전원에게 수여",
@@ -4674,7 +4674,7 @@ export const ko_KR: EnTranslations = {
       "reinsTerm": "고삐",
       "reinsDef": "탈것 그 자체인 아이템입니다. 가방이나 은행에 한 벌 두면 그 탈것은 여러분의 것이며, 사용하면 올라탑니다. 고삐는 다른 플레이어와 거래하거나 우편으로 보내거나 팔 수 있습니다.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "WOC 상점의 화폐로, 꾸미기 상품에만 쓰이며 그 밖의 무엇에도 쓰이지 않습니다. 힘이나 성장은 결코 살 수 없습니다.",
+      "claudiumDef": "Aphasium 상점의 화폐로, 꾸미기 상품에만 쓰이며 그 밖의 무엇에도 쓰이지 않습니다. 힘이나 성장은 결코 살 수 없습니다.",
       "worldTerm": "월드",
       "worldDef": "온라인 게임의 공유되는 사본 하나로, 저마다의 플레이어와 시장, 순위를 지닙니다. 이 가이드에서는 왕국이라고 부르기도 하며, 여러분의 캐릭터는 자신이 만들어진 월드에서 살아갑니다."
     },
@@ -6547,10 +6547,7 @@ export const ko_KR: EnTranslations = {
     "playAria": "World of Aphasya 플레이",
     "serverLabel": "월드를 선택하세요",
     "serverAria": "월드 선택: 온라인 또는 오프라인",
-    "serverOfflineSub": "즉시 시작하는 로컬 세상",
-    "caLabel": "$WOC 계약 주소",
-    "caCopyAria": "계약 주소 복사",
-    "caNote": "WOC는 커뮤니티 토큰입니다. 플레이에는 필요하지 않습니다. WOC의 활용과 선순환 구조에 관해 이야기하려면 Discord에 참여하세요."
+    "serverOfflineSub": "즉시 시작하는 로컬 세상"
   },
   "auth": {
     "enterRealm": "월드 입장",
@@ -6987,7 +6984,7 @@ export const ko_KR: EnTranslations = {
     "topPercent": "상위 {percent}%",
     "realmSubtitle": "{realm} 월드",
     "defaultRealm": "Aphasya의 세계",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count}명 모집",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

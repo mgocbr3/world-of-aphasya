@@ -483,13 +483,13 @@ export const cs_CZ: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "Obchod WOC",
-      "close": "Zavřít obchod WOC",
-      "tabsLabel": "Sekce obchodu WOC",
+      "title": "Obchod Aphasium",
+      "close": "Zavřít obchod Aphasium",
+      "tabsLabel": "Sekce obchodu Aphasium",
       "storeTab": "Obchod",
       "rewardsTab": "Denní odměny",
-      "loading": "Načítání obchodu WOC…",
-      "error": "Obchod WOC nyní není dostupný. Zkus to za chvíli znovu.",
+      "loading": "Načítání obchodu Aphasium…",
+      "error": "Obchod Aphasium nyní není dostupný. Zkus to za chvíli znovu.",
       "balance": "Zůstatek Aphasium",
       "buyClaudium": "Koupit Aphasium",
       "owned": "Vlastníš",
@@ -3688,7 +3688,7 @@ export const cs_CZ: EnTranslations = {
       "sourceDelve": "K nalezení ve výpravě {delve}",
       "sourceRift": "Padá z průchodů trhlinami hodnosti {rank}",
       "sourceQuest": "Odměna z úkolu {quest}",
-      "sourceStore": "K zakoupení v obchodě WOC",
+      "sourceStore": "K zakoupení v obchodě Aphasium",
       "sourceActivityCorpseHarvest": "Získáno při sklízení mrtvol tvorů",
       "sourceActivityMasterworkCraft": "Získáno vytvořením mistrovského díla",
       "sourceActivityRiftFirstClear": "Uděleno každému členu družiny, která zvládne první průchod hodnocenou trhlinou",
@@ -4455,7 +4455,7 @@ export const cs_CZ: EnTranslations = {
       "mobileTitle": "Na telefonu nebo tabletu",
       "mobileBody": "Dotykové ovládání se objeví samo od sebe a rozvržení se přizpůsobí tvé obrazovce: kompaktní uspořádání na malém telefonu, standardní na větším telefonu a prostornější na tabletu.\n\nTvé schopnosti sedí v kruhu místo v číselné řadě: tlačítko útoku s pěti akčními tlačítky vedle sebe a přepínač stránek, který kruh prochází zbytkem tvých slotů, až sedm stránek, jakmile máš zapnuté všechny tři akční lišty. Kolem nich sedí tlačítka, po kterých dotykový hráč sahá nejčastěji: přepnutí cíle, použití toho, co je před tebou, a skok, plus vysouvací řada tvých spotřebních předmětů, která se sama plní tím, co u sebe nosíš.\n\nPodél spodního okraje jsou Chat, Sociální, Úkoly, Nastavení a Více. Více otevře přihrádku se zbytkem tvých oken, včetně tvé postavy, Hledače dungeonů, PvP, Poháru údolí, emotů a wiki. Okna tu vyplňují celou obrazovku, místo aby se nad ní vznášela.\n\nPřesouvání tvých rámů jednotek je desktopová záležitost: na dotyku ti rozvržení umístí rámy samo.",
       "railTitle": "Lišta tlačítek",
-      "railBody": "Dole v pravém dolním rohu obrazovky, daleko od minimapy, sedí lišta malých čtvercových tlačítek, jedno na okno, uspořádaných do dvou krátkých sloupců vedle sebe. Většina z nich nese potištěnou svou výchozí klávesu.\n\nPrvní sloupec pokrývá tvou postavu, knihu kouzel, talenty, deník úkolů, Knihu skutků, profese, mapu světa, batohy a výrobu. Druhý začíná Obchodem WOC a pokračuje přes PvP, Hledače dungeonů, Pohár údolí, Karetní souboj, žebříček, emoty, hudbu, přátele a cech, tuto wiki a herní menu. Pár dalších se k nim přidá, jen když se hodí."
+      "railBody": "Dole v pravém dolním rohu obrazovky, daleko od minimapy, sedí lišta malých čtvercových tlačítek, jedno na okno, uspořádaných do dvou krátkých sloupců vedle sebe. Většina z nich nese potištěnou svou výchozí klávesu.\n\nPrvní sloupec pokrývá tvou postavu, knihu kouzel, talenty, deník úkolů, Knihu skutků, profese, mapu světa, batohy a výrobu. Druhý začíná Obchodem Aphasium a pokračuje přes PvP, Hledače dungeonů, Pohár údolí, Karetní souboj, žebříček, emoty, hudbu, přátele a cech, tuto wiki a herní menu. Pár dalších se k nim přidá, jen když se hodí."
     },
     "commandsPage": {
       "intro": "Každý příkaz, který můžeš napsat do chatu, seřazený podle účelu, s jeho krátkými tvary.",
@@ -4674,7 +4674,7 @@ export const cs_CZ: EnTranslations = {
       "reinsTerm": "Otěže",
       "reinsDef": "Předmět, který je jízdním zvířetem. Stačí mít pár v batohu nebo v bance, a to jízdní zvíře je tvoje; použitím na něm jezdíš. Otěže lze směňovat, posílat poštou i prodávat jiným hráčům.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "Měna Obchodu WOC, utrácená za kosmetiku a za nic jiného. Nikdy nekupuje sílu ani postup.",
+      "claudiumDef": "Měna Obchodu Aphasium, utrácená za kosmetiku a za nic jiného. Nikdy nekupuje sílu ani postup.",
       "worldTerm": "Svět",
       "worldDef": "Jedna sdílená kopie online hry, s vlastními hráči, trhem a žebříčky. Tento průvodce jí občas říká i říše, a tvá postava žije na světě, na kterém jsi ji vytvořil."
     },
@@ -6547,10 +6547,7 @@ export const cs_CZ: EnTranslations = {
     "playAria": "Hrát World of Aphasya",
     "serverLabel": "Vyber si svět",
     "serverAria": "Vybrat svět: online nebo offline",
-    "serverOfflineSub": "Okamžitý lokální svět",
-    "caLabel": "Adresa kontraktu $WOC",
-    "caCopyAria": "Kopírovat adresu kontraktu",
-    "caNote": "WOC je komunitní token. Ke hraní není potřeba. Připoj se na Discord a diskutuj o využití a ekonomickém modelu WOC."
+    "serverOfflineSub": "Okamžitý lokální svět"
   },
   "auth": {
     "enterRealm": "Vstoupit do světa",
@@ -6987,7 +6984,7 @@ export const cs_CZ: EnTranslations = {
     "topPercent": "TOP {percent} %",
     "realmSubtitle": "Svět {realm}",
     "defaultRealm": "World of Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "přivedeno {count}",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",

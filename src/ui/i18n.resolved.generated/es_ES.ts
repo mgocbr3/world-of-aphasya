@@ -483,12 +483,12 @@ export const es_ES: EnTranslations = {
       }
     },
     "wocStore": {
-      "title": "Tienda WOC",
-      "close": "Cerrar la tienda WOC",
-      "tabsLabel": "Secciones de la tienda WOC",
+      "title": "Tienda Aphasium",
+      "close": "Cerrar la tienda Aphasium",
+      "tabsLabel": "Secciones de la tienda Aphasium",
       "storeTab": "Tienda",
       "rewardsTab": "Recompensas diarias",
-      "loading": "Cargando la tienda WOC...",
+      "loading": "Cargando la tienda Aphasium...",
       "error": "La tienda WOC no está disponible en este momento. Vuelve a intentarlo dentro de poco.",
       "balance": "Saldo de Aphasium",
       "buyClaudium": "Comprar Aphasium",
@@ -3688,7 +3688,7 @@ export const es_ES: EnTranslations = {
       "sourceDelve": "Se encuentra en la expedición {delve}",
       "sourceRift": "La sueltan las conquistas de Brechas de rango {rank}",
       "sourceQuest": "Recompensa de la misión {quest}",
-      "sourceStore": "Se compra en la Tienda WOC",
+      "sourceStore": "Se compra en la Tienda Aphasium",
       "sourceActivityCorpseHarvest": "Recuperada al recolectar cadáveres de criaturas",
       "sourceActivityMasterworkCraft": "Se consigue creando una obra maestra",
       "sourceActivityRiftFirstClear": "Se otorga a todos los miembros del grupo que logra la primera conquista de una Brecha clasificada",
@@ -4455,7 +4455,7 @@ export const es_ES: EnTranslations = {
       "mobileTitle": "En un teléfono o una tableta",
       "mobileBody": "Los controles táctiles aparecen por sí solos, y el diseño se ajusta al tamaño de tu pantalla: una disposición compacta en un teléfono pequeño, una estándar en uno más grande, y una más amplia en una tableta.\n\nTus habilidades se sitúan en un anillo en lugar de una fila de números: el botón de ataque con cinco botones de acción al lado, y un selector de página que recorre el anillo por el resto de tus ranuras, hasta siete páginas una vez que tienes las tres barras de acción activadas. A su alrededor están los botones a los que más recurre un jugador táctil: cambiar de objetivo, usar lo que tienes delante y saltar, además de una fila desplegable de tus consumibles que se llena sola con lo que llevas encima.\n\nA lo largo del borde inferior están Chat, Social, Misiones, Configuración y Más. Más abre una bandeja que guarda el resto de tus ventanas, incluidos tu personaje, el Buscador de Mazmorras, el JcJ, la Copa del Valle, los emotes y la wiki. Aquí las ventanas llenan la pantalla en lugar de flotar sobre ella.\n\nMover tus marcos de unidad es cosa de escritorio: en táctil, el diseño los coloca por ti.",
       "railTitle": "El carril de botones",
-      "railBody": "Abajo en la esquina inferior derecha de la pantalla, lejos del minimapa, se sitúa un carril de pequeños botones cuadrados, uno por ventana, dispuestos en dos columnas cortas una junto a otra. La mayoría llevan impresa su tecla predeterminada.\n\nLa primera columna abarca tu personaje, el libro de hechizos, los talentos, el registro de misiones, el Libro de Gestas, las profesiones, el mapa del mundo, las bolsas y la elaboración. La segunda empieza con la Tienda WOC y continúa con el JcJ, el Buscador de Mazmorras, la Copa del Valle, el Duelo de Cartas, la clasificación, los emotes, la música, amigos y hermandad, esta wiki y el menú del juego. Unos pocos más se suman a ellas solo cuando corresponde."
+      "railBody": "Abajo en la esquina inferior derecha de la pantalla, lejos del minimapa, se sitúa un carril de pequeños botones cuadrados, uno por ventana, dispuestos en dos columnas cortas una junto a otra. La mayoría llevan impresa su tecla predeterminada.\n\nLa primera columna abarca tu personaje, el libro de hechizos, los talentos, el registro de misiones, el Libro de Gestas, las profesiones, el mapa del mundo, las bolsas y la elaboración. La segunda empieza con la Tienda Aphasium y continúa con el JcJ, el Buscador de Mazmorras, la Copa del Valle, el Duelo de Cartas, la clasificación, los emotes, la música, amigos y hermandad, esta wiki y el menú del juego. Unos pocos más se suman a ellas solo cuando corresponde."
     },
     "commandsPage": {
       "intro": "Todos los comandos que puedes escribir en el chat, agrupados según su función, con sus formas abreviadas.",
@@ -4674,7 +4674,7 @@ export const es_ES: EnTranslations = {
       "reinsTerm": "Riendas",
       "reinsDef": "El objeto que es una montura. Guarda un par en tus bolsas o en tu banco y esa montura es tuya; úsalas para montar. Las riendas se pueden intercambiar, enviar por correo y vender a otros jugadores.",
       "claudiumTerm": "Aphasium",
-      "claudiumDef": "La moneda de la Tienda WOC, que se gasta en cosméticos y nada más. Nunca compra poder ni progresión.",
+      "claudiumDef": "La moneda de la Tienda Aphasium, que se gasta en cosméticos y nada más. Nunca compra poder ni progresión.",
       "worldTerm": "Mundo",
       "worldDef": "Una copia compartida del juego en línea, con sus propios jugadores, mercado y clasificaciones. Esta guía también la llama reino, y tu personaje vive en el mundo en el que lo creaste."
     },
@@ -6547,10 +6547,7 @@ export const es_ES: EnTranslations = {
     "playAria": "Jugar World of Aphasya",
     "serverLabel": "Elige tu mundo",
     "serverAria": "Selecciona el mundo: En Línea o Desconectado",
-    "serverOfflineSub": "Mundo local instantáneo",
-    "caLabel": "Dirección del contrato de $WOC",
-    "caCopyAria": "Copiar dirección del contrato",
-    "caNote": "WOC es nuestro token comunitario. No es necesario para jugar. Únete a Discord para hablar sobre la utilidad y el círculo virtuoso de WOC."
+    "serverOfflineSub": "Mundo local instantáneo"
   },
   "auth": {
     "enterRealm": "Entrar al mundo",
@@ -6987,7 +6984,7 @@ export const es_ES: EnTranslations = {
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "Mundo {realm}",
     "defaultRealm": "Mundo de Aphasya",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WORLD OF APHASYA",
     "recruited": "{count} reclutados",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
