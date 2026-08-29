@@ -48,6 +48,7 @@ import type { SimContext } from '../sim_context';
 import { abilityScalingPower, channelTickBonus } from '../spell_scaling';
 import { resolveTalentHitMult } from '../talent_hit_mult';
 import { hasEscapeStealth } from '../threat';
+import { creditAbilityDrill } from '../tutorial/ability_drill';
 import type { AbilityDef, AbilityEffect, Aura, Entity, Vec3 } from '../types';
 import {
   angleTo,
@@ -85,9 +86,14 @@ import {
   afflictionTargetCastError,
   clearAfflictionConsumeThreads,
   completeAfflictionDrain,
+  completeNeedleOfFateCast,
   consumeFateThreadsForDrain,
   gainDoom,
 } from './affliction';
+import {
+  shouldBufferSentenceDuringGcd,
+  shouldPreserveQueuedSentence,
+} from './affliction_sentence_queue';
 import {
   hasUnbreakableMovementLock,
   isInStasis,
@@ -127,6 +133,11 @@ import {
   iceFloesAuraForAbility,
   nextCastCheapMultiplier,
 } from './empower_next';
+import {
+  applyAutoUnshift,
+  isFormToggleAbility as isFormToggle,
+  willAutoUnshift,
+} from './form_auto_unshift';
 import { isActionLockingFormAuraKind, isResourceShiftFormAuraKind } from './forms';
 import {
   applyBrainFreezeOverride,
@@ -209,10 +220,6 @@ export const COLOSSAL_MIGHT_COOLDOWNS = new Set([
   'mortal_strike',
   'shield_slam',
 ]);
-
-function isFormToggle(ability: AbilityDef): boolean {
-  return ability.effects.some((e) => e.type === 'selfBuff' && isFormAuraKind(e.kind));
-}
 
 // Forms, stances and stealth are toggles: re-casting cancels the aura, and
 // cancelling is never gated by cost or cooldown (the cooldown gates re-entry).
@@ -511,16 +518,24 @@ export function updateCasting(ctx: SimContext, p: Entity, meta: PlayerMeta): voi
       fireChannelTick();
     }
     if (p.castRemaining <= CAST_COMPLETE_EPS) {
-      // Flush any fixed-count tick the timer has not reached yet: the tick
-      // accumulator and the channel's end advance separately, so floating-point
-      // drift can leave the final tick a hair short exactly when they coincide,
-      // silently dropping the last missile (the Arcane Missiles 5-barrage bug). A
-      // fixed-count channel must always land exactly channelTicks ticks. Inert for
+      // Flush a fixed-count tick only when its OWN schedule has also reached
+      // (or is a hair past) zero here: the tick accumulator and the channel's
+      // end advance separately, so floating-point drift can leave the final
+      // tick a hair short exactly when they coincide, silently dropping the
+      // last missile (the Arcane Missiles 5-barrage bug). A tick still
+      // meaningfully in the future was not lost to drift: pushbackCast's
+      // channel-fraction branch shortens castRemaining without rescheduling
+      // channelTickTimer, so a big enough pushback can end the channel before
+      // a later tick's timer ever comes due. Classic-era pushback trims the
+      // trailing tick count along with the time, so that tick is dropped too,
+      // never forced out as a same-instant completion burst. Inert for
       // duration-based channels, whose channelTicksLeft is 0.
-      while (p.channelTicksLeft > 0) {
+      while (p.channelTicksLeft > 0 && p.channelTickTimer <= CAST_COMPLETE_EPS) {
         p.channelTicksLeft -= 1;
+        p.channelTickTimer += p.channelTickEvery;
         fireChannelTick();
       }
+      p.channelTicksLeft = 0; // any tick pushback orphaned here owes nothing
       const completed = p.castingAbility ? ctx.resolvedAbility(p.castingAbility, p.id) : null;
       if (completed) completePaladinAegis(ctx, p, completed);
       stopChannelVisual(ctx, p);
@@ -915,6 +930,11 @@ export function castAbility(
     ability.castTime === 0 &&
     (ability.usableWhileCasting === true ||
       (abilityId === 'blink' && ctx.playerMods(meta).global.blinkCast > 0));
+  // Sentence is Hexcraft's release and may already be waiting for the cast or
+  // GCD that produced its final Thread. Repeated generator or release presses
+  // must not jump ahead during either guard, including the one-tick gap after
+  // the GCD timer reaches zero but before updateCasting retries the queue.
+  if (shouldPreserveQueuedSentence(p.queuedCastAbility, abilityId)) return;
   if (p.castingAbility) {
     if (!blinkThrough) {
       // classic-era spell queue: a press during the tail of the current cast
@@ -940,7 +960,13 @@ export function castAbility(
   // (including this GCD check). fireQueuedCast holds the slot instead of calling
   // in when the GCD is still running, so this early return only fires for a
   // same-tick player press racing the GCD, not for a queued follow-up.
-  if (!ability.offGcd && p.gcdRemaining > 0 && !blinkThrough) return; // silent, classic spams this
+  if (!ability.offGcd && p.gcdRemaining > 0 && !blinkThrough) {
+    if (shouldBufferSentenceDuringGcd(abilityId, p.gcdRemaining)) {
+      p.queuedCastAbility = abilityId;
+      p.queuedCastAim = aim ?? null;
+    }
+    return; // silent, classic spams this
+  }
   const togglingOff = isToggleBuff(ability) && p.auras.some((a) => a.id === ability.id);
   // sharedCooldownIds generalizes the release's shaman-shock special case (it
   // returns the same SHAMAN_SHOCK_COOLDOWN_IDS for those ids), so the shock
@@ -987,6 +1013,16 @@ export function castAbility(
     ctx.error(p.id, afflictionError);
     return;
   }
+  // Auto-unshift (see combat/form_auto_unshift.ts): a healing or damaging spell
+  // pressed in Bruin/Wolf/Fleet Form drops the form and casts. Decided HERE and
+  // applied at the form gate below, because the two questions this answers sit
+  // on either side of it: the cast is billed against the PARKED mana (the live
+  // bar is rage or energy while shifted), and refusing it for cost must leave
+  // the druid still wearing the form rather than stripping it for nothing.
+  const autoUnshift = willAutoUnshift(p.auras, ability);
+  // Fleet Form never swapped the bar, so its pool is already the live one; only
+  // the bar-swapping forms (bear rage, cat energy) park mana in savedMana.
+  const castingPool = autoUnshift && p.resourceType !== 'mana' ? p.savedMana : p.resource;
   // shifting out of a form is free; shifting across forms bills the parked
   // mana (the live bar is rage/energy in a form) — see spendAbilityCost
   const canCastFree = res.cost > 0 && hasFreeCostFor(p, ability.id);
@@ -1012,7 +1048,7 @@ export function castAbility(
       ? Math.ceil(shamanAdjustedCost * paladinManaCostMultiplier(p))
       : shamanAdjustedCost;
   if (
-    p.resource < payableCost &&
+    castingPool < payableCost &&
     (!canCastFree || stormcastArmedForAbility) &&
     !freeBySolarReprisal &&
     !togglingOff &&
@@ -1020,13 +1056,18 @@ export function castAbility(
   ) {
     ctx.error(
       p.id,
-      p.resourceType === 'rage'
-        ? 'Not enough rage!'
-        : p.resourceType === 'energy'
-          ? 'Not enough energy!'
-          : p.resourceType === 'focus'
-            ? 'Not enough Focus!'
-            : 'Not enough mana!',
+      // An auto-unshifting cast was weighed against the parked mana, so it is
+      // mana it is short of, never the rage or energy bar it never touches.
+      // Every other arm is the ladder this always had.
+      autoUnshift
+        ? 'Not enough mana!'
+        : p.resourceType === 'rage'
+          ? 'Not enough rage!'
+          : p.resourceType === 'energy'
+            ? 'Not enough energy!'
+            : p.resourceType === 'focus'
+              ? 'Not enough Focus!'
+              : 'Not enough mana!',
     );
     return;
   }
@@ -1102,8 +1143,14 @@ export function castAbility(
       return;
     }
   } else if (form && !isFormToggle(ability) && !ability.usableInForm) {
-    ctx.error(p.id, "You can't do that while shapeshifted.");
-    return;
+    // Only the DECISION is made here, so the ladder below continues for a cast
+    // that will auto-unshift. The form itself is not touched until the cast
+    // commits (see applyAutoUnshift further down): every refusal between here
+    // and there would otherwise strip the form for a cast that never happened.
+    if (!autoUnshift) {
+      ctx.error(p.id, "You can't do that while shapeshifted.");
+      return;
+    }
   }
   if (
     ability.requiresStealth &&
@@ -1466,6 +1513,22 @@ export function castAbility(
   if (ability.id !== 'ghost_wolf' && p.auras.some((a) => a.id === 'ghost_wolf')) {
     ctx.breakGhostWolf(p);
   }
+  // Auto-unshift (combat/form_auto_unshift.ts), applied HERE rather than at the
+  // form gate above, and for the same reason the affordability check was hoisted
+  // ABOVE that gate: a druid must never lose a form to a press that goes on to be
+  // refused. Everything that can still say no (target, range, line of sight,
+  // min-range, party membership) has now cleared, so this is the first point at
+  // which the cast is certain. It sits with its siblings deliberately: standing
+  // up, sheathing, breaking Ghost Wolf and dismounting are the same kind of "the
+  // cast is happening, so this state goes" change, and Ghost Wolf is the shaman's
+  // travel form, the exact analogue one line up.
+  //
+  // Still free and still off the GCD (leaving a form has always been free here),
+  // and it precedes all three commit branches below (channel, cast-time, instant)
+  // as well as every billing site, so an instant such as Lunar Tempest fires on
+  // the same press and pays from the restored mana pool. Shifting back IN stays a
+  // normal ability and bills both.
+  if (autoUnshift) applyAutoUnshift(ctx, p, meta, ability);
   // Auto-dismount when the player is mounted or mid-summon-channel and casts any ability.
   if (p.mountKey !== '') forceDismount(ctx, p);
   if (p.mountCastKey !== '') {
@@ -1741,7 +1804,7 @@ function spendAbilityCost(
   p: Entity,
   meta: PlayerMeta,
   res: ResolvedAbility,
-  target: Entity | null = null,
+  _target: Entity | null = null,
 ): void {
   if (isToggleBuff(res.def) && p.auras.some((a) => a.id === res.def.id)) return;
   if (res.def.devotionCost) spendDevotion(p, res.def.devotionCost);
@@ -2235,11 +2298,6 @@ const SELF_ANNOUNCING_EFFECTS: ReadonlySet<AbilityEffect['type']> = new Set([
   'feralCharge',
   'blinkForward',
   'repositionToAim',
-  'ballKick',
-  'ballPass',
-  'ballShoot',
-  'sportDash',
-  'sportShove',
 ]);
 
 function applyAbility(
@@ -2581,6 +2639,9 @@ function applyAbility(
     spendAbilityCost(ctx, p, meta, res, target);
     armAbilityCooldownWithReflection(ctx, p, meta, res, togglingOff);
     res = reserveRuinousBrandCopy(ctx, p, meta, target, res);
+    if (res.effects.some((effect) => effect.type === 'afflictionNeedle')) {
+      completeNeedleOfFateCast(ctx, p, target);
+    }
     ctx.emit({
       type: 'spellfx',
       sourceId: p.id,
@@ -2647,6 +2708,11 @@ function applyAbility(
             ability: ability.name,
             kind: 'resist',
           });
+          // A resisted bolt never reaches runEffects, but the player still
+          // pressed the button the island asked for, so the drill credits
+          // here too. Without this the lesson stalls on an unlucky roll and
+          // the coach keeps asking for a press that already happened.
+          creditAbilityDrill(ctx, src, tgt, ability.id);
           ctx.enterCombat(src, tgt);
           restoreStormcastReservation(ctx, src, stormcastReservation);
           return;

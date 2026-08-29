@@ -176,11 +176,6 @@ function sameArea(a: UnstuckArea, b: UnstuckArea): boolean {
   );
 }
 
-function isValeCupPlayer(ctx: SimContext, pid: number): boolean {
-  const matches = ctx.vcup.match ? [ctx.vcup.match, ...ctx.vcup.practices] : ctx.vcup.practices;
-  return matches.some((match) => match.teamA.includes(pid) || match.teamB.includes(pid));
-}
-
 function hasMoveInput(meta: PlayerMeta): boolean {
   const input = meta.moveInput;
   return input.forward || input.back || input.strafeLeft || input.strafeRight || input.jump;
@@ -196,12 +191,7 @@ function forcedAction(p: Entity): boolean {
 
 function competitive(ctx: SimContext, pid: number, p: Entity): boolean {
   if (ctx.bgMatches.has(pid) && isBgPos(p.pos.x)) return false;
-  return (
-    ctx.duels.has(pid) ||
-    ctx.arenaMatches.has(pid) ||
-    isValeCupPlayer(ctx, pid) ||
-    isArenaPos(p.pos.x)
-  );
+  return ctx.duels.has(pid) || ctx.arenaMatches.has(pid) || isArenaPos(p.pos.x);
 }
 
 /**
@@ -234,6 +224,7 @@ function motionBlock(ctx: SimContext, p: Entity): UnstuckBlockedReason | null {
 }
 
 function blockedReason(ctx: SimContext, meta: PlayerMeta, p: Entity): UnstuckBlockedReason | null {
+  const bgWallTrap = battlegroundWallTrap(ctx, p);
   if (p.jailed) return 'jailed';
   if (p.inCombat || p.combatTimer < 5) return 'combat';
   if (isStunned(p) || isRooted(p)) return 'controlled';
@@ -244,7 +235,7 @@ function blockedReason(ctx: SimContext, meta: PlayerMeta, p: Entity): UnstuckBlo
   if (competitive(ctx, p.id, p)) return 'competitive';
   if (ctx.tradeFor(p.id)) return 'trading';
   if (!unstuckLocationAt(ctx, p.id, p.pos)) return 'invalid_area';
-  if (hasMoveInput(meta)) return 'moving';
+  if (hasMoveInput(meta) && !bgWallTrap) return 'moving';
   return null;
 }
 
@@ -311,7 +302,7 @@ function cancelReason(
   if (p.castingAbility !== null || isConsuming(p) || p.sitting) return 'busy';
   if (pending.area.kind === 'battleground' && bgCarryingFlag(ctx, p.id)) return 'state_changed';
   if (
-    hasMoveInput(meta) ||
+    (hasMoveInput(meta) && !battlegroundWallTrap(ctx, p)) ||
     (pending.area.kind !== 'battleground' &&
       (Math.hypot(p.pos.x - pending.origin.x, p.pos.z - pending.origin.z) > CANCEL_MOVE_DISTANCE ||
         Math.abs(p.pos.y - pending.origin.y) > CANCEL_VERTICAL_DISTANCE))

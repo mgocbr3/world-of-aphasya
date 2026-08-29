@@ -34,7 +34,6 @@ import {
   openPlaySession,
   reclaimDeactivatedName,
   renameCharacter,
-  revokeAccountMechChroma,
   SCHEMA,
   setAccountWeaponSkinLoadout,
   touchLogin,
@@ -579,31 +578,6 @@ describe('account cosmetics', () => {
     expect(sql).toMatch(/jsonb_set/);
     expect(params).toEqual([7, 'mechChromaIds', 'amber_crimson']);
   });
-
-  it('persists mech chroma removal without replacing account quest lockouts', async () => {
-    dbMock.query.mockResolvedValueOnce({
-      rows: [
-        {
-          cosmetics: {
-            completedQuestIds: ['q_aldrics_fallen_star'],
-            mechChromaIds: ['onyx_gold'],
-          },
-        },
-      ],
-    } as any);
-
-    await expect(revokeAccountMechChroma(7, 'amber_crimson')).resolves.toEqual({
-      completedQuestIds: ['q_aldrics_fallen_star'],
-      mechChromaIds: ['onyx_gold'],
-      weaponSkinIds: [],
-      weaponSkinLoadout: {},
-    });
-
-    const [sql, params] = dbMock.query.mock.calls[0];
-    expect(sql).toMatch(/UPDATE accounts/);
-    expect(sql).toMatch(/jsonb_set/);
-    expect(params).toEqual([7, 'amber_crimson']);
-  });
 });
 
 describe('account weapon skin cosmetics', () => {
@@ -735,6 +709,7 @@ describe('bankBonusFactsForAccount', () => {
           discord_linked: false,
           wallet_linked: true,
           qualified_referrals: 3,
+          character_count: 2,
         },
       ],
     } as any);
@@ -768,6 +743,7 @@ describe('bankBonusFactsForAccount', () => {
       discordLinked: false,
       walletLinked: true,
       qualifiedReferrals: 3,
+      characterCount: 2,
     });
   });
 
@@ -778,6 +754,7 @@ describe('bankBonusFactsForAccount', () => {
       discordLinked: false,
       walletLinked: false,
       qualifiedReferrals: 0,
+      characterCount: 0,
     });
   });
 
@@ -797,6 +774,7 @@ describe('bankBonusFactsForAccount', () => {
       discordLinked: true,
       walletLinked: false,
       qualifiedReferrals: 0,
+      characterCount: 0,
     });
   });
 });

@@ -1,6 +1,7 @@
 // Warspirit's deterministic weapon-posture and three-hit cadence engine.
 
 import { MOBS } from '../data';
+import { questGateBlocksAggro } from '../mob/quest_gated_aggro';
 import type { SimContext } from '../sim_context';
 import { TAUNT_FORCE_SECONDS, topThreatValue } from '../threat';
 import type { Entity } from '../types';
@@ -26,7 +27,7 @@ export const STONEBOUND_DR_ID = 'shaman_stonebound_dr';
 export const STONEBOUND_WARD_SMOOTH_ID = 'shaman_stonebound_ward_smooth';
 export const WARSPIRIT_CADENCE_STEPS = 3;
 export const GALEHEART_ECHO_COUNT = 2;
-export const GALEHEART_ECHO_DAMAGE = 0.5;
+export const GALEHEART_ECHO_DAMAGE = 0.25;
 export const STORMCAST_DURATION = 12;
 // buff_armor_pct / buff_sta_pct store integer percentage points (40 = +40%).
 // v0.38 tank threat/survivability parity pass: armor 30 -> 40, stamina bonus
@@ -360,6 +361,9 @@ export function stoneboundThreatMultiplier(ctx: SimContext, player: Entity): num
 
 export function applyStoneboundJolt(ctx: SimContext, player: Entity, target: Entity): void {
   if (!isWarspirit(ctx, player) || warspiritPosture(player) !== 'stonebound' || target.dead) return;
+  // A quest-gated mob (e.g. a Broodmother egg) must stay untouchable in this
+  // direction too: same reasoning as sim.ts's applyTaunt guard.
+  if (questGateBlocksAggro(ctx.players, target, player)) return;
   target.threat.set(
     player.id,
     Math.max(target.threat.get(player.id) ?? 0, topThreatValue(target), 1),

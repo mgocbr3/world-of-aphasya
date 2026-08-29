@@ -7,6 +7,18 @@
 import type { DeedLocaleTable } from '../deed_i18n';
 
 export const table: DeedLocaleTable = {
+  prog_ready_for_an_adventure: {
+    name: 'Siap Berpetualang',
+    desc: 'Lulus dari Pesisir Pembuktian: selesaikan setiap pelajaran di pulau itu, lalu bunyikan lonceng feri pulang ke Eastbrook.',
+  },
+  exp_dawnhold_castle: {
+    name: 'Pintu Terbuka di Taman',
+    desc: 'Kunjungi Kastil Dawnhold dan jelajahi aula tamannya yang bermandikan cahaya.',
+  },
+  exp_the_last_keep: {
+    name: 'Aula yang Sunyi',
+    desc: 'Masuklah melalui pintu Benteng Terakhir dan susuri aula-aulanya yang sunyi.',
+  },
   pvp_bg_first_capture: {
     name: 'Bendera di Tangan',
     desc: 'Rebut bendera di Medan Thornhollow.',
