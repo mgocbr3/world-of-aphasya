@@ -46,10 +46,34 @@ IDs internos, seeds, nomes de zonas, classes e conteúdo de jogo NÃO mudam nest
 | 1. Identidade user-facing | Nome, titulos, i18n, metadata de apps, deep links, logo provisório | EM ANDAMENTO (esta branch) |
 | 2. Vertical slice visual | AphasyaArtProfile, materiais, iluminação, 1 zona, boss, HUD, presets. Plano detalhado: `docs/design/aphasya-visual-upgrade.md` | planejada |
 | 3. Passagem global de render | Céu, fog, tone mapping, biome profiles em todas as regioes | pendente |
-| 4. Personagens e assets | KayKit series, Meshy, normalização, cobertura de elenco | pendente |
+| 4. Personagens e assets | KayKit series, Meshy, normalização, cobertura de elenco. **Direção decidiu em 2026-08-29: fica no elenco KayKit e cresce com packs do mesmo criador.** Ver 3.1 | EM ANDAMENTO |
 | 5. VFX, UI theme Aphasya, audio | Preset "aphasya" na infraestrutura de temas (`src/ui/theme.ts` + `src/styles/tokens.css`), substituição de audio restrito | pendente |
 | 6. Loja, SDK Pixlland, monetização | Adapters por plataforma, rewarded ads com SSV, Reward Ledger | pendente |
 | 7. Conteúdo, QA, lancamento | Zonas restantes, acessibilidade, localização, operação | pendente |
+
+### 3.1 Decisão de elenco (2026-08-29): KayKit fica, Quaternius fica parado
+
+A alternativa de proporção heroica foi construída inteira e testada
+(`docs/design/quaternius-character-spike.md`), e a direção decidiu NAO adotar:
+os corpos novos nao estavam ficando bons e integra-los custaria uma decisao por
+NPC e por mob enquanto a cidade inteira segue KayKit. O trabalho esta parado, nao
+perdido: branch `spike/quaternius-characters` e tag
+`parked/quaternius-cast-2026-08-29` no remote `aphasya`. Os commits de rebrand
+que nasceram naquela branch e nao sao do elenco foram trazidos para ca.
+
+**A lacuna que sobra, medida:** 37 NPCs do jogo dividem 9 chaves de corpo, e as
+duas maiores (`npc_villager` e `npc_villager_robed`, 15 NPCs somados) sao o
+mesmo `rogue.glb` e o mesmo `mage.glb` com tint de entidade. O elenco humanoide
+inteiro sai de 5 corpos do pack gratuito Adventurers. Nao e um problema de
+estilo, e de QUANTIDADE de silhuetas.
+
+**Caminho escolhido:** crescer no mesmo criador (Kay Lousberg, KayKit). Os packs
+Mystery Monthly 4, 5 e 6 (14 a 15 personagens cada, 43 no total) sao descritos
+pelo autor como "tecnicamente identicos aos Adventurers": mesmo rig, mesmas
+animacoes que ja enviamos, CC0 sem atribuicao, com fontes .blend, que e
+exatamente o que a regra 6.1 do GDD pede de um pack adquirido. Sao pagos
+(19,99 USD cada, ou 150 USD por The Complete KayKit, que inclui os futuros).
+A compra e decisao da direcao e nao foi feita.
 
 ## 4. Aterrissagem técnica (mapa da marca no código)
 
