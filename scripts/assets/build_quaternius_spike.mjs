@@ -78,6 +78,13 @@ const HEADLESS = process.argv.includes('--headless');
 // from, and it is the reference every generated head is measured against: same
 // scale, same neck stump, same seat on the bone.
 const EMIT_HEAD = argFlag('--emit-head');
+// Emit ONE hairstyle as a standalone head-bone piece (--emit-hair <Style> <out>).
+// Hair only became possible to ship this way once the head itself was an
+// attachment: a hairpiece is the same shape of problem, a rigid cap on the one
+// bone that carries the skull, and it is what turns hairstyle back into a
+// player choice on a rig with no part library.
+const EMIT_HAIR = argFlag('--emit-hair');
+const EMIT_HAIR_OUT = argFlag('--emit-hair-out');
 function argFlag(name) {
   const at = process.argv.indexOf(name);
   return at >= 0 ? process.argv[at + 1] : null;
@@ -487,7 +494,8 @@ if (EMIT_HEAD) {
   process.exit(0);
 }
 
-for (const style of HEADLESS ? [] : HAIR) {
+const hairAdopted = new Set();
+for (const style of EMIT_HAIR ? [EMIT_HAIR] : HEADLESS ? [] : HAIR) {
   const hairPath = findFile(join(packRoot, 'ubc'), `${style}.gltf`);
   if (!hairPath) throw new Error(`hair ${style}.gltf not found under ${packRoot}/ubc`);
   healPackTextureNames(hairPath);
@@ -503,6 +511,7 @@ for (const style of HEADLESS ? [] : HAIR) {
     const node = hairMap.get(sourceNode);
     if (!node) continue;
     keep.add(node);
+    hairAdopted.add(node);
     node.getParentNode()?.removeChild(node);
     if (node.getSkin()) node.setSkin(outfitSkin);
     scene?.addChild(node);
@@ -515,6 +524,70 @@ for (const style of HEADLESS ? [] : HAIR) {
     const merged = hairMap.get(sourceProp);
     if (merged && !keep.has(merged)) merged.dispose();
   }
+}
+
+// Hair-only export, the same trick the head takes: strip everything else, put
+// what is left into the head bone's own space, drop the skinning, and write.
+// A hairpiece is skinned across head and neck on the pack's rig, but as an
+// attachment it only ever needs to follow the skull, so the binding is dropped
+// rather than transferred.
+if (EMIT_HAIR) {
+  if (!EMIT_HAIR_OUT) throw new Error('--emit-hair needs --emit-hair-out <glb>');
+  // Only what the hair merge itself adopted. Filtering by "not the body" instead
+  // swept the whole outfit into the hairpiece, because the kit's meshes belong
+  // to neither set.
+  const hairNodes = [...hairAdopted];
+  const wanted = new Set(hairNodes);
+  const strays = [];
+  scene?.traverse((node) => {
+    if (node.getMesh() && !wanted.has(node)) strays.push(node);
+  });
+  for (const node of strays) node.dispose();
+
+  const joints = outfitSkin.listJoints().map((j) => j.getName());
+  const headIndex = joints.indexOf('Head');
+  if (headIndex < 0) throw new Error('no Head joint to express the hairpiece against');
+  const toBone = outfitSkin.getInverseBindMatrices().getElement(headIndex, new Array(16));
+  let seen = 0;
+  for (const node of hairNodes) {
+    const mesh = node.getMesh();
+    if (!mesh) continue;
+    for (const prim of mesh.listPrimitives()) {
+      const position = prim.getAttribute('POSITION');
+      const normal = prim.getAttribute('NORMAL');
+      const v = [0, 0, 0];
+      const out = [0, 0, 0];
+      for (let i = 0; i < position.getCount(); i++) {
+        position.getElement(i, v);
+        position.setElement(i, transformPoint(toBone, v, out));
+        if (normal) {
+          normal.getElement(i, v);
+          normal.setElement(i, transformDirection(toBone, v, [0, 0, 0]));
+        }
+        seen++;
+      }
+      position.setArray(position.getArray());
+      prim.setAttribute('JOINTS_0', null);
+      prim.setAttribute('WEIGHTS_0', null);
+    }
+    node.setSkin(null);
+    node.setName('hairpiece');
+  }
+  for (const skin of root.listSkins()) skin.dispose();
+  for (const animation of root.listAnimations()) animation.dispose();
+  const hairBuffer = root.listBuffers()[0];
+  for (const accessor of root.listAccessors()) accessor.setBuffer(hairBuffer);
+  for (const buffer of root.listBuffers().slice(1)) buffer.dispose();
+  await doc.transform(
+    dedup(),
+    prune(),
+    textureCompress({ encoder: sharp, targetFormat: 'webp', resize: [512, 512] }),
+    meshopt({ encoder: MeshoptEncoder, level: 'high' }),
+  );
+  await mkdir(dirname(EMIT_HAIR_OUT), { recursive: true });
+  await io.write(EMIT_HAIR_OUT, doc);
+  console.log(JSON.stringify({ hair: EMIT_HAIR_OUT, style: EMIT_HAIR, vertices: seen }));
+  process.exit(0);
 }
 
 // Skin a generated armour piece INTO the body, if one was named. A prop bolted

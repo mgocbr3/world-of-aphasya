@@ -37,6 +37,7 @@ import {
   applyMaterials,
   applyModularSliderMorphs,
   assembleModel,
+  buildSpikeHairPiece,
   ensureSkinTexture,
   farSourceMaterials,
   modularFarBake,
@@ -52,10 +53,16 @@ import {
   type TintedMaterialClaims,
   takeFarBakeBudget,
   tintedFarMaterials,
+  tintedMaterial,
 } from './assets';
 import { type BodyAxes, bodyHeightScale, bodyScalePlan } from './body_shape_core';
 import { scaledVisualHeight } from './character_world_scale';
-import { applyFaceAxes, type FaceAxes, faceAxesAreNeutral } from './face_shape_core';
+import {
+  type FaceAxes,
+  faceAxesAreNeutral,
+  faceDisplacementAt,
+  faceFrameOf,
+} from './face_shape_core';
 import { HairSwayDriver } from './hair_sway';
 import { buildHalo } from './halo';
 import type { EmoteClipSpec, VisualDef, WeaponLayoutOverride } from './manifest';
@@ -455,11 +462,76 @@ export class CharacterVisual {
   }
 
   /**
+   * Mount a hairpiece and a beard on the head bone, replacing whatever was
+   * there. Per INSTANCE, not per VisualDef, because hair is a player choice and
+   * a def is shared by every character wearing that body.
+   *
+   * Passing null for either slot leaves that slot empty, which is how bald and
+   * clean-shaven are expressed: there is no "none" asset to load.
+   *
+   * The colour is a full-strength tint rather than a subtle pull, because that
+   * is how this pack is painted: the hair texture is a near-neutral greyscale
+   * whose job is the shading, and the material colour underneath it is the
+   * paint. Multiplying one by the other is the pack's own recolour path, which
+   * is why a hairpiece answers the creator's wheel without a bespoke shader.
+   */
+  setSpikeHair(hairUrl: string | null, beardUrl: string | null, color: number): void {
+    const root = this.model;
+    if (!root) return;
+    const head = root.getObjectByName('Head');
+    if (!head) return;
+    for (const slot of ['spike_hair', 'spike_beard'] as const) {
+      const existing = head.getObjectByName(slot);
+      if (existing) existing.removeFromParent();
+    }
+    // Claim the new tints into a fresh lease BEFORE releasing the old one, the
+    // same order every material sweep here uses: a colour kept across the swap
+    // never dips to zero claims and so can never be evicted mid-swap.
+    const prevClaims = this.tintedHairClaims;
+    this.tintedHairClaims = new Set();
+    for (const [slot, url] of [
+      ['spike_hair', hairUrl],
+      ['spike_beard', beardUrl],
+    ] as const) {
+      if (!url) continue;
+      const piece = buildSpikeHairPiece(url);
+      if (!piece) continue;
+      // The pieces are exported in the head bone's own space, so parenting is
+      // the whole placement: no offset, no rotation, no scale to chase.
+      piece.name = slot;
+      piece.traverse((o) => {
+        const mesh = o as THREE.Mesh;
+        if (!mesh.isMesh) return;
+        // The clone shares the parse cache's materials, which are immutable and
+        // shared with every other character wearing this piece: recolouring one
+        // in place would repaint the whole town. The shared tinted cache hands
+        // back a per-colour clone instead, keyed and claim-counted like the rig's.
+        const source = mesh.material;
+        mesh.material = Array.isArray(source)
+          ? source.map((m) =>
+              tintedMaterial(m, color, 1, null, null, 'body', this.tintedHairClaims),
+            )
+          : tintedMaterial(source, color, 1, null, null, 'body', this.tintedHairClaims);
+      });
+      head.add(piece);
+    }
+    releaseTintedMaterials(prevClaims);
+  }
+
+  /**
    * Reshape the face by displacing the head's own vertices. Unlike the body,
    * this cannot share geometry: two characters with different noses are two
    * different meshes, so the head is cloned on first use and the ORIGINAL
    * positions are kept, because the displacement is absolute rather than
    * incremental and a slider dragged twice would otherwise compound.
+   *
+   * The deformation is ONE field over the whole head, not one pass per mesh: a
+   * head is a skull plus separate eyes and brows, each with its own transform
+   * and (the shipped GLBs being meshopt quantized) its own coordinate range.
+   * So every vertex is carried into the head's shared space, displaced there,
+   * and carried back through the same mesh's inverse. Measuring the frame per
+   * mesh instead is what used to slide the eyes out of their sockets and put
+   * the "nose" of the brow mesh somewhere behind the forehead.
    *
    * A neutral face clones nothing at all, which is the common case.
    */
@@ -468,27 +540,93 @@ export class CharacterVisual {
     if (!root) return;
     const head = root.getObjectByName('racial_head') ?? root.getObjectByName('Head');
     if (!head) return;
+    const meshes: THREE.Mesh[] = [];
     head.traverse((o) => {
       const mesh = o as THREE.Mesh;
       if (!mesh.isMesh) return;
-      const position = mesh.geometry?.getAttribute('position');
-      if (!position) return;
+      // Hair is mounted on this same bone and is a rigid shell of its own: it
+      // sits above every region in the table, and deforming it would only make
+      // a hairpiece follow a chin.
+      if (mesh.userData.hairPiece) return;
+      if (!mesh.geometry?.getAttribute('position')) return;
       if (faceAxesAreNeutral(axes) && !mesh.userData.faceBase) return;
+      meshes.push(mesh);
+    });
+    if (meshes.length === 0) return;
+    head.updateWorldMatrix(true, true);
+    const toHead = new THREE.Matrix4();
+    const fromHead = new THREE.Matrix4();
+    const headInverse = new THREE.Matrix4().copy(head.matrixWorld).invert();
+    const point = new THREE.Vector3();
+    const shifted = new THREE.Vector3();
+    const displacement: [number, number, number] = [0, 0, 0];
+    // Pass 1: every mesh's base vertices in the head's own space, which is the
+    // only frame they share, and the bounds of the whole head measured there.
+    const inHead: Float32Array[] = [];
+    for (const mesh of meshes) {
       if (!mesh.userData.faceBase) {
         // Own the geometry before writing to it: the parse cache hands the same
-        // buffer to every character wearing this head.
+        // buffer to every character wearing this head. Then PROMOTE position
+        // and normal to plain float attributes: the shipped heads are meshopt
+        // quantized (int16 positions, int8 normals, both normalized), matrix
+        // math on the raw integers only works by scale coincidence, and
+        // computeVertexNormals writing unit floats into an int8 array is what
+        // turned every reshaped face into shading garbage.
         mesh.geometry = mesh.geometry.clone();
+        for (const name of ['position', 'normal'] as const) {
+          const src = mesh.geometry.getAttribute(name);
+          if (!src) continue;
+          const out = new Float32Array(src.count * 3);
+          for (let i = 0; i < src.count; i++) {
+            out[i * 3] = src.getX(i);
+            out[i * 3 + 1] = src.getY(i);
+            out[i * 3 + 2] = src.getZ(i);
+          }
+          mesh.geometry.setAttribute(name, new THREE.BufferAttribute(out, 3));
+        }
         const cloned = mesh.geometry.getAttribute('position');
         mesh.userData.faceBase = Float32Array.from(cloned.array as Float32Array);
       }
+      const base = mesh.userData.faceBase as Float32Array;
+      mesh.updateWorldMatrix(true, false);
+      toHead.copy(headInverse).multiply(mesh.matrixWorld);
+      const carried = new Float32Array(base.length);
+      for (let i = 0; i < base.length; i += 3) {
+        point.set(base[i], base[i + 1], base[i + 2]).applyMatrix4(toHead);
+        carried[i] = point.x;
+        carried[i + 1] = point.y;
+        carried[i + 2] = point.z;
+      }
+      inHead.push(carried);
+    }
+    const frame = faceFrameOf(inHead);
+    // Pass 2: displace in head space, carry the RESULT back through the same
+    // mesh's inverse, and write it into that mesh's own buffer.
+    for (let m = 0; m < meshes.length; m++) {
+      const mesh = meshes[m];
+      const carried = inHead[m];
       const target = mesh.geometry.getAttribute('position');
       const values = target.array as Float32Array;
       values.set(mesh.userData.faceBase as Float32Array);
-      applyFaceAxes(values, axes);
+      mesh.updateWorldMatrix(true, false);
+      toHead.copy(headInverse).multiply(mesh.matrixWorld);
+      fromHead.copy(toHead).invert();
+      for (let i = 0; i < carried.length; i += 3) {
+        const x = carried[i];
+        const y = carried[i + 1];
+        const z = carried[i + 2];
+        if (!faceDisplacementAt(x, y, z, axes, frame, displacement)) continue;
+        shifted
+          .set(x + displacement[0], y + displacement[1], z + displacement[2])
+          .applyMatrix4(fromHead);
+        values[i] = shifted.x;
+        values[i + 1] = shifted.y;
+        values[i + 2] = shifted.z;
+      }
       target.needsUpdate = true;
       mesh.geometry.computeVertexNormals();
       mesh.geometry.computeBoundingSphere();
-    });
+    }
   }
   /** The manifest-height normalize, kept so a height axis can multiply it. */
   private baseNormScale = 1;
@@ -581,6 +719,11 @@ export class CharacterVisual {
   // releases both.
   private tintedRigClaims: TintedMaterialClaims = new Set();
   private tintedFarClaims: TintedMaterialClaims = new Set();
+  // Hairpieces hold their OWN lease: they are mounted after the rig sweep, they
+  // carry the player's hair colour rather than the body tint, and a skin or
+  // weapon swap re-runs the rig sweep without touching them (applyMaterials
+  // skips them by userData, as it does the class halo).
+  private tintedHairClaims: TintedMaterialClaims = new Set();
   // Ability VFX body glow (the gallery rim read): per-visual material clones
   // carrying an emissive tint while a spec'd cast or buff aura is live. Cloned
   // once per original because base materials are SHARED per-asset caches;
@@ -2557,6 +2700,8 @@ export class CharacterVisual {
     this.tintedRigClaims.clear();
     releaseTintedMaterials(this.tintedFarClaims);
     this.tintedFarClaims.clear();
+    releaseTintedMaterials(this.tintedHairClaims);
+    this.tintedHairClaims.clear();
     this.mixer.stopAllAction();
     this.mixer.uncacheRoot(this.model);
     this.skeletonUpdates.dispose();

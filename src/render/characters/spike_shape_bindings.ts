@@ -17,7 +17,8 @@
 
 import type { BodyAxes } from './body_shape_core';
 import type { FaceAxes } from './face_shape_core';
-import type { ModularAppearance } from './modular';
+import { hairColor, type ModularAppearance } from './modular';
+import { spikeBeardPiece, spikeHairPiece, spikeHairUrl } from './spike_hair_core';
 
 /** Body sliders to bone axes. */
 export function spikeBodyAxes(app: ModularAppearance): BodyAxes {
@@ -44,16 +45,60 @@ export function spikeBodyAxes(app: ModularAppearance): BodyAxes {
   };
 }
 
-/** Face sliders to region displacement. */
+/** Face sliders to region displacement, one region per slider. */
 export function spikeFaceAxes(app: ModularAppearance): FaceAxes {
   const face = app.face;
+  // Every creator slider has its own region now. The earlier mapping folded
+  // chin into cheeks (two sliders fighting over the same vertices, which is
+  // exactly what read as a deformed face) and dropped ears and smirk entirely.
   return {
     nose: face?.nose ?? 0,
     jaw: face?.jaw ?? 0,
-    // Cheeks and chin both widen the lower face; averaging them keeps one
-    // region from fighting the other over the same vertices.
-    cheeks: ((face?.cheeks ?? 0) + (face?.chin ?? 0)) / 2,
+    cheeks: face?.cheeks ?? 0,
+    chin: face?.chin ?? 0,
     eyes: face?.eyes ?? 0,
+    ears: face?.ears ?? 0,
     brow: face?.brow ?? 0,
+    smirk: face?.smirk ?? 0,
   };
+}
+
+/** The hairpiece URLs and paint for a look; nulls are bald and clean-shaven. */
+export function spikeHairLook(app: ModularAppearance): {
+  hair: string | null;
+  beard: string | null;
+  color: number;
+} {
+  const hair = spikeHairPiece(app.hair);
+  const beard = spikeBeardPiece(app.beard);
+  return {
+    hair: hair ? spikeHairUrl(hair) : null,
+    beard: beard ? spikeHairUrl(beard) : null,
+    // The same wheel the modular body paints its hair parts with: one colour
+    // for hair and beard, because the creator only offers one.
+    color: hairColor(app),
+  };
+}
+
+/**
+ * What a spike body does with an authored look. Deliberately one function
+ * rather than three calls at each site: the creator's turntable and the world's
+ * entity path have to answer the same question, and the bug this prevents is
+ * the one that shipped for a while (a player customized a character the town
+ * then drew with a default body, face and head).
+ *
+ * Typed structurally so this module stays free of the renderer's own imports;
+ * CharacterVisual satisfies it.
+ */
+export interface SpikeLookTarget {
+  applyBodyAxes(axes: BodyAxes): void;
+  applyFaceShape(axes: FaceAxes): void;
+  setSpikeHair(hairUrl: string | null, beardUrl: string | null, color: number): void;
+}
+
+export function applySpikeLook(visual: SpikeLookTarget, app: ModularAppearance): void {
+  visual.applyBodyAxes(spikeBodyAxes(app));
+  visual.applyFaceShape(spikeFaceAxes(app));
+  const hair = spikeHairLook(app);
+  visual.setSpikeHair(hair.hair, hair.beard, hair.color);
 }

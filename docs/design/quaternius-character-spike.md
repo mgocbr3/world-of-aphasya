@@ -62,11 +62,18 @@ punho-para-no); e o plano descreve o corpo inteiro em vez da diferenca, que e o
 que faz voltar um controle ao zero restaurar o corpo esculpido.
 
 O ROSTO nao tem osso para escalar e a cabeca nao tem morph, entao as feicoes sao
-encontradas na geometria: cada vertice e pontuado contra uma regiao na caixa
-normalizada da cabeca e deslocado com queda suave. Funciona em qualquer cabeca
-(um cranio gerado ganha os mesmos controles sem passe de autoria) e nao consegue
-rasgar a malha. Medido contra a cabeca em disco: os cinco eixos alcancam
-geometria real e movem entre 1.2% e 2.5% da altura da cabeca.
+encontradas na geometria: um CAMPO sobre a moldura normalizada da cabeca inteira
+(cranio, olhos e sobrancelhas medidos juntos, porque cada malha quantizada tem o
+seu proprio sistema de coordenadas e uma moldura por malha punha os olhos fora
+das orbitas), amostrado por vertice, com queda suave ao quadrado para o traço
+mover como traço em vez de arrastar a vizinhanca. Cada um dos oito controles da
+criacao tem a sua propria regiao (a primeira versao dobrava queixo sobre
+bochechas e derretia o rosto), os raios sao apertados de proposito, o
+deslocamento morre na borda inferior da caixa (que e a costura contra o
+pescoco), e a geometria clonada e promovida a float antes de qualquer escrita:
+recalcular normais para dentro de um atributo int8 quantizado e o que
+transformava toda face remodelada em sombreamento podre. Funciona em qualquer
+cabeca: um cranio gerado ganha os mesmos controles sem passe de autoria.
 
 As linhas de proporcao aparecem SO contra este rig, e isso e uma decisao: o
 corpo enviado assa suas proporcoes no Fit Studio, e uma criacao que oferecesse
@@ -75,9 +82,25 @@ nada, entao la elas sao a unica coisa que molda o corpo.
 
 ## O que NAO funciona, e por que
 
-- **Cabelos, barbas, brincos, maquiagem e dye de armadura.** Continuam sem
-  lugar neste rig. Cabelo e o proximo: os oito estilos do pack sao presos ao
-  osso da cabeca e, com a cabeca ja sendo anexo, entram pelo mesmo caminho.
+- **Cabelo e barba.** Resolvidos: cinco pecas emitidas em espaco de osso de
+  cabeca (`--emit-hair`), montadas por `setSpikeHair`, com os 37 estilos do
+  criador resolvidos por silhueta (`spike_hair_core`) e pintados pela roda de
+  cor via o cache de materiais tingidos (lease propria, para uma troca de skin
+  nao repintar o cabelo com o tint do corpo). Brincos, maquiagem e dye de
+  armadura continuam sem lugar neste rig.
+- **O pescoco.** Resolvido em duas partes. Os corpos headless perdiam o pescoco
+  junto com a cabeca e o anexo corta acima da gola, entao a cabeca flutuava:
+  `scripts/assets/build_spike_neck_band.mjs` recorta a FAIXA de pescoco dos
+  corpos assados (que vivem no git) como complemento exato do anexo de cabeca
+  (macho por casamento de centroides, 2600 de 2600; femea por plano, que tambem
+  emite a cabeca feminina propria, porque a femea vestia o cranio masculino por
+  omissao e o osso de cabeca dela fica 5cm mais baixo) e solda a faixa de volta
+  SKINNED, com os pesos do anel superior entregues ao osso da cabeca em blend
+  para a costura nao abrir em pose nenhuma.
+- **O look autorado no mundo.** Resolvido: `applySpikeLook` e o unico ponto de
+  aplicacao (proporcoes, rosto, cabelo) e roda tanto no turntable do criador
+  quanto no `createCharacterVisual` do mundo, que antes desenhava todo jogador
+  com corpo padrao e cabeca careca.
 - **Guardar arma nas costas.** Resolvido: `hand_rig_core` separa "isto e uma
   mao" de "este rig usa a tabela do KayKit", e cada rig aponta seu proprio osso
   de guarda. O que continua do KayKit sao os offsets autorados na moldura de

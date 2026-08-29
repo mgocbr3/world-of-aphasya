@@ -9,6 +9,8 @@ import {
   applyFaceAxes,
   FACE_AXES,
   faceAxesAreNeutral,
+  faceDisplacementAt,
+  faceFrameOf,
 } from '../src/render/characters/face_shape_core';
 
 const byBone = (axes: Parameters<typeof bodyScalePlan>[0]) =>
@@ -68,18 +70,36 @@ describe('body proportions by bone scale', () => {
   });
 });
 
-/** A coarse humanoid head: a sphere of vertices spanning a unit-ish box. */
+/** A humanoid head stand-in: a sphere of vertices spanning a unit-ish box.
+ *  Dense enough (48 x 48) that even the tightest region in the table lands on
+ *  several vertices; a real head is an order of magnitude denser still. */
 function headPoints(): Float32Array {
   const pts: number[] = [];
-  for (let i = 0; i < 24; i++) {
-    for (let j = 0; j < 24; j++) {
-      const theta = (i / 23) * Math.PI;
-      const phi = (j / 23) * Math.PI * 2;
+  for (let i = 0; i < 48; i++) {
+    for (let j = 0; j < 48; j++) {
+      const theta = (i / 47) * Math.PI;
+      const phi = (j / 47) * Math.PI * 2;
       pts.push(
         0.4 * Math.sin(theta) * Math.cos(phi),
         0.5 * Math.cos(theta),
         0.42 * Math.sin(theta) * Math.sin(phi),
       );
+    }
+  }
+  // A bare sphere has no eyes and no brow ridge: those regions are measured
+  // off the real head's own eye and brow meshes, which sit INSIDE the skull's
+  // bounding sphere where no spherical shell passes. Give the fixture a small
+  // cluster at each (in normalized-box coordinates scaled by the half extents
+  // 0.4, 0.5, 0.42), the way the real head puts geometry there.
+  const features: Array<[number, number, number]> = [
+    [0.37, 0.06, 0.55],
+    [-0.37, 0.06, 0.55],
+    [0, 0.22, 0.66],
+  ];
+  for (const [nx, ny, nz] of features) {
+    for (let k = 0; k < 8; k++) {
+      const a = (k / 8) * Math.PI * 2;
+      pts.push((nx + 0.04 * Math.cos(a)) * 0.4, (ny + 0.04 * Math.sin(a)) * 0.5, nz * 0.42);
     }
   }
   return new Float32Array(pts);
@@ -133,6 +153,97 @@ describe('face proportions by region displacement', () => {
     // Magnitudes, not a sum: the sampled sphere in this fixture is not exactly
     // symmetric, so an exact cancellation would be testing the fixture.
     expect(Math.abs(right + left)).toBeLessThan(Math.abs(right) * 0.1);
+  });
+
+  it('displaces a separate face patch with the head around it, not with its own bounds', () => {
+    // The bug this pins: a head is several meshes (skull, eyes, brows), and
+    // measuring the frame per MESH puts the nose region of a small eye patch
+    // somewhere behind the eyeball, so the eyes slid out of their sockets. A
+    // patch cut from the head's own surface must move exactly as the surface
+    // around it moves, which is only true against the WHOLE head's frame.
+    const skull = headPoints();
+    const frame = faceFrameOf([skull]);
+    const moved = Float32Array.from(skull);
+    applyFaceAxes(moved, { nose: 1 }, frame);
+    // Pick the ten vertices the nose actually reaches: those are the ones a
+    // separate mesh sitting in the same place would have to follow.
+    const picks: number[] = [];
+    for (let i = 0; i < skull.length / 3; i++) {
+      const d = Math.hypot(
+        moved[i * 3] - skull[i * 3],
+        moved[i * 3 + 1] - skull[i * 3 + 1],
+        moved[i * 3 + 2] - skull[i * 3 + 2],
+      );
+      if (d > 1e-4) picks.push(i);
+      if (picks.length === 10) break;
+    }
+    expect(picks.length).toBeGreaterThan(3);
+    const patch = new Float32Array(picks.length * 3);
+    for (let i = 0; i < picks.length; i++) {
+      patch[i * 3] = skull[picks[i] * 3];
+      patch[i * 3 + 1] = skull[picks[i] * 3 + 1];
+      patch[i * 3 + 2] = skull[picks[i] * 3 + 2];
+    }
+    const shared = Float32Array.from(patch);
+    const perMesh = Float32Array.from(patch);
+    applyFaceAxes(shared, { nose: 1 }, frame);
+    applyFaceAxes(perMesh, { nose: 1 });
+    for (let i = 0; i < picks.length; i++) {
+      for (let a = 0; a < 3; a++) {
+        expect(shared[i * 3 + a] - patch[i * 3 + a]).toBeCloseTo(
+          moved[picks[i] * 3 + a] - skull[picks[i] * 3 + a],
+          6,
+        );
+      }
+    }
+    expect(Array.from(perMesh)).not.toEqual(Array.from(shared));
+  });
+
+  it('samples one field, so every mesh of a head asks the same question', () => {
+    const frame = faceFrameOf([headPoints()]);
+    const out: [number, number, number] = [0, 0, 0];
+    // A point outside every region moves nothing at all, which is what lets a
+    // caller skip the write per vertex.
+    expect(faceDisplacementAt(0, 0, -0.42, { nose: 1 }, frame, out)).toBe(false);
+    expect(out).toEqual([0, 0, 0]);
+    // ...and the nose tip moves forward.
+    expect(faceDisplacementAt(0, -0.15, 0.4, { nose: 1 }, frame, out)).toBe(true);
+    expect(out[2]).toBeGreaterThan(0);
+  });
+
+  it('gives every creator slider its own region rather than sharing one', () => {
+    // Two sliders folded onto one region fight over the same vertices, which is
+    // what read as a deformed face: chin and cheeks each move their own.
+    const chin = headPoints();
+    const cheeks = headPoints();
+    applyFaceAxes(chin, { chin: 1 });
+    applyFaceAxes(cheeks, { cheeks: 1 });
+    let differs = 0;
+    for (let i = 0; i < chin.length; i++) if (Math.abs(chin[i] - cheeks[i]) > 1e-4) differs++;
+    expect(differs).toBeGreaterThan(0);
+  });
+
+  it('holds the bottom edge still, because that edge is the seam against the neck', () => {
+    // The head is a rigid attachment and the neck under it is skinned body
+    // geometry no face slider reaches: a chin pushed at full slider must not
+    // open that seam. The lowest ring of the head therefore never moves.
+    const points = headPoints();
+    const before = Float32Array.from(points);
+    applyFaceAxes(points, { chin: 1, jaw: 1, smirk: 1 });
+    let seamMoved = 0;
+    let above = 0;
+    for (let i = 0; i < points.length / 3; i++) {
+      const ny = before[i * 3 + 1] / 0.5; // fixture half-height is 0.5
+      const d = Math.hypot(
+        points[i * 3] - before[i * 3],
+        points[i * 3 + 1] - before[i * 3 + 1],
+        points[i * 3 + 2] - before[i * 3 + 2],
+      );
+      if (ny <= -0.995 && d > 1e-6) seamMoved++;
+      if (ny > -0.8 && d > 1e-4) above++;
+    }
+    expect(seamMoved).toBe(0);
+    expect(above).toBeGreaterThan(0);
   });
 
   it('moves nothing further than its range allows, so no slider can tear a face', () => {

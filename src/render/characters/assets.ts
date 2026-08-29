@@ -87,6 +87,7 @@ import { animatedNodeNames, mergeSkinnedParts } from './rig_merge';
 import { weaponSkinAttachBone, weaponSkinHandling } from './skin_attack';
 import { optimizeSkinGpuLayout } from './skin_gpu_layout';
 import { primeSkinnedSortSpheres } from './skinned_sort_spheres';
+import { SPIKE_HAIR_PIECES, spikeHairUrl } from './spike_hair_core';
 import { buildStubbleDecal, headNodeName } from './stubble';
 import { TINTED_MATERIAL_IDLE_CACHE_MAX, TintedMaterialCache } from './tinted_material_cache_core';
 import { variantGripTransform, WEAPON_GRIP_OVERRIDES } from './weapon_grip';
@@ -666,6 +667,11 @@ if (quaterniusSpikeOn()) {
       registerPreload(prepareCharacterUrl(url));
     }
   }
+  // Hairpieces are mounted per character rather than declared on a def, so they
+  // are not swept by the attach walk above and need naming here.
+  for (const piece of SPIKE_HAIR_PIECES) {
+    registerPreload(prepareCharacterUrl(spikeHairUrl(piece)));
+  }
 }
 
 let streamedStarted = false;
@@ -938,6 +944,29 @@ export function mountAssetsReady(visualKey: string): boolean {
 /** Dev-channel residency accounting sources (see assets/residency_budget.ts). */
 export function characterResidencySources(): { parsedScenes: THREE.Object3D[] } {
   return { parsedScenes: [...gltfByUrl.values()].map((g) => g.scene) };
+}
+
+/**
+ * A hairpiece ready to parent onto a head bone: a clone of the resolved GLB,
+ * with nothing else attached. Lives here because the parse cache is private to
+ * this module and its results are IMMUTABLE, so every consumer has to clone
+ * before it touches anything.
+ *
+ * Returns null rather than throwing when the piece is not resident: hair is
+ * cosmetic, and a bald character is a far better failure than a blocked build.
+ */
+export function buildSpikeHairPiece(url: string): THREE.Object3D | null {
+  try {
+    const piece = resolvedGltf(url).scene.clone(true);
+    piece.name = 'spike_hairpiece';
+    piece.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      if (mesh.isMesh) mesh.userData.hairPiece = true;
+    });
+    return piece;
+  } catch {
+    return null;
+  }
 }
 
 function resolvedGltf(url: string): GLTF {
@@ -1994,6 +2023,10 @@ export function applyMaterials(
     // same reason); a skin or weapon swap re-running this sweep used to wash
     // the golden ring toward the body tint until relog.
     if (mesh.name === 'class_halo') return;
+    // Spike hairpieces are the same case: they carry the PLAYER's hair colour
+    // (set at mount, on their own lease), and a later skin or weapon swap
+    // re-running this sweep would repaint them with the body tint.
+    if (mesh.userData.hairPiece) return;
     // Always derive a skin/material variant from the assembled model's source
     // material. Reusing the last applied variant would retain its alternate map
     // when skin 0 asks to restore the embedded default texture.

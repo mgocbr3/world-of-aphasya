@@ -291,18 +291,20 @@ export const SPIKE_VISUAL_KEYS = (Object.keys(SPIKE_RACE_KITS) as SpikeRace[]).f
  */
 
 /**
- * The head each race wears, mounted on the head bone. A head is the one body
- * part that can be a rigid attachment without reading as one: it is a single
- * bone all the way through, so nothing about it needs to deform. The human head
- * is cut from the same CC0 pack the bodies come from, which also makes it the
- * scale reference every generated head is fitted against.
+ * The head each race wears, mounted on the head bone, PER GENDER: the pack's
+ * two bodies are two different sculpts on slightly different skeletons (the
+ * female head bone sits 5cm lower), so a shared head cannot fit both. A head is
+ * the one body part that can be a rigid attachment without reading as one: it
+ * is a single bone all the way through, so nothing about it needs to deform.
+ * The human heads are cut from the same CC0 pack the bodies come from, which
+ * also makes them the scale reference every generated head is fitted against.
  */
-const SPIKE_RACE_HEADS: Record<SpikeRace, string> = {
-  human: 'head_human',
-  orc: 'head_human',
-  elf: 'head_human',
-  dwarf: 'head_human',
-  necromancer: 'head_human',
+const SPIKE_RACE_HEADS: Record<SpikeRace, Record<'male' | 'female', string>> = {
+  human: { male: 'head_human', female: 'head_human_female' },
+  orc: { male: 'head_human', female: 'head_human_female' },
+  elf: { male: 'head_human', female: 'head_human_female' },
+  dwarf: { male: 'head_human', female: 'head_human_female' },
+  necromancer: { male: 'head_human', female: 'head_human_female' },
 };
 
 /** The spike bodies, one VisualDef each, all lazy and all off the boot path. */
@@ -360,7 +362,7 @@ function spikeVisuals(): Record<string, VisualDef> {
         ...SPIKE_HANDS,
         // Seated on the bone, not offset: the head asset is exported with its
         // neck stump at the origin precisely so this needs no per-race nudge.
-        { url: `${PLAYERS}/spike/${SPIKE_RACE_HEADS[race]}.glb`, bone: 'Head' },
+        { url: `${PLAYERS}/spike/${SPIKE_RACE_HEADS[race][gender]}.glb`, bone: 'Head' },
       ],
       weaponSlots: [0],
       offhandSlot: 1,

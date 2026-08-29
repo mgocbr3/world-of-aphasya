@@ -28,7 +28,7 @@ import {
 } from './preview_appearance';
 import { PREVIEW_FRAMING, type PreviewFramingName } from './preview_framing';
 import { characterPreviewFrameVisible, resolveCharacterPreviewPolicy } from './preview_policy';
-import { spikeBodyAxes, spikeFaceAxes } from './spike_shape_bindings';
+import { applySpikeLook } from './spike_shape_bindings';
 import { CharacterVisual } from './visual';
 
 export type { PreviewAppearance } from './preview_appearance';
@@ -260,8 +260,7 @@ export class CharacterPreview {
       // reach it as bone scale and vertex displacement instead. Applied after
       // the rebuild and on every drag, exactly like the modular path: both are
       // complete descriptions rather than diffs, so repeating them is free.
-      this.currentVisual?.applyBodyAxes(spikeBodyAxes(app));
-      this.currentVisual?.applyFaceShape(spikeFaceAxes(app));
+      if (this.currentVisual) applySpikeLook(this.currentVisual, app);
       return;
     }
     this.setVisualKey(modularVisualKey(cls), weapon, null, offhand);

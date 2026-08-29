@@ -13,6 +13,7 @@ import {
   visualKeyFor,
 } from './manifest';
 import { MODULAR_WARRIOR_KEY, type ModularLook } from './modular';
+import { applySpikeLook } from './spike_shape_bindings';
 import { CharacterVisual } from './visual';
 
 export { CharacterPreview } from './preview';
@@ -81,10 +82,11 @@ export function createCharacterVisual(
   // composing routes to a modular class rig that never reaches visualKeyFor.
   // The Quaternius rig has none of the modular part slots anyway.
   const spike = !formKey && e.kind === 'player' && quaterniusSpikeOn();
-  // Read the authored look even when the spike claims the body: it is the only
-  // place a player's GENDER lives, and gender is a whole different body here
-  // rather than a slider. Everything else in that look (hair, face, dye) has no
-  // home on this rig, so the visual still composes from the fixed key.
+  // Read the authored look even when the spike claims the body: the body is a
+  // finished character rather than a part library, so gender picks a whole body
+  // and the rest of the look is applied to it AFTER the build (applySpikeLook
+  // below: proportions as bone scale, face as vertex displacement, hair as a
+  // head-bone attachment). The visual still composes from the fixed key.
   const authored = formKey || isMechWearer(e) ? null : (modularLookProvider?.(e) ?? null);
   const look = spike ? null : authored;
   const key =
@@ -115,6 +117,11 @@ export function createCharacterVisual(
       look,
     );
     visual.budgetedWeaponLight = true;
+    // The authored look reaches the spike body here, and this is the only place
+    // it can: the creator's turntable applies the same three (proportions, face,
+    // hair) to its own visual, and without this the town drew every player with
+    // a default body and a bald head no matter what they built.
+    if (spike && authored) applySpikeLook(visual, authored.app);
     return visual;
   } catch (err) {
     // key the dedupe on visual key PLUS message: two models failing with an
