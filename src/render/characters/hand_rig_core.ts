@@ -75,17 +75,21 @@ export interface QuaterniusFit {
 }
 
 export const QUATERNIUS_VARIANT_FIT: Record<string, QuaterniusFit> = {
-  VAR_SWORD: { lift: 0.1, scale: 0.55 },
-  VAR_DAGGER: { lift: 0.06, scale: 0.6 },
-  VAR_STAFF: { lift: 0.16, scale: 0.55 },
-  VAR_AXE: { lift: 0.08, scale: 0.55 },
-  VAR_HAMMER: { lift: 0.08, scale: 0.55 },
-  VAR_MACE: { lift: 0.08, scale: 0.55 },
-  VAR_POLEARM: { lift: 0.16, scale: 0.5 },
-  VAR_WAND: { lift: 0.05, scale: 0.6 },
-  VAR_BOOK: { lift: 0.05, scale: 0.6 },
-  VAR_CROSSBOW: { lift: 0.06, scale: 0.55 },
-  VAR_BOW: { lift: 0.08, scale: 0.55 },
+  // Second tuning pass from the direction's high-res creator review: blades
+  // and axe heads came down (they still brushed the ground at 0.55), and the
+  // STAFF went the other way, up to a real walking-staff length held at
+  // mid-shaft; 0.55 had cut it down to a drumstick.
+  VAR_SWORD: { lift: 0.1, scale: 0.46 },
+  VAR_DAGGER: { lift: 0.06, scale: 0.5 },
+  VAR_STAFF: { lift: 0.34, scale: 0.78 },
+  VAR_AXE: { lift: 0.08, scale: 0.44 },
+  VAR_HAMMER: { lift: 0.08, scale: 0.44 },
+  VAR_MACE: { lift: 0.08, scale: 0.44 },
+  VAR_POLEARM: { lift: 0.3, scale: 0.62 },
+  VAR_WAND: { lift: 0.05, scale: 0.5 },
+  VAR_BOOK: { lift: 0.05, scale: 0.5 },
+  VAR_CROSSBOW: { lift: 0.06, scale: 0.48 },
+  VAR_BOW: { lift: 0.08, scale: 0.5 },
 };
 
 /** A weapon family this table does not know still needs a sane seat. */
@@ -95,8 +99,8 @@ export const QUATERNIUS_FALLBACK_FIT: QuaterniusFit = { lift: 0.1, scale: 0.55 }
  *  face parallel to the arm, pushed out past the fist along +Z. One row serves
  *  every shield; per-shield size differences ride the model itself. */
 export const QUATERNIUS_SHIELD_FIT = {
-  position: [0, 0.02, 0.09] as [number, number, number],
-  scale: 0.32,
+  position: [0, 0.02, 0.07] as [number, number, number],
+  scale: 0.27,
 };
 
 export function stowBoneFor(rig: HandRig): string {

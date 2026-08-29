@@ -36,6 +36,7 @@ import {
 import {
   applyMaterials,
   applyModularSliderMorphs,
+  applySpikeOutfitDyeSources,
   applySpikeSkin,
   assembleModel,
   buildSpikeHairPiece,
@@ -68,7 +69,7 @@ import { HairSwayDriver } from './hair_sway';
 import { buildHalo } from './halo';
 import type { EmoteClipSpec, VisualDef, WeaponLayoutOverride } from './manifest';
 import { createMetamorphWingPose, metamorphWingPoseInto } from './metamorph_wing_motion_core';
-import type { ModularAppearance, ModularLook } from './modular';
+import type { ModularAppearance, ModularLook, OutfitColorway } from './modular';
 import {
   PALADIN_BASTION_SWEEP_CLIP,
   PALADIN_BASTION_SWEEP_DURATION,
@@ -517,6 +518,20 @@ export class CharacterVisual {
       head.add(piece);
     }
     releaseTintedMaterials(prevClaims);
+  }
+
+  /**
+   * Dress the kit cloth in an outfit colorway. The dye swaps each kit mesh's
+   * SOURCE material for a hooked clone (assets.applySpikeOutfitDyeSources) and
+   * re-runs the normal material sweep, which re-derives every tinted clone
+   * from the dyed source; skin and hair surfaces are skipped by their own
+   * marks, so their paint survives the sweep untouched.
+   */
+  setSpikeOutfitDye(outfit: OutfitColorway): void {
+    const root = this.model;
+    if (!root) return;
+    applySpikeOutfitDyeSources(root, outfit);
+    this.applySkinMaterials(this.skinIndex);
   }
 
   /**

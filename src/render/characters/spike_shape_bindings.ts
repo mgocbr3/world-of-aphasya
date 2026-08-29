@@ -19,7 +19,7 @@ import type { BodyAxes } from './body_shape_core';
 import type { FaceAxes } from './face_shape_core';
 import type { SpikeRace } from './manifest';
 import { SPIKE_RACE_SKIN } from './manifest';
-import { hairColor, type ModularAppearance, skinColor } from './modular';
+import { hairColor, type ModularAppearance, type OutfitColorway, skinColor } from './modular';
 import { spikeBeardPiece, spikeHairPiece, spikeHairUrl } from './spike_hair_core';
 
 /** Body sliders to bone axes. */
@@ -97,6 +97,7 @@ export interface SpikeLookTarget {
   applyFaceShape(axes: FaceAxes): void;
   setSpikeHair(hairUrl: string | null, beardUrl: string | null, color: number): void;
   setSpikeSkinTone(color: number): void;
+  setSpikeOutfitDye(outfit: OutfitColorway): void;
 }
 
 /** The skin a spike body wears: the race's own fixed colour, or the player's
@@ -113,6 +114,9 @@ export function applySpikeLook(
 ): void {
   visual.applyBodyAxes(spikeBodyAxes(app));
   visual.applyFaceShape(spikeFaceAxes(app));
+  // Dye FIRST: it re-runs the whole material sweep, and the skin and hair
+  // passes below must land on top of that sweep, not under it.
+  visual.setSpikeOutfitDye(app.outfit ?? 'classic');
   const hair = spikeHairLook(app);
   visual.setSpikeHair(hair.hair, hair.beard, hair.color);
   visual.setSpikeSkinTone(spikeSkinTone(app, race));

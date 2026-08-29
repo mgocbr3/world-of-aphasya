@@ -457,6 +457,7 @@ const RENDER_PURE_CORES = [
   'src/render/characters/body_shape_core.ts',
   'src/render/characters/face_shape_core.ts',
   'src/render/characters/spike_hair_core.ts',
+  'src/render/characters/spike_outfit_dye_core.ts',
   'src/render/ability_vfx_longbuff_core.ts',
   'src/render/arena_water_band_core.ts',
   'src/render/biome_haze_field_core.ts',

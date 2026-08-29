@@ -77,6 +77,7 @@ import {
   makeupSelection,
   modularPartNames,
   morphInfluences,
+  type OutfitColorway,
   outfitDye,
   skinColor,
   stubbleDecals,
@@ -95,6 +96,7 @@ import { weaponSkinAttachBone, weaponSkinHandling } from './skin_attack';
 import { optimizeSkinGpuLayout } from './skin_gpu_layout';
 import { primeSkinnedSortSpheres } from './skinned_sort_spheres';
 import { SPIKE_HAIR_PIECES, spikeHairUrl } from './spike_hair_core';
+import { spikeDyeSpec } from './spike_outfit_dye_core';
 import { buildStubbleDecal, headNodeName } from './stubble';
 import { TINTED_MATERIAL_IDLE_CACHE_MAX, TintedMaterialCache } from './tinted_material_cache_core';
 import { variantGripTransform, WEAPON_GRIP_OVERRIDES } from './weapon_grip';
@@ -986,6 +988,47 @@ export function characterResidencySources(): { parsedScenes: THREE.Object3D[] } 
  * Returns null rather than throwing when the piece is not resident: hair is
  * cosmetic, and a bald character is a far better failure than a blocked build.
  */
+/** Dyed kit-material clones, one per (source, colorway), kept for the
+ *  renderer's lifetime like the KayKit recolour cache: the population is
+ *  bounded by kits times colorways, and a clone must outlive every visual
+ *  that snapshotted it as a source. */
+const spikeDyedKitCache = new Map<string, THREE.Material>();
+
+/**
+ * Swap each kit-cloth mesh's SOURCE material for a clone wearing the outfit
+ * colorway's dye hook (spike_outfit_dye_core). Only the source map changes:
+ * the caller re-runs the normal material sweep afterwards, which derives the
+ * tinted clone from the dyed source and re-attaches the hook through
+ * buildTintedClone's userData.armorDye path, so entity tint, low-tier Lambert
+ * and the weapon polish all keep working unchanged.
+ */
+export function applySpikeOutfitDyeSources(root: THREE.Object3D, outfit: OutfitColorway): void {
+  root.traverse((o) => {
+    const mesh = o as THREE.Mesh;
+    if (!mesh.isMesh) return;
+    const current = sourceMaterials.get(mesh) ?? mesh.material;
+    if (Array.isArray(current)) return; // no multi-material kit cloth ships
+    // Resolve the PRISTINE atlas material: a previously dyed source carries
+    // its origin in userData so colorway changes never stack.
+    const pristine = (current.userData.spikePristineKit as THREE.Material) ?? current;
+    const spec = spikeDyeSpec(pristine.name, outfit);
+    if (!spec && !current.userData.spikePristineKit) return; // not kit cloth
+    if (!spec) {
+      sourceMaterials.set(mesh, pristine); // back to classic
+      return;
+    }
+    const key = `${pristine.uuid}|${outfit}`;
+    let dyed = spikeDyedKitCache.get(key);
+    if (!dyed) {
+      dyed = pristine.clone();
+      dyed.userData.spikePristineKit = pristine;
+      attachArmorDye(dyed as THREE.MeshStandardMaterial, spec);
+      spikeDyedKitCache.set(key, dyed);
+    }
+    sourceMaterials.set(mesh, dyed);
+  });
+}
+
 /** The materials that ARE skin on the spike bodies and their head pieces: the
  *  pack's bare-arm and skull materials, and the flat factor the generated
  *  racial skulls ship. Eyes, brows and every kit cloth stay out. */

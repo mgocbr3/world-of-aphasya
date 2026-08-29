@@ -317,7 +317,7 @@ export const MEDIA_ASSETS: Record<string, string> =
   "models/chars/players/spike/hair_long.glb": "/media/models/chars/players/spike/hair_long.55998090d5a8.glb",
   "models/chars/players/spike/hair_parted.glb": "/media/models/chars/players/spike/hair_parted.00a0374d0e30.glb",
   "models/chars/players/spike/head_dwarf.glb": "/media/models/chars/players/spike/head_dwarf.4b34a15311e3.glb",
-  "models/chars/players/spike/head_elf.glb": "/media/models/chars/players/spike/head_elf.3aadcb6a0eef.glb",
+  "models/chars/players/spike/head_elf.glb": "/media/models/chars/players/spike/head_elf.063f1ee694bb.glb",
   "models/chars/players/spike/head_human.glb": "/media/models/chars/players/spike/head_human.00e605bec921.glb",
   "models/chars/players/spike/head_human_female.glb": "/media/models/chars/players/spike/head_human_female.f1fc473e319a.glb",
   "models/chars/players/spike/head_necromancer.glb": "/media/models/chars/players/spike/head_necromancer.1df4a8747996.glb",

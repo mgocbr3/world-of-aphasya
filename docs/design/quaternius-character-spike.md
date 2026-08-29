@@ -112,10 +112,15 @@ nada, entao la elas sao a unica coisa que molda o corpo.
   criador resolvidos por silhueta (`spike_hair_core`) e pintados pela roda de
   cor via o cache de materiais tingidos (lease propria, para uma troca de skin
   nao repintar o cabelo com o tint do corpo). Brincos e maquiagem continuam sem
-  lugar neste rig; o dye de roupa e o proximo (o shader de zonas HSV do
-  armor_dye e generico, falta medir a banda de pano dos kits MI_Ranger e
-  MI_Peasant e ligar os swatches da aba STYLE, que hoje nao fazem nada no
-  spike).
+  lugar neste rig; o dye de roupa esta LIGADO: bandas de
+  pano medidas dos atlas dos packs (spike_outfit_dye_core, verde do ranger e
+  camisa creme do peasant, couro e calcas fora da janela), aplicadas pelo
+  mesmo shader de zonas do armor_dye via troca de source
+  (applySpikeOutfitDyeSources) e re-sweep, entao tint de entidade, pele e
+  cabelo continuam por cima. Os 13 colorways de matiz funcionam nos dois
+  kits; os colorways de MATERIAL (gilded etc., zonas por set KayKit) caem em
+  classic ate serem medidos aqui; e no tier low o dye nao existe (Lambert nao
+  compila o hook), a mesma limitacao do KayKit.
 - **O pescoco.** Resolvido em duas partes. Os corpos headless perdiam o pescoco
   junto com a cabeca e o anexo corta acima da gola, entao a cabeca flutuava:
   `scripts/assets/build_spike_neck_band.mjs` recorta a FAIXA de pescoco dos
