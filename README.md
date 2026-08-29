@@ -1,12 +1,11 @@
 <div align="center">
 
-# World of ClaudeCraft
+# World of Aphasya
 
-**Quest, group up, and raid a hand-built world, free in your browser. Open source, web3, and online right now.**
+**Quest, group up, and raid a hand-built world, free in your browser. An open-source classic-style MMO.**
 
-**Official website: https://worldofclaudecraft.com/**
+**Official website: https://worldofaphasya.com/ (placeholder until the public launch on Pixlland)**
 
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r185-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
@@ -16,23 +15,20 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.38.4-blue)](package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
 
-**English** · [Español](docs/i18n/README.es.md) · [Español (España)](docs/i18n/README.es_ES.md) · [Français](docs/i18n/README.fr_FR.md) · [Français (Canada)](docs/i18n/README.fr_CA.md) · [Italiano](docs/i18n/README.it_IT.md) · [Deutsch](docs/i18n/README.de_DE.md) · [简体中文](docs/i18n/README.zh_CN.md) · [繁體中文](docs/i18n/README.zh_TW.md) · [한국어](docs/i18n/README.ko_KR.md) · [日本語](docs/i18n/README.ja_JP.md) · [Português (Brasil)](docs/i18n/README.pt_BR.md) · [Русский](docs/i18n/README.ru_RU.md) · [Čeština](docs/i18n/README.cs_CZ.md) · [Nederlands](docs/i18n/README.nl_NL.md) · [Polski](docs/i18n/README.pl_PL.md) · [Bahasa Indonesia](docs/i18n/README.id_ID.md) · [Türkçe](docs/i18n/README.tr_TR.md) · [Svenska](docs/i18n/README.sv_SE.md) · [Tiếng Việt](docs/i18n/README.vi_VN.md) · [Dansk](docs/i18n/README.da_DK.md)
+[Host your own world](#host-your-own-world-one-command) · [Train an agent](#train-an-agent-headless-rl) · [Contributing](CONTRIBUTING.md)
 
-[Play now](https://worldofclaudecraft.com/) · [Host your own world](#host-your-own-world-one-command) · [Train an agent](#train-an-agent-headless-rl) · [Web3](#web3) · [Contributing](CONTRIBUTING.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
-
-![World of ClaudeCraft title screen](docs/screenshots/title-screen.jpg)
+![Eastbrook Vale at dusk](docs/screenshots/eastbrook-dusk.jpg)
 
 </div>
 
 ## What this is
 
-World of ClaudeCraft is a complete classic-era MMO you can play right now in your browser, host yourself with one command, and even train AI agents to play. It is free, open source, and live at [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+World of Aphasya is a complete classic-era MMO you can play in your browser, host yourself with one command, and even train AI agents to play. It is a rebranded fork of the MIT-licensed [World of ClaudeCraft](https://github.com/levy-street/world-of-claudecraft) template by Levy Street, carrying its full game core forward under the Aphasya identity while the visual layer is progressively restyled (the living plan is [REBRAND.md](REBRAND.md)).
 
 One shared world runs in three places, all from the same game core:
 
-- the **authoritative multiplayer server**, the live world you play at worldofclaudecraft.com, where Postgres-backed accounts share one persistent realm,
+- the **authoritative multiplayer server**, where Postgres-backed accounts share one persistent realm,
 - the **offline browser world**, a local single-player Sim you get from the dev server, useful for development and for reading the game core end to end,
 - the **headless RL env**, where Python drives the real game through a Gym interface.
 
@@ -59,7 +55,7 @@ Same seed, same world, everywhere. Much of what you see is still drawn from code
 - **Native apps on every platform**: signed desktop installers for Windows, Linux, and macOS with automatic updates and optional Steam achievement mirroring, plus iOS and Android builds, all sharing the browser client and the same online world.
 - **Scales to the machine you have**: graphics presets and an automatic frame-rate governor trade visual richness for smoothness, and are held to a fairness rule that keeps them from ever hiding something a player reacts to.
 - **Headless RL environment** with Gymnasium bindings, reward shaping, and a benchmark mode.
-- **$WOC utility, fully optional**: wallet linking for holder flair, Daily Rewards, and the cosmetic WOC Store, all non-custodial and never pay-to-win; the details live in [Web3](#web3) below.
+- **Cosmetics, never power**: the Aphasium Store sells cosmetic collections only; nothing purchasable adds stats or combat power.
 
 ## Screenshots
 
@@ -79,7 +75,7 @@ Weather is biome-driven and render-only, so it never touches the deterministic s
 
 ## Play it
 
-Play in your browser at [worldofclaudecraft.com](https://worldofclaudecraft.com/), or install the native app for Windows, Linux, macOS, iOS, or Android. Every client connects to the same online world.
+The public deployment arrives with the Pixlland launch; until then, run the world yourself (one command, below) or play the offline world from the dev server. Native shells for Windows, Linux, macOS, iOS, and Android build from this repo.
 
 ### Online, with other players
 
@@ -101,9 +97,9 @@ Name your character, pick any of the nine classes, and you start in **Eastbrook 
 
 ### Desktop apps for Windows, Linux, and macOS
 
-World of ClaudeCraft ships as full desktop apps for all three major desktop platforms: signed Windows installers, Linux AppImage and deb packages, and signed and notarized universal macOS builds. They use the same game client and online world as the browser, with native packaging and automatic updates.
+World of Aphasya ships as full desktop apps for all three major desktop platforms: signed Windows installers, Linux AppImage and deb packages, and signed and notarized universal macOS builds. They use the same game client and online world as the browser, with native packaging and automatic updates.
 
-Online sign-in is Discord and email only, exactly the web flow: email/password logs in inside the app, and "Continue with Discord" opens your default browser on the `/desktop-login` page, which hands a one-time code back to the app over a `worldofclaudecraft://` deep link that the app exchanges for a normal World of ClaudeCraft session token.
+Online sign-in is Discord and email only, exactly the web flow: email/password logs in inside the app, and "Continue with Discord" opens your default browser on the `/desktop-login` page, which hands a one-time code back to the app over a `worldofaphasya://` deep link that the app exchanges for a normal World of Aphasya session token.
 
 ```bash
 npm run electron:dev          # Vite + Electron dev shell
@@ -118,7 +114,7 @@ Point the shell at a different API with `VITE_DESKTOP_API_ORIGIN`, for example a
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-Override the production API origin for staging builds with `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com` (a BUILD-time value: it is baked into the bundle and stamped into the packaged app, and installed builds ignore it as a runtime env var). Steam is a distribution channel (the same Electron bundle, uploaded via SteamPipe), and desktop players can link a Steam account to mirror the deeds they earn into Steam achievements; sign-in itself stays email and Discord. The full release runbook (signing, notarization, publishing an auto-update, SteamPipe depots, the server deploy) is `docs/desktop-release.md`. iOS and Android ship through Capacitor, with their own runbook in `docs/mobile-store-release.md`.
+Override the production API origin for staging builds with `VITE_DESKTOP_API_ORIGIN=https://dev.worldofaphasya.com` (a BUILD-time value: it is baked into the bundle and stamped into the packaged app, and installed builds ignore it as a runtime env var). Steam is a distribution channel (the same Electron bundle, uploaded via SteamPipe), and desktop players can link a Steam account to mirror the deeds they earn into Steam achievements; sign-in itself stays email and Discord. The full release runbook (signing, notarization, publishing an auto-update, SteamPipe depots, the server deploy) is `docs/desktop-release.md`. iOS and Android ship through Capacitor, with their own runbook in `docs/mobile-store-release.md`.
 
 ## Host your own world (one command)
 
@@ -179,26 +175,6 @@ env.close()
 
 The protocol and bindings are documented in `headless/CLAUDE.md` and `python/CLAUDE.md`.
 
-## Web3
-
-World of ClaudeCraft is web3-native around **$WOC**, our community token on Solana. Connect a Solana wallet, link it to your account with one signature (non-custodial, no transaction to approve), and your read-only $WOC balance shows up in the HUD alongside a cosmetic holder-tier badge.
-
-$WOC also has optional utility in the live game:
-
-- **WOC Store**: buy Claudium, the one-way cosmetic currency, with fiat, SOL, USDC, or $WOC. The $WOC payment rail is discounted against the others.
-- **Season 1 Armory**: spend Claudium on cosmetic weapon-skin collections. Store purchases do not add stats or combat power.
-- **Daily Rewards**: eligible verified holders can earn points through a daily spin and rotating tasks, then compete for a share of the daily prize pool.
-
-None of this is needed to play. Wallet linking is optional and non-custodial, there is no pay-to-win, and the whole game plays fine without ever connecting a wallet.
-
-**$WOC contract address (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-More on the token at [worldofclaudecraft.com](https://worldofclaudecraft.com/).
-
 ## A tour of the world
 
 ### The nine classes
@@ -215,7 +191,7 @@ Every class runs on classic-era MMO mechanics implemented from first principles,
 - **Warlock**: dark pacts and creeping rot, a stable of summonable demons, and a necromancy line that raises graveguard, skeletal warriors, bone mages, and gravewings from the ossuary-marked dead.
 - **Druid**: nature's caster, shapeshifting between wolf, bruin, and moonwing forms as the fight demands.
 
-Heals and buffs land on party members, healing can crit, and absorb shields soak damage before health. Spend points across **three talent specs per class**; allocation is server-validated and exportable as a build string. Every spellbook, rank, and talent tree is listed in the [wiki](https://worldofclaudecraft.com/wiki).
+Heals and buffs land on party members, healing can crit, and absorb shields soak damage before health. Spend points across **three talent specs per class**; allocation is server-validated and exportable as a build string. Every spellbook, rank, and talent tree is listed in the [wiki](https://worldofaphasya.com/wiki).
 
 ### Dungeons
 
@@ -229,7 +205,7 @@ The Gravecaller storyline runs through five-player elite instances at every stag
 - **The Abandoned Crypt** (solo), in Thornpeak: a quiet keystone-and-diary dive whose trail unseals the royal door to **Nythraxis, Scourge of Thornpeak**, a ten-player raid finale.
 - **The Last Keep**, out in the Drakelands: a cold, silent memorial keep with no fight in it at all, only a keepsake waiting for whoever walks its halls.
 
-The elite instances and the raid also run on **Heroic**: higher-level enemies, sharper mechanics, and their own loot and vendor currency. Past the authored set, ranked **rift portals** tear open onto seed-generated floors capped by the hand-authored Infernal Citadel, with rare, epic, and legendary loot riding on the rank of the clear. The lead-up quest chains are soloable, so the story is never gated behind finding a group. Boss-by-boss mechanics, loot tables, and the rest of the depth live in the [wiki](https://worldofclaudecraft.com/wiki). Our automated five-bot raid (warrior, paladin, priest, mage, hunter with focus-fire and healer AI) clears the Hollow Crypt in about five minutes (`node scripts/crypt_raid.mjs`, needs `ALLOW_DEV_COMMANDS=1`).
+The elite instances and the raid also run on **Heroic**: higher-level enemies, sharper mechanics, and their own loot and vendor currency. Past the authored set, ranked **rift portals** tear open onto seed-generated floors capped by the hand-authored Infernal Citadel, with rare, epic, and legendary loot riding on the rank of the clear. The lead-up quest chains are soloable, so the story is never gated behind finding a group. Boss-by-boss mechanics, loot tables, and the rest of the depth live in the [wiki](https://worldofaphasya.com/wiki). Our automated five-bot raid (warrior, paladin, priest, mage, hunter with focus-fire and healer AI) clears the Hollow Crypt in about five minutes (`node scripts/crypt_raid.mjs`, needs `ALLOW_DEV_COMMANDS=1`).
 
 ### Delves
 
@@ -398,13 +374,13 @@ Every player-visible string resolves through `t()`, and the game ships in **22 l
 
 ## Contributing
 
-Contributions of every kind are welcome: code, translations, bug reports, and documentation. Start with [CONTRIBUTING.md](CONTRIBUTING.md) for setup, read the [Code of Conduct](CODE_OF_CONDUCT.md), and check [SECURITY.md](SECURITY.md) before reporting a vulnerability. New here? Look for issues labeled [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue), open an [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose), or say hello on [Discord](https://discord.com/invite/worldofclaudecraft).
+Contributions of every kind are welcome: code, translations, bug reports, and documentation. Start with [CONTRIBUTING.md](CONTRIBUTING.md) for setup, read the [Code of Conduct](CODE_OF_CONDUCT.md), and check [SECURITY.md](SECURITY.md) before reporting a vulnerability. Open an [issue](https://github.com/mgocbr3/world-of-aphasya/issues/new/choose) to get started.
 
 Active development runs on the newest `release/vX.Y.Z` branch. Look it up rather than assuming, then branch from it and target it with your pull request. Never branch from or target `main`, which only receives a release branch once that version ships. [CONTRIBUTING.md](CONTRIBUTING.md) has the one-line command that finds the current one.
 
 ## License
 
-**The code is [MIT licensed](LICENSE), so fork it, remix it, and host your own world.** That is the whole point, and nothing else on this page or on our website takes it back.
+**The code is [MIT licensed](LICENSE), so fork it, remix it, and host your own world.** This project is itself a fork of the MIT-licensed World of ClaudeCraft template by Levy Street, and it passes the same freedom on.
 
 Three things are licensed separately, so it is worth thirty seconds to know which is which:
 
@@ -412,18 +388,18 @@ Three things are licensed separately, so it is worth thirty seconds to know whic
 |---|---|---|
 | **Source code**, meaning all of it except the media assets carved out below | [MIT](LICENSE) | Yes. Commercially too. |
 | **Media assets**: models, textures, HDRIs, icons, sounds, fonts (mostly under `public/`) | Per asset, recorded in [CREDITS.md](CREDITS.md) | Mostly yes (most are CC0). Some are not, see below. |
-| **Name and branding**: "World of ClaudeCraft", "Levy Street", the logos | Not licensed | No. |
+| **Name and branding** | Not licensed | No. This applies twice over here: the upstream marks ("World of ClaudeCraft", "Levy Street", their logos) belong to the original project and are why this fork is rebranded, and the "World of Aphasya" name and logos are this fork's own identity, likewise not granted by the code license. |
 
-**Fork it and host your own world. That works, and the assets are not in your way.** Most of what you see is CC0 public domain (KayKit, Quaternius, Kenney, ambientCG, Poly Haven), and our own generated props, creatures, backdrops and interface sounds ship with the project so a fork runs out of the box. You just can't lift those out and sell them as standalone art.
+Most of what you see is CC0 public domain (KayKit, Quaternius, Kenney, ambientCG, Poly Haven), and the generated props, creatures, backdrops and interface sounds ship with the project so a fork runs out of the box. You just can't lift those out and sell them as standalone art.
 
-What you would need to remove or replace before redistributing:
+Restricted media inherited from upstream is being replaced as the rebrand progresses ([REBRAND.md](REBRAND.md), section 5, is the register). Until then, what you would need to remove or replace before redistributing:
 
-- the **CraftPix class ability icons** under `public/ui/skills/` were purchased by Levy Street and **may not be redistributed**, so buy your own licence if you want to ship them;
-- the **@jamiecypher sound effects** are CC BY-NC 4.0, so share them non-commercially with credit, but the commercial grant runs to this project only;
-- the **store and prestige art** (Season 1 Armory, the Claudium set, the professions art set, Book of Deeds icons, the elite dragon emblem) is commissioned commercial art and **rights are reserved**;
-- the **third-party brand marks** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) are trademarks of their owners and are not ours to license on;
+- the **CraftPix class ability icons** under `public/ui/skills/` were purchased by the upstream project and **may not be redistributed**; buy your own licence if you want to ship them (ability ids without art fall back to the procedural icon painter automatically);
+- the **@jamiecypher sound effects** are CC BY-NC 4.0, and their commercial grant runs to the original project only;
+- the **store and prestige art** (Season 1 Armory, the premium currency set, the professions art set, Book of Deeds icons, the elite dragon emblem) is commissioned commercial art with **rights reserved**;
+- the **third-party brand marks** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) are trademarks of their owners;
 - a handful of **icons and recordings used with permission** need permission to pass on.
 
 [CREDITS.md](CREDITS.md) is the authoritative list, with a redistribution column per asset. Where an asset is listed there, that license controls over the project's MIT license. That register is still being completed, so a media asset missing from it is unrecorded rather than free: ask before relying on it. Source code is the other way around, and everything not carved out is MIT.
 
-Our [Terms of Service](https://worldofclaudecraft.com/terms) cover the hosted game that we run at worldofclaudecraft.com: accounts, conduct, virtual items. They do not restrict the rights the MIT License gives you in this source code.
+Terms of service and privacy policy for a hosted deployment are the operator's own; the placeholders in `public/terms.html` and `public/privacy.html` must be replaced with real legal text before any public launch (tracked in [REBRAND.md](REBRAND.md)).

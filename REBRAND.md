@@ -251,15 +251,22 @@ padrão adotado em `DESIGN.md`).
   `public/support.html`, `public/data-deletion.html`, `public/press.html` e
   `tests/client_shell.test.ts`. `package.json author` ja aponta
   `contact@pixlland.com` (criar a caixa antes de publicar instaladores).
-- **Discord/redes sociais:** links agora apontam `discord.com/invite/worldofaphasya` e
-  afins, que nao existem; criar os canais ou remover os links. O JSON-LD `sameAs` em
-  `index.html`/`src/main.ts` ainda lista as redes do projeto original.
+- **Discord/redes sociais:** links apontam `discord.com/invite/worldofaphasya` e
+  afins, que nao existem; criar os canais ou remover os links (decisao da direcao).
+  O JSON-LD `sameAs` em `index.html`/`src/main.ts` ja lista handles Aphasya
+  (inexistentes ate os canais serem criados); o README raiz deixou de linkar
+  qualquer canal social.
 - **Nome do app Discord (Rich Presence):** vem do app registrado no portal do Discord,
   fora do codigo; registrar app proprio.
 - **Pacote Java Android:** diretorios e ids ja renomeados para `com.worldofaphasya`;
   builds de loja novas terao identidade nova (sem migracao de instalacao, ok para fork).
-- **README:** ainda e o do template (excluido da troca de proposito, porque a secao de
-  licenca descreve a marca do UPSTREAM); precisa de reescrita propria do fork.
+- **README:** FEITO (2026-08-29): reescrito do ponto de vista do fork. Credito
+  factual ao template upstream mantido (a secao de licenca preserva os fatos:
+  CraftPix comprado pelo upstream, CC BY-NC do @jamiecypher, marcas nao licenciadas
+  nos DOIS sentidos), secao Web3 removida da superficie publica, badges de CI e
+  Discord mortos removidos, hero image trocada por captura sem logo. Os READMEs
+  localizados em `docs/i18n/README.*.md` continuam sendo os do template e regeneram
+  na fase 7 de localizacao.
 - **RL env:** classe Python `WoWClassicEnv` (`python/wow_env.py`) tem naming herdado
   infeliz; renomear numa fase futura (API publica do env).
 - **ffprobe-static quebrado neste Mac:** o pacote traz binario x86_64 na pasta arm64;
