@@ -327,8 +327,27 @@ padrão adotado em `DESIGN.md`).
   (ja e o modelo de auth do jogo). Caminho recomendado em duas etapas: (1) primeiro deploy
   como jogo de origin externo no acervo (cliente+servidor juntos, zero cirurgia de base
   path, como DEPLOY.md ja faz); (2) migrar o cliente para o runtime R2 quando a flag de
-  origem-por-jogo da plataforma estiver validada. **Origin do jogo: DECIDIR DEPOIS**; o
-  codigo mantem `world-of-aphasya.pixlland.com` como placeholder consistente e documentado ate la.
+  origem-por-jogo da plataforma estiver validada.
+
+  **Origin DEFINIDA (2026-08-29), lida do proprio site.** A Pixlland hospeda de dois
+  jeitos, conferidos em duas entradas do acervo. Jogo cujo build vive na plataforma
+  entra por `games.pixlland.com/game-compat/<gameId>/index.html` com os parametros do
+  SDK na query (`locale`, `iso_lang`, `shell_origin`, `game_id`, `game_version_id` e um
+  token). Jogo com SERVIDOR PROPRIO, que e o nosso caso, ganha SUBDOMINIO e entra por
+  iframe: o Suroi roda em `suroi.pixlland.com`. A pagina de catalogo e
+  `pixlland.com/{locale}/g/<gameId>` com `hreflang` por idioma (en, ru, ua, ar, th,
+  kr, ...), e o iframe do jogo carrega com
+  `sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-orientation-lock"`
+  e `allow="autoplay; fullscreen; gamepad"`.
+  Entao o WOA e **`world-of-aphasya.pixlland.com`** (servidor proprio, REST+WS+Postgres),
+  listado em `pixlland.com/{locale}/g/world-of-aphasya`. O `gameId` assumido e
+  `world-of-aphasya`, o mesmo ja documentado aqui; se a plataforma registrar outro, o
+  subdominio muda junto.
+
+  **O que NAO acompanhou a troca, de proposito:** o bundle id `com.worldofaphasya`
+  (Android/iOS) e identidade de loja, e troca-lo quebra atualizacao de app ja instalado;
+  o fixture `worldofaphasya.evil` em `tests/web_login_guard.test.ts` e um host sosia
+  proposital; e `worldofaphasya-logo.png` e nome de arquivo enviado.
 - **Termos e privacidade:** `public/terms.html` e `public/privacy.html` foram
   rebrandeados mas a entidade legal virou placeholder explicito ("operating entity to be
   confirmed"); precisam de texto juridico proprio antes de publicar.
