@@ -341,11 +341,11 @@ padrão adotado em `DESIGN.md`).
   `Pixlland`. A CHAVE segue `levyst`, de proposito: e o id estavel com que a
   sincronizacao casa o papel, entao troca-la orfanaria todo membro que ja o
   carrega; os nomes antigos ficam como alias pelo mesmo motivo.
-- **E-mail de contato/suporte:** paginas de suporte ainda apontam `woc@levystreet.com`;
-  definir o e-mail real (ex.: suporte@pixlland.com) e trocar em
-  `public/support.html`, `public/data-deletion.html`, `public/press.html` e
-  `tests/client_shell.test.ts`. `package.json author` ja aponta
-  `contact@pixlland.com` (criar a caixa antes de publicar instaladores).
+- **E-mail de contato/suporte:** RESOLVIDO (2026-08-29): `pixlland@pixlland.com`
+  em `public/support.html`, `public/data-deletion.html`, `public/press.html` e o
+  pin em `tests/client_shell.test.ts`. O `package.json author` segue com
+  `contact@pixlland.com`, que e o publisher dos instaladores Electron; as duas
+  caixas precisam existir antes de publicar.
 - **Discord/redes sociais:** links apontam `discord.com/invite/worldofaphasya` e
   afins, que nao existem; criar os canais ou remover os links (decisao da direcao).
   O JSON-LD `sameAs` em `index.html`/`src/main.ts` ja lista handles Aphasya

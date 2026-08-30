@@ -969,14 +969,14 @@ describe('client HTML shell', () => {
       '<link rel="canonical" href="https://worldofaphasya.com/data-deletion" />',
     );
     expect(dataDeletionHtml).toContain('<h1>Data Deletion</h1>');
-    expect(dataDeletionHtml).toContain('href="mailto:woc@levystreet.com"');
+    expect(dataDeletionHtml).toContain('href="mailto:pixlland@pixlland.com"');
     expect(dataDeletionHtml).toContain('href="https://discord.com/invite/worldofaphasya"');
     expect(dataDeletionHtml).toContain('href="/support">Support</a>');
     expect(supportHtml).toContain(
       '<link rel="canonical" href="https://worldofaphasya.com/support" />',
     );
     expect(supportHtml).toContain('<h1>Support</h1>');
-    expect(supportHtml).toContain('href="mailto:woc@levystreet.com"');
+    expect(supportHtml).toContain('href="mailto:pixlland@pixlland.com"');
     expect(supportHtml).toContain('href="https://discord.com/invite/worldofaphasya"');
     expect(supportHtml).toContain('href="/data-deletion">Data Deletion page</a>');
     expect(supportHtml).toContain('"@type": "ContactPage"');
