@@ -6,7 +6,7 @@
     "bytes": 1510,
     "sha256": "bb0b6bacba9acb12568c3bbbe536e4442cb2964266cffef890f27ee4915dcf2a"
   },
-  "rendererFingerprint": "ba62c437c4b38f3db2078d29498d9b3a170a5051df5dbf569a692835cfc86484",
+  "rendererFingerprint": "d7455fc32e98d5e49518d479d9afdb83bea63f8633d46c8b092e83fe77068b79",
   "renderer": {
     "trackedFiles": [
       {
@@ -27,8 +27,8 @@
     ],
     "browserBundle": {
       "entry": "scripts/wiki/stills_render_entry.js",
-      "bytes": 4295455,
-      "sha256": "d3ab474c8a53b94e72d73058fac141df746d77414531c526f9d53a945755e87a",
+      "bytes": 4324815,
+      "sha256": "129f6eb2f01e97561ec130dfdbd94b404d09615eb864155ae60e0c241401782f",
       "esbuildVersion": "0.28.1"
     },
     "output": {
@@ -3642,35 +3642,23 @@
       "id": "mogger",
       "family": "humanoid",
       "finderEncounter": false,
-      "visualKey": "mob_bruiser",
+      "visualKey": "mob_bruiser_large",
       "renderSpec": {
         "model": {
-          "url": "models/chars/players/barbarian.glb",
-          "path": "public/models/chars/players/barbarian.glb",
-          "bytes": 444244,
-          "sha256": "2fb8d32c29d2b5c4b9b4b54ec502c3778f3d4d0da0e55cd1d4ed2b7c1e8d0abb"
+          "url": "models/chars/enemies/barbarian_large.glb",
+          "path": "public/models/chars/enemies/barbarian_large.glb",
+          "bytes": 330560,
+          "sha256": "7bcf9f1d99653dd3ae1dad93d7213685498f7dc5af02771554f6fe23dda9b003"
         },
         "idle": "Idle",
-        "height": 2.6,
+        "height": 3.5100000000000002,
         "yaw": null,
         "hover": null,
         "show": [
-          "Barbarian_BearHat"
+          "Barbarian_Large_BearHat",
+          "Barbarian_Large_BearPelt"
         ],
-        "attach": [
-          {
-            "asset": {
-              "url": "models/weapons/axe_2handed.glb",
-              "path": "public/models/weapons/axe_2handed.glb",
-              "bytes": 35248,
-              "sha256": "8a68d165fa09dfe96b4e2473344161b910ddea10a916333cbdaacdcd17493af6"
-            },
-            "bone": "handslot.r",
-            "position": null,
-            "rotationY": null,
-            "gripRef": null
-          }
-        ],
+        "attach": [],
         "weaponFix": null,
         "tintStrength": 0.3
       },
@@ -3680,11 +3668,11 @@
         "resolved": "#8e5b33",
         "strength": 0.3
       },
-      "sourceFingerprint": "54b9b8b14eae4864ae83ad629ef185c37ae34a19b234297e744d8f675b08a2bc",
+      "sourceFingerprint": "3a22cfebc99ae0d55cb0efdcbfbffd2b2919c916b8f9be1ee607e3b2627990f2",
       "output": {
         "path": "public/ui/mobs/mogger.webp",
-        "bytes": 2568,
-        "sha256": "e9e03973382f9c686b13edafae99a96e8a6899cd3d4e76f118603f0eded60d3e"
+        "bytes": 3644,
+        "sha256": "5ad1536663c47bb41283ad3d2294303d6332c9f3f8e8eb140466719562449d89"
       }
     },
     {
