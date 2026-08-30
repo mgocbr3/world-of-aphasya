@@ -8,7 +8,12 @@
 // from the scaled height and follow. Uniform across the whole cast so
 // relative combat scale (wolf vs player vs boss) is untouched.
 
-export const CHARACTER_VISUAL_WORLD_SCALE = 0.74;
+// 0.7 is a flat THIRTY PERCENT off the upstream size. Upstream applies no
+// factor at all (`normScale = def.height / rawHeight`), so its humanoid is
+// the manifest's 2.6 units and ours is 1.82. Stated against upstream rather
+// than against the previous 0.74 on purpose: the baseline anyone can check
+// out and compare is the unmodified game, not an earlier tuning of ours.
+export const CHARACTER_VISUAL_WORLD_SCALE = 0.7;
 
 /** A manifest def height brought into world proportion. */
 export function scaledVisualHeight(defHeight: number): number {
