@@ -2694,6 +2694,19 @@ export const VISUALS: Record<string, VisualDef> = {
     tint: 'entity',
     tintStrength: 0.5,
   },
+  // KayKit Adventurers 2.0 (purchased EXTRA tier): the hulking barbarian, a
+  // Rig_Large body. Its clips are donated from the skeleton golem, the other
+  // Rig_Large body in the tree, by bone name
+  // (scripts/assets/build_kaykit_character.mjs), so it drives the same small
+  // large-rig clip set rather than the fuller kaykit() one.
+  mob_bruiser_large: {
+    url: `${ENEMIES}/barbarian_large.glb`,
+    height: HUMANOID_H * 1.35,
+    clips: skeletonLargeClips(['2H_Melee_Attack_Chop']),
+    show: ['Barbarian_Large_BearHat', 'Barbarian_Large_BearPelt'],
+    tint: 'entity',
+    tintStrength: 0.3,
+  },
   mob_bruiser: {
     url: `${PLAYERS}/barbarian.glb`,
     animUrls: [`${PLAYERS}/barbarian_hit_variety_anims.glb`],
@@ -2743,6 +2756,18 @@ export const VISUALS: Record<string, VisualDef> = {
     clips: kaykit(['1H_Melee_Attack_Chop']),
     show: [],
     attach: [{ url: `${WEAPONS}/axe_1handed.glb`, bone: 'handslot.r' }],
+  },
+  // KayKit Adventurers 2.0 (purchased EXTRA tier): goggles, backpack, tinker
+  // silhouette. Rig_Medium like every other adventurer body, so the clips are
+  // donated from the knight and the full kaykit() map applies.
+  npc_engineer: {
+    url: `${PLAYERS}/engineer.glb`,
+    // Hit_B_Stagger lives in the shared hit-variety file, not in any body GLB,
+    // exactly as the other adventurer-bodied NPCs pull it.
+    animUrls: [`${PLAYERS}/knight_hit_variety_anims.glb`],
+    height: HUMANOID_H,
+    clips: kaykit(['1H_Melee_Attack_Chop']),
+    show: [],
   },
   npc_scout: {
     url: `${PLAYERS}/rogue.glb`,
@@ -3043,7 +3068,10 @@ const MOB_KEYS: Record<string, string> = {
   vael_the_mistcaller: 'mob_dark_caster',
   grand_necromancer_velkhar: 'mob_dark_caster',
   gorrak: 'mob_bruiser',
-  mogger: 'mob_bruiser',
+  // Mogger leads the camp at 300 hp and 1.28 scale, the heaviest of the three
+  // that shared the bruiser body: he gets the large barbarian so the leader
+  // reads as one beside his own lackeys.
+  mogger: 'mob_bruiser_large',
   // undead variants by role
   boneclad_revenant: 'skel_warrior',
   marrowlord_varkas: 'skel_warrior',
@@ -3216,7 +3244,9 @@ const NPC_KEYS: Record<string, string> = {
   // alchemist match the robed apothecary/herbalist look; the cook and tanner
   // read as working townsfolk.
   forgemistress_darva: 'npc_smith',
-  tinker_gizzel: 'npc_smith',
+  // A tinker on the smith's body was the closest fit available; the pack's
+  // Engineer is the actual silhouette (goggles, backpack, tools).
+  tinker_gizzel: 'npc_engineer',
   weaver_ottilie: 'npc_villager_robed',
   alchemist_verane: 'npc_villager_robed',
   cook_marlow: 'npc_villager',

@@ -93,6 +93,7 @@ than free, so ask before you rely on it.
 | Assets | Author | Source | License | Redistribution |
 |---|---|---|---|---|
 | Character models + animations (knight, mage, rogue, barbarian, hooded rogue), weapons/shields | Kay Lousberg (KayKit) | https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0 | CC0 1.0 | Yes |
+| Adventurers 2.0 EXTRA/SOURCE tier bodies (the Engineer NPC and the large Barbarian brute, plus the alternative texture sets) | Kay Lousberg (KayKit) | https://kaylousberg.itch.io/kaykit-adventurers | CC0 1.0 (purchased EXTRA/SOURCE tier; the tier buys source files and extra characters, the license is still CC0 and attribution stays optional) | Yes |
 | Skeleton character models + animations, bone weapons | Kay Lousberg (KayKit) | https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0 | CC0 1.0 | Yes |
 | Dungeon modular kit (walls, floors, pillars, torches, banners, chests, furniture; also the Drakelands castle structure set) | Kay Lousberg (KayKit) | https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0 | CC0 1.0 | Yes |
 | Graveyard/crypt props, dead trees, lanterns | Kay Lousberg (KayKit) | https://github.com/KayKit-Game-Assets/KayKit-Halloween-Bits-1.0 | CC0 1.0 | Yes |
