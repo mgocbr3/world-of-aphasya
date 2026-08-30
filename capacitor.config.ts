@@ -18,7 +18,7 @@ const config: CapacitorConfig = {
     // via notifyAppReady, or the plugin reverts it on the next launch.
     CapacitorUpdater: {
       autoUpdate: true,
-      updateUrl: 'https://worldofaphasya.com/api/ota/updates',
+      updateUrl: 'https://world-of-aphasya.pixlland.com/api/ota/updates',
       statsUrl: '',
     },
   },

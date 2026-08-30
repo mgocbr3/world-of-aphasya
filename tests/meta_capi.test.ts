@@ -28,13 +28,13 @@ describe('Meta Conversions API helpers', () => {
     expect(
       metaEventSourceUrl(
         req({
-          referer: 'https://worldofaphasya.com/play',
-          origin: 'https://worldofaphasya.com',
+          referer: 'https://world-of-aphasya.pixlland.com/play',
+          origin: 'https://world-of-aphasya.pixlland.com',
         }),
       ),
-    ).toBe('https://worldofaphasya.com/play');
-    expect(metaEventSourceUrl(req({ origin: 'https://worldofaphasya.com' }))).toBe(
-      'https://worldofaphasya.com',
+    ).toBe('https://world-of-aphasya.pixlland.com/play');
+    expect(metaEventSourceUrl(req({ origin: 'https://world-of-aphasya.pixlland.com' }))).toBe(
+      'https://world-of-aphasya.pixlland.com',
     );
     expect(
       metaEventSourceUrl(
@@ -48,7 +48,7 @@ describe('Meta Conversions API helpers', () => {
       eventName: 'AccountCreated',
       eventId: 'acct_42',
       eventTime: 123,
-      eventSourceUrl: 'https://worldofaphasya.com/',
+      eventSourceUrl: 'https://world-of-aphasya.pixlland.com/',
       userData: {
         email: 'Player@Example.COM',
         externalId: '42',
@@ -65,7 +65,7 @@ describe('Meta Conversions API helpers', () => {
           event_time: 123,
           event_id: 'acct_42',
           action_source: 'website',
-          event_source_url: 'https://worldofaphasya.com/',
+          event_source_url: 'https://world-of-aphasya.pixlland.com/',
           user_data: {
             em: ['46b06dcd1ce7d8bdf29ce2677575bd21fd7b3879416d5b810dcc78b77e932b02'],
             external_id: ['73475cb40a568e8da8a045ced110137e159f890ac4da883b6b17dc651b3a8049'],

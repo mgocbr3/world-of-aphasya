@@ -304,8 +304,8 @@ Přispěním kódu souhlasíš, že tvé kódové příspěvky budou licencovan�
 
 MIT licence znamená přesně to, co říká: kdokoli smí kód používat, upravovat a šířit
 dál, komerčně i nekomerčně. Naše
-[Podmínky služby](https://worldofaphasya.com/terms) upravují hostovanou hru,
-kterou provozujeme na worldofaphasya.com (účty, chování, virtuální předměty), a
+[Podmínky služby](https://world-of-aphasya.pixlland.com/terms) upravují hostovanou hru,
+kterou provozujeme na world-of-aphasya.pixlland.com (účty, chování, virtuální předměty), a
 neomezují práva, která MIT licence dává tobě ani komukoli jinému v tomto kódu.
 Názvy a branding "World of Aphasya" a "Levy Street" MIT licence nekryje.
 

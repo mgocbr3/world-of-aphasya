@@ -205,7 +205,7 @@ export class DiscordApi {
     const headers: Record<string, string> = {
       Authorization: `Bot ${this.token}`,
       'Content-Type': 'application/json',
-      'User-Agent': 'WorldOfAphasyaBot (https://worldofaphasya.com, 1.0)',
+      'User-Agent': 'WorldOfAphasyaBot (https://world-of-aphasya.pixlland.com, 1.0)',
     };
     if (options.reason !== undefined) {
       headers['X-Audit-Log-Reason'] = sanitizeAuditReason(options.reason);

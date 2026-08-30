@@ -121,7 +121,7 @@ async function probe(url) {
 }
 
 async function main() {
-  const url = process.argv[2] ?? 'wss://worldofaphasya.com/ws';
+  const url = process.argv[2] ?? 'wss://world-of-aphasya.pixlland.com/ws';
   console.log(`ota layout check: this checkout speaks ${ONLINE_WORLD_AUTH_TYPE}`);
   console.log(`ota layout check: probing ${url}`);
   const { verdict, detail } = await probe(url);

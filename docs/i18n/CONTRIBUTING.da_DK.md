@@ -322,8 +322,8 @@ projektets [MIT-licens](../../LICENSE), den samme licens, der dækker projektet.
 
 MIT-licensen betyder præcis, hvad den siger: enhver må bruge, ændre og
 videredistribuere koden, kommercielt eller ej. Vores
-[servicevilkår](https://worldofaphasya.com/terms) gælder for det hostede
-spil, vi driver på worldofaphasya.com (konti, adfærd, virtuelle genstande),
+[servicevilkår](https://world-of-aphasya.pixlland.com/terms) gælder for det hostede
+spil, vi driver på world-of-aphasya.pixlland.com (konti, adfærd, virtuelle genstande),
 og de begrænser ikke de rettigheder, MIT-licensen giver dig eller andre i denne
 kode. Navnene og brandingen "World of Aphasya" og "Levy Street" er ikke
 dækket af MIT-licensen.

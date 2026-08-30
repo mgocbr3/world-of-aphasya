@@ -101,9 +101,9 @@ describe('websocket authentication', () => {
   });
 
   it('keeps bearer tokens out of the websocket URL', () => {
-    const url = buildWebSocketUrl('https:', 'worldofaphasya.com');
+    const url = buildWebSocketUrl('https:', 'world-of-aphasya.pixlland.com');
 
-    expect(url).toBe('wss://worldofaphasya.com/ws');
+    expect(url).toBe('wss://world-of-aphasya.pixlland.com/ws');
     expect(url).not.toContain('token');
   });
 
@@ -887,7 +887,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
 
   it('still fails closed for plain web origins with a secret set and no token', async () => {
     const fetchSpy = vi.fn();
-    const req = fakeReq({ origin: 'https://worldofaphasya.com' }, '203.0.113.55');
+    const req = fakeReq({ origin: 'https://world-of-aphasya.pixlland.com' }, '203.0.113.55');
     await expect(passesTurnstile(req, {}, testSecret, fetchSpy as any)).resolves.toBe(false);
     expect(fetchSpy).not.toHaveBeenCalled();
   });
@@ -898,7 +898,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
   });
 
   it('verifies a supplied web token against siteverify', async () => {
-    const req = fakeReq({ origin: 'https://worldofaphasya.com' }, '203.0.113.55');
+    const req = fakeReq({ origin: 'https://world-of-aphasya.pixlland.com' }, '203.0.113.55');
     const fetchOk = vi.fn(
       async () => new Response(JSON.stringify({ success: true }), { status: 200 }),
     );
@@ -909,7 +909,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
   });
 
   it('lets requests through when no secret is configured', async () => {
-    const req = fakeReq({ origin: 'https://worldofaphasya.com' }, '203.0.113.55');
+    const req = fakeReq({ origin: 'https://world-of-aphasya.pixlland.com' }, '203.0.113.55');
     await expect(passesTurnstile(req, {}, '')).resolves.toBe(true);
   });
 

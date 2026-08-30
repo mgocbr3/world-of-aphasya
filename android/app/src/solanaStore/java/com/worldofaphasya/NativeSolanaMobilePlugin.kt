@@ -30,7 +30,7 @@ class NativeSolanaMobilePlugin : Plugin() {
     private var secureStorageReady = false
     private val walletAdapter = MobileWalletAdapter(
         connectionIdentity = ConnectionIdentity(
-            identityUri = Uri.parse("https://worldofaphasya.com"),
+            identityUri = Uri.parse("https://world-of-aphasya.pixlland.com"),
             iconUri = Uri.parse("favicon.ico"),
             identityName = "World of Aphasya",
         ),

@@ -324,8 +324,8 @@ Współtworząc kod, zgadzasz się, że Twój wkład w kod będzie objęty
 
 Licencja MIT znaczy dokładnie to, co mówi: każdy może używać, modyfikować i
 rozpowszechniać kod, komercyjnie lub nie. Nasz
-[Regulamin](https://worldofaphasya.com/terms) reguluje hostowaną grę, którą
-prowadzimy pod adresem worldofaphasya.com (konta, zachowanie, przedmioty
+[Regulamin](https://world-of-aphasya.pixlland.com/terms) reguluje hostowaną grę, którą
+prowadzimy pod adresem world-of-aphasya.pixlland.com (konta, zachowanie, przedmioty
 wirtualne) i nie ogranicza praw, które Licencja MIT daje Tobie ani komukolwiek
 innemu w tym kodzie. Nazwy i znaki „World of Aphasya” oraz „Levy Street” nie są
 objęte Licencją MIT.

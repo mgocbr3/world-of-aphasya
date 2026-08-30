@@ -48,7 +48,7 @@ describe('native Discord OAuth deep link', () => {
   });
 
   it('rejects unrelated schemes, hosts, and modes', () => {
-    expect(parseNativeDiscordUrl('https://worldofaphasya.com/discord-auth')).toBeNull();
+    expect(parseNativeDiscordUrl('https://world-of-aphasya.pixlland.com/discord-auth')).toBeNull();
     expect(parseNativeDiscordUrl('worldofaphasya://desktop-login?mode=login')).toBeNull();
     expect(parseNativeDiscordUrl('worldofaphasya://discord-auth?mode=nope')).toBeNull();
   });

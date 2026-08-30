@@ -91,7 +91,7 @@ function metadataUrl(): string {
   if (typeof window !== 'undefined' && /^https?:$/.test(window.location.protocol)) {
     return window.location.origin;
   }
-  return 'https://worldofaphasya.com';
+  return 'https://world-of-aphasya.pixlland.com';
 }
 
 function connectionCancelled(): Error {
@@ -119,7 +119,7 @@ export async function createWalletConnectClient(projectId: string): Promise<Wall
       name: 'World of Aphasya',
       description: 'Connect a Solana wallet to World of Aphasya',
       url: metadataUrl(),
-      icons: ['https://worldofaphasya.com/icons/icon-512.png'],
+      icons: ['https://world-of-aphasya.pixlland.com/icons/icon-512.png'],
     },
     featuredWalletIds: [...FEATURED_WALLET_IDS],
     allWallets: runtime.allWallets,
@@ -129,7 +129,7 @@ export async function createWalletConnectClient(projectId: string): Promise<Wall
     experimental_preferUniversalLinks: true,
     themeMode: 'dark',
     termsConditionsUrl: CANONICAL_TERMS_URL,
-    privacyPolicyUrl: 'https://worldofaphasya.com/privacy',
+    privacyPolicyUrl: 'https://world-of-aphasya.pixlland.com/privacy',
     features: {
       analytics: false,
       email: false,

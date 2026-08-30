@@ -13,11 +13,11 @@ afterEach(() => {
 
 describe('resolveWikiUrl', () => {
   it('stays same-origin on any http(s) deploy, so a dev deploy links its own wiki', () => {
-    expect(resolveWikiUrl({ nativeApp: false, origin: 'https://dev.worldofaphasya.com' })).toBe(
-      'https://dev.worldofaphasya.com/wiki/',
+    expect(resolveWikiUrl({ nativeApp: false, origin: 'https://dev.world-of-aphasya.pixlland.com' })).toBe(
+      'https://dev.world-of-aphasya.pixlland.com/wiki/',
     );
-    expect(resolveWikiUrl({ nativeApp: false, origin: 'https://worldofaphasya.com' })).toBe(
-      'https://worldofaphasya.com/wiki/',
+    expect(resolveWikiUrl({ nativeApp: false, origin: 'https://world-of-aphasya.pixlland.com' })).toBe(
+      'https://world-of-aphasya.pixlland.com/wiki/',
     );
     expect(resolveWikiUrl({ nativeApp: false, origin: 'http://localhost:5173' })).toBe(
       'http://localhost:5173/wiki/',
@@ -39,13 +39,13 @@ describe('resolveWikiUrl', () => {
   });
 
   it('pins the canonical wiki URL to its literal', () => {
-    expect(CANONICAL_WIKI_URL).toBe('https://worldofaphasya.com/wiki/');
+    expect(CANONICAL_WIKI_URL).toBe('https://world-of-aphasya.pixlland.com/wiki/');
   });
 });
 
 describe('promptWikiVisit', () => {
   it('asks with the wiki dialog copy and opens the resolved URL only on OK', () => {
-    vi.stubGlobal('location', { origin: 'https://dev.worldofaphasya.com' });
+    vi.stubGlobal('location', { origin: 'https://dev.world-of-aphasya.pixlland.com' });
     const openUrl = vi.fn();
     const confirm = vi.fn();
     promptWikiVisit({ confirm, openUrl });
@@ -63,7 +63,7 @@ describe('promptWikiVisit', () => {
     expect(openUrl).not.toHaveBeenCalled();
     (onOk as () => void)();
     expect(openUrl).toHaveBeenCalledTimes(1);
-    expect(openUrl).toHaveBeenCalledWith('https://dev.worldofaphasya.com/wiki/');
+    expect(openUrl).toHaveBeenCalledWith('https://dev.world-of-aphasya.pixlland.com/wiki/');
   });
 
   it('a dismissed dialog (onOk never fired) opens nothing', () => {

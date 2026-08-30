@@ -7,7 +7,7 @@ import { isDesktopAppRuntime, normalizeOrigin, runtimeApiOrigin } from './runtim
 export const NATIVE_APP = String(import.meta.env.VITE_NATIVE_APP ?? '') === '1';
 /** The public Marketplace terms page, for shells whose origin is not the site
  *  (the wallet-connect modal's terms link and src/ui/terms_link.ts share it). */
-export const CANONICAL_TERMS_URL = 'https://worldofaphasya.com/terms';
+export const CANONICAL_TERMS_URL = 'https://world-of-aphasya.pixlland.com/terms';
 export const NATIVE_API_ORIGIN = normalizeOrigin(String(import.meta.env.VITE_API_ORIGIN ?? ''));
 export const DESKTOP_APP = isDesktopAppRuntime();
 export const DESKTOP_API_ORIGIN = DESKTOP_APP ? runtimeApiOrigin() : '';

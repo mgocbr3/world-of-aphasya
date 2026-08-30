@@ -50,7 +50,7 @@ async function renderProfile(state: Record<string, unknown>): Promise<string> {
   mockGetCharacterById.mockResolvedValueOnce(charRow(state));
   const req = {
     url: '/c/Hilda',
-    headers: { host: 'worldofaphasya.com' },
+    headers: { host: 'world-of-aphasya.pixlland.com' },
     socket: { remoteAddress: `10.1.2.${Math.floor(Math.random() * 250)}` },
   } as never;
   let body = '';

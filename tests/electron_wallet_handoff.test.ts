@@ -11,8 +11,8 @@ describe('Electron wallet browser handoff', () => {
   const code = 'A'.repeat(43);
 
   it('puts the secret in the URL fragment so it is not sent in the HTTP request', () => {
-    const url = buildWalletHandoffBrowserUrl('https://worldofaphasya.com', code);
-    expect(url).toBe(`https://worldofaphasya.com/wallet-handoff#code=${code}`);
+    const url = buildWalletHandoffBrowserUrl('https://world-of-aphasya.pixlland.com', code);
+    expect(url).toBe(`https://world-of-aphasya.pixlland.com/wallet-handoff#code=${code}`);
     expect(new URL(url).search).toBe('');
   });
 

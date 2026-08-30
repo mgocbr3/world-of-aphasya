@@ -224,12 +224,12 @@ describe('resolveDesktopOrigins (the packaged-build VITE_DESKTOP_* hatch closure
 
   it('falls back to the production origin, and login falls back to the api origin', () => {
     expect(resolveDesktopOrigins({})).toEqual({
-      apiOrigin: 'https://worldofaphasya.com',
-      loginOrigin: 'https://worldofaphasya.com',
+      apiOrigin: 'https://world-of-aphasya.pixlland.com',
+      loginOrigin: 'https://world-of-aphasya.pixlland.com',
     });
     expect(resolveDesktopOrigins()).toEqual({
-      apiOrigin: 'https://worldofaphasya.com',
-      loginOrigin: 'https://worldofaphasya.com',
+      apiOrigin: 'https://world-of-aphasya.pixlland.com',
+      loginOrigin: 'https://world-of-aphasya.pixlland.com',
     });
     expect(
       resolveDesktopOrigins({
@@ -241,8 +241,8 @@ describe('resolveDesktopOrigins (the packaged-build VITE_DESKTOP_* hatch closure
 });
 
 const defaultOrigins = {
-  apiOrigin: 'https://worldofaphasya.com',
-  loginOrigin: 'https://worldofaphasya.com',
+  apiOrigin: 'https://world-of-aphasya.pixlland.com',
+  loginOrigin: 'https://world-of-aphasya.pixlland.com',
 };
 
 describe('resolveDesktopConfig', () => {
@@ -293,7 +293,7 @@ describe('resolveDesktopConfig', () => {
   it('derives the update channel from the baked origin: non-production reads the dev feed', () => {
     const dev = resolveDesktopConfig({
       packagedMetadata: {
-        wocDesktop: { distribution: 'website', apiOrigin: 'https://dev.worldofaphasya.com' },
+        wocDesktop: { distribution: 'website', apiOrigin: 'https://dev.world-of-aphasya.pixlland.com' },
       },
       isPackaged: true,
     });
@@ -309,9 +309,9 @@ describe('resolveDesktopConfig', () => {
     // No env hatch: a packaged build's channel follows its baked origin only.
     const forced = resolveDesktopConfig({
       packagedMetadata: {
-        wocDesktop: { distribution: 'website', apiOrigin: 'https://dev.worldofaphasya.com' },
+        wocDesktop: { distribution: 'website', apiOrigin: 'https://dev.world-of-aphasya.pixlland.com' },
       },
-      env: { VITE_DESKTOP_API_ORIGIN: 'https://worldofaphasya.com' },
+      env: { VITE_DESKTOP_API_ORIGIN: 'https://world-of-aphasya.pixlland.com' },
       isPackaged: true,
     });
     expect(forced.updateChannel).toBe('dev');

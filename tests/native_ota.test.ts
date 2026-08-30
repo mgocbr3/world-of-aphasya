@@ -208,7 +208,7 @@ describe('OTA wiring pins', () => {
     const config = read('capacitor.config.ts');
     expect(config).toContain('CapacitorUpdater');
     expect(config).toContain('autoUpdate: true');
-    expect(config).toContain("updateUrl: 'https://worldofaphasya.com/api/ota/updates'");
+    expect(config).toContain("updateUrl: 'https://world-of-aphasya.pixlland.com/api/ota/updates'");
     expect(config).toContain("statsUrl: ''");
   });
 
@@ -219,7 +219,7 @@ describe('OTA wiring pins', () => {
     const routePath = read('server/ota_updates.ts').match(/path: '([^']+)'/)?.[1];
     expect(routePath).toBe('/api/ota/updates');
     expect(read('capacitor.config.ts')).toContain(
-      `updateUrl: 'https://worldofaphasya.com${routePath}'`,
+      `updateUrl: 'https://world-of-aphasya.pixlland.com${routePath}'`,
     );
   });
 

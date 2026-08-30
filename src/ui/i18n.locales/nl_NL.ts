@@ -9214,7 +9214,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
     'Begin aan een episch avontuur in World of Aphasya, een micro-MMO in klassieke stijl die je rechtstreeks in je browser kunt spelen. Sluit je aan bij een blijvende gedeelde wereld, level je klassen op en versla vijanden!',
   'seo.genre': 'MMORPG',
   'seo.officialBody':
-    'worldofaphasya.com is de officiële gratis browser-MMO voor de Claudemoon-wereld. Speel online met een blijvend personage, verken solo offline, lees de wiki en volg geverifieerde communitylinks vanaf deze site.',
+    'world-of-aphasya.pixlland.com is de officiële gratis browser-MMO voor de Claudemoon-wereld. Speel online met een blijvend personage, verken solo offline, lees de wiki en volg geverifieerde communitylinks vanaf deze site.',
   'seo.officialLabel': 'Officiële website van World of Aphasya',
   'seo.operatingSystem': 'Webbrowser',
   'seo.playMode': 'Multiplayer',

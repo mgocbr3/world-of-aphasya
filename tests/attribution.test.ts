@@ -32,7 +32,7 @@ function installPage(search: string, href: string, referrer = ''): void {
 
 beforeEach(() => {
   installStorage();
-  installPage('', 'https://worldofaphasya.com/');
+  installPage('', 'https://world-of-aphasya.pixlland.com/');
 });
 
 afterEach(() => {
@@ -45,24 +45,24 @@ describe('parseFirstTouch', () => {
   it('captures fbclid, utm tags, landing url, and an external referrer', () => {
     const touch = parseFirstTouch(
       '?fbclid=IwAR1&utm_source=facebook&utm_campaign=aug_l5',
-      'https://worldofaphasya.com/?fbclid=IwAR1',
+      'https://world-of-aphasya.pixlland.com/?fbclid=IwAR1',
       'https://l.facebook.com/',
     );
     expect(touch).toMatchObject({
       fbclid: 'IwAR1',
       utmSource: 'facebook',
       utmCampaign: 'aug_l5',
-      landingUrl: 'https://worldofaphasya.com/?fbclid=IwAR1',
+      landingUrl: 'https://world-of-aphasya.pixlland.com/?fbclid=IwAR1',
       referrer: 'https://l.facebook.com/',
     });
   });
 
   it('returns null for a direct visit with no signal', () => {
-    expect(parseFirstTouch('', 'https://worldofaphasya.com/', '')).toBeNull();
+    expect(parseFirstTouch('', 'https://world-of-aphasya.pixlland.com/', '')).toBeNull();
   });
 
   it('treats a bare external referrer as a signal worth keeping', () => {
-    const touch = parseFirstTouch('', 'https://worldofaphasya.com/', 'https://reddit.com/');
+    const touch = parseFirstTouch('', 'https://world-of-aphasya.pixlland.com/', 'https://reddit.com/');
     expect(touch?.referrer).toBe('https://reddit.com/');
   });
 
@@ -71,14 +71,14 @@ describe('parseFirstTouch', () => {
     // claim the write-once first touch and block a later real ad click.
     const touch = parseFirstTouch(
       '',
-      'https://worldofaphasya.com/play',
-      'https://worldofaphasya.com/wiki',
+      'https://world-of-aphasya.pixlland.com/play',
+      'https://world-of-aphasya.pixlland.com/wiki',
     );
     expect(touch).toBeNull();
     const withCampaign = parseFirstTouch(
       '?utm_source=facebook',
-      'https://worldofaphasya.com/play',
-      'https://worldofaphasya.com/wiki',
+      'https://world-of-aphasya.pixlland.com/play',
+      'https://world-of-aphasya.pixlland.com/wiki',
     );
     expect(withCampaign?.utmSource).toBe('facebook');
     expect(withCampaign?.referrer).toBeUndefined();
@@ -99,14 +99,14 @@ describe('captureFirstTouch (write-once)', () => {
   it('stores the first touch and never overwrites it', () => {
     installPage(
       '?utm_source=facebook&utm_campaign=first',
-      'https://worldofaphasya.com/?utm_source=facebook&utm_campaign=first',
+      'https://world-of-aphasya.pixlland.com/?utm_source=facebook&utm_campaign=first',
     );
     captureFirstTouch();
     expect(readStoredFirstTouch()?.utmCampaign).toBe('first');
 
     installPage(
       '?utm_source=tiktok&utm_campaign=second',
-      'https://worldofaphasya.com/?utm_source=tiktok&utm_campaign=second',
+      'https://world-of-aphasya.pixlland.com/?utm_source=tiktok&utm_campaign=second',
     );
     captureFirstTouch();
     expect(readStoredFirstTouch()?.utmCampaign).toBe('first');
@@ -119,14 +119,14 @@ describe('captureFirstTouch (write-once)', () => {
 
   it('survives an unavailable localStorage', () => {
     delete (globalThis as { localStorage?: unknown }).localStorage;
-    installPage('?utm_source=facebook', 'https://worldofaphasya.com/?utm_source=facebook');
+    installPage('?utm_source=facebook', 'https://world-of-aphasya.pixlland.com/?utm_source=facebook');
     expect(() => captureFirstTouch()).not.toThrow();
   });
 });
 
 describe('registerAttributionPayload', () => {
   it('merges the stored touch with the visitor id', () => {
-    installPage('?utm_source=facebook', 'https://worldofaphasya.com/?utm_source=facebook');
+    installPage('?utm_source=facebook', 'https://world-of-aphasya.pixlland.com/?utm_source=facebook');
     captureFirstTouch();
     const payload = registerAttributionPayload();
     expect(payload?.utmSource).toBe('facebook');
@@ -135,7 +135,7 @@ describe('registerAttributionPayload', () => {
   });
 
   it('falls back to a live parse when nothing is stored', () => {
-    installPage('?fbclid=live1', 'https://worldofaphasya.com/?fbclid=live1');
+    installPage('?fbclid=live1', 'https://world-of-aphasya.pixlland.com/?fbclid=live1');
     const payload = registerAttributionPayload();
     expect(payload?.fbclid).toBe('live1');
   });
@@ -151,7 +151,7 @@ describe('stored record round trip', () => {
   it('reads back exactly what capture wrote', () => {
     installPage(
       '?fbclid=abc&utm_medium=paid',
-      'https://worldofaphasya.com/?fbclid=abc&utm_medium=paid',
+      'https://world-of-aphasya.pixlland.com/?fbclid=abc&utm_medium=paid',
       'https://www.facebook.com/',
     );
     captureFirstTouch();

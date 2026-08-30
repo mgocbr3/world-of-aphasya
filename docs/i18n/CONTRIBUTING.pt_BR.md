@@ -329,8 +329,8 @@ cobre o projeto.
 
 A Licença MIT quer dizer exatamente o que está escrito: qualquer pessoa pode usar,
 modificar e redistribuir o código, comercialmente ou não. Nossos
-[Termos de Serviço](https://worldofaphasya.com/terms) regem o jogo hospedado
-que operamos em worldofaphasya.com (contas, conduta, itens virtuais) e não
+[Termos de Serviço](https://world-of-aphasya.pixlland.com/terms) regem o jogo hospedado
+que operamos em world-of-aphasya.pixlland.com (contas, conduta, itens virtuais) e não
 restringem os direitos que a Licença MIT dá a você ou a qualquer outra pessoa
 sobre este código. Os nomes e a identidade visual "World of Aphasya" e "Levy
 Street" não são cobertos pela Licença MIT.

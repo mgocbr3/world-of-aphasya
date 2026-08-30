@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "assetId": "boardwalk",
-  "sourceFingerprint": "7f675badeab4117768e0ba6dfc13a9d10d109ccdf4faefe8393a397c965fcb59",
+  "sourceFingerprint": "0ad95b8116dcb5a74b044230227ef27e696c3c8359bad83fefc387d2568ee3ff",
   "reference": "docs/design/fenbridge-rebuild/references/boardwalk-turnaround.png",
   "minimumOverallScore": 0.7,
   "requiredViews": [

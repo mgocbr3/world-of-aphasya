@@ -22,8 +22,8 @@ function installFakeWindow() {
       clear: () => values.clear(),
     },
     location: {
-      href: 'https://dev.worldofaphasya.com/play',
-      origin: 'https://dev.worldofaphasya.com',
+      href: 'https://dev.world-of-aphasya.pixlland.com/play',
+      origin: 'https://dev.world-of-aphasya.pixlland.com',
       assign: vi.fn(),
     },
     open: vi.fn(),
@@ -67,14 +67,14 @@ describe('mobile Solana wallet deeplinks', () => {
     const dapp = nacl.box.keyPair();
     const phantom = buildConnectRequest({
       provider: 'phantom',
-      appUrl: 'https://dev.worldofaphasya.com',
-      redirectUrl: 'https://dev.worldofaphasya.com/wallet-return.html?woc_wallet_request=request-1',
+      appUrl: 'https://dev.world-of-aphasya.pixlland.com',
+      redirectUrl: 'https://dev.world-of-aphasya.pixlland.com/wallet-return.html?woc_wallet_request=request-1',
       dappPublicKey: dapp.publicKey,
     });
     const solflare = buildConnectRequest({
       provider: 'solflare',
-      appUrl: 'https://dev.worldofaphasya.com',
-      redirectUrl: 'https://dev.worldofaphasya.com/wallet-return.html?woc_wallet_request=request-2',
+      appUrl: 'https://dev.world-of-aphasya.pixlland.com',
+      redirectUrl: 'https://dev.world-of-aphasya.pixlland.com/wallet-return.html?woc_wallet_request=request-2',
       dappPublicKey: dapp.publicKey,
     });
 
@@ -112,7 +112,7 @@ describe('mobile Solana wallet deeplinks', () => {
       method: 'signMessage',
       dappPublicKey: new Uint8Array(nacl.box.publicKeyLength).fill(3),
       sharedSecret: shared,
-      redirectUrl: 'https://worldofaphasya.com/wallet-return.html?woc_wallet_request=req',
+      redirectUrl: 'https://world-of-aphasya.pixlland.com/wallet-return.html?woc_wallet_request=req',
       payload: { message: 'encoded-message', session: 'opaque-session', display: 'utf8' },
       nonce: new Uint8Array(nacl.box.nonceLength).fill(5),
     });

@@ -931,49 +931,49 @@ describe('client HTML shell', () => {
     expect(html).toContain(
       '<meta name="robots" content="index, follow, max-image-preview:large" />',
     );
-    expect(html).toContain('<link rel="canonical" href="https://worldofaphasya.com/" />');
+    expect(html).toContain('<link rel="canonical" href="https://world-of-aphasya.pixlland.com/" />');
     expect(html).toContain('<meta property="og:site_name" content="World of Aphasya" />');
     expect(html).toContain('"alternateName": "World of Aphasya"');
     expect(html).toContain('"https://github.com/mgocbr3/world-of-aphasya"');
     expect(mainTs).toContain("alternateName: 'World of Aphasya'");
     expect(mainTs).toContain("'https://github.com/mgocbr3/world-of-aphasya'");
     expect(robotsTxt.trim()).toBe(
-      'User-agent: *\nAllow: /\n\nSitemap: https://worldofaphasya.com/sitemap.xml\nSitemap: https://worldofaphasya.com/sitemap-characters.xml',
+      'User-agent: *\nAllow: /\n\nSitemap: https://world-of-aphasya.pixlland.com/sitemap.xml\nSitemap: https://world-of-aphasya.pixlland.com/sitemap-characters.xml',
     );
-    expect(robotsTxt).toContain('Sitemap: https://worldofaphasya.com/sitemap.xml');
+    expect(robotsTxt).toContain('Sitemap: https://world-of-aphasya.pixlland.com/sitemap.xml');
     // The dynamic per-character sitemap (served by the game server) is advertised too.
-    expect(robotsTxt).toContain('Sitemap: https://worldofaphasya.com/sitemap-characters.xml');
-    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/links</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/play</loc>');
-    expect(playHtml).toContain('<link rel="canonical" href="https://worldofaphasya.com/play" />');
+    expect(robotsTxt).toContain('Sitemap: https://world-of-aphasya.pixlland.com/sitemap-characters.xml');
+    expect(sitemapXml).toContain('<loc>https://world-of-aphasya.pixlland.com/</loc>');
+    expect(sitemapXml).toContain('<loc>https://world-of-aphasya.pixlland.com/links</loc>');
+    expect(sitemapXml).toContain('<loc>https://world-of-aphasya.pixlland.com/play</loc>');
+    expect(playHtml).toContain('<link rel="canonical" href="https://world-of-aphasya.pixlland.com/play" />');
     expect(playHtml).toContain(
-      '<meta property="og:url" content="https://worldofaphasya.com/play" />',
+      '<meta property="og:url" content="https://world-of-aphasya.pixlland.com/play" />',
     );
-    expect(playHtml).toContain('"url": "https://worldofaphasya.com/play"');
-    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/privacy</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/terms</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/data-deletion</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofaphasya.com/support</loc>');
+    expect(playHtml).toContain('"url": "https://world-of-aphasya.pixlland.com/play"');
+    expect(sitemapXml).toContain('<loc>https://world-of-aphasya.pixlland.com/privacy</loc>');
+    expect(sitemapXml).toContain('<loc>https://world-of-aphasya.pixlland.com/terms</loc>');
+    expect(sitemapXml).toContain('<loc>https://world-of-aphasya.pixlland.com/data-deletion</loc>');
+    expect(sitemapXml).toContain('<loc>https://world-of-aphasya.pixlland.com/support</loc>');
     expect(privacyHtml).toContain(
-      '<link rel="canonical" href="https://worldofaphasya.com/privacy" />',
+      '<link rel="canonical" href="https://world-of-aphasya.pixlland.com/privacy" />',
     );
     expect(privacyHtml).toContain('<h1>Privacy Policy</h1>');
     expect(privacyHtml).toContain('href="/support">Support</a>');
     expect(privacyHtml).toContain('href="/data-deletion">Data Deletion</a>');
-    expect(termsHtml).toContain('<link rel="canonical" href="https://worldofaphasya.com/terms" />');
+    expect(termsHtml).toContain('<link rel="canonical" href="https://world-of-aphasya.pixlland.com/terms" />');
     expect(termsHtml).toContain('<h1>Terms and Conditions</h1>');
     expect(termsHtml).toContain('href="/support">Support</a>');
     expect(termsHtml).toContain('href="/data-deletion">Data Deletion</a>');
     expect(dataDeletionHtml).toContain(
-      '<link rel="canonical" href="https://worldofaphasya.com/data-deletion" />',
+      '<link rel="canonical" href="https://world-of-aphasya.pixlland.com/data-deletion" />',
     );
     expect(dataDeletionHtml).toContain('<h1>Data Deletion</h1>');
     expect(dataDeletionHtml).toContain('href="mailto:pixlland@pixlland.com"');
     expect(dataDeletionHtml).toContain('href="https://discord.com/invite/worldofaphasya"');
     expect(dataDeletionHtml).toContain('href="/support">Support</a>');
     expect(supportHtml).toContain(
-      '<link rel="canonical" href="https://worldofaphasya.com/support" />',
+      '<link rel="canonical" href="https://world-of-aphasya.pixlland.com/support" />',
     );
     expect(supportHtml).toContain('<h1>Support</h1>');
     expect(supportHtml).toContain('href="mailto:pixlland@pixlland.com"');

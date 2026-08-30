@@ -9825,7 +9825,7 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
     'Mulailah petualangan epik di World of Aphasya, micro-MMO bergaya klasik yang dapat dimainkan langsung di peramban. Bergabunglah dengan dunia bersama yang persisten, naikkan level kelas, dan kalahkan musuh!',
   'seo.genre': 'MMORPG',
   'seo.officialBody':
-    'worldofaphasya.com adalah MMO peramban gratis resmi untuk dunia Claudemoon. Bermain daring dengan karakter yang persisten, jelajahi solo secara luring, baca wiki, dan ikuti tautan komunitas terverifikasi dari situs ini.',
+    'world-of-aphasya.pixlland.com adalah MMO peramban gratis resmi untuk dunia Claudemoon. Bermain daring dengan karakter yang persisten, jelajahi solo secara luring, baca wiki, dan ikuti tautan komunitas terverifikasi dari situs ini.',
   'seo.officialLabel': 'Situs resmi World of Aphasya',
   'seo.operatingSystem': 'Peramban web',
   'seo.playMode': 'Multipemain',

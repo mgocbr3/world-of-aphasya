@@ -7,29 +7,29 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const indexPath = path.resolve(__dirname, '../index.html');
 const expectedAlternates = [
-  { hreflang: 'en', href: 'https://worldofaphasya.com/' },
-  { hreflang: 'es', href: 'https://worldofaphasya.com/?lang=es' },
-  { hreflang: 'es-ES', href: 'https://worldofaphasya.com/?lang=es_ES' },
-  { hreflang: 'fr-FR', href: 'https://worldofaphasya.com/?lang=fr_FR' },
-  { hreflang: 'fr-CA', href: 'https://worldofaphasya.com/?lang=fr_CA' },
-  { hreflang: 'en-CA', href: 'https://worldofaphasya.com/?lang=en_CA' },
-  { hreflang: 'it-IT', href: 'https://worldofaphasya.com/?lang=it_IT' },
-  { hreflang: 'de-DE', href: 'https://worldofaphasya.com/?lang=de_DE' },
-  { hreflang: 'zh-CN', href: 'https://worldofaphasya.com/?lang=zh_CN' },
-  { hreflang: 'zh-TW', href: 'https://worldofaphasya.com/?lang=zh_TW' },
-  { hreflang: 'ko-KR', href: 'https://worldofaphasya.com/?lang=ko_KR' },
-  { hreflang: 'ja-JP', href: 'https://worldofaphasya.com/?lang=ja_JP' },
-  { hreflang: 'pt-BR', href: 'https://worldofaphasya.com/?lang=pt_BR' },
-  { hreflang: 'ru-RU', href: 'https://worldofaphasya.com/?lang=ru_RU' },
-  { hreflang: 'cs-CZ', href: 'https://worldofaphasya.com/?lang=cs_CZ' },
-  { hreflang: 'nl-NL', href: 'https://worldofaphasya.com/?lang=nl_NL' },
-  { hreflang: 'pl-PL', href: 'https://worldofaphasya.com/?lang=pl_PL' },
-  { hreflang: 'id-ID', href: 'https://worldofaphasya.com/?lang=id_ID' },
-  { hreflang: 'tr-TR', href: 'https://worldofaphasya.com/?lang=tr_TR' },
-  { hreflang: 'sv-SE', href: 'https://worldofaphasya.com/?lang=sv_SE' },
-  { hreflang: 'vi-VN', href: 'https://worldofaphasya.com/?lang=vi_VN' },
-  { hreflang: 'da-DK', href: 'https://worldofaphasya.com/?lang=da_DK' },
-  { hreflang: 'x-default', href: 'https://worldofaphasya.com/' },
+  { hreflang: 'en', href: 'https://world-of-aphasya.pixlland.com/' },
+  { hreflang: 'es', href: 'https://world-of-aphasya.pixlland.com/?lang=es' },
+  { hreflang: 'es-ES', href: 'https://world-of-aphasya.pixlland.com/?lang=es_ES' },
+  { hreflang: 'fr-FR', href: 'https://world-of-aphasya.pixlland.com/?lang=fr_FR' },
+  { hreflang: 'fr-CA', href: 'https://world-of-aphasya.pixlland.com/?lang=fr_CA' },
+  { hreflang: 'en-CA', href: 'https://world-of-aphasya.pixlland.com/?lang=en_CA' },
+  { hreflang: 'it-IT', href: 'https://world-of-aphasya.pixlland.com/?lang=it_IT' },
+  { hreflang: 'de-DE', href: 'https://world-of-aphasya.pixlland.com/?lang=de_DE' },
+  { hreflang: 'zh-CN', href: 'https://world-of-aphasya.pixlland.com/?lang=zh_CN' },
+  { hreflang: 'zh-TW', href: 'https://world-of-aphasya.pixlland.com/?lang=zh_TW' },
+  { hreflang: 'ko-KR', href: 'https://world-of-aphasya.pixlland.com/?lang=ko_KR' },
+  { hreflang: 'ja-JP', href: 'https://world-of-aphasya.pixlland.com/?lang=ja_JP' },
+  { hreflang: 'pt-BR', href: 'https://world-of-aphasya.pixlland.com/?lang=pt_BR' },
+  { hreflang: 'ru-RU', href: 'https://world-of-aphasya.pixlland.com/?lang=ru_RU' },
+  { hreflang: 'cs-CZ', href: 'https://world-of-aphasya.pixlland.com/?lang=cs_CZ' },
+  { hreflang: 'nl-NL', href: 'https://world-of-aphasya.pixlland.com/?lang=nl_NL' },
+  { hreflang: 'pl-PL', href: 'https://world-of-aphasya.pixlland.com/?lang=pl_PL' },
+  { hreflang: 'id-ID', href: 'https://world-of-aphasya.pixlland.com/?lang=id_ID' },
+  { hreflang: 'tr-TR', href: 'https://world-of-aphasya.pixlland.com/?lang=tr_TR' },
+  { hreflang: 'sv-SE', href: 'https://world-of-aphasya.pixlland.com/?lang=sv_SE' },
+  { hreflang: 'vi-VN', href: 'https://world-of-aphasya.pixlland.com/?lang=vi_VN' },
+  { hreflang: 'da-DK', href: 'https://world-of-aphasya.pixlland.com/?lang=da_DK' },
+  { hreflang: 'x-default', href: 'https://world-of-aphasya.pixlland.com/' },
 ];
 
 function audit() {
@@ -211,7 +211,7 @@ function audit() {
 
   // 8. Canonical Link Check
   const hasCanonical =
-    html.includes('rel="canonical"') && html.includes('href="https://worldofaphasya.com/"');
+    html.includes('rel="canonical"') && html.includes('href="https://world-of-aphasya.pixlland.com/"');
   checks.push({
     category: 'SEO',
     name: 'Canonical link tag is present and correct',
@@ -219,7 +219,7 @@ function audit() {
     score: hasCanonical ? 10 : 0,
     maxScore: 10,
     details: hasCanonical
-      ? 'Found rel="canonical" pointing to worldofaphasya.com.'
+      ? 'Found rel="canonical" pointing to world-of-aphasya.pixlland.com.'
       : 'Missing rel="canonical" link tag.',
   });
 

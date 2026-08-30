@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://worldofaphasya.com/sitemap.xml
-Sitemap: https://worldofaphasya.com/sitemap-characters.xml
+Sitemap: https://world-of-aphasya.pixlland.com/sitemap.xml
+Sitemap: https://world-of-aphasya.pixlland.com/sitemap-characters.xml

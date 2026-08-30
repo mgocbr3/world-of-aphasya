@@ -36,11 +36,11 @@ const CARD_PNG_DIMENSIONS = [
 const MAX_CARD_DECODED_BYTES = (2400 * 4 + 1) * 1260;
 const MAX_SLUG_LENGTH = 64;
 const MAX_SLUG_ATTEMPTS = 25;
-const DEFAULT_PRODUCTION_PUBLIC_ORIGIN = 'https://worldofaphasya.com';
+const DEFAULT_PRODUCTION_PUBLIC_ORIGIN = 'https://world-of-aphasya.pixlland.com';
 const TRUSTED_PUBLIC_HOST_ORIGINS = new Map([
-  ['worldofaphasya.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
-  ['www.worldofaphasya.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
-  ['dev.worldofaphasya.com', 'https://dev.worldofaphasya.com'],
+  ['world-of-aphasya.pixlland.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
+  ['www.world-of-aphasya.pixlland.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
+  ['dev.world-of-aphasya.pixlland.com', 'https://dev.world-of-aphasya.pixlland.com'],
 ]);
 const CARD_NOT_FOUND_HEADERS = {
   'Content-Type': 'text/plain',

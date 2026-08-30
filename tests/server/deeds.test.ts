@@ -292,7 +292,7 @@ function buildSheet(
     row: sheetRow(state),
     visibility: extras.visibility ?? 'public',
     realm: 'Claudemoon',
-    origin: 'https://worldofaphasya.com',
+    origin: 'https://world-of-aphasya.pixlland.com',
     guild: null,
     rank: null,
     deedsRecent: extras.deedsRecent,

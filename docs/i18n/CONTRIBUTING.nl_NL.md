@@ -326,8 +326,8 @@ licentie die het project dekt.
 
 De MIT-licentie bedoelt wat ze zegt: iedereen mag de code gebruiken, aanpassen en
 herdistribueren, commercieel of niet. Onze
-[Servicevoorwaarden](https://worldofaphasya.com/terms) gelden voor het gehoste
-spel dat we draaien op worldofaphasya.com (accounts, gedrag, virtuele items)
+[Servicevoorwaarden](https://world-of-aphasya.pixlland.com/terms) gelden voor het gehoste
+spel dat we draaien op world-of-aphasya.pixlland.com (accounts, gedrag, virtuele items)
 en beperken niet de rechten die de MIT-licentie jou of wie dan ook op deze code
 geeft. De namen en de merkuitstraling "World of Aphasya" en "Levy Street"
 vallen niet onder de MIT-licentie.

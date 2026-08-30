@@ -338,8 +338,8 @@ Al contribuir código, aceptas que tus contribuciones de código se licencien ba
 
 La Licencia MIT dice lo que dice: cualquiera puede usar, modificar y redistribuir el
 código, con fines comerciales o no. Nuestros
-[Términos del servicio](https://worldofaphasya.com/terms) rigen el juego alojado
-que gestionamos en worldofaphasya.com (cuentas, conducta, objetos virtuales) y no
+[Términos del servicio](https://world-of-aphasya.pixlland.com/terms) rigen el juego alojado
+que gestionamos en world-of-aphasya.pixlland.com (cuentas, conducta, objetos virtuales) y no
 restringen los derechos que la Licencia MIT te otorga a ti ni a nadie sobre este
 código. Los nombres y la marca de "World of Aphasya" y "Levy Street" no están
 cubiertos por la Licencia MIT.

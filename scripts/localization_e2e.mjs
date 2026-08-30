@@ -94,8 +94,8 @@ function languageTag(locale) {
 
 function siteUrlForLocale(locale) {
   return locale === 'en'
-    ? 'https://worldofaphasya.com/'
-    : `https://worldofaphasya.com/?lang=${locale}`;
+    ? 'https://world-of-aphasya.pixlland.com/'
+    : `https://world-of-aphasya.pixlland.com/?lang=${locale}`;
 }
 
 function localUrlForLocale(locale) {

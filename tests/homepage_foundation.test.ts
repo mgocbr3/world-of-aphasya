@@ -197,10 +197,10 @@ describe('Api URL helpers', () => {
   });
 
   it('resolves native or realm calls against an absolute origin', () => {
-    expect(apiUrl('/api/status', 'https://worldofaphasya.com/')).toBe(
-      'https://worldofaphasya.com/api/status',
+    expect(apiUrl('/api/status', 'https://world-of-aphasya.pixlland.com/')).toBe(
+      'https://world-of-aphasya.pixlland.com/api/status',
     );
-    expect(apiUrl('https://realm.example.com/api/status', 'https://worldofaphasya.com')).toBe(
+    expect(apiUrl('https://realm.example.com/api/status', 'https://world-of-aphasya.pixlland.com')).toBe(
       'https://realm.example.com/api/status',
     );
   });

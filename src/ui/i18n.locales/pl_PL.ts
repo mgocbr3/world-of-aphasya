@@ -9234,7 +9234,7 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
     'Wyrusz na epicką przygodę w World of Aphasya, klasycznym mikro-MMO grywalnym bezpośrednio w przeglądarce. Dołącz do trwałego wspólnego świata, rozwijaj klasy postaci i pokonuj wrogów!',
   'seo.genre': 'MMORPG',
   'seo.officialBody':
-    'worldofaphasya.com to oficjalne, darmowe przeglądarkowe MMO dla świata Claudemoon. Graj online z trwałą postacią, eksploruj solo w trybie offline, czytaj wiki i śledź zweryfikowane linki społeczności z tej strony.',
+    'world-of-aphasya.pixlland.com to oficjalne, darmowe przeglądarkowe MMO dla świata Claudemoon. Graj online z trwałą postacią, eksploruj solo w trybie offline, czytaj wiki i śledź zweryfikowane linki społeczności z tej strony.',
   'seo.officialLabel': 'Oficjalna strona World of Aphasya',
   'seo.operatingSystem': 'Przeglądarka internetowa',
   'seo.playMode': 'Wieloosobowy',

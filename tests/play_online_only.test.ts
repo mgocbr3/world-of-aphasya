@@ -105,8 +105,8 @@ describe('/play keeps its tracking and SEO head', () => {
   });
 
   it('play.html keeps its canonical /play SEO surface', () => {
-    expect(playHtml).toContain('<link rel="canonical" href="https://worldofaphasya.com/play" />');
-    expect(playHtml).toContain('property="og:url" content="https://worldofaphasya.com/play"');
+    expect(playHtml).toContain('<link rel="canonical" href="https://world-of-aphasya.pixlland.com/play" />');
+    expect(playHtml).toContain('property="og:url" content="https://world-of-aphasya.pixlland.com/play"');
   });
 });
 

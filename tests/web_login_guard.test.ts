@@ -48,33 +48,33 @@ describe('web login guard (anti-bot)', () => {
 
   it('accepts Capacitor native app origins', () => {
     expect(
-      isWebClientRequest(req({ origin: 'capacitor://localhost', host: 'worldofaphasya.com' })),
+      isWebClientRequest(req({ origin: 'capacitor://localhost', host: 'world-of-aphasya.pixlland.com' })),
     ).toBe(true);
     expect(
-      isWebClientRequest(req({ origin: 'http://localhost', host: 'worldofaphasya.com' })),
+      isWebClientRequest(req({ origin: 'http://localhost', host: 'world-of-aphasya.pixlland.com' })),
     ).toBe(true);
     expect(
-      isWebClientRequest(req({ origin: 'https://localhost', host: 'worldofaphasya.com' })),
+      isWebClientRequest(req({ origin: 'https://localhost', host: 'world-of-aphasya.pixlland.com' })),
     ).toBe(true);
   });
 
   it('identifies native app origins for Turnstile bypass', () => {
     expect(
-      isNativeAppRequest(req({ origin: 'capacitor://localhost', host: 'worldofaphasya.com' })),
+      isNativeAppRequest(req({ origin: 'capacitor://localhost', host: 'world-of-aphasya.pixlland.com' })),
     ).toBe(true);
     expect(
-      isNativeAppRequest(req({ origin: 'http://localhost', host: 'worldofaphasya.com' })),
+      isNativeAppRequest(req({ origin: 'http://localhost', host: 'world-of-aphasya.pixlland.com' })),
     ).toBe(true);
     expect(
-      isNativeAppRequest(req({ origin: 'https://localhost', host: 'worldofaphasya.com' })),
+      isNativeAppRequest(req({ origin: 'https://localhost', host: 'world-of-aphasya.pixlland.com' })),
     ).toBe(true);
     expect(
-      isNativeAppRequest(req({ origin: 'https://worldofaphasya.com', host: 'worldofaphasya.com' })),
+      isNativeAppRequest(req({ origin: 'https://world-of-aphasya.pixlland.com', host: 'world-of-aphasya.pixlland.com' })),
     ).toBe(false);
     expect(
-      isNativeAppRequest(req({ origin: 'https://evil.example.com', host: 'worldofaphasya.com' })),
+      isNativeAppRequest(req({ origin: 'https://evil.example.com', host: 'world-of-aphasya.pixlland.com' })),
     ).toBe(false);
-    expect(isNativeAppRequest(req({ host: 'worldofaphasya.com' }))).toBe(false);
+    expect(isNativeAppRequest(req({ host: 'world-of-aphasya.pixlland.com' }))).toBe(false);
   });
 
   it('rejects a foreign origin', () => {
@@ -94,7 +94,7 @@ describe('desktop app origins (Electron shell)', () => {
   it('rejects look-alike, web, native, and missing origins', () => {
     expect(isDesktopAppRequest(req({ origin: 'app://evil' }))).toBe(false);
     expect(isDesktopAppRequest(req({ origin: 'app://worldofaphasya.evil' }))).toBe(false);
-    expect(isDesktopAppRequest(req({ origin: 'https://worldofaphasya.com' }))).toBe(false);
+    expect(isDesktopAppRequest(req({ origin: 'https://world-of-aphasya.pixlland.com' }))).toBe(false);
     expect(isDesktopAppRequest(req({ origin: 'capacitor://localhost' }))).toBe(false);
     expect(isDesktopAppRequest(req({}))).toBe(false);
   });
@@ -102,9 +102,9 @@ describe('desktop app origins (Electron shell)', () => {
   it('passes the web-login guard for every desktop origin while enforcement is on', () => {
     expect(webLoginEnforced({ NODE_ENV: 'production' } as any)).toBe(true);
     for (const origin of DESKTOP_APP_ORIGINS) {
-      expect(isWebClientRequest(req({ origin, host: 'worldofaphasya.com' }))).toBe(true);
+      expect(isWebClientRequest(req({ origin, host: 'world-of-aphasya.pixlland.com' }))).toBe(true);
     }
-    expect(isWebClientRequest(req({ origin: 'app://evil', host: 'worldofaphasya.com' }))).toBe(
+    expect(isWebClientRequest(req({ origin: 'app://evil', host: 'world-of-aphasya.pixlland.com' }))).toBe(
       false,
     );
   });
@@ -129,7 +129,7 @@ describe('API CORS reflection allow-list (allowedCorsOrigin)', () => {
     // Unlisted here because REALM_ORIGINS is empty in the test env; a
     // deployment that lists the site origin as a realm URL reflects it. The
     // same-origin page never needs CORS either way.
-    expect(allowedCorsOrigin('https://worldofaphasya.com')).toBeNull();
+    expect(allowedCorsOrigin('https://world-of-aphasya.pixlland.com')).toBeNull();
     expect(allowedCorsOrigin(undefined)).toBeNull();
     expect(allowedCorsOrigin('')).toBeNull();
   });

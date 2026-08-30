@@ -4,7 +4,7 @@
 
 **Quest, group up, and raid a hand-built world, free in your browser. An open-source classic-style MMO.**
 
-**Official website: https://worldofaphasya.com/ (placeholder until the public launch on Pixlland)**
+**Official website: https://world-of-aphasya.pixlland.com/ (placeholder until the public launch on Pixlland)**
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r185-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
@@ -114,7 +114,7 @@ Point the shell at a different API with `VITE_DESKTOP_API_ORIGIN`, for example a
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-Override the production API origin for staging builds with `VITE_DESKTOP_API_ORIGIN=https://dev.worldofaphasya.com` (a BUILD-time value: it is baked into the bundle and stamped into the packaged app, and installed builds ignore it as a runtime env var). Steam is a distribution channel (the same Electron bundle, uploaded via SteamPipe), and desktop players can link a Steam account to mirror the deeds they earn into Steam achievements; sign-in itself stays email and Discord. The full release runbook (signing, notarization, publishing an auto-update, SteamPipe depots, the server deploy) is `docs/desktop-release.md`. iOS and Android ship through Capacitor, with their own runbook in `docs/mobile-store-release.md`.
+Override the production API origin for staging builds with `VITE_DESKTOP_API_ORIGIN=https://dev.world-of-aphasya.pixlland.com` (a BUILD-time value: it is baked into the bundle and stamped into the packaged app, and installed builds ignore it as a runtime env var). Steam is a distribution channel (the same Electron bundle, uploaded via SteamPipe), and desktop players can link a Steam account to mirror the deeds they earn into Steam achievements; sign-in itself stays email and Discord. The full release runbook (signing, notarization, publishing an auto-update, SteamPipe depots, the server deploy) is `docs/desktop-release.md`. iOS and Android ship through Capacitor, with their own runbook in `docs/mobile-store-release.md`.
 
 ## Host your own world (one command)
 
@@ -191,7 +191,7 @@ Every class runs on classic-era MMO mechanics implemented from first principles,
 - **Warlock**: dark pacts and creeping rot, a stable of summonable demons, and a necromancy line that raises graveguard, skeletal warriors, bone mages, and gravewings from the ossuary-marked dead.
 - **Druid**: nature's caster, shapeshifting between wolf, bruin, and moonwing forms as the fight demands.
 
-Heals and buffs land on party members, healing can crit, and absorb shields soak damage before health. Spend points across **three talent specs per class**; allocation is server-validated and exportable as a build string. Every spellbook, rank, and talent tree is listed in the [wiki](https://worldofaphasya.com/wiki).
+Heals and buffs land on party members, healing can crit, and absorb shields soak damage before health. Spend points across **three talent specs per class**; allocation is server-validated and exportable as a build string. Every spellbook, rank, and talent tree is listed in the [wiki](https://world-of-aphasya.pixlland.com/wiki).
 
 ### Dungeons
 
@@ -205,7 +205,7 @@ The Gravecaller storyline runs through five-player elite instances at every stag
 - **The Abandoned Crypt** (solo), in Thornpeak: a quiet keystone-and-diary dive whose trail unseals the royal door to **Nythraxis, Scourge of Thornpeak**, a ten-player raid finale.
 - **The Last Keep**, out in the Drakelands: a cold, silent memorial keep with no fight in it at all, only a keepsake waiting for whoever walks its halls.
 
-The elite instances and the raid also run on **Heroic**: higher-level enemies, sharper mechanics, and their own loot and vendor currency. Past the authored set, ranked **rift portals** tear open onto seed-generated floors capped by the hand-authored Infernal Citadel, with rare, epic, and legendary loot riding on the rank of the clear. The lead-up quest chains are soloable, so the story is never gated behind finding a group. Boss-by-boss mechanics, loot tables, and the rest of the depth live in the [wiki](https://worldofaphasya.com/wiki). Our automated five-bot raid (warrior, paladin, priest, mage, hunter with focus-fire and healer AI) clears the Hollow Crypt in about five minutes (`node scripts/crypt_raid.mjs`, needs `ALLOW_DEV_COMMANDS=1`).
+The elite instances and the raid also run on **Heroic**: higher-level enemies, sharper mechanics, and their own loot and vendor currency. Past the authored set, ranked **rift portals** tear open onto seed-generated floors capped by the hand-authored Infernal Citadel, with rare, epic, and legendary loot riding on the rank of the clear. The lead-up quest chains are soloable, so the story is never gated behind finding a group. Boss-by-boss mechanics, loot tables, and the rest of the depth live in the [wiki](https://world-of-aphasya.pixlland.com/wiki). Our automated five-bot raid (warrior, paladin, priest, mage, hunter with focus-fire and healer AI) clears the Hollow Crypt in about five minutes (`node scripts/crypt_raid.mjs`, needs `ALLOW_DEV_COMMANDS=1`).
 
 ### Delves
 

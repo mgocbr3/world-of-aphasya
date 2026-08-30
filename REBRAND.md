@@ -30,7 +30,7 @@ Além da marca, quatro grupos de assets exigem ação antes de qualquer distribu
 | Sigla | WoC | WOA | Ja usada no roundel conceito. |
 | Moeda premium | Claudium | Aphasium | So apresentação; IDs mecânicos, SKUs e colunas de DB ficam estáveis (GDD 13.1, 15.1). |
 | Moeda de gameplay/ads | (nova) | Lumina | GDD 13.2; entra so na fase de monetização. |
-| Domínio | worldofclaudecraft.com | a definir (worldofaphasya.com?) | Canal principal será o portal Pixlland. |
+| Domínio | worldofclaudecraft.com | a definir (world-of-aphasya.pixlland.com?) | Canal principal será o portal Pixlland. |
 | Deep link desktop | worldofclaudecraft:// | worldofaphasya:// | Electron + paginas de login. |
 | Estudio/plataforma | Levy Street | Pixlland | SDK próprio: `github.com/mgocbr3/pixlland-poki`. |
 | Token web3 | $WOC / Claudium store | fica isolado por feature flag | GDD 3.3: nada de ativação pública de web3 no rebrand. |
@@ -328,7 +328,7 @@ padrão adotado em `DESIGN.md`).
   como jogo de origin externo no acervo (cliente+servidor juntos, zero cirurgia de base
   path, como DEPLOY.md ja faz); (2) migrar o cliente para o runtime R2 quando a flag de
   origem-por-jogo da plataforma estiver validada. **Origin do jogo: DECIDIR DEPOIS**; o
-  codigo mantem `worldofaphasya.com` como placeholder consistente e documentado ate la.
+  codigo mantem `world-of-aphasya.pixlland.com` como placeholder consistente e documentado ate la.
 - **Termos e privacidade:** `public/terms.html` e `public/privacy.html` foram
   rebrandeados mas a entidade legal virou placeholder explicito ("operating entity to be
   confirmed"); precisam de texto juridico proprio antes de publicar.

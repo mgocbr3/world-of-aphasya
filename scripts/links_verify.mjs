@@ -54,7 +54,7 @@ const server = http.createServer((req, res) => {
 
 const PORT = 8799;
 const EXPECTED_LINKS = [
-  'https://worldofaphasya.com/',
+  'https://world-of-aphasya.pixlland.com/',
   'https://x.com/WoAphasya',
   'https://www.instagram.com/worldofaphasya/',
   'https://www.tiktok.com/@worldofaphasya',
@@ -186,7 +186,7 @@ async function main() {
     ok(ld && ld !== 'INVALID', `JSON-LD present and valid`);
     const sameAs = ld && ld !== 'INVALID' ? (ld.about?.sameAs ?? []) : [];
     ok(
-      EXPECTED_LINKS.filter((u) => u !== 'https://worldofaphasya.com/').every((u) =>
+      EXPECTED_LINKS.filter((u) => u !== 'https://world-of-aphasya.pixlland.com/').every((u) =>
         sameAs.includes(u),
       ),
       `JSON-LD sameAs lists all 6 social profiles (${sameAs.length})`,

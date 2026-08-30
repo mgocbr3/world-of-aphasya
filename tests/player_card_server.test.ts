@@ -814,10 +814,10 @@ describe('GET /p/<slug>', () => {
       );
       const html = String(res.body);
       expect(res.statusCode).toBe(200);
-      expect(html).toContain('<link rel="canonical" href="https://worldofaphasya.com/p/sir-test">');
-      expect(html).toContain('property="og:url" content="https://worldofaphasya.com/p/sir-test"');
+      expect(html).toContain('<link rel="canonical" href="https://world-of-aphasya.pixlland.com/p/sir-test">');
+      expect(html).toContain('property="og:url" content="https://world-of-aphasya.pixlland.com/p/sir-test"');
       expect(html).toContain(
-        'property="og:image" content="https://worldofaphasya.com/p/sir-test/card.png"',
+        'property="og:image" content="https://world-of-aphasya.pixlland.com/p/sir-test/card.png"',
       );
       expect(html).toContain('src="/p/sir-test/card.png"');
       expect(html).toContain('href="/?ref=sir-test"');
@@ -834,20 +834,20 @@ describe('GET /p/<slug>', () => {
       const res = makeRes();
       await routes(
         makeGetReq('/p/sir-test', {
-          headers: { host: 'dev.worldofaphasya.com', 'x-forwarded-proto': 'https' },
+          headers: { host: 'dev.world-of-aphasya.pixlland.com', 'x-forwarded-proto': 'https' },
         }),
         res,
       );
       const html = String(res.body);
       expect(res.statusCode).toBe(200);
       expect(html).toContain(
-        '<link rel="canonical" href="https://dev.worldofaphasya.com/p/sir-test">',
+        '<link rel="canonical" href="https://dev.world-of-aphasya.pixlland.com/p/sir-test">',
       );
       expect(html).toContain(
-        'property="og:url" content="https://dev.worldofaphasya.com/p/sir-test"',
+        'property="og:url" content="https://dev.world-of-aphasya.pixlland.com/p/sir-test"',
       );
       expect(html).toContain(
-        'property="og:image" content="https://dev.worldofaphasya.com/p/sir-test/card.png"',
+        'property="og:image" content="https://dev.world-of-aphasya.pixlland.com/p/sir-test/card.png"',
       );
       expect(html).toContain('src="/p/sir-test/card.png"');
       expect(html).toContain('href="/?ref=sir-test"');

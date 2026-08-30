@@ -434,8 +434,8 @@ project.
 
 The MIT License means what it says: anyone may use, modify, and redistribute the
 code, commercially or not. Our
-[Terms of Service](https://worldofaphasya.com/terms) govern the hosted game
-we operate at worldofaphasya.com (accounts, conduct, virtual items) and do
+[Terms of Service](https://world-of-aphasya.pixlland.com/terms) govern the hosted game
+we operate at world-of-aphasya.pixlland.com (accounts, conduct, virtual items) and do
 not restrict the rights the MIT License gives you or anyone else in this code.
 The "World of Aphasya" and "Levy Street" names and branding are not covered
 by the MIT License.

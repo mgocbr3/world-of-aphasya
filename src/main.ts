@@ -618,7 +618,7 @@ applyNativeDeviceLanguage({
 // boot's profile is already resolved, and a missing bridge no-ops.
 void primeNativeDeviceMemoryHint();
 
-const SITE_URL = 'https://worldofaphasya.com/';
+const SITE_URL = 'https://world-of-aphasya.pixlland.com/';
 
 const RESOURCE_KEYS = {
   mana: 'classDetails.resources.mana',
@@ -7596,27 +7596,27 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
         '@graph': [
           {
             '@type': 'WebSite',
-            '@id': 'https://worldofaphasya.com/#website',
+            '@id': 'https://world-of-aphasya.pixlland.com/#website',
             name: 'World of Aphasya',
             alternateName: 'World of Aphasya',
             url: canonicalHref,
             inLanguage: languageTag(lang),
             description: t('seo.description'),
             publisher: {
-              '@id': 'https://worldofaphasya.com/#organization',
+              '@id': 'https://world-of-aphasya.pixlland.com/#organization',
             },
           },
           {
             '@type': 'Organization',
-            '@id': 'https://worldofaphasya.com/#organization',
+            '@id': 'https://world-of-aphasya.pixlland.com/#organization',
             name: 'World of Aphasya',
-            url: 'https://worldofaphasya.com/',
-            logo: 'https://worldofaphasya.com/woa_logo_square.webp',
+            url: 'https://world-of-aphasya.pixlland.com/',
+            logo: 'https://world-of-aphasya.pixlland.com/woa_logo_square.webp',
             sameAs,
           },
           {
             '@type': 'VideoGame',
-            '@id': 'https://worldofaphasya.com/#game',
+            '@id': 'https://world-of-aphasya.pixlland.com/#game',
             name: 'World of Aphasya',
             alternateName: 'World of Aphasya',
             genre: t('seo.genre'),
@@ -7624,11 +7624,11 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
             applicationCategory: t('seo.applicationCategory'),
             operatingSystem: t('seo.operatingSystem'),
             url: canonicalHref,
-            image: 'https://worldofaphasya.com/woa_logo_square.webp',
+            image: 'https://world-of-aphasya.pixlland.com/woa_logo_square.webp',
             description: t('seo.description'),
             inLanguage: languageTag(lang),
             publisher: {
-              '@id': 'https://worldofaphasya.com/#organization',
+              '@id': 'https://world-of-aphasya.pixlland.com/#organization',
             },
             sameAs,
           },

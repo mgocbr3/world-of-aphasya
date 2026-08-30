@@ -144,11 +144,11 @@ export const CONFIGURED_PUBLIC_ORIGIN = resolvePublicOrigin(process.env.PUBLIC_O
 export const REALM_PUBLIC_ORIGIN =
   CONFIGURED_PUBLIC_ORIGIN || publicOriginForRealm(REALM, REALM_DIRECTORY);
 
-const DEFAULT_PRODUCTION_PUBLIC_ORIGIN = 'https://worldofaphasya.com';
+const DEFAULT_PRODUCTION_PUBLIC_ORIGIN = 'https://world-of-aphasya.pixlland.com';
 const TRUSTED_PUBLIC_HOST_ORIGINS = new Map([
-  ['worldofaphasya.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
-  ['www.worldofaphasya.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
-  ['dev.worldofaphasya.com', 'https://dev.worldofaphasya.com'],
+  ['world-of-aphasya.pixlland.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
+  ['www.world-of-aphasya.pixlland.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
+  ['dev.world-of-aphasya.pixlland.com', 'https://dev.world-of-aphasya.pixlland.com'],
 ]);
 
 function firstHeaderValue(value: string | string[] | undefined): string {

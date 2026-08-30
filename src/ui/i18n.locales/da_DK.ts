@@ -9056,7 +9056,7 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
     'Begiv dig ud på et episk eventyr i World of Aphasya, en klassisk-inspireret micro-MMO, der kan spilles direkte i din browser. Slut dig til en vedvarende delt verden, lev op dine klasser, og besejr fjender!',
   'seo.genre': 'MMORPG',
   'seo.officialBody':
-    'worldofaphasya.com er den officielle gratis browser-MMO for Claudemoon-verdenen. Spil online med en vedvarende karakter, udforsk solo offline, læs wikien, og følg verificerede fællesskabslinks fra denne side.',
+    'world-of-aphasya.pixlland.com er den officielle gratis browser-MMO for Claudemoon-verdenen. Spil online med en vedvarende karakter, udforsk solo offline, læs wikien, og følg verificerede fællesskabslinks fra denne side.',
   'seo.officialLabel': 'Officiel World of Aphasya-hjemmeside',
   'seo.operatingSystem': 'Webbrowser',
   'seo.playMode': 'Flerspiller',

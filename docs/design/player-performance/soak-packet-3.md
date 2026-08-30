@@ -90,7 +90,7 @@ healthy-FPS play session and confirm both stay flat at zero (the same
 criterion the local run 2 verifies). With the production `METRICS_TOKEN`:
 
 ```sh
-curl -s -H "Authorization: Bearer $METRICS_TOKEN" https://worldofaphasya.com/metrics \
+curl -s -H "Authorization: Bearer $METRICS_TOKEN" https://world-of-aphasya.pixlland.com/metrics \
   | grep -E 'woc_ws_messages_dropped_total|woc_input_frames_missed_total'
 ```
 

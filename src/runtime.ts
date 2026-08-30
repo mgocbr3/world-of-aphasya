@@ -1,4 +1,4 @@
-const DEFAULT_DESKTOP_API_ORIGIN = 'https://worldofaphasya.com';
+const DEFAULT_DESKTOP_API_ORIGIN = 'https://world-of-aphasya.pixlland.com';
 
 export function normalizeOrigin(raw: string): string {
   const trimmed = raw.trim().replace(/\/+$/, '');

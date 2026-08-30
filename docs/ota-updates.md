@@ -101,7 +101,7 @@ also shrinks the STORE binaries; the delta channel only shrinks updates.
 
 ## One-time setup
 
-The bundle host already exists. `https://updates.worldofaphasya.com` is the
+The bundle host already exists. `https://updates.world-of-aphasya.pixlland.com` is the
 Cloudflare R2 bucket `worldofaphasya-updates` (public via a Cloudflare custom
 domain), which serves desktop Electron updates under `desktop/`. OTA publishes to
 the SAME bucket under a separate `ota/` prefix, so there is no new bucket, no new
@@ -138,7 +138,7 @@ What is actually left to do:
    the desktop publish workflow (`.github/workflows/desktop-publish.yml`).
    Verified end to end against R2 on aws-cli 2.27.25: upload, head-object,
    delete, and content-type/cache-control preservation on the `ota/` prefix.
-3. Set `OTA_MANIFEST_URL=https://updates.worldofaphasya.com/ota/latest.json`
+3. Set `OTA_MANIFEST_URL=https://updates.world-of-aphasya.pixlland.com/ota/latest.json`
    on the game server and restart it. The value must be https and must share its
    origin with the bundle URLs inside the manifest. It also has to be listed in
    the game service `environment:` block in `docker-compose.yml`, which uses an
@@ -289,7 +289,7 @@ feed. Keep it scoped to the one bucket and rotate it on any suspicion.
 
 1. `curl -s $OTA_MANIFEST_URL` shows the new version/url/checksum plus the
    `fileManifestUrl`, and fetching THAT URL returns the entry list.
-2. `curl -s -X POST https://worldofaphasya.com/api/ota/updates \
+2. `curl -s -X POST https://world-of-aphasya.pixlland.com/api/ota/updates \
    -H 'content-type: application/json' \
    -d '{"platform":"ios","version_name":"builtin","version_build":"0.31.0"}'`
    answers the offer, which must carry a `manifest` array (a delta-bearing

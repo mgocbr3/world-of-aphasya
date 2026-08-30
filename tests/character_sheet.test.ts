@@ -82,7 +82,7 @@ function input(over: Partial<CharacterSheetInput> = {}): CharacterSheetInput {
     row: makeRow('shaman', 20, makeState()),
     visibility: 'owner',
     realm: 'Claudemoon',
-    origin: 'https://worldofaphasya.com',
+    origin: 'https://world-of-aphasya.pixlland.com',
     guild: 'Echoes of Claude',
     rank: { scope: 'realm', rank: 27, total: 4012 },
     updatedAt: '2026-06-23T00:00:00.000Z',
@@ -111,8 +111,8 @@ describe('characterSheet: shared fields', () => {
     expect(sheet.zone).toBe(zoneAt(0, 0).name);
     expect(sheet.guild).toBe('Echoes of Claude');
     expect(sheet.rank).toEqual({ scope: 'realm', rank: 27, total: 4012 });
-    expect(sheet.avatarUrl).toBe('https://worldofaphasya.com/avatar/shaman/0.png');
-    expect(sheet.profileUrl).toBe('https://worldofaphasya.com/c/Thrallish');
+    expect(sheet.avatarUrl).toBe('https://world-of-aphasya.pixlland.com/avatar/shaman/0.png');
+    expect(sheet.profileUrl).toBe('https://world-of-aphasya.pixlland.com/c/Thrallish');
     expect(sheet.arena['1v1']).toEqual({ rating: 1600, wins: 10, losses: 4, draws: 2 });
   });
 

@@ -2,7 +2,7 @@
 
 World of Aphasya ships to iOS and Android through Capacitor. The native apps
 bundle the built Vite client and connect to the production backend at
-`https://worldofaphasya.com`.
+`https://world-of-aphasya.pixlland.com`.
 
 ## Prerequisites
 
@@ -56,7 +56,7 @@ npm run native:open:android
 
 ```sh
 VITE_NATIVE_APP=1
-VITE_API_ORIGIN=https://worldofaphasya.com
+VITE_API_ORIGIN=https://world-of-aphasya.pixlland.com
 ```
 
 The copied web assets under the native projects are generated and ignored by git.
@@ -498,5 +498,5 @@ offline launch to ensure startup does not depend on an update service.
   native builds.
 - Online play uses the hosted production REST and WebSocket backend.
 - Privacy and terms URLs:
-  - `https://worldofaphasya.com/privacy.html`
-  - `https://worldofaphasya.com/terms.html`
+  - `https://world-of-aphasya.pixlland.com/privacy.html`
+  - `https://world-of-aphasya.pixlland.com/terms.html`
