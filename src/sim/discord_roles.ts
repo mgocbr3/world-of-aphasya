@@ -34,9 +34,13 @@ export interface DiscordSpecialRole {
 // role and a Discord rename keeps the role's color.
 export const DISCORD_SPECIAL_ROLES: readonly DiscordSpecialRole[] = [
   {
+    // The studio's own team role. The KEY stays 'levyst': it is the stable id
+    // the role sync matches on, and a Discord rename keeps the role's colour
+    // (see the header), so renaming the key would orphan every member who
+    // already carries it. The old names stay as aliases for the same reason.
     key: 'levyst',
-    name: 'Levy St',
-    aliases: ['Levy Street'],
+    name: 'Pixlland',
+    aliases: ['Levy St', 'Levy Street'],
     color: '#ff6b6b',
     priority: 11,
     chatTag: true,

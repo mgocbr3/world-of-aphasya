@@ -332,6 +332,15 @@ padrão adotado em `DESIGN.md`).
 - **Termos e privacidade:** `public/terms.html` e `public/privacy.html` foram
   rebrandeados mas a entidade legal virou placeholder explicito ("operating entity to be
   confirmed"); precisam de texto juridico proprio antes de publicar.
+  ATENCAO: o upgrade para a v0.40.1 REVERTEU esse placeholder em `terms.html`
+  (voltou a nomear a empresa do upstream como operadora, com numero de registro e
+  endereco postal), e foi restaurado a mao. Qualquer merge futuro do upstream
+  precisa conferir essa pagina especificamente: e a unica onde uma regressao
+  silenciosa afirma uma entidade legal errada em vez de so mostrar uma marca velha.
+- **Papel de equipe no Discord:** RESOLVIDO (2026-08-29): o papel especial virou
+  `Pixlland`. A CHAVE segue `levyst`, de proposito: e o id estavel com que a
+  sincronizacao casa o papel, entao troca-la orfanaria todo membro que ja o
+  carrega; os nomes antigos ficam como alias pelo mesmo motivo.
 - **E-mail de contato/suporte:** paginas de suporte ainda apontam `woc@levystreet.com`;
   definir o e-mail real (ex.: suporte@pixlland.com) e trocar em
   `public/support.html`, `public/data-deletion.html`, `public/press.html` e
