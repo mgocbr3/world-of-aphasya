@@ -11561,6 +11561,7 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'auth.beardStubbleBeard': '浓密胡茬',
   'auth.customize': '自定义',
   'auth.body': '体型',
+  'auth.frame': '体型',
   'auth.genderMale': '男性',
   'auth.genderFemale': '女性',
   'auth.hair': '发型',

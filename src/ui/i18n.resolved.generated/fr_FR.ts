@@ -7038,6 +7038,7 @@ export const fr_FR: EnTranslations = {
     "appearance": "Apparence",
     "customize": "Personnaliser",
     "body": "Corps",
+    "frame": "Frame",
     "genderMale": "Homme",
     "genderFemale": "Femme",
     "hair": "Cheveux",

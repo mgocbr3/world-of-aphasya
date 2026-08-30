@@ -7038,6 +7038,7 @@ export const id_ID: EnTranslations = {
     "appearance": "Penampilan",
     "customize": "Ubah Suai",
     "body": "Tubuh",
+    "frame": "Frame",
     "genderMale": "Pria",
     "genderFemale": "Wanita",
     "hair": "Rambut",

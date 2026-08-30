@@ -1068,6 +1068,17 @@ export function mountAppearanceCustomizer(
       value = { ...value, gender: g, lashes: defaultLashes(g) };
     },
   );
+  // Frame: how big this character is. A uniform scale of the finished visual,
+  // so it is NOT the BodyShape row set the note above EYE_LABEL declines to
+  // ship: the armour, hair and weapon grow with it and nothing is re-fitted.
+  slider(
+    pBody,
+    'auth.frame',
+    () => value.frame ?? 0,
+    (v) => {
+      value = { ...value, frame: v };
+    },
+  );
   colorRow(
     pBody,
     'auth.skinTone',

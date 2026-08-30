@@ -12,6 +12,7 @@
 // without a GL context (`tests/modular_character.test.ts`).
 
 import { UNDERHAIR } from './underhair.generated';
+import { FRAME_MAX, FRAME_MIN } from './character_frame_core';
 
 /** Visual key of the modular warrior (manifest.ts VISUALS), the fallback for
  *  a claimed look whose class has no modular def of its own. Every real class
@@ -448,6 +449,11 @@ export interface ModularAppearance {
   face: FaceShape;
   /** -1..1 per body region; 0 is the sculpted default. */
   body: BodyShape;
+  /** Overall size, -1 (slightest) to +1 (towering), 0 as sculpted. A uniform
+   *  scale of the finished visual, NOT a proportion morph: the armour, hair and
+   *  held weapon grow with it, so nothing has to be re-fitted (the reasoning,
+   *  and why this is not a second BodyShape, is in character_frame_core.ts). */
+  frame: number;
   mouth: MouthStyle;
   eyeShape: EyeStyle;
   ears: EarStyle;
@@ -478,6 +484,7 @@ export interface ModularAppearance {
 
 export const DEFAULT_APPEARANCE: ModularAppearance = {
   gender: 'male',
+  frame: 0,
   hair: 'crew',
   beard: 'none',
   brows: 'soft',
@@ -2051,6 +2058,10 @@ export function normalizeAppearance(
     allowed.includes(v as T) ? (v as T) : fallback;
   return {
     gender: a?.gender === 'female' ? 'female' : 'male',
+    // Clamped rather than refused, like every other slider here: this rides the
+    // untrusted `app` wire field, and a stored look out of range must degrade to
+    // a valid body, never fail to compose one.
+    frame: num(a?.frame, d.frame, FRAME_MIN, FRAME_MAX),
     hair: pick(HAIR_LEGACY[a?.hair as string] ?? a?.hair, HAIR_STYLES, d.hair),
     beard: pick(BEARD_LEGACY[a?.beard as string] ?? a?.beard, BEARD_STYLES, d.beard),
     brows: pick(a?.brows, BROW_STYLES, d.brows),

@@ -7038,6 +7038,7 @@ export const tr_TR: EnTranslations = {
     "appearance": "Görünüm",
     "customize": "Özelleştir",
     "body": "Vücut",
+    "frame": "Frame",
     "genderMale": "Erkek",
     "genderFemale": "Kadın",
     "hair": "Saç",

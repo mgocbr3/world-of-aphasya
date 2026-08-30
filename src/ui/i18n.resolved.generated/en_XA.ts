@@ -7038,6 +7038,7 @@ export const en_XA: EnTranslations = {
     "appearance": "[Áþþéáŕáñçé]",
     "customize": "[Çúšţóɱížé]",
     "body": "[Ɓóðý]",
+    "frame": "[Ƒŕáɱé]",
     "genderMale": "[Ɱáļé]",
     "genderFemale": "[Ƒéɱáļé]",
     "hair": "[Ĥáíŕ]",

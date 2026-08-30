@@ -373,6 +373,7 @@ export const en = {
     // from parts, so these pick the parts and recolour skin/hair.
     customize: 'Customize',
     body: 'Body',
+    frame: 'Frame',
     genderMale: 'Male',
     genderFemale: 'Female',
     hair: 'Hair',

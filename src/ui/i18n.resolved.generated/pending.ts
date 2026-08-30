@@ -10,12 +10,15 @@
 
 export const pending: Record<string, readonly string[]> = {
   "es": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "es_ES": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "fr_FR": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya",
     "mode.play",
     "mode.playAria",
@@ -27,6 +30,7 @@ export const pending: Record<string, readonly string[]> = {
     "news.empty"
   ],
   "fr_CA": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya",
     "mode.play",
     "mode.playAria",
@@ -39,9 +43,11 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "en_CA": [],
   "it_IT": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "de_DE": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "zh_CN": [
@@ -57,33 +63,42 @@ export const pending: Record<string, readonly string[]> = {
     "hudChrome.theme.presets.aphasya"
   ],
   "pt_BR": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "ru_RU": [
     "hudChrome.theme.presets.aphasya"
   ],
   "cs_CZ": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "nl_NL": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "pl_PL": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "id_ID": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "tr_TR": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "sv_SE": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "vi_VN": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ],
   "da_DK": [
+    "auth.frame",
     "hudChrome.theme.presets.aphasya"
   ]
 };

@@ -7038,6 +7038,7 @@ export const vi_VN: EnTranslations = {
     "appearance": "Ngoại hình",
     "customize": "Tùy chỉnh",
     "body": "Cơ thể",
+    "frame": "Frame",
     "genderMale": "Nam",
     "genderFemale": "Nữ",
     "hair": "Tóc",

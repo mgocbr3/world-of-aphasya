@@ -7038,6 +7038,7 @@ export const sv_SE: EnTranslations = {
     "appearance": "Utseende",
     "customize": "Anpassa",
     "body": "Kropp",
+    "frame": "Frame",
     "genderMale": "Man",
     "genderFemale": "Kvinna",
     "hair": "Hår",

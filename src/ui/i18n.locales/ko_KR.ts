@@ -12076,6 +12076,7 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'auth.beardStubbleBeard': '짙은 수염',
   'auth.customize': '커스터마이즈',
   'auth.body': '체형',
+  'auth.frame': '체격',
   'auth.genderMale': '남성',
   'auth.genderFemale': '여성',
   'auth.hair': '헤어',

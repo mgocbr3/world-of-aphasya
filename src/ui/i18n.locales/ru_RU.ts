@@ -12294,6 +12294,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'auth.beardStubbleBeard': 'Густая щетина',
   'auth.customize': 'Настройка',
   'auth.body': 'Телосложение',
+  'auth.frame': 'Телосложение',
   'auth.genderMale': 'Мужчина',
   'auth.genderFemale': 'Женщина',
   'auth.hair': 'Волосы',

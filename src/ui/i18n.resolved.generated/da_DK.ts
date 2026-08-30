@@ -7038,6 +7038,7 @@ export const da_DK: EnTranslations = {
     "appearance": "Udseende",
     "customize": "Tilpas",
     "body": "Krop",
+    "frame": "Frame",
     "genderMale": "Mand",
     "genderFemale": "Kvinde",
     "hair": "Hår",

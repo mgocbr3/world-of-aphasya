@@ -33,6 +33,7 @@
  *  channel for arbitrary attacker-chosen text. */
 export const APPEARANCE_WIRE_KEYS: readonly string[] = [
   'gender',
+  'frame',
   'hair',
   'beard',
   'brows',
@@ -148,8 +149,13 @@ const STYLE_ID_RE = /^[a-z0-9_]{1,24}$/;
  * about 911, which is where the "~0.6 KB" the identity-wire reasoning quotes
  * comes from. The gap between that and this is all numeric precision, and the
  * charset bound is what stops the gap being unbounded text.
+ *
+ * Re-measured from 1489 when the `frame` axis landed: one more top-level key
+ * carrying one more worst-case double. The number is produced by the test, not
+ * estimated here, so a field added without re-running it fails rather than
+ * quietly raising the ceiling.
  */
-export const APPEARANCE_MAX_WIRE_BYTES = 1489;
+export const APPEARANCE_MAX_WIRE_BYTES = 1524;
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);

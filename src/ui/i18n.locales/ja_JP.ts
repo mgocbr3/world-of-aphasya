@@ -12105,6 +12105,7 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'auth.beardStubbleBeard': '濃い無精髭',
   'auth.customize': 'カスタマイズ',
   'auth.body': '体型',
+  'auth.frame': '体格',
   'auth.genderMale': '男性',
   'auth.genderFemale': '女性',
   'auth.hair': '髪型',

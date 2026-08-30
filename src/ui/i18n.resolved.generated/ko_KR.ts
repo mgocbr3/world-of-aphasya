@@ -7038,6 +7038,7 @@ export const ko_KR: EnTranslations = {
     "appearance": "외형",
     "customize": "커스터마이즈",
     "body": "체형",
+    "frame": "체격",
     "genderMale": "남성",
     "genderFemale": "여성",
     "hair": "헤어",

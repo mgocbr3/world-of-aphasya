@@ -513,6 +513,7 @@ const RENDER_PURE_CORES = [
   'src/render/character_effect_prewarm_core.ts',
   'src/render/frame_ms_stats_core.ts',
   'src/render/ability_vfx_core.ts',
+  'src/render/characters/character_frame_core.ts',
   'src/render/characters/player_look_core.ts',
   'src/render/characters/far_lod_reveal_core.ts',
   'src/render/ability_vfx_longbuff_core.ts',

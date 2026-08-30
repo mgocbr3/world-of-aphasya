@@ -7038,6 +7038,7 @@ export const zh_TW: EnTranslations = {
     "appearance": "外觀",
     "customize": "自訂",
     "body": "體型",
+    "frame": "體型",
     "genderMale": "男性",
     "genderFemale": "女性",
     "hair": "髮型",

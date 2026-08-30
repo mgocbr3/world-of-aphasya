@@ -7038,6 +7038,7 @@ export const ru_RU: EnTranslations = {
     "appearance": "Внешность",
     "customize": "Настройка",
     "body": "Телосложение",
+    "frame": "Телосложение",
     "genderMale": "Мужчина",
     "genderFemale": "Женщина",
     "hair": "Волосы",

@@ -66,6 +66,7 @@ describe('design code field registry', () => {
       'shadow',
       'earrings',
       'jewel',
+      'frame',
     ]);
   });
 

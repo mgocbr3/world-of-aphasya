@@ -7038,6 +7038,7 @@ export const cs_CZ: EnTranslations = {
     "appearance": "Vzhled",
     "customize": "Přizpůsobit",
     "body": "Tělo",
+    "frame": "Frame",
     "genderMale": "Muž",
     "genderFemale": "Žena",
     "hair": "Vlasy",

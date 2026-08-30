@@ -65,6 +65,7 @@ import {
 } from './effect_materials';
 import { farMeshShown, shadowProxyShown } from './far_lod_reveal_core';
 import { HairSwayDriver } from './hair_sway';
+import { frameScale } from './character_frame_core';
 import { scaledVisualHeight } from './character_world_scale';
 import { buildHalo } from './halo';
 import { noteLookAttached } from './look_pieces';
@@ -392,8 +393,15 @@ function tipFadedWeaponGeometry(
 export class CharacterVisual {
   /** add to the entity group; pivot at feet, faces +Z; renderer applies e.scale */
   readonly root = new THREE.Group();
-  /** unscaled world-unit height, nameplate anchor = height * e.scale + 0.5 */
-  readonly height: number;
+  /** unscaled world-unit height, nameplate anchor = height * e.scale + 0.5.
+   *
+   *  Not readonly since the frame axis landed: a creator slider drag rescales
+   *  the body live rather than recomposing it, and this is derived from that
+   *  scale (the click capsule, the nameplate anchor and the far-mesh offset all
+   *  read it). Nothing else writes it, and the world path still rebuilds the
+   *  visual on a look change, so a live write only ever happens on the
+   *  turntable. */
+  height: number;
   /** invisible capsule for picking (userData.entityId set by the renderer) */
   readonly clickProxy: THREE.Mesh;
   /** click-capsule radius (measured body extent); the pick proxy's standing scale.y
@@ -422,8 +430,19 @@ export class CharacterVisual {
    *  are deliberately outside `modularBuildSignature`). No-op on a fixed rig. */
   applyModularSliders(app: ModularAppearance): void {
     if (!this.look) return;
+    const prevFrame = this.look.app.frame;
     this.look = { ...this.look, app };
     applyModularSliderMorphs(this.model, app);
+    // The frame is a uniform scale, not a morph, so it rides here with the
+    // sliders rather than forcing the dispose-and-recompose a geometry change
+    // needs: the creator's turntable answers a drag immediately. The height
+    // moves with it because the click capsule, nameplate anchor and far-mesh
+    // offset are all derived from it.
+    if (app.frame !== prevFrame) {
+      const factor = frameScale(app.frame) / frameScale(prevFrame);
+      this.modelWrap.scale.multiplyScalar(factor);
+      this.height *= factor;
+    }
   }
 
   /** Attach the face decals a deferred build left off (AssembleOptions
@@ -731,7 +750,7 @@ export class CharacterVisual {
     this.skinIndex = skinIndex;
     this.weaponItemId = weaponItemId;
     this.offhandItemId = offhandItemId;
-    this.height = scaledVisualHeight(prep.def.height);
+    this.height = scaledVisualHeight(prep.def.height) * frameScale(look?.app.frame);
 
     // model: yaw/scale/feet normalization wrapper around the skinned clone. The
     // equipped mainhand item (if the class swaps; see VisualDef.weaponSlot) picks
@@ -805,7 +824,11 @@ export class CharacterVisual {
       });
       this.modelWrap.rotation.y = prep.def.yaw ?? 0;
       this.modelWrap.name = 'character_model_wrap';
-      this.modelWrap.scale.setScalar(prep.normScale);
+      // The character's own frame multiplies the cast-wide proportion baked into
+      // prep.normScale. It rides the modelWrap rather than prep because prep is
+      // memoized per visual KEY and shared by every character wearing it, while
+      // a frame is per character.
+      this.modelWrap.scale.setScalar(prep.normScale * frameScale(look?.app.frame));
       this.modelWrap.position.y = prep.yOffset;
       this.hairSway.build(this.model);
       this.modelWrap.add(this.model);

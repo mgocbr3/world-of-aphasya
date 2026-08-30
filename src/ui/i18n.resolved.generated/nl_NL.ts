@@ -7038,6 +7038,7 @@ export const nl_NL: EnTranslations = {
     "appearance": "Uiterlijk",
     "customize": "Aanpassen",
     "body": "Lichaam",
+    "frame": "Frame",
     "genderMale": "Man",
     "genderFemale": "Vrouw",
     "hair": "Haar",

@@ -186,6 +186,24 @@ const faceField: DesignField = {
     ),
 };
 
+/** A single -1..1 slider carried as a whole-number percentage, the same unit
+ *  the face sliders use, so a shared code stays readable (`frame=40`). */
+function scalarField(id: string, key: 'frame'): DesignField {
+  return {
+    id,
+    encode: (a) => String(Math.round((a[key] ?? 0) * 100)),
+    apply: (draft, raw) => {
+      const m = raw.trim().match(/^(-?\d+(?:\.\d+)?)$/);
+      if (!m) return false;
+      draft[key] = Number(m[1]) / 100;
+      return true;
+    },
+    // Out-of-range input still parses; normalizeAppearance is the authority on
+    // the clamp, and this reports whether it had to step in.
+    kept: (draft, normalized) => Math.abs((draft[key] ?? 0) - normalized[key]) <= UNIT_EPS * 10,
+  };
+}
+
 /** The registry: every changeable creator feature, its stable wire id, and
  *  its value codec, in the order the exported code lists them. The creator's
  *  row set and this table must move together; tests/design_code.test.ts pins
@@ -213,6 +231,10 @@ export const DESIGN_FIELDS: readonly DesignField[] = [
   pickField('shadow', 'eyeshadow', SHADOW_SHADES),
   pickField('earrings', 'earrings', EARRING_STYLES),
   pickField('jewel', 'earringMaterial', EARRING_MATERIAL_IDS),
+  // Appended, per the convention the pinned id list states: a new feature takes
+  // a NEW id at the end. `body` is spent on the male/female pick, and a frame
+  // is a size rather than a proportion morph.
+  scalarField('frame', 'frame'),
 ];
 
 /** Serialize a look as a shareable one-line code. The input is normalized

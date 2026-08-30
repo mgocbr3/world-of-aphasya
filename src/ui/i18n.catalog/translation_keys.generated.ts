@@ -344,6 +344,7 @@ export type TranslationKeyFlat =
   | 'auth.faceJaw'
   | 'auth.faceNose'
   | 'auth.faceSmirk'
+  | 'auth.frame'
   | 'auth.genderFemale'
   | 'auth.genderMale'
   | 'auth.hair'

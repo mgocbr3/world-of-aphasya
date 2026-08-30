@@ -7038,6 +7038,7 @@ export const ja_JP: EnTranslations = {
     "appearance": "外見",
     "customize": "カスタマイズ",
     "body": "体型",
+    "frame": "体格",
     "genderMale": "男性",
     "genderFemale": "女性",
     "hair": "髪型",
