@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
+import { CHARACTER_VISUAL_WORLD_SCALE } from '../src/render/characters/character_world_scale';
 
 function skinnedBox(
   name: string,
@@ -170,7 +171,10 @@ describe('Metamorphosis character integration', () => {
     const owner = new THREE.Group();
     owner.add(visual.root);
     owner.updateMatrixWorld(true);
-    expect(visual.height).toBe(2.55);
+    // 2.55 manifest height at the Aphasya world proportion (0.74,
+    // character_world_scale.ts): the visual height is the SCALED one, and
+    // the click proxy, nameplate anchor and far-mesh offsets derive from it.
+    expect(visual.height).toBeCloseTo(2.55 * CHARACTER_VISUAL_WORLD_SCALE, 6);
     expect(visual.root.getObjectByName('metamorph_body')).toBeDefined();
     expect(visual.root.getObjectByName('Rogue_Body')).toBeUndefined();
 

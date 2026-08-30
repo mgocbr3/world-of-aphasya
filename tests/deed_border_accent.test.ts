@@ -637,7 +637,15 @@ describe('border accent graphics fairness (cosmetic identity, preset-identical)'
   });
 
   it('E56: canvas and social-surface metal stay independent of every theme', () => {
-    expect(PRESET_ORDER).toEqual(['classic', 'midnight', 'parchment', 'highContrast']);
+    // 'aphasya' is the fork's own preset (GDD 11.4), second in the order so
+    // it reads as the house look beside the inherited classic.
+    expect(PRESET_ORDER).toEqual([
+      'classic',
+      'aphasya',
+      'midnight',
+      'parchment',
+      'highContrast',
+    ]);
     expect(THEME_PRESETS.parchment.panel).toBe('#ece0c4');
     const themeSource = read('src/ui/theme.ts');
     expect(themeSource).not.toContain('--border-accent-frame');

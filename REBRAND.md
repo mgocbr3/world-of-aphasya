@@ -92,7 +92,26 @@ de proveniencia e fixtures, nao texto de jogador: o unico texto visivel
 (a mensagem de assinatura do Exchange) e a URL canonica dos termos ja foram
 renomeados. Renomear o resto e trabalho mecanico pendente, listado aqui para nao
 se perder. Ficam de proposito: a chave de localStorage do admin e o esquema
-`app://worldofclaudecraft` do shell desktop, que sao IDs mecanicos.
+`app://worldofclaudecraft` do shell desktop, que sao IDs mecanicos, e o
+`APPLE_CLIENT_ID` do fixture de teste, cujo JWT pre-assinado carrega o bundle id
+do upstream como audiencia (o proprio arquivo avisa; renomear quebra o teste).
+
+**Pins re-cunhados pelo upgrade.** Varios fingerprints de asset incluem o
+`package.json`, que o rebrand renomeia, entao os GLBs de Fenbridge e as selagens
+de proveniencia do polish de Eastbrook foram re-cunhados com
+`scripts/assets/remint_lockfile_fingerprints.mjs` e
+`scripts/assets/eastbrook_grand_armoury/remint_polish_provenance.mjs`, e os
+literais dos testes re-pinados a partir da tabela que os scripts imprimem. Tres
+pins que o rebrand original nunca tinha atualizado tambem foram fechados aqui: a
+altura do metamorfo (que e a do manifesto vezes a proporcao 0.74), a ordem dos
+presets de tema (o `aphasya` entrou), e o texto da Loja no Reliquary.
+
+**Falhas de suite que NAO sao do fork.** Cinco arquivos de SFX
+(`sfx_conform`, `sfx_studio`, `sfx_ffmpeg_paths`, `sfx_export_core`,
+`sfx_studio_server_security`) mais `ci_leg_runner` e `desktop_publish_guard`
+falham identicamente num checkout limpo do upstream nesta maquina: o
+`ffprobe-static` traz binario x86_64 no slot arm64 e falta Rosetta. Verificado
+rodando cada um contra `origin/main` num worktree separado antes de atribuir.
 
 ### 3.1 Decisão de elenco (2026-08-29): KayKit fica, Quaternius fica parado
 

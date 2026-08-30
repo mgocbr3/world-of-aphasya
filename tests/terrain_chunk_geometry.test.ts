@@ -331,7 +331,11 @@ describe('generated chunk geometry is stable', () => {
     // Proving Shore island: both sides' intended terrain changes combine, so
     // the digest matches neither parent (set from a suite run on the merged
     // tree).
-    expect(digestOf(inRect)).toBe('1d9b0a4a7e0d97c5a11c918b1a8f29c3');
+    // Re-minted for the Aphasya storybook meadow fill: the digest covers the
+    // vertex COLOR attribute, and terrain_palette's `dirt` moved from a dusty
+    // brown to an olive-warm living earth so bare ground stops reading as a
+    // balding field. Geometry (heights, roads, index) is untouched.
+    expect(digestOf(inRect)).toBe('ffab48163eff3e39178ba5d8b92bf313');
     // The gap super-chunk digest pin is gone with the gap chunks themselves
     // (the island claims the old vale gap cells); gapFill.length above pins
     // their absence.

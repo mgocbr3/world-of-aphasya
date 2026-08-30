@@ -2735,7 +2735,7 @@ describe('reliquarySourceLineText', () => {
       'Drops from S-rank Rift clears',
     );
     expect(reliquarySourceLineText({ kind: 'store', storeId: RELIQUARY_STORE_SOURCE_ID })).toBe(
-      'Purchased from the WOC Store',
+      'Purchased from the Aphasium Store',
     );
     expect(reliquarySourceLineText({ kind: 'activity', activityId: 'corpse_harvest' })).toBe(
       'Recovered while harvesting creature corpses',

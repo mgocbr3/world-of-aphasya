@@ -5,7 +5,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 // immutable, so the module-load audience must match the fixture, not the
 // fork's default bundle id.
 vi.hoisted(() => {
-  process.env.APPLE_CLIENT_ID = 'com.worldofaphasya';
+  process.env.APPLE_CLIENT_ID = 'com.worldofclaudecraft';
 });
 
 import {
