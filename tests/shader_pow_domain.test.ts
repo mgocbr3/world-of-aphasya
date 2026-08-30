@@ -132,7 +132,9 @@ const POW_SITES_PER_FILE: Record<string, number> = {
   'src/render/pbr_fragment_shader.ts': 1,
   'src/render/post_output_grade.ts': 1,
   'src/render/sky.ts': 1,
-  'src/render/water.ts': 1,
+  // 2 since the Aphasya sun caustics (W6): the added pow's base is inline
+  // clamp(..., 0.0, 1.0), so it carries its own domain proof.
+  'src/render/water.ts': 2,
   'src/render/weapon_vfx.ts': 4,
   'src/render/worn_stone.ts': 1,
 };

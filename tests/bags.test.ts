@@ -12,6 +12,7 @@ import {
   consumeOneScratch,
   countFit,
   fitsAll,
+  instancedCountCap,
   migrationBagsFor,
   stackSizeOf,
 } from '../src/sim/bags';
@@ -25,6 +26,7 @@ import type { InvSlot } from '../src/sim/types';
 
 const makeSim = (cls = 'warrior', seed = 42) =>
   new Sim({ seed, playerClass: cls as never, autoEquip: false });
+const FRESH_CORPSE_TIMER = 60;
 
 const meta = (sim: Sim) =>
   (sim as never as { players: Map<number, never> }).players.get(sim.playerId)! as {
@@ -149,6 +151,13 @@ describe('stack sizes and stacking math', () => {
     addStacked(inv, 'baked_bread', 2, charged);
     expect(inv).toHaveLength(3);
     for (const s of inv) expect(s.count).toBe(1);
+  });
+
+  it('load cap allows locked counted stacks while charges remain one-per-slot', () => {
+    expect(instancedCountCap(ITEMS.wolf_fang, { locked: true })).toBe(20);
+    expect(instancedCountCap(ITEMS.wolf_fang, { signer: 'Ana', locked: true })).toBe(20);
+    expect(instancedCountCap(ITEMS.wolf_fang, { locked: true, charges: { zap: 2 } })).toBe(1);
+    expect(instancedCountCap(undefined, { locked: true })).toBe(Number.POSITIVE_INFINITY);
   });
 
   it('fresh instanced slots each carry their own deep clone of the payload', () => {
@@ -393,6 +402,7 @@ describe('capacity gates at the grant boundaries', () => {
     const wolf = [...sim.entities.values()].find((e) => e.kind === 'mob')!;
     wolf.hp = 0;
     wolf.dead = true;
+    wolf.corpseTimer = FRESH_CORPSE_TIMER;
     wolf.lootable = true;
     wolf.tappedById = sim.playerId;
     wolf.loot = { copper: 0, items: [{ itemId: 'wolf_fang', count: 1 }] };
@@ -426,6 +436,7 @@ describe('capacity gates at the grant boundaries', () => {
     const wolf = [...sim.entities.values()].find((e) => e.kind === 'mob')!;
     wolf.hp = 0;
     wolf.dead = true;
+    wolf.corpseTimer = FRESH_CORPSE_TIMER;
     wolf.lootable = true;
     wolf.tappedById = sim.playerId;
     wolf.loot = { copper: 0, items: [{ itemId: 'wolf_fang', count: 2 }] };

@@ -63,20 +63,23 @@ const PREFIX_CATEGORY: Record<string, DeedCategory> = {
 };
 
 describe('audited launch totals (literals: update deliberately with the catalog)', () => {
-  it('ships exactly 271 deeds worth 3145 total Renown', () => {
+  it('ships exactly 274 deeds worth 3160 total Renown', () => {
     // Release base (262 / 3145 after the WARFARE lifetime-honor ladder) plus
     // four Reliquary Curator rank bridges and the five Phase 18 completion
-    // ladder deeds (all nine renown 0, so the Renown sum is UNCHANGED from
-    // the release base: catalog prestige never scores the board).
-    expect(DEED_ORDER.length).toBe(271);
-    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(3145);
+    // ladder deeds (all nine renown 0: catalog prestige never scores the
+    // board), the walk-in castle visit pair (exp_the_last_keep,
+    // exp_dawnhold_castle, renown 5 each), and the Proving Shore graduation
+    // deed (prog_ready_for_an_adventure, renown 5).
+    expect(DEED_ORDER.length).toBe(274);
+    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(3160);
   });
 
   it('ships the audited per-category counts', () => {
     const byCategory: Record<string, number> = {};
     for (const d of ALL) byCategory[d.category] = (byCategory[d.category] ?? 0) + 1;
     expect(byCategory).toEqual({
-      progression: 57,
+      // +1 the Proving Shore graduation (prog_ready_for_an_adventure).
+      progression: 58,
       combat: 10,
       // +2 Rift coverage deeds (dgn_rift, dgn_rift_s_rank).
       dungeon: 31,
@@ -88,7 +91,7 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       // Release's Thornhollow battlegrounds plus the WARFARE honor ladder.
       pvp: 35,
       social: 18,
-      exploration: 9,
+      exploration: 11,
       feat: 3,
       hidden: 9,
     });
@@ -214,6 +217,13 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       'col_reliquary_illum_nythraxis_heroic',
       'col_reliquary_illum_thunzharr',
       'col_reliquary_illum_gravewyrm_heroic',
+      // The walk-in castle visit pair: the Last Keep's deed retro-fixes its
+      // shipped-without-deeds gap, Dawnhold's lands with its castle (both
+      // keyed on the enterDungeon markVisited emit).
+      'exp_the_last_keep',
+      'exp_dawnhold_castle',
+      // The Proving Shore graduation closes the merged tail.
+      'prog_ready_for_an_adventure',
     ]);
     expect(DEEDS.dgn_wildheart_basin.renown).toBe(10);
     expect(DEEDS.dgn_wildheart_basin_heroic.renown).toBe(10);
@@ -308,6 +318,22 @@ describe('audited launch totals (literals: update deliberately with the catalog)
     });
     expect(DEEDS.dgn_rift_s_rank.hidden ?? false).toBe(false);
     expect(DEEDS.dgn_rift_s_rank.feat ?? false).toBe(false);
+  });
+
+  it('pins the walk-in castle visits: renown and trigger literals', () => {
+    // The castle visit pair: routine renown-5 walk-ins, no reward beyond it.
+    expect(DEEDS.exp_the_last_keep.renown).toBe(5);
+    expect(DEEDS.exp_the_last_keep.trigger).toEqual({
+      kind: 'visit',
+      markId: 'dungeon:the_last_keep',
+    });
+    expect(DEEDS.exp_the_last_keep.reward).toBeUndefined();
+    expect(DEEDS.exp_dawnhold_castle.renown).toBe(5);
+    expect(DEEDS.exp_dawnhold_castle.trigger).toEqual({
+      kind: 'visit',
+      markId: 'dungeon:dawnhold_castle',
+    });
+    expect(DEEDS.exp_dawnhold_castle.reward).toBeUndefined();
   });
 
   it('pins the professions additions: renown and trigger literals', () => {
@@ -555,7 +581,12 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   // dead-end The Whole Book; see the reachability pin below). No other
   // trigger or renown changed (verified by reconstructing the pre-phase
   // catalog, which reproduces the previous literal exactly).
-  const FROZEN_CATALOG_SHA256 = 'e372e3f95f7b6063f461b9f00561eecf97849300f543dc88ddda97e487afe683';
+  // Re-baselined at the release/v0.39.0 sync merge, which interleaves the
+  // walk-in castle visit pair (exp_the_last_keep, exp_dawnhold_castle) and
+  // the Proving Shore graduation deed (prog_ready_for_an_adventure, on the
+  // new tutorialGraduations stat) at the tail; no shipped trigger or renown
+  // changed on either side.
+  const FROZEN_CATALOG_SHA256 = '7041f4aec1341ec1d5eded75768567af4b5ab12f22745a7807811da40b6add61';
 
   it('every shipped deed keeps its trigger and renown unchanged', () => {
     const canonical = JSON.stringify(
@@ -748,14 +779,14 @@ describe('table shape', () => {
   it('DEED_ORDER holds the append-only authored order (first and last pinned)', () => {
     // DEED_ORDER derives from the table keys, so covering DEEDS is inherent;
     // what CAN drift is the authored order itself. Pin the endpoints as
-    // literals: prog_first_steps opens the catalog and the evergarden
-    // first-cast closes the tail, and either moving would signal a reorder
+    // literals: prog_first_steps opens the catalog and exp_dawnhold_castle
+    // closes the tail, and either moving would signal a reorder
     // (forbidden: the order is an append-only determinism contract; new
     // deeds append). hid_codfather's index is pinned in the refresh test.
     expect(DEED_ORDER[0]).toBe('prog_first_steps');
-    // The Phase 18 Reliquary completion ladder appends after the WARFARE
-    // ladder; the Gravewyrm Illumination deed closes the tail.
-    expect(DEED_ORDER[DEED_ORDER.length - 1]).toBe('col_reliquary_illum_gravewyrm_heroic');
+    // The Proving Shore graduation deed closes the merged tail (appended at
+    // the release merge behind the walk-in castle visit pair).
+    expect(DEED_ORDER[DEED_ORDER.length - 1]).toBe('prog_ready_for_an_adventure');
   });
 
   it('every entry key matches its id and its prefix matches its category', () => {
@@ -800,6 +831,13 @@ describe('table shape', () => {
       expect(banned.test(def.name), `${def.id} name`).toBe(false);
       expect(banned.test(def.desc), `${def.id} desc`).toBe(false);
     }
+  });
+
+  it('the Brightwood relic feat desc states the relics can no longer be found', () => {
+    // feat_brightwood_relic is permanently unobtainable by design (both source
+    // items only ever dropped from retired Brightwood content); players who
+    // read a stuck 0/1 without this caveat report it as a broken achievement.
+    expect(DEEDS.feat_brightwood_relic.desc).toContain('no longer drop');
   });
 
   it('the Peaks chapter descs carry the renamed Thornpeak chronicler', () => {

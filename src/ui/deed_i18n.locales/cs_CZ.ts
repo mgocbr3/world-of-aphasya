@@ -7,6 +7,18 @@
 import type { DeedLocaleTable } from '../deed_i18n';
 
 export const table: DeedLocaleTable = {
+  prog_ready_for_an_adventure: {
+    name: 'Na prahu dobrodružství',
+    desc: 'Absolvuj Zkušební pobřeží: dokonči každou lekci na ostrově, pak zazvoň na přívozní zvon a vrať se domů do Eastbrooku.',
+  },
+  exp_dawnhold_castle: {
+    name: 'Otevřené dveře v zahradě',
+    desc: 'Navštiv zámek Dawnhold a projdi se jeho prosluněnými zahradními síněmi.',
+  },
+  exp_the_last_keep: {
+    name: 'Tiché síně',
+    desc: 'Vstup do Poslední tvrze a projdi se jejími tichými síněmi.',
+  },
   pvp_bg_first_capture: {
     name: 'Vlajka v ruce',
     desc: 'Zajmi vlajku v Thornhollowských polích.',

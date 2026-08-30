@@ -12,10 +12,13 @@
 // are CSS tokens (class names), no literal hex/px in this module.
 
 import { buildClaudiumView, type ClaudiumSkuInput, type ClaudiumView } from './claudium_view';
+import { currencyImageUrl } from './currency_art';
 import { markDialogRoot } from './dialog_root';
 import { esc } from './esc';
 import { formatNumber, t } from './i18n';
 import { svgIcon } from './ui_icons';
+import { usdDollarsText } from './usd_text';
+import { walletCardKeys } from './wallet_card_keys';
 import type { WalletConnectionView } from './wallet_connection_view';
 
 export type ClaudiumRail = 'stripe' | 'sol' | 'usdc' | 'woc';
@@ -68,7 +71,7 @@ const EMPTY_SNAPSHOT: ClaudiumSnapshot = {
 
 const WOC_DECIMALS = 6;
 const USDC_DECIMALS = 6;
-const WOC_ICON_URL = '/woa_logo_square.webp';
+const WOC_ICON_URL = currencyImageUrl('woc_token') ?? '/woa_logo_square.webp';
 const SOL_ICON_URL = '/claudium/icons/solana-icon.webp';
 const USDC_ICON_URL = '/claudium/icons/usdc-icon.webp';
 type ClaudiumFocusTarget = { kind: 'rail' | 'sku'; value: string } | { kind: 'wallet' };
@@ -314,39 +317,8 @@ export class ClaudiumWindow {
   private walletConnectionHtml(): string {
     const state = this.deps.walletState?.();
     if (!state?.enabled) return '';
-    let bodyKey:
-      | 'hudChrome.wocStore.wallet.unlinked'
-      | 'hudChrome.wocStore.wallet.connectedUnlinked'
-      | 'hudChrome.wocStore.wallet.linkedDisconnected'
-      | 'hudChrome.wocStore.wallet.linkedConnected'
-      | 'hudChrome.wocStore.wallet.mismatched';
-    let actionKey:
-      | 'hudChrome.wocStore.wallet.connect'
-      | 'hudChrome.wocStore.wallet.verify'
-      | 'hudChrome.wocStore.wallet.reconnect'
-      | 'hudChrome.wocStore.wallet.manage';
-    switch (state.kind) {
-      case 'connected_unlinked':
-        bodyKey = 'hudChrome.wocStore.wallet.connectedUnlinked';
-        actionKey = 'hudChrome.wocStore.wallet.verify';
-        break;
-      case 'linked_disconnected':
-        bodyKey = 'hudChrome.wocStore.wallet.linkedDisconnected';
-        actionKey = 'hudChrome.wocStore.wallet.reconnect';
-        break;
-      case 'linked_connected':
-        bodyKey = 'hudChrome.wocStore.wallet.linkedConnected';
-        actionKey = 'hudChrome.wocStore.wallet.manage';
-        break;
-      case 'mismatched':
-        bodyKey = 'hudChrome.wocStore.wallet.mismatched';
-        actionKey = 'hudChrome.wocStore.wallet.verify';
-        break;
-      default:
-        bodyKey = 'hudChrome.wocStore.wallet.unlinked';
-        actionKey = 'hudChrome.wocStore.wallet.connect';
-        break;
-    }
+    // The copy table is shared with the $WOC Exchange's card (wallet_card_keys).
+    const { bodyKey, actionKey } = walletCardKeys(state.kind);
     return (
       `<div class="cl-wallet-connect">` +
       `<strong>${esc(t('hudChrome.wocStore.wallet.title'))}</strong>` +
@@ -445,7 +417,8 @@ export class ClaudiumWindow {
   }
 
   private usdLabel(usd: number): string {
-    return `$${formatNumber(usd, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}`;
+    // Intl currency, never a hardcoded "$" prefix (the shared usd_text rule).
+    return usdDollarsText(usd);
   }
 
   private packArt(claudium: number): string {
@@ -472,14 +445,22 @@ export class ClaudiumWindow {
   }
 
   private buyPriceLabel(row: ClaudiumView['buyRows'][number]): string {
+    // Ticker through the catalog, never a glued suffix: the number is
+    // locale-formatted and the unit rides its own template token.
     if (this.selectedRail === 'sol') {
-      return `${this.formatBaseUnits(row.solAmountBase, 9, 4)} SOL`;
+      return t('hudChrome.claudium.priceSol', {
+        amount: this.formatBaseUnits(row.solAmountBase, 9, 4),
+      });
     }
     if (this.selectedRail === 'usdc') {
-      return `${this.formatBaseUnits(row.usdcAmountBase, USDC_DECIMALS, 2)} USDC`;
+      return t('hudChrome.claudium.priceUsdc', {
+        amount: this.formatBaseUnits(row.usdcAmountBase, USDC_DECIMALS, 2),
+      });
     }
     if (this.selectedRail === 'woc') {
-      return `${this.formatBaseUnits(row.wocAmountBase, WOC_DECIMALS, 2)} WOC`;
+      return t('hudChrome.claudium.priceWoc', {
+        amount: this.formatBaseUnits(row.wocAmountBase, WOC_DECIMALS, 2),
+      });
     }
     return this.usdLabel(row.usd);
   }

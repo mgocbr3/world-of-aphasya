@@ -180,10 +180,10 @@ add('Sources Used', section('Local sources', bullets([
   'Discord export of 3,205 messages from the World of Aphasya community general channel.',
 ])) + section('External sources', bullets([
   '[https://github.com/mgocbr3/world-of-aphasya GitHub repository]',
-  '[https://www.reddit.com/r/artificial/comments/1u4h7k1/world_of_claudecraft_the_first_opensource_mmorpg/ r/artificial launch thread]',
+  '[https://www.reddit.com/r/artificial/comments/1u4h7k1/world_of_aphasya_the_first_opensource_mmorpg/ r/artificial launch thread]',
   '[https://www.reddit.com/r/ClaudeAI/comments/1u3m6a8/i_vibe_coded_the_first_mmorpg_with_fable_5/ r/ClaudeAI Fable 5 thread]',
-  '[https://www.reddit.com/r/vibecoding/comments/1u47wo5/world_of_claudecraft_first_mmorpg_vibecoded_with/ r/vibecoding launch thread]',
-  '[https://www.reddit.com/r/AI_Agents/comments/1u4hstu/agents_have_entered_the_world_of_claudecraft_open/ r/AI_Agents thread]',
+  '[https://www.reddit.com/r/vibecoding/comments/1u47wo5/world_of_aphasya_first_mmorpg_vibecoded_with/ r/vibecoding launch thread]',
+  '[https://www.reddit.com/r/AI_Agents/comments/1u4hstu/agents_have_entered_the_world_of_aphasya_open/ r/AI_Agents thread]',
   '[https://x.com/i/communities/2030944892999135272 World Of Aphasya X community]',
 ])), ['Sources']);
 

@@ -49,7 +49,11 @@ import { isStunned } from './cc';
 import { regenerateRuinOutOfCombat, tickPyreGuardian } from './destruction';
 import { druidEngineOnBleedTick } from './druid_engines';
 import { applyGreaterInvisibilityAftereffect } from './greater_invisibility';
-import { detonateOssuaryMark, OSSUARY_MARK_ABILITY_ID } from './necromancy';
+import {
+  detonateOssuaryMark,
+  OSSUARY_MARK_ABILITY_ID,
+  regenerateSoulFragmentsOutOfCombat,
+} from './necromancy';
 import { tickPaladinOathChainPull } from './paladin_control';
 import { priestOnAuraEnded } from './priest/talents';
 import { preservesGloomtithe, vespersOnDotTick } from './priest/vespers';
@@ -79,6 +83,7 @@ const FRIENDLY_NPC_REJECTED_AURA_KINDS: ReadonlySet<AuraKind> = new Set([
   'bleed_vuln',
   'corrode',
   'faerie_fire',
+  'melting_acid',
   'spellvuln',
   'vulnerability',
   'tongues',
@@ -93,6 +98,7 @@ export function isRejectedFriendlyNpcAura(aura: Aura): boolean {
 export function updateRegen(ctx: SimContext, p: Entity, meta: PlayerMeta): void {
   if (ctx.tickCount % 40 !== 0) return; // every 2 seconds (the classic tick)
   regenerateRuinOutOfCombat(ctx, p, meta);
+  regenerateSoulFragmentsOutOfCombat(ctx, p, meta);
   // Lifesap restores whichever resource bar is currently live, including across
   // form changes. Hard control stills the sap rather than banking free resource.
   if (!isStunned(p)) {

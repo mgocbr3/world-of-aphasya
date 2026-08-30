@@ -27,7 +27,8 @@
 // `src/sim`-pure: no DOM/Three, no Math.random/Date.now; all randomness is the shared
 // `ctx.rng` stream, drawn in the exact pre-move positions.
 
-import { CLASSES, isArenaPos, MOBS } from '../data';
+import { isArenaPos, MOBS } from '../data';
+import { questGateBlocksAggro } from '../mob/quest_gated_aggro';
 import { forceDismount } from '../mounts';
 import { grantDevotionFromBlock } from '../paladin_devotion';
 import { scheduleProjectile } from '../projectile_travel';
@@ -35,6 +36,7 @@ import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import { resolveTalentHitMult } from '../talent_hit_mult';
 import { addThreat, hasEscapeStealth } from '../threat';
+import { creditAbilityDrill } from '../tutorial/ability_drill';
 import {
   angleTo,
   armorReduction,
@@ -167,8 +169,16 @@ export function startAutoAttack(ctx: SimContext, pid?: number): void {
     t.ownerId === null &&
     t.aiState !== 'evade'
   ) {
-    if (t.aiState === 'idle') ctx.aggroMob(t, p, true);
-    else if (t.aggroTargetId === null) t.aggroTargetId = p.id;
+    if (questGateBlocksAggro(ctx.players, t, p)) {
+      p.autoAttack = false;
+      return;
+    }
+    if (t.aiState === 'idle' && !ctx.aggroMob(t, p, true)) {
+      p.autoAttack = false;
+      return;
+    } else if (t.aggroTargetId === null) {
+      t.aggroTargetId = p.id;
+    }
     addThreat(t, p.id, 1);
     p.combatTimer = 0;
     p.inCombat = true;
@@ -282,6 +292,12 @@ export function updatePlayerAutoAttack(ctx: SimContext, p: Entity, meta: PlayerM
       whiteDualWieldPenalty: dualWieldWhiteMissPenalty && abilityName === null,
       autoAttack: true,
     });
+    // The island's ability drill (tutorial/ability_drill.ts). An onNextSwing
+    // ability (Reaver Strike) rides the SWING and never reaches runEffects,
+    // where the drill's other credit site lives, so it is credited here on
+    // the swing that carried it. A plain white swing has abilityId null and
+    // credits nothing, which is the lesson.
+    if (connected && abilityId) creditAbilityDrill(ctx, p, t, abilityId);
     // Thuggery mastery (Sword Specialization shape): a landed mainhand auto has
     // a chance to swing once more. The pct gate keeps the rng stream untouched
     // for everyone without the mastery, and the extra swing cannot chain.

@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
+import { CHARACTER_VISUAL_WORLD_SCALE } from '../src/render/characters/character_world_scale';
 
 function skinnedBox(
   name: string,
@@ -134,10 +135,15 @@ describe('Metamorphosis character integration', () => {
     expect(source).toContain('v.metamorphVisual?.setFar(v.isFar && active === v.metamorphVisual);');
     expect(source).toContain("createCharacterVisual(metamorphEntity, 'form_metamorph')");
     expect(source).toContain('for (const visual of playerPrewarmInstances) visual.dispose();');
-    expect(source).toContain('v.metamorphVisual?.setActive(');
-    expect(source).toContain(
-      'formVisibility.metamorph && v.formCompilePending !== v.metamorphVisual.root',
+    // The per-rig setActive fan-out lives in entity_gate_stand_in_core.ts
+    // (applyCharacterFormVisibility), where a pending form's token keeps the
+    // body drawing; the renderer feeds it the resolved visibility.
+    expect(source).toContain('applyCharacterFormVisibility(v, formVisibility,');
+    const core = readFileSync(
+      new URL('../src/render/entity_gate_stand_in_core.ts', import.meta.url),
+      'utf8',
     );
+    expect(core).toContain('rigs.metamorphVisual?.setActive(visibility.metamorph);');
     expect(source).toContain('characterFormShadowPlan(');
     expect(source).toContain(
       'v.metamorphVisual?.setProxyShadow(shadowPlan.formProxy && active === v.metamorphVisual)',
@@ -151,7 +157,6 @@ describe('Metamorphosis character integration', () => {
     vi.resetModules();
     vi.doMock('../src/render/assets/loader', () => ({
       loadGltf: vi.fn(() => Promise.resolve(stubMetamorphRig())),
-      loadHdr: vi.fn(() => new Promise(() => undefined)),
       loadTexture: vi.fn(() => Promise.resolve(new THREE.Texture())),
       // assets.ts resolves skin atlases through the KTX2 path since the
       // fleet conversion; the mock must provide it (review 3050).
@@ -166,7 +171,10 @@ describe('Metamorphosis character integration', () => {
     const owner = new THREE.Group();
     owner.add(visual.root);
     owner.updateMatrixWorld(true);
-    expect(visual.height).toBe(2.55);
+    // 2.55 manifest height at the Aphasya world proportion (0.74,
+    // character_world_scale.ts): the visual height is the SCALED one, and
+    // the click proxy, nameplate anchor and far-mesh offsets derive from it.
+    expect(visual.height).toBeCloseTo(2.55 * CHARACTER_VISUAL_WORLD_SCALE, 6);
     expect(visual.root.getObjectByName('metamorph_body')).toBeDefined();
     expect(visual.root.getObjectByName('Rogue_Body')).toBeUndefined();
 

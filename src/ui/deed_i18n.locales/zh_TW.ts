@@ -7,6 +7,14 @@
 import type { DeedLocaleTable } from '../deed_i18n';
 
 export const table: DeedLocaleTable = {
+  exp_dawnhold_castle: {
+    name: '花園中敞開的門',
+    desc: '造訪晨曦堡，漫步於它灑滿陽光的花園廳堂。',
+  },
+  exp_the_last_keep: {
+    name: '寂靜廳堂',
+    desc: '步入最後的堡壘，走過它寂靜的廳堂。',
+  },
   pvp_bg_first_capture: {
     name: '旗幟在手',
     desc: '在荊谷原野奪取一面旗幟。',
@@ -719,5 +727,9 @@ export const table: DeedLocaleTable = {
   prog_armorcrafting_rare: {
     name: '鍛造至完美',
     desc: '在護甲鍛造中製作你的第一件稀有品質物品。',
+  },
+  prog_ready_for_an_adventure: {
+    name: '整裝待發',
+    desc: '從試煉之濱畢業：完成島上的每一堂課，然後敲響渡船鈴回到東溪鎮。',
   },
 };

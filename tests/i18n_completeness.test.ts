@@ -162,12 +162,12 @@ describe('i18n whole-catalog completeness', () => {
       'serverUnavailable.logoAlt', // "World of Aphasya" logo alt text - brand
       'guide.brand', // "World of Aphasya" - brand (Guide)
       'guide.brandShort', // "Aphasya" - brand (Guide)
-      'hudChrome.theme.presets.aphasya', // "Aphasya" - brand (UI theme preset)
       'guide.home.title', // "World of Aphasya" - brand (Guide hero)
       'guide.footer.rights', // "World of Aphasya" - brand (Guide footer)
       'hudChrome.discord.title', // "Discord" - brand
       'hudChrome.discord.open', // "Discord" - brand
       'hudChrome.steam.title', // "Steam" - brand
+      'hudChrome.theme.presets.aphasya', // "Aphasya" - brand (UI theme preset)
       'hudChrome.epic.title', // "Epic" - brand
       'hudChrome.discord.panelTitle', // "World of Aphasya" - brand
       'hudChrome.discord.linkedTitle', // "Discord: {name}" - brand + player name
@@ -440,6 +440,8 @@ describe('i18n CLDR pluralization', () => {
       'reliquarySearchResults',
       'reliquaryToGo',
       'secondsRemaining',
+      'wocMarketSellChoose',
+      'wocTradeIneligible',
     ]);
     for (const base of bases) {
       for (const cat of ['one', 'few', 'many', 'other']) {

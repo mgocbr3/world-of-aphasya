@@ -2,7 +2,7 @@
 
 **Status:** Fase 0 (inventário e legal) em andamento. Iniciado em 2026-08-18.
 **Fonte de direção:** `World_of_Aphasya_GDD_Rebrand_v1.0` (MD + DOCX na raiz do workspace WOA).
-**Base técnica:** World of ClaudeCraft v0.38.4 (branch `aphasya-import`, upstream `levy-street/world-of-claudecraft@main`).
+**Base técnica:** upstream v0.40.1 (branch `rebrand/identity-v0.40`, upstream `levy-street/world-of-claudecraft@main`). O import original foi a v0.38.4; ver 3.2 para o upgrade.
 **Repositório destino:** `github.com/mgocbr3/world-of-aphasya`.
 
 Este documento é o mapa operacional do rebrand: o que o GDD decide, este arquivo aterra no
@@ -50,6 +50,68 @@ IDs internos, seeds, nomes de zonas, classes e conteúdo de jogo NÃO mudam nest
 | 5. VFX, UI theme Aphasya, audio | Preset "aphasya" na infraestrutura de temas (`src/ui/theme.ts` + `src/styles/tokens.css`), substituição de audio restrito | pendente |
 | 6. Loja, SDK Pixlland, monetização | Adapters por plataforma, rewarded ads com SSV, Reward Ledger | pendente |
 | 7. Conteúdo, QA, lancamento | Zonas restantes, acessibilidade, localização, operação | pendente |
+
+### 3.2 Upgrade para a base v0.40.1 do upstream (2026-08-29)
+
+O fork estava parado na v0.38.4. O upstream andou 1556 commits e seis releases
+(v0.39.0 a v0.40.1), entao o rebrand foi REBASEADO sobre a v0.40.1 na branch
+`rebrand/identity-v0.40`; a `rebrand/identity` antiga fica intacta ate a
+aprovacao.
+
+O import original era a v0.38.4 menos um arquivo (`doc.md`), entao o replay foi
+honesto: dos 595 arquivos que o rebrand tocava, 389 nao tinham sido tocados pelo
+upstream e foram aplicados inteiros; dos 206 disputados, 42 eram renomeacao pura
+de marca (reaplicada por regra derivada do proprio diff e conferida arquivo a
+arquivo contra o rebrand real), e o resto foi resolvido a mao.
+
+**O que o upgrade traz de graca para a decisao de elenco (3.1):** o upstream
+autorou uma aparencia de criacao de personagem para TODOS os 91 NPCs
+(`src/render/characters/npc_looks.ts`), compondo o corpo modular com guarda-roupa
+misto e prop na mao por papel, no lugar dos quatro rigs compartilhados. A lacuna
+medida em 3.1 (15 NPCs sendo o mesmo `rogue.glb` e `mage.glb` com tint) esta
+fechada sem asset novo e sem compra.
+
+**Duas decisoes que o upgrade forcou:**
+
+- A extracao do AphasyaArtProfile (GDD 8.1, mover fog/luz/god-rays/HDRI para um
+  modulo so) foi ABANDONADA neste upgrade. Era refactor puro, e o upstream
+  reorganizou as mesmas tabelas do jeito dele (membros `private static` da classe
+  Renderer). Refazer a mudanca contra a nova estrutura custa trabalho e nao muda
+  um pixel, entao fica como tarefa propria se a direcao ainda quiser. O que era
+  COMPORTAMENTO (grade AgX por bioma, ceu noturno, sombras coloridas, neblina de
+  altura, grama, terreno, rochas, causticas) atravessou inteiro em
+  `aphasya_grade_core.ts` + `aphasya_grade_driver.ts`, que nao dependem do
+  profile.
+- Os fingerprints dos assets de Fenbridge ficam os do upstream: eles
+  reconstruiram os GLBs, e sao os deles que enviamos.
+
+**Superficie de marca nova que o upgrade trouxe:** 58 arquivos que chegaram com
+o upstream ainda citam a marca antiga (21 em `tests/`, 19 em `public/ui/*/
+mapping.json`, 10 em `docs/design/`, 6 em `scripts/`, 2 em codigo). Sao registros
+de proveniencia e fixtures, nao texto de jogador: o unico texto visivel
+(a mensagem de assinatura do Exchange) e a URL canonica dos termos ja foram
+renomeados. Renomear o resto e trabalho mecanico pendente, listado aqui para nao
+se perder. Ficam de proposito: a chave de localStorage do admin e o esquema
+`app://worldofclaudecraft` do shell desktop, que sao IDs mecanicos, e o
+`APPLE_CLIENT_ID` do fixture de teste, cujo JWT pre-assinado carrega o bundle id
+do upstream como audiencia (o proprio arquivo avisa; renomear quebra o teste).
+
+**Pins re-cunhados pelo upgrade.** Varios fingerprints de asset incluem o
+`package.json`, que o rebrand renomeia, entao os GLBs de Fenbridge e as selagens
+de proveniencia do polish de Eastbrook foram re-cunhados com
+`scripts/assets/remint_lockfile_fingerprints.mjs` e
+`scripts/assets/eastbrook_grand_armoury/remint_polish_provenance.mjs`, e os
+literais dos testes re-pinados a partir da tabela que os scripts imprimem. Tres
+pins que o rebrand original nunca tinha atualizado tambem foram fechados aqui: a
+altura do metamorfo (que e a do manifesto vezes a proporcao 0.74), a ordem dos
+presets de tema (o `aphasya` entrou), e o texto da Loja no Reliquary.
+
+**Falhas de suite que NAO sao do fork.** Cinco arquivos de SFX
+(`sfx_conform`, `sfx_studio`, `sfx_ffmpeg_paths`, `sfx_export_core`,
+`sfx_studio_server_security`) mais `ci_leg_runner` e `desktop_publish_guard`
+falham identicamente num checkout limpo do upstream nesta maquina: o
+`ffprobe-static` traz binario x86_64 no slot arm64 e falta Rosetta. Verificado
+rodando cada um contra `origin/main` num worktree separado antes de atribuir.
 
 ### 3.1 Decisão de elenco (2026-08-29): KayKit fica, Quaternius fica parado
 

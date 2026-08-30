@@ -78,7 +78,6 @@ describe('isAuraDebuff: the allowlist classification (lifted into the core)', ()
       [
         'affliction_eye',
         'affliction_eye_secondary',
-        'affliction_fate_threads',
         'affliction_violence',
         'attackspeed',
         'blind',
@@ -101,6 +100,7 @@ describe('isAuraDebuff: the allowlist classification (lifted into the core)', ()
         'hex',
         'incapacitate',
         'lockout',
+        'melting_acid',
         'mortal_wound',
         'necromancy_harvest_mark',
         'polymorph',

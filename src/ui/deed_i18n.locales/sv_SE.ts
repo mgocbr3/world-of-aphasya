@@ -7,6 +7,18 @@
 import type { DeedLocaleTable } from '../deed_i18n';
 
 export const table: DeedLocaleTable = {
+  prog_ready_for_an_adventure: {
+    name: 'Redo för äventyr',
+    desc: 'Ta examen från Prövostranden: klara varje lektion på ön, och ring sedan i färjklockan hem till Östbäck.',
+  },
+  exp_dawnhold_castle: {
+    name: 'En öppen dörr i trädgården',
+    desc: 'Besök Dawnholds slott och strosa genom dess solbelysta trädgårdssalar.',
+  },
+  exp_the_last_keep: {
+    name: 'De tysta salarna',
+    desc: 'Stig in genom Sista fästets dörrar och vandra genom dess tysta salar.',
+  },
   pvp_bg_first_capture: {
     name: 'Banér i hand',
     desc: 'Erövra en flagga i Törnhålefälten.',

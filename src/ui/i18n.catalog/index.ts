@@ -654,6 +654,16 @@ export const en = {
     unlink: 'Unlink',
     unlinkTitle: 'Remove wallet verification from this account',
     unlinkAria: 'Remove wallet verification from this account',
+    // The R11 re-auth prompt (src/ui/wallet_reauth_prompt.ts): changing or
+    // removing a linked wallet asks for the account password first.
+    reauthTitle: 'Confirm wallet change',
+    reauthUnlinkTitle: 'Confirm wallet removal',
+    reauthHelp: 'For your security, enter your account password to authorize this change.',
+    reauthNoPassword:
+      'This account signs in without a password. Set a password in account settings first, then try again.',
+    reauthConfirm: 'Confirm',
+    reauthCancel: 'Cancel',
+    reauthClose: 'Close',
     signOut: 'Disconnect',
     signOutTitle: 'Disconnect the wallet app on this browser',
     signOutAria: 'Disconnect the wallet app on this browser',
@@ -876,6 +886,8 @@ export const en = {
       portalOpens: 'A {tier}-rank rift tears open in {zone}!',
       portalSealed: 'The {tier}-rank rift in {zone} has been sealed.',
       portalCollapses: 'The {tier}-rank rift in {zone} collapses.',
+      lootRecoveryNotice:
+        "The rift's entrance will hold a while yet: should your party fall, you may still walk back for what you earned.",
       levelGate: 'Only adventurers of level {level} or higher may enter this rift.',
       deadEntry: 'You cannot enter a rift while dead.',
       deadEntryCombat:
@@ -993,6 +1005,7 @@ export const en = {
       shopSealPremiumOnly:
         "This seal yields only to a master's hand. Only the Premium ante can open it.",
       passageSealed: 'The passage is sealed.',
+      enemiesRemain: 'Clear the remaining enemies first.',
       moveCloserPassage: 'Move closer to the passage.',
       moveCloserChest: 'Move closer to the chest.',
       moveCloserReliquary: 'Move closer to the reliquary.',

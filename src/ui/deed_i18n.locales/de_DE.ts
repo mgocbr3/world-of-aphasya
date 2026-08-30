@@ -7,6 +7,18 @@
 import type { DeedLocaleTable } from '../deed_i18n';
 
 export const table: DeedLocaleTable = {
+  prog_ready_for_an_adventure: {
+    name: 'Bereit für ein Abenteuer',
+    desc: 'Schließe die Bewährungsküste ab: Beende jede Lektion auf der Insel und läute dann die Fährglocke heim nach Eastbrook.',
+  },
+  exp_dawnhold_castle: {
+    name: 'Eine offene Tür im Garten',
+    desc: 'Statte Schloss Dawnhold einen Besuch ab und wandle durch seine sonnigen Gartenhallen.',
+  },
+  exp_the_last_keep: {
+    name: 'Die stillen Hallen',
+    desc: 'Tritt durch die Tore der Letzten Feste und durchschreite ihre stillen Hallen.',
+  },
   pvp_bg_first_capture: {
     name: 'Banner in der Hand',
     desc: 'Erobere eine Flagge in den Thornhollow-Feldern.',

@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { Pool, type QueryResult } from 'pg';
+import { Pool, type PoolClient, type QueryResult } from 'pg';
 import {
   type AccountFlair,
   EMPTY_ACCOUNT_FLAIR,
@@ -10,12 +10,20 @@ import { sanitizeRemovedZone1Content } from '../src/sim/removed_zone1_content';
 import type { CharacterState, MailSave, MarketSave } from '../src/sim/sim';
 import type { ArenaFormat, PlayerClass } from '../src/sim/types';
 import type { ActionBarLayout } from '../src/world_api/action_bar';
+import { ACCOUNT_WEALTH_SCHEMA } from './account_wealth_db';
 import { AD_SPEND_SCHEMA } from './ad_spend_db';
 import { bustAdminGuildListReads } from './admin_guilds_read';
 import { ADMIN_GUILDS_SCHEMA } from './admin_guilds_schema';
 import { APPLE_AUTH_SCHEMA } from './apple_auth_db';
 import { ACCOUNT_ATTRIBUTION_SCHEMA, accountAttributionForExport } from './attribution_db';
 import { validCharName } from './auth';
+import {
+  type AccountModerationRow,
+  type AccountModerationStatus,
+  type AuthTokenRow,
+  computeModerationStatus,
+  tokenInfoFromRow,
+} from './auth_guard_core';
 import type { BankBonusFacts } from './bank_entitlements';
 import {
   configureLifetimeXpRankCache,
@@ -40,7 +48,6 @@ import {
   GENERAL_CHAT_QUOTA_DB_POOL_MAX_CLIENTS,
   GENERAL_CHAT_QUOTA_LISTENER_CONNECTIONS,
 } from './general_chat_quota_config';
-import type { GeneralChatRateLimit } from './general_chat_quota_db';
 import { GENERAL_CHAT_QUOTA_SCHEMA } from './general_chat_quota_schema';
 import { GITHUB_SCHEMA } from './github_db';
 import {
@@ -50,6 +57,13 @@ import {
   mergeGuildBankRow,
 } from './guild_bank_state';
 import { isUniqueViolation } from './http_util';
+import {
+  advanceCustodyWatermarkIn,
+  confirmBakedCustodyRefs,
+  deleteBakedCustodyRefsIn,
+  MAIL_CUSTODY_PARCELS_SCHEMA,
+  snapshotPendingCustodyRefs,
+} from './mail_custody_overlay';
 import { MAPS_SCHEMA } from './maps_db';
 import {
   LEGACY_MARKET_KEY,
@@ -73,8 +87,12 @@ import { REALM, REALM_DIRECTORY } from './realm';
 import { chooseArchiveName } from './reclaim_name';
 import { SEEKER_ENTITLEMENT_SCHEMA } from './seeker_entitlement_db';
 import { SOCIAL_SCHEMA } from './social_db';
+import { SUSPICION_FLAGS_SCHEMA } from './suspicion_flags_db';
 import { UNSTUCK_SCHEMA } from './unstuck_db';
 import { USER_ASSETS_SCHEMA } from './user_assets_db';
+import { bustWocAuthGuardAccount, bustWocAuthGuardToken } from './woc_auth_guard_cache';
+import { WOC_MARKET_SCHEMA } from './woc_market_db';
+import { bustWocMarketActivity } from './woc_market_read_cache';
 
 // The realm-market key helpers and the backfill marker key live in
 // server/market_backfill.ts (a *_db-style module with no db.ts dependency, so
@@ -1316,6 +1334,17 @@ export async function ensureSchema(): Promise<void> {
     // is unaffected: only expired windows match, and a racing UPSERT on a pruned
     // key simply re-inserts a fresh row.
     await client.query(RATELIMIT_PRUNE_SQL);
+    // Admin economy oversight: the materialised per-account wealth totals and
+    // the persisted suspicion-flag workflow tables. Both FK-reference
+    // accounts(id), so they run after SCHEMA. Applied unconditionally
+    // (idempotent), like the other schema modules.
+    await client.query(ACCOUNT_WEALTH_SCHEMA);
+    await client.query(SUSPICION_FLAGS_SCHEMA);
+    // The $WOC custody mail overlay (server/mail_custody_overlay.ts): one
+    // durable row per booked parcel until the next full mail-book write
+    // bakes it. No FK on purpose: rows must survive character deletion long
+    // enough for an operator to attribute them.
+    await client.query(MAIL_CUSTODY_PARCELS_SCHEMA);
     // Map editor tables: saved/forked custom maps and uploaded GLB assets.
     // Both FK-reference accounts(id), so they run after SCHEMA. Applied
     // unconditionally (idempotent), like the other schema modules.
@@ -1325,6 +1354,9 @@ export async function ensureSchema(): Promise<void> {
     // block, unblock). FK-references accounts(id), so it runs after SCHEMA.
     // Applied unconditionally (idempotent), like the other schema modules.
     await client.query(CONTENT_MODERATION_SCHEMA);
+    // After SCHEMA: every marketplace table FKs accounts(id), and the custody
+    // model rides characters + world_state (the escrow combined save).
+    await client.query(WOC_MARKET_SCHEMA);
     // Seed the chat-filter word lists + config on first boot only (idempotent).
     // Runs under the same advisory lock so concurrent realm boots don't race.
     await seedChatFilterDefaults(client);
@@ -1442,26 +1474,10 @@ export interface AccountRow {
   totp_last_window?: string | number | null;
 }
 
-export interface AccountModerationStatus {
-  locked: boolean;
-  banned: boolean;
-  suspendedUntil: string | null;
-  // True only for a self-deactivated account (locked, not banned, no active
-  // suspension). Lets a caller distinguish the deactivation lock from a
-  // suspension so it can surface the correct message/code (e.g. the API pipeline
-  // requireAccount maps it to account.deactivated, not moderation.suspended).
-  deactivated?: boolean;
-  reason: string;
-  message: string;
-  // Chat mute is independent of `locked`: a muted account can still log in and
-  // play, it just can't send chat until `chatMutedUntil` passes. Surfaced here
-  // so the WS auth handshake can seed the live session without a second query.
-  chatMutedUntil: string | null;
-  chatStrikes: number;
-  // Sparse account policy. Null means Unlimited. Loaded in this existing auth
-  // read so a known-unlimited session never performs quota database work.
-  generalChatRateLimit?: GeneralChatRateLimit | null;
-}
+// The status shape (and its compute) moved to server/auth_guard_core.ts so the
+// direct read below and the marketplace guard cache share one source of truth;
+// re-exported here so the existing importers compile unchanged.
+export type { AccountModerationStatus } from './auth_guard_core';
 
 export interface AccountChatMuteStatus {
   mutedUntil: string | null;
@@ -1612,34 +1628,6 @@ export async function grantAccountMechChroma(
   chromaId: string,
 ): Promise<AccountCosmetics> {
   return addAccountCosmeticId(accountId, 'mechChromaIds', chromaId);
-}
-
-export async function revokeAccountMechChroma(
-  accountId: number,
-  chromaId: string,
-): Promise<AccountCosmetics> {
-  const res = await pool.query(
-    `WITH updated AS (
-       UPDATE accounts
-          SET cosmetics = jsonb_set(
-            COALESCE(cosmetics, '{}'::jsonb), '{mechChromaIds}',
-            (SELECT COALESCE(jsonb_agg(to_jsonb(v) ORDER BY ord), '[]'::jsonb)
-               FROM jsonb_array_elements_text(
-                 CASE WHEN jsonb_typeof(cosmetics -> 'mechChromaIds') = 'array'
-                   THEN cosmetics -> 'mechChromaIds' ELSE '[]'::jsonb END)
-                 WITH ORDINALITY AS entries(v, ord)
-              WHERE v <> $2))
-        WHERE id = $1
-        RETURNING id, cosmetics
-     )
-     SELECT updated.cosmetics,
-            awc.skin_ids AS weapon_skin_ids,
-            awc.loadout AS weapon_skin_loadout
-       FROM updated
-       LEFT JOIN account_weapon_cosmetics awc ON awc.account_id = updated.id`,
-    [accountId, chromaId],
-  );
-  return normalizeAccountCosmeticsRow(res.rows[0]);
 }
 
 /** Additive union in the rollback-safe paid-entitlement row. */
@@ -1832,6 +1820,28 @@ export async function saveToken(
      VALUES ($1, $2, now() + ($3 || ' hours')::interval, $4, $5)`,
     [token, accountId, String(ttlHours), scope, label],
   );
+  // A fresh random token can have no cached guard entry; the call keeps the
+  // auth_tokens writer set exemption-free for the bust discovery pin.
+  bustWocAuthGuardToken(token);
+}
+
+// The raw token-probe row for the guard reads (the cache's refresh source and
+// the direct read's fetch half). The expires_at > now() qual stays as the
+// DB-side belt; expires_at is ALSO selected so tokenInfoFromRow can re-check
+// expiry at read time, which is what makes a cached row safe
+// (server/auth_guard_core.ts owns the pure half).
+export async function authTokenRowForToken(token: string): Promise<AuthTokenRow | null> {
+  const res = await pool.query(
+    'SELECT account_id, scope, expires_at FROM auth_tokens WHERE token = $1 AND expires_at > now()',
+    [token],
+  );
+  const row = res.rows[0];
+  if (!row) return null;
+  return {
+    accountId: row.account_id,
+    scope: String(row.scope),
+    expiresAtMs: new Date(row.expires_at).getTime(),
+  };
 }
 
 // Account + scope for a live token. Every caller receives the authority context:
@@ -1839,17 +1849,12 @@ export async function saveToken(
 // require exact full scope. Unknown database values fail closed instead of being
 // promoted to full authority. Such a historical token also cannot authenticate
 // its own logout; account-level revocation remains available to clear the row.
+// Fetch + pure verdict (tokenInfoFromRow), the same pair the marketplace guard
+// cache composes, so the two arms cannot drift.
 export async function accountAndScopeForToken(
   token: string,
 ): Promise<{ accountId: number; scope: TokenScope } | null> {
-  const res = await pool.query(
-    'SELECT account_id, scope FROM auth_tokens WHERE token = $1 AND expires_at > now()',
-    [token],
-  );
-  const row = res.rows[0];
-  if (!row) return null;
-  if (row.scope !== 'full' && row.scope !== 'read') return null;
-  return { accountId: row.account_id, scope: row.scope };
+  return tokenInfoFromRow(await authTokenRowForToken(token), Date.now());
 }
 
 export interface AccountInfoRow {
@@ -1909,6 +1914,19 @@ export async function updatePasswordHash(accountId: number, passwordHash: string
   if ((res.rowCount ?? 0) > 0) bustDiscordStatus(accountId);
 }
 
+export async function setInitialPasswordHashIfUnset(
+  accountId: number,
+  passwordHash: string,
+): Promise<boolean> {
+  const res = await pool.query(
+    'UPDATE accounts SET password_hash = $2, password_set = TRUE WHERE id = $1 AND password_set = FALSE',
+    [accountId, passwordHash],
+  );
+  const changed = (res.rowCount ?? 0) > 0;
+  if (changed) bustDiscordStatus(accountId);
+  return changed;
+}
+
 // Revoke every token for an account except (optionally) the one in hand.
 // A password change keeps the current device signed in (pass its token);
 // a deactivate revokes everything (pass null).
@@ -1924,10 +1942,13 @@ export async function revokeTokensExcept(
   } else {
     await pool.query('DELETE FROM auth_tokens WHERE account_id = $1', [accountId]);
   }
+  // Account-keyed guard bust (over-busting the kept token costs one re-fetch).
+  bustWocAuthGuardAccount(accountId);
 }
 
 export async function revokeToken(token: string): Promise<void> {
   await pool.query('DELETE FROM auth_tokens WHERE token = $1', [token]);
+  bustWocAuthGuardToken(token);
 }
 
 // Revoke a read-scoped token by value (OAuth/RFC-7009 revocation, companion
@@ -1937,6 +1958,7 @@ export async function revokeReadToken(token: string): Promise<boolean> {
   const res = await pool.query(`DELETE FROM auth_tokens WHERE token = $1 AND scope = 'read'`, [
     token,
   ]);
+  bustWocAuthGuardToken(token);
   return (res.rowCount ?? 0) > 0;
 }
 
@@ -1990,6 +2012,10 @@ export async function revokeCompanionToken(accountId: number, prefix: string): P
       WHERE account_id = $1 AND scope = 'read' AND left(token, 8) = $2`,
     [accountId, prefix],
   );
+  // The cache is keyed by the FULL token this site does not hold, so the
+  // account-keyed bust drops every cached token of the account (over-busting
+  // is the safe direction; the survivors re-fetch).
+  bustWocAuthGuardAccount(accountId);
   return (res.rowCount ?? 0) > 0;
 }
 
@@ -2027,6 +2053,7 @@ export async function setAccountDeactivated(
     `UPDATE accounts SET deactivated_at = CASE WHEN $2 THEN now() ELSE NULL END WHERE id = $1`,
     [accountId, deactivated],
   );
+  bustWocAuthGuardAccount(accountId);
 }
 
 export async function setAccountLocale(accountId: number, locale: string | null): Promise<void> {
@@ -2197,6 +2224,7 @@ export async function consumePasswordResetRequest(
     // after COMMIT like the discord_db.ts sites. The expired/replayed-token arm
     // returns above without writing and must not evict a healthy snapshot.
     bustDiscordStatus(row.account_id);
+    bustWocAuthGuardAccount(row.account_id);
     return { accountId: row.account_id };
   } catch (err) {
     await client.query('ROLLBACK').catch(() => {});
@@ -2577,11 +2605,15 @@ export async function linkWalletToAccount(accountId: number, pubkey: string): Pr
     if (isUniqueViolation(err)) return false;
     throw err;
   }
+  // Identity changes must not wait out a cache TTL: the Exchange's activity
+  // readout carries the verified wallet (the bustDiscordStatus discipline).
+  bustWocMarketActivity(accountId);
   return true;
 }
 
 export async function unlinkWallet(accountId: number): Promise<void> {
   await pool.query('DELETE FROM wallet_links WHERE account_id = $1', [accountId]);
+  bustWocMarketActivity(accountId);
 }
 
 // ── Shareable player cards + referrals ─────────────────────────────────────
@@ -2726,7 +2758,9 @@ export async function bankBonusFactsForAccount(accountId: number): Promise<BankB
             AND EXISTS(
               SELECT 1 FROM characters c
               WHERE c.account_id = r.referee_account_id AND c.level >= 10
-            )) AS qualified_referrals
+            )) AS qualified_referrals,
+       (SELECT count(*)::int FROM characters cc
+          WHERE cc.account_id = $1) AS character_count
      FROM accounts a
      WHERE a.id = $1`,
     [accountId],
@@ -2737,6 +2771,7 @@ export async function bankBonusFactsForAccount(accountId: number): Promise<BankB
     discordLinked: !!row?.discord_linked,
     walletLinked: !!row?.wallet_linked,
     qualifiedReferrals: row?.qualified_referrals ?? 0,
+    characterCount: row?.character_count ?? 0,
   };
 }
 
@@ -2843,9 +2878,14 @@ export async function lifetimeXpRankForCharacter(
   return readLifetimeXpRankForCharacter(characterId);
 }
 
-export async function moderationStatusForAccount(
+// The raw moderation row for the guard reads (the cache's refresh source and
+// the direct read's fetch half): the accounts moderation columns plus the
+// LEFT-JOINed chat-quota policy. Every time-dependent verdict is computed from
+// this row by computeModerationStatus (server/auth_guard_core.ts) at read
+// time, which is why the ROW and never the computed result may be cached.
+export async function moderationRowForAccount(
   accountId: number,
-): Promise<AccountModerationStatus> {
+): Promise<AccountModerationRow | null> {
   const res = await pool.query(
     `SELECT a.banned_at, a.suspended_until, a.moderation_reason, a.chat_muted_until,
             a.chat_strikes, a.deactivated_at, q.messages, q.window_minutes
@@ -2854,83 +2894,16 @@ export async function moderationStatusForAccount(
      WHERE a.id = $1`,
     [accountId],
   );
-  const row = res.rows[0];
-  if (!row) {
-    return {
-      locked: false,
-      banned: false,
-      suspendedUntil: null,
-      reason: '',
-      message: '',
-      chatMutedUntil: null,
-      chatStrikes: 0,
-      generalChatRateLimit: null,
-    };
-  }
-  const mutedUntilDate = row.chat_muted_until ? new Date(row.chat_muted_until) : null;
-  const chatMutedUntil =
-    mutedUntilDate && mutedUntilDate.getTime() > Date.now() ? mutedUntilDate.toISOString() : null;
-  const chatStrikes = Number(row.chat_strikes ?? 0);
-  const generalChatRateLimit =
-    row.messages === null || row.messages === undefined
-      ? null
-      : {
-          messages: Number(row.messages),
-          windowMinutes: Number(row.window_minutes),
-        };
-  // Admin-imposed states (ban, then active suspension) outrank a self-imposed
-  // deactivation: a banned+deactivated account must still surface the ban reason
-  // and label, not be relabelled "deactivated". All branches resolve to locked.
-  if (row.banned_at) {
-    return {
-      locked: true,
-      banned: true,
-      suspendedUntil: null,
-      reason: row.moderation_reason ?? '',
-      message: 'This account has been banned.',
-      chatMutedUntil,
-      chatStrikes,
-      generalChatRateLimit,
-    };
-  }
-  const suspendedUntil = row.suspended_until ? new Date(row.suspended_until) : null;
-  if (suspendedUntil && suspendedUntil.getTime() > Date.now()) {
-    return {
-      locked: true,
-      banned: false,
-      suspendedUntil: suspendedUntil.toISOString(),
-      reason: row.moderation_reason ?? '',
-      message: `This account is suspended until ${suspendedUntil.toUTCString()}.`,
-      chatMutedUntil,
-      chatStrikes,
-      generalChatRateLimit,
-    };
-  }
-  // A self-deactivated account is locked out of login + WS auth (same gate as
-  // banned/suspended) until an admin reactivates it.
-  if (row.deactivated_at) {
-    return {
-      locked: true,
-      banned: false,
-      suspendedUntil: null,
-      deactivated: true,
-      reason: '',
-      message: 'This account has been deactivated.',
-      chatMutedUntil,
-      chatStrikes,
-      generalChatRateLimit,
-    };
-  }
-  return {
-    locked: false,
-    banned: false,
-    suspendedUntil: null,
-    reason: '',
-    message: '',
-    chatMutedUntil,
-    chatStrikes,
-    generalChatRateLimit,
-  };
+  return res.rows[0] ?? null;
+}
+
+// Fetch + pure verdict (computeModerationStatus), the same pair the
+// marketplace guard cache composes, so the two arms cannot drift. The
+// decision ladder itself lives in server/auth_guard_core.ts.
+export async function moderationStatusForAccount(
+  accountId: number,
+): Promise<AccountModerationStatus> {
+  return computeModerationStatus(await moderationRowForAccount(accountId), Date.now());
 }
 
 export async function chatMuteStatusForAccount(accountId: number): Promise<AccountChatMuteStatus> {
@@ -3494,6 +3467,11 @@ export async function saveCharacterAndMarketState(
   // Out-parameter, same contract as saveCharacterAndGuildBankState's.
   results?: GuildBankWriteResult[],
 ): Promise<boolean> {
+  // Custody overlay bake, the saveMailState contract: snapshot at entry
+  // (before anything awaits; the mail argument was serialized synchronously
+  // just before this call), delete only on the committed arm below. The
+  // fence-refused false arm and every rollback keep the rows.
+  const bakedCustodyRefs = snapshotPendingCustodyRefs();
   // Gate the escrow flush on the boot backfill just like saveMarketState:
   // this writes the realm-market row, so it must not run before ensureSchema
   // has confirmed the marker and opened the gate. Checked before any pool work.
@@ -3524,25 +3502,23 @@ export async function saveCharacterAndMarketState(
       await client.query('ROLLBACK');
       return false;
     }
-    await client.query(
-      `INSERT INTO world_state (key, data, updated_at) VALUES ($1, $2, now())
-       ON CONFLICT (key) DO UPDATE SET data = EXCLUDED.data, updated_at = now()`,
-      // Same realm-scoped key loadMarketState/saveMarketState use: the leave
-      // flush must land where the market is read back, or the escrowed listing
-      // is written to a key nothing loads and the item is stranded on next boot.
-      [marketStateKey(REALM), JSON.stringify(market)],
-    );
-    await client.query(
-      `INSERT INTO world_state (key, data, updated_at) VALUES ($1, $2, now())
-       ON CONFLICT (key) DO UPDATE SET data = EXCLUDED.data, updated_at = now()`,
-      [mailStateKey(REALM), JSON.stringify(mail)],
-    );
+    const inTx = (text: string, values: unknown[]) => client.query(text, values);
+    // Same realm-scoped key loadMarketState/saveMarketState use: the leave
+    // flush must land where the market is read back, or the escrowed listing
+    // is written to a key nothing loads and the item is stranded on next boot.
+    await upsertWorldStateRowIn(inTx, marketStateKey(REALM), market);
+    await upsertWorldStateRowIn(inTx, mailStateKey(REALM), mail);
     // Guild bank books ride the SAME fenced transaction (Guild Bank Phase 3):
     // the character UPDATE above already passed the lease fence, so these can
     // never land for a displaced session, and a failure anywhere rolls back
     // the character, market, mail, and book halves together.
     await writeGuildBankRows(client, guildBanks ?? [], results);
+    // The custody bake and the watermark advance ride this same fenced
+    // transaction (see saveMailState).
+    await deleteBakedCustodyRefsIn(inTx, bakedCustodyRefs);
+    await advanceCustodyWatermarkIn(inTx);
     await client.query('COMMIT');
+    confirmBakedCustodyRefs(bakedCustodyRefs);
     return true;
   } catch (err) {
     await client.query('ROLLBACK').catch(() => {});
@@ -3777,6 +3753,38 @@ export async function loadGuildBankRows(): Promise<GuildBankRow[]> {
     if (res.rows.length < GUILD_BANK_BOOT_BATCH) return out;
     lastId = Number(res.rows[res.rows.length - 1].guild_id);
   }
+}
+
+// The character-save arm of the escrow transactions above, reusable inside a
+// caller-owned transaction (the $WOC Exchange listing escrow in
+// woc_market_db.ts commits a character UPDATE and a listing INSERT together,
+// the saveCharacterAndMarketState rationale). Same sanitize + lease fence as
+// saveCharacterState; the caller owns BEGIN/COMMIT/ROLLBACK and any timeout
+// raise. Returns false when the fence matched no row (a displaced session).
+export async function saveCharacterStateOnClient(
+  client: PoolClient,
+  characterId: number,
+  level: number,
+  state: CharacterState,
+  leaseNonce?: string,
+): Promise<boolean> {
+  const cleanState = sanitizeRemovedZone1Content(state).state;
+  const res =
+    leaseNonce === undefined
+      ? await client.query(
+          'UPDATE characters SET level = $2, state = $3, updated_at = now() WHERE id = $1',
+          [characterId, level, JSON.stringify(cleanState)],
+        )
+      : await client.query(
+          `UPDATE characters SET level = $2, state = $3, updated_at = now()
+            WHERE id = $1
+              AND EXISTS (
+                SELECT 1 FROM character_leases
+                 WHERE character_id = $1 AND holder = $4 AND nonce = $5
+              )`,
+          [characterId, level, JSON.stringify(cleanState), PROCESS_LEASE_HOLDER, leaseNonce],
+        );
+  return leaseNonce === undefined ? true : (res.rowCount ?? 0) > 0;
 }
 
 export async function isAdminAccount(accountId: number): Promise<boolean> {
@@ -4023,6 +4031,11 @@ export interface GuildLeaderRow {
   memberCount: number;
   totalLifetimeXp: number;
   topLevel: number;
+  // Guild pledge board recruiting status (docs/prd/guild-pledge-board.md),
+  // shown per row on the high-score board so aspirants know who is looking.
+  pledgesEnabled: boolean;
+  pledgeMinLevel: number;
+  pledgeNote: string;
 }
 
 export async function topGuilds(
@@ -4032,7 +4045,7 @@ export async function topGuilds(
   // Capped at LEADERBOARD_MAX (1000) like the player board, so a realm with many
   // guilds is fully ranked through the cached window.
   const cap = Math.max(1, Math.min(LEADERBOARD_MAX, limit));
-  const selectAgg = `g.name, g.realm,
+  const selectAgg = `g.name, g.realm, g.pledges_enabled, g.pledge_min_level, g.pledge_note,
                 COUNT(gm.character_id)                                AS member_count,
                 COALESCE(SUM(COALESCE((c.state->>'lifetimeXp')::bigint, 0)), 0) AS total_lifetime_xp,
                 COALESCE(MAX(COALESCE((c.state->>'level')::int, 0)), 0)         AS top_level`;
@@ -4072,6 +4085,9 @@ export async function topGuilds(
     memberCount: Number(r.member_count),
     totalLifetimeXp: Number(r.total_lifetime_xp),
     topLevel: Number(r.top_level),
+    pledgesEnabled: !!r.pledges_enabled,
+    pledgeMinLevel: Number(r.pledge_min_level) || 1,
+    pledgeNote: typeof r.pledge_note === 'string' ? r.pledge_note : '',
   }));
 }
 
@@ -4386,6 +4402,22 @@ export async function loadWorldState<T>(key: string): Promise<T | null> {
   return (res.rows[0]?.data as T) ?? null;
 }
 
+/** The one world_state upsert shape, shared by the single-statement
+ *  saveWorldState and the in-transaction blob writers
+ *  (saveCharacterAndMarketState, saveMailState): one copy so the
+ *  ON CONFLICT contract cannot drift between them. */
+async function upsertWorldStateRowIn(
+  query: (text: string, values: unknown[]) => Promise<unknown>,
+  key: string,
+  data: unknown,
+): Promise<void> {
+  await query(
+    `INSERT INTO world_state (key, data, updated_at) VALUES ($1, $2, now())
+     ON CONFLICT (key) DO UPDATE SET data = EXCLUDED.data, updated_at = now()`,
+    [key, JSON.stringify(data)],
+  );
+}
+
 export async function saveWorldState(key: string, data: unknown): Promise<void> {
   // The pre-scoping bare 'market' row is RETAINED as the rollback artifact for
   // the partitioned market backfill (server/market_backfill.ts) and is never
@@ -4401,11 +4433,7 @@ export async function saveWorldState(key: string, data: unknown): Promise<void> 
   if (key.startsWith(MARKET_KEY_PREFIX)) {
     assertMarketWriteGateOpen();
   }
-  await pool.query(
-    `INSERT INTO world_state (key, data, updated_at) VALUES ($1, $2, now())
-     ON CONFLICT (key) DO UPDATE SET data = EXCLUDED.data, updated_at = now()`,
-    [key, JSON.stringify(data)],
-  );
+  await upsertWorldStateRowIn((text, values) => pool.query(text, values), key, data);
 }
 
 // Boot-ordering write gate for the World Market. Before ensureSchema's
@@ -4480,7 +4508,32 @@ export async function loadMailState(): Promise<MailSave | null> {
 }
 
 export async function saveMailState(save: MailSave): Promise<void> {
-  await saveWorldState(mailStateKey(REALM), save);
+  // Custody overlay bake (mail_custody_overlay.ts): the snapshot runs before
+  // anything awaits, and no awaited gap separates the caller's
+  // serializeMail() from this entry, so every snapshotted parcel is inside
+  // `save` or durably collected out of it. The bake DELETE and the
+  // watermark advance ride the SAME transaction as the book upsert: the
+  // blob without a parcel and the row's removal must commit together, or a
+  // failed post-commit delete bracketing a collection could later replay a
+  // collected parcel. Every book write takes this one transactional path
+  // (no refs-empty shortcut) so the watermark keeps advancing on quiet
+  // realms too.
+  const bakedCustodyRefs = snapshotPendingCustodyRefs();
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN');
+    const inTx = (text: string, values: unknown[]) => client.query(text, values);
+    await upsertWorldStateRowIn(inTx, mailStateKey(REALM), save);
+    await deleteBakedCustodyRefsIn(inTx, bakedCustodyRefs);
+    await advanceCustodyWatermarkIn(inTx);
+    await client.query('COMMIT');
+  } catch (err) {
+    await client.query('ROLLBACK').catch(() => {});
+    throw err;
+  } finally {
+    client.release();
+  }
+  confirmBakedCustodyRefs(bakedCustodyRefs);
 }
 
 // Shared Rift event history/scheduler, realm-scoped. Runtime group instances are
