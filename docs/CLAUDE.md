@@ -43,6 +43,13 @@ Book of Deeds achievements system plus the authoring contract every new deed (an
 every new piece of conquerable content) follows; `design/reliquary.md` is the same
 kind of living authoring contract for Reliquary pages (new conquerable unique loot
 authors its pages in the SAME change, pinned by `tests/reliquary_content.test.ts`);
+`design/story-and-dialogue.md` is the shipped NARRATIVE: the campaign spine act
+by act with the actual quoted lines, the cast per hub, the other text surfaces
+(mail, boards, deeds, reliquary, refusal lines), and the house voice as observed.
+It is the third leg of the narrative set, deliberately not overlapping the other
+two: `design/world-lore.md` is the world bible (what is true) and
+`design/master-spec.md` is the campaign spec (what the content must be), while
+this one is what a player actually reads and in what order.
 `design/warfare.md` is the shipped PvP honor/rating reference that
 `src/sim/pvp/CLAUDE.md` requires be kept current. `design/design-language/` holds the
 approved desktop reference renders (images only, no local doc) that the repo-root
