@@ -23,7 +23,7 @@ describe('apiOriginKey', () => {
   it('normalizes equivalent spellings to one origin', () => {
     expect(apiOriginKey('https://world-of-aphasya.pixlland.com')).toBe('https://world-of-aphasya.pixlland.com');
     expect(apiOriginKey('https://world-of-aphasya.pixlland.com/')).toBe('https://world-of-aphasya.pixlland.com');
-    expect(apiOriginKey('HTTPS://WorldOfAphasya.COM')).toBe('https://world-of-aphasya.pixlland.com');
+    expect(apiOriginKey('HTTPS://World-Of-Aphasya.PixlLand.COM')).toBe('https://world-of-aphasya.pixlland.com');
     expect(apiOriginKey('http://localhost:8787')).toBe('http://localhost:8787');
   });
 
